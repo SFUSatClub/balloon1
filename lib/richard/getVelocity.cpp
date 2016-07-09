@@ -1,10 +1,8 @@
-#include "Arduino.h"
-#include "richard.h"
+ #include "richard.h"
 
 static float VxO = 0;
 static float Vx = 0;
 static float dt = 0.001;
-const int MPU_addr=0x68;  // might want to make this an argument. May change.
 
 // Richard: gets the velocity in a direction (1=x, 2=y, 3=z)
 

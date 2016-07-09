@@ -1,10 +1,9 @@
-#include "I2Cdev.h" // Richard: PlatformIO lib #113 - install this instead of Wire library, works the same.
+#include "richard.h"
 
 float Data [3] = {};
 float accelScale = 0.00059816; // 9.8/16387.5 (get into g and then m/s/s)
 
 float* getAccel(int MPU_addr){
-
 
   Wire.beginTransmission(MPU_addr);
   Wire.write(0x3B);  // starting with register 0x3B (ACCEL_XOUT_H)

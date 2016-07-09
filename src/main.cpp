@@ -19,7 +19,7 @@
 int16_t Tmp,GyX,GyY,GyZ;
 // float AcX,AcY,AcZ;
 // float accelScale = 16383.5;
-const int MPU_addr=0x68;  // I2C address of the MPU-6050
+// const int MPU_addr=0x68;  // I2C address of the MPU-6050
 // static float VxO = 0;
 // static float Vx = 0;
 // static float dt = 0.001;
@@ -36,8 +36,10 @@ void setup(){
 
 }
 void loop(){
-  doStuff(1);
+  LEDControl(1);
   int x = getVelocity(1);
+  x = x+1; // just so no warnings;
+
   // Wire.beginTransmission(MPU_addr);
   // Wire.write(0x3B);  // starting with register 0x3B (ACCEL_XOUT_H)
   // Wire.endTransmission(false);
