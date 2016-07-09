@@ -11,10 +11,15 @@
 //              3.3V power!
 // This example is from: http://playground.arduino.cc/Main/MPU-6050#short
 
-#include "arduino.h" //Richard: required for platformIO
+#include <arduino.h> //Richard: required for platformIO
 #include "I2Cdev.h" // Richard: PlatformIO lib #113 - install this instead of Wire library, works the same.
 #include <richard.h>
-// #include <satScheduler.h>
+#include "tsk_cfg.h"
+
+// Task variables
+static TaskType *Task_ptr;                 		// Task pointer
+static uint8_t TaskIndex = 0;					// Task index
+const uint8_t NumTasks = Tsk_GetNumTasks();		// Number of tasks
 
 
 ISR(TIMER0_COMPA_vect){//timer0 interrupt 1kHz toggles pin 8
@@ -39,15 +44,34 @@ void setup(){
   initAccelerometer(MPU_addr);
   tickConfig();
 
-  Serial.begin(9600);
+  Task_ptr = Tsk_GetConfig();    // Get a pointer to the task configuration
 
+  Serial.begin(9600);
   pinMode(13, OUTPUT);
 }
+
+
 void loop(){
+  tick =  getSystemTick();
+
+  for(TaskIndex = 0; TaskIndex < NumTasks; TaskIndex++)
+  {
+    if(Task_ptr[TaskIndex].Interval == 0)
+    {
+      // Run continuous tasks.
+      (*Task_ptr[TaskIndex].Func)();
+    }
+    else if((tick - Task_ptr[TaskIndex].LastTick) >= Task_ptr[TaskIndex].Interval)
+    {
+      (*Task_ptr[TaskIndex].Func)();         // Execute Task
+
+      Task_ptr[TaskIndex].LastTick = tick;  // Save last tick the task was ran.
+    }
+  }// end for
   // LEDControl(1);
   // int x = getVelocity(1);
   // x = x+1; // just so no warnings;
 
-Serial.println(getSystemTick());
+// Serial.println(getSystemTick());
 
 }
