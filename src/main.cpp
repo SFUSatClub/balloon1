@@ -17,9 +17,12 @@
 // #include<Wire.h>
 
 int16_t Tmp,GyX,GyY,GyZ;
-float AcX,AcY,AcZ;
+// float AcX,AcY,AcZ;
 // float accelScale = 16383.5;
 const int MPU_addr=0x68;  // I2C address of the MPU-6050
+// static float VxO = 0;
+// static float Vx = 0;
+// static float dt = 0.001;
 
 void setup(){
   // Wire.begin();
@@ -34,6 +37,7 @@ void setup(){
 }
 void loop(){
   doStuff(1);
+  int x = getVelocity(1);
   // Wire.beginTransmission(MPU_addr);
   // Wire.write(0x3B);  // starting with register 0x3B (ACCEL_XOUT_H)
   // Wire.endTransmission(false);
@@ -46,22 +50,24 @@ void loop(){
   // GyY = Wire.read()<<8|Wire.read();  // 0x45 (GYRO_YOUT_H) & 0x46 (GYRO_YOUT_L)
   // GyZ = Wire.read()<<8|Wire.read();  // 0x47 (GYRO_ZOUT_H) & 0x48 (GYRO_ZOUT_L)
 
-float *accel = getAccel(MPU_addr);
-  AcX = accel[0];
-  AcY = accel[1];
-  AcZ = accel[2];
 
 
-  Serial.print("AcX = "); Serial.print(AcX,6);  // let's see this to 6 decimal places :)
-  Serial.print(" | AcY = "); Serial.print(AcY,6);
-  Serial.print(" | AcZ = "); Serial.print(AcZ,6);
-  Serial.print("\n");
+// float *accel = getAccel(MPU_addr);
+// printAccel(accel);
+  // AcX = accel[0];
+  // AcY = accel[1];
+  // AcZ = accel[2];
+  //
+  //
+  // Serial.print("AcX = "); Serial.print(AcX,6);  // let's see this to 6 decimal places :)
+  // Serial.print(" | AcY = "); Serial.print(AcY,6);
+  // Serial.print(" | AcZ = "); Serial.print(AcZ,6);
+  // Serial.print("\n");
   // Serial.print(" | Tmp = "); Serial.print(Tmp/340.00+36.53);  //equation for temperature in degrees C from datasheet
   // doStuff(0);
   // Serial.print(" | GyX = "); Serial.print(GyX);
   // Serial.print(" | GyY = "); Serial.print(GyY);
   // Serial.print(" | GyZ = "); Serial.println(GyZ);
-  delay(333);
 
 
 }
