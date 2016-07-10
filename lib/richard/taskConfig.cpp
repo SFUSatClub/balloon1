@@ -1,10 +1,13 @@
 // include the header files for each task you want to run
 #include "task1.h"
+#include "task2.h"
 #include "newScheduler.h"
 
 // config table for the scheduler. Task interval, last time executed, function
 static TaskType Tasks[] = {
-{500,0,task1}
+{500,0,task1},
+{100,0,task2}
+
 };
 
 uint8_t taskNumber = sizeof(Tasks) / sizeof(*Tasks);
