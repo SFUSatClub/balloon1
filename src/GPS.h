@@ -8,9 +8,6 @@
 
 class MyGPS {
 	Adafruit_GPS *gpsImpl;
-	// this keeps track of whether we're using the interrupt
-	// off by default!
-	bool usingInterrupt;
 	Stream *serial;
 	uint32_t timer;
 public: 
