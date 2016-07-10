@@ -14,25 +14,29 @@
 #include <arduino.h> //Richard: required for platformIO
 #include "I2Cdev.h" // Richard: PlatformIO lib #113 - install this instead of Wire library, works the same.
 #include <richard.h>
-#include "tsk_cfg.h"
+#include "taskConfig.h"
 
 // Task variables
 static TaskType *Task_ptr;                 		// Task pointer
 static uint8_t TaskIndex = 0;					// Task index
-const uint8_t NumTasks = Tsk_GetNumTasks();		// Number of tasks
+const uint8_t NumTasks = task_getNumTasks();		// Number of tasks
 
+// static int toggle0 = 1;
 
 ISR(TIMER0_COMPA_vect){//timer0 interrupt 1kHz toggles pin 8
  tick ++; // increment our tick
-// //generates pulse wave of frequency 2kHz/2 = 500Hz (takes two cycles for full wave- toggle high then toggle low)
-//   if (toggle0){
-//     digitalWrite(8,HIGH);
-//     toggle0 = 0;
-//   }
-//   else{
-//     digitalWrite(8,LOW);
-//     toggle0 = 1;
-//   }
+//generates pulse wave of frequency 2kHz/2 = 500Hz (takes two cycles for full wave- toggle high then toggle low)
+  // if (toggle0){
+  //   // digitalWrite(8,HIGH);
+  //   bitWrite(PORTB, 0, 1);
+  //   toggle0 = 0;
+  // }
+  // else{
+  //   // digitalWrite(8,LOW);
+  //   bitWrite(PORTB, 0, 0);
+  //
+  //   toggle0 = 1;
+  // }
 }
 
 
@@ -44,7 +48,7 @@ void setup(){
   initAccelerometer(MPU_addr);
   tickConfig();
 
-  Task_ptr = Tsk_GetConfig();    // Get a pointer to the task configuration
+  Task_ptr = task_getConfig();    // Get a pointer to the task configuration
 
   Serial.begin(9600);
   pinMode(13, OUTPUT);

@@ -70,7 +70,7 @@
  */
 static TaskType Tasks[] =
 {
-	{ 920 ,  0, tsk_10ms   },
+	 { 100 ,  0, tsk_10ms   }
   	// { 100,  0, tsk_20ms  },
 };
 
