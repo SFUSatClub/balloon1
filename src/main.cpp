@@ -25,8 +25,8 @@
 #define gpsSerial Serial1
 #define radioSerial Serial2
 
+GPS gps(&gpsSerial);
 Radio radio(&radioSerial, 2);
-MyGPS myGPS(&gpsSerial);
 
 void setup() {
   // connect at 115200 so we can read the GPS fast enough and echo without dropping chars
@@ -34,10 +34,10 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Adafruit GPS library basic test!");
 
-  // 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
-  myGPS.begin(9600);
+  gps.begin();
 }
 
 void loop() {
-	myGPS.tick();
+  gps.tick();
 }
+

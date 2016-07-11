@@ -1,13 +1,15 @@
 #include "GPS.h"
 
-MyGPS::MyGPS(Stream * ser) {
-	gpsImpl = new Adafruit_GPS((HardwareSerial *)ser); // Constructor when using HardwareSerial
+GPS::GPS(HardwareSerial *ser) {
+	gpsImpl = new Adafruit_GPS(ser); // Constructor when using HardwareSerial
 
 	serial = ser;
 }
 
-void MyGPS::begin(uint16_t baud) {
-	gpsImpl->begin(baud);
+void GPS::begin() {
+	// 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
+	serial->begin(9600);
+	gpsImpl->begin(9600);
 	// uncomment this line to turn on RMC (recommended minimum) and GGA (fix data) including altitude
 	gpsImpl->sendCommand(PMTK_SET_NMEA_OUTPUT_RMCGGA);
 	// uncomment this line to turn on only the "minimum recommended" data
@@ -34,7 +36,7 @@ void MyGPS::begin(uint16_t baud) {
 	timer = millis();
 }
 
-void MyGPS::tick() {
+void GPS::tick() {
 	// read data from the GPS in the 'main loop'
 	char c = gpsImpl->read();
 	// if you want to debug, this is a good time to do it!

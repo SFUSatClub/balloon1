@@ -5,13 +5,12 @@
 // Set to 'true' if you want to debug and listen to the raw GPS sentences. 
 #define GPSECHO  true
 
-
-class MyGPS {
+class GPS {
 	Adafruit_GPS *gpsImpl;
-	Stream *serial;
+	HardwareSerial *serial;
 	uint32_t timer;
 public: 
-	MyGPS(Stream *s);
-	void begin(uint16_t baud);
+	GPS(HardwareSerial *);
+	void begin();
 	void tick();
 };
