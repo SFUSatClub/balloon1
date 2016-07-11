@@ -1,1 +1,4 @@
 .pioenvs
+
+# python binaries, for ycm
+*.pyc
