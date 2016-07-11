@@ -12,6 +12,7 @@
 // and help support open source hardware & software! -ada
 
 #include <Arduino.h>
+#include "Radio.h"
 #include "GPS.h"
 
 // This sketch is ONLY for the Arduino Due!
@@ -22,7 +23,9 @@
 //   GPS TX to Arduino Due Serial1 RX pin 19
 //   GPS RX to Arduino Due Serial1 TX pin 18
 #define gpsSerial Serial1
+#define radioSerial Serial2
 
+Radio radio(&radioSerial, 2);
 MyGPS myGPS(&gpsSerial);
 
 void setup() {
