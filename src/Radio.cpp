@@ -1,9 +1,8 @@
 #include "Radio.h"
 
-Radio::Radio(int restart_time, int tx_pin, int rx_pin) {
-	restart_time_out  = time;
-	radio_comms = SoftwareSerial(rx_pin, tx_pin);
-	radio_comms.begin(19200);
+Radio::Radio(HardwareSerial *ser, int restart_time) {
+	restart_time_out  = restart_time;
+	radio_comms->begin(19200);
 }
 
 bool Radio::transmit(String * packet) {
@@ -27,5 +26,6 @@ int Radio::enable() {
 }
 
 int Radio::systems_check() {
-	return check_result
+	int check_result = 1337;
+	return check_result;
 }
