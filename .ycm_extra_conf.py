@@ -3,6 +3,9 @@ YouCompleteMe extra configuration for Platformio based
 projects.
 Based on the `.ycm_extra_conf.py` by @ladislas in his Bare-Arduino-Project.
 Anthony Ford <github.com/ajford>
+----
+Edited on 2016-07-10 to use Arduino Due specific libs/flags
+Steven
 """
 import os
 import ycm_core
@@ -25,16 +28,16 @@ PlatformioAutogen = ".pioenvs/"
 ## and slightly increase startup time (while crawling the lib
 ## dir for header files). This will however allow you to
 ## complete for header files you haven't included yet.
-PlatformioArduinoLibs = "~/.platformio/packages/framework-arduinoavr/libraries/"
+PlatformioLibs = "~/.platformio/packages/framework-arduinosam/libraries/"
 
 # Platformio Arduino Core
 ## This links to the Platformio Arduino Cores. This provides 
 ## the core libs, such as Arduino.h and HardwareSerial.h
-PlatformioArduinoCore = "~/.platformio/packages/framework-arduinoavr/cores/arduino/"
+PlatformioCore = "~/.platformio/packages/framework-arduinosam/cores/arduino/"
 
 # Platformio Arduino Std Libs
 ## Arduino Std libs from .platformio packages. Provides stdlib.h and such.
-PlatformioArduinoSTD = '~/.platformio/packages/toolchain-atmelavr/avr/include'
+PlatformioSTD = '~/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include'
 
 # This is the list of all directories to search for header files.
 # Dirs in this list can be paths relative to this file, absolute
@@ -42,24 +45,24 @@ PlatformioArduinoSTD = '~/.platformio/packages/toolchain-atmelavr/avr/include'
 libDirs = [
            "lib"
            ,PlatformioAutogen
-           ,PlatformioArduinoCore
-           ,PlatformioArduinoLibs
-           ,PlatformioArduinoSTD
+           ,PlatformioCore
+           ,PlatformioLibs
+           ,PlatformioSTD
            ]
 
 flags = [
     # General flags
     '-Wall'
-    ,'-x'
-    ,'c++'
-    ,'-ansi'
+    ,'-std=gnu++11'
+    ,'-nostdlib'
 
     # Customize microcontroler and Arduino version
-    ,'-mmcu=atmega328p'
-    ,'-DF_CPU=16000000L'
-    ,'-DARDUINO_ARCH_AVR'
-    ,'-DARDUINO_AVR_DUEMILANOVE'
-    ,'-DARDUINO=106000'
+    ,'-mcpu=cortex-m3'
+    ,'-DF_CPU=84000000L'
+    ,'-D__SAM3X8E__'
+    ,'-DARDUINO_ARCH_SAM'
+    ,'-DARDUINO_SAM_DUE'
+    ,'-DARDUINO=10608'
     # ,'-MMD -DUSB_VID=null'
     # ,'-DUSB_PID=null'
 ]

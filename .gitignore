@@ -2,3 +2,6 @@
 
 # python binaries, for ycm
 *.pyc
+
+# universal-ctags, for ycm/vim
+tags
