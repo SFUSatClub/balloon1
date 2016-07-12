@@ -7,10 +7,10 @@
 
 class GPS {
 	Adafruit_GPS *gpsImpl;
-	HardwareSerial *serial;
+	SoftwareSerial *serial;
 	uint32_t timer;
 public: 
-	GPS(HardwareSerial *);
+	GPS(SoftwareSerial *);
 	void begin();
 	void tick();
 };

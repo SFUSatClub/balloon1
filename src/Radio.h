@@ -1,10 +1,11 @@
 #include <Arduino.h>
+#include <SoftwareSerial.h>
 
 class Radio {
 	int restart_time_out;
-	HardwareSerial *radio_comms;
+	SoftwareSerial *radio_comms;
 	public:
-		Radio(HardwareSerial *serial, int restart_time);
+		Radio(SoftwareSerial *serial, int restart_time);
 		bool transmit(String *packet);
 		String to_AX25(String *data);
 		void disable();

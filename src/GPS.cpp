@@ -1,6 +1,6 @@
 #include "GPS.h"
 
-GPS::GPS(HardwareSerial *ser) {
+GPS::GPS(SoftwareSerial *ser) {
 	gpsImpl = new Adafruit_GPS(ser); // Constructor when using HardwareSerial
 
 	serial = ser;
