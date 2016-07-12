@@ -37,7 +37,8 @@ PlatformioCore = "~/.platformio/packages/framework-arduinosam/cores/arduino/"
 
 # Platformio Arduino Std Libs
 ## Arduino Std libs from .platformio packages. Provides stdlib.h and such.
-PlatformioSTD = '~/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include'
+# Steven: platformio on due platform doesn't use arduino stdlibs, otherwise ycmdiags errors
+#PlatformioSTD = '~/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include'
 
 # This is the list of all directories to search for header files.
 # Dirs in this list can be paths relative to this file, absolute
@@ -47,7 +48,7 @@ libDirs = [
            ,PlatformioAutogen
            ,PlatformioCore
            ,PlatformioLibs
-           ,PlatformioSTD
+           #,PlatformioSTD
            ]
 
 flags = [
