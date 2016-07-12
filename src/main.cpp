@@ -12,6 +12,7 @@
 // and help support open source hardware & software! -ada
 
 #include <Arduino.h>
+#include "Radio.h"
 #include "GPS.h"
 
 // This sketch is ONLY for the Arduino Due!
@@ -22,8 +23,10 @@
 //   GPS TX to Arduino Due Serial1 RX pin 19
 //   GPS RX to Arduino Due Serial1 TX pin 18
 #define gpsSerial Serial1
+#define radioSerial Serial2
 
-MyGPS myGPS(&gpsSerial);
+GPS gps(&gpsSerial);
+Radio radio(&radioSerial, 2);
 
 void setup() {
   // connect at 115200 so we can read the GPS fast enough and echo without dropping chars
@@ -31,10 +34,10 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Adafruit GPS library basic test!");
 
-  // 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
-  myGPS.begin(9600);
+  gps.begin();
 }
 
 void loop() {
-	myGPS.tick();
+  gps.tick();
 }
+
