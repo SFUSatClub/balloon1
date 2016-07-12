@@ -29,16 +29,25 @@ SoftwareSerial radioSerial(3, 4);
 GPS gps(&gpsSerial);
 Radio radio(&radioSerial, 2);
 
+Module* modules[] = {&gps, &radio};
+
 void setup() {
   // connect at 115200 so we can read the GPS fast enough and echo without dropping chars
   // also spit it out
   Serial.begin(115200);
   Serial.println("Adafruit GPS library basic test!");
 
+  // Steven: example base class usage
+  for(Module *module : modules) {
+    module->enable();
+  }
+
   gps.begin();
+  radio.begin();
 }
 
 void loop() {
   gps.tick();
+  radio.tick();
 }
 
