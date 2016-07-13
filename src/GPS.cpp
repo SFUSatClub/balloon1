@@ -36,6 +36,9 @@ void GPS::begin() {
 	timer = millis();
 }
 
+/*
+ * TICKs every tick lol
+ */
 void GPS::tick() {
 	// read data from the GPS in the 'main loop'
 	char c = gpsImpl->read();
@@ -86,3 +89,9 @@ void GPS::tick() {
 	}
 }
 
+int GPS::enable() {
+	return 0;
+}
+
+void GPS::disable() {
+}
