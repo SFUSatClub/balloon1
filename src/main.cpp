@@ -21,6 +21,7 @@ static TaskType *Task_ptr;                 		// Task pointer
 static uint8_t TaskIndex = 0;					// Task index
 const uint8_t NumTasks = task_getNumTasks();		// Number of tasks
 
+
 // static int toggle0 = 1;
 
 ISR(TIMER0_COMPA_vect){//timer0 interrupt 1kHz toggles pin 8
@@ -46,12 +47,12 @@ uint32_t getSystemTick(){
 
 void setup(){
   initAccelerometer(MPU_addr);
-  tickConfig();
 
-  Task_ptr = task_getConfig();    // Get a pointer to the task configuration
 
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(13, OUTPUT);
+  tickConfig();
+  Task_ptr = task_getConfig();    // Get a pointer to the task configuration
 }
 
 
@@ -65,7 +66,7 @@ void loop(){
       // Run continuous tasks.
       (*Task_ptr[TaskIndex].Func)();
     }
-    else if((tick - Task_ptr[TaskIndex].LastTick) >= Task_ptr[TaskIndex].Interval)
+    else if((tick - Task_ptr[TaskIndex].LastTick) >= Task_ptr[TaskIndex].Interval) // Richard: add AND LastTick != current tick to prevent double running
     {
       (*Task_ptr[TaskIndex].Func)();         // Execute Task
 
