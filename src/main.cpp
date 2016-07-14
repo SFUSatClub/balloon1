@@ -42,12 +42,13 @@ uint32_t getSystemTick(){
 
 void setup(){
   initAccelerometer(MPU_addr);
-  tickConfig();
 
-  Task_ptr = Tsk_GetConfig();    // Get a pointer to the task configuration
 
   Serial.begin(9600);
   pinMode(13, OUTPUT);
+  tickConfig();
+
+  Task_ptr = Tsk_GetConfig();    // Get a pointer to the task configuration
 }
 
 
