@@ -1,9 +1,9 @@
-#include "task1.h"
+#include "taskConfig.h"
 
 static int trigger = 0;
 
 void task1(void){
-  if(trigger == 1){ 
+  if(trigger == 1){
     digitalWrite(13, 1);
     trigger = 0;
   }
