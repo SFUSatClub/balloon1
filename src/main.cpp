@@ -15,7 +15,6 @@
 #include "I2Cdev.h" // Richard: PlatformIO lib #113 - install this instead of Wire library, works the same.
 #include <richard.h>
 #include "taskConfig.h"
-#include "schedule.h"
 
 // Task variables
 static TaskType *Task_ptr;                 		// Task pointer
@@ -46,12 +45,10 @@ uint32_t getSystemTick(){
 }
 
 void setup(){
+  initAccelerometer(MPU_addr);
   tickConfig();
 
-  initAccelerometer(MPU_addr);
-
   Task_ptr = task_getConfig();    // Get a pointer to the task configuration
-  // schedule Scheduler; // should initialize the timer
 
   Serial.begin(9600);
   pinMode(13, OUTPUT);

@@ -15,5 +15,6 @@ void initAccelerometer(int);  // sets up the accelerometer
 float* getAccel(int);  // return a pointer to the data array so we can get at it later
 void printAccel(float*);  // prints accelerometer data
 float getVelocity(int); // returns velocity in specified direction
+// void tickConfig(void);  // initializes timer 2 on the 328
 void tickConfig(void);  // initializes timer 2 on the 328
 // uint32_t getSystemTick(void);
