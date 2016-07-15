@@ -1,11 +1,12 @@
 #include "Radio.h"
 
-Radio::Radio(HardwareSerial *ser, int restart_time):radio_comms(ser) {
+Radio::Radio(HardwareSerial *ser, int restart_time)
+	: radio_comms(ser) {
 	restart_time_out  = restart_time;
-	radio_comms->begin(19200);
 }
 
 void Radio::begin() {
+	radio_comms->begin(19200);
 }
 
 void Radio::tick() {
