@@ -116,17 +116,6 @@ void SDCard::runDiagnostics() {
   }
   firstTry = false;
 
-  cout << F("\nEnter the chip select pin number: ");
-  while (!Serial.available()) {}
-  delay(400);  // catch Due restart problem
-
-  cin.readline();
-  if (cin >> chipSelectPin) {
-    cout << chipSelectPin << endl;
-  } else {
-    cout << F("\nInvalid pin number\n");
-    return;
-  }
   if (DISABLE_CHIP_SELECT < 0) {
     cout << F(
 	"\nAssuming the SD is the only SPI device.\n"
