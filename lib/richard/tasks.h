@@ -2,4 +2,4 @@
 #include<arduino.h>
 #include "richard.h"
 void task1(void);
-void task2(uint8_t);
+void task2(void);

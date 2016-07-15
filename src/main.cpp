@@ -15,6 +15,7 @@
 #include "I2Cdev.h" // Richard: PlatformIO lib #113 - install this instead of Wire library, works the same.
 #include <richard.h>
 #include "taskConfig.h"
+#include "schedule.h"
 
 // Task variables
 static TaskType *Task_ptr;                 		// Task pointer
@@ -53,6 +54,10 @@ void setup(){
   pinMode(13, OUTPUT);
   tickConfig();
   Task_ptr = task_getConfig();    // Get a pointer to the task configuration
+
+  Task task1(500,100);
+  task1.setFunc((task1));
+
 }
 
 
