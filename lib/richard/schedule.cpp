@@ -1,4 +1,5 @@
 #include "schedule.h"
+#include "tasks.h"
 
 Task::Task(uint16_t timeout, uint16_t Interval){
   timeOut = timeout;
@@ -18,10 +19,13 @@ void Task::setLastRun(uint16_t lastrun){
 }
 
 
-void Task::setFunc( funcType f ) {
+void Task::setFunc( funcPtr f ) {
      pointedFunc = f;
 }
 
 void Task::runTask(){
+  // set the run start and the last run time
+  // run the function
+  // check that timeout has not occurred
 (*pointedFunc)(); // run the function from the poitner
 }

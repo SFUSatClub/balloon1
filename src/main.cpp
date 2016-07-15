@@ -21,7 +21,7 @@
 static TaskType *Task_ptr;                 		// Task pointer
 static uint8_t TaskIndex = 0;					// Task index
 const uint8_t NumTasks = task_getNumTasks();		// Number of tasks
-
+static Task *allTasks;
 
 // static int toggle0 = 1;
 
@@ -46,6 +46,31 @@ uint32_t getSystemTick(){
   return tick;
 }
 
+void task3(){
+  static int trigger = 0;
+
+    if(trigger == 1){
+      digitalWrite(13, 1);
+      trigger = 0;
+    }
+    else{
+      digitalWrite(13, 0);
+      trigger = 1;
+    }
+}
+void task4(){
+  static int trigger = 0;
+
+    if(trigger == 1){
+      digitalWrite(8, 1);
+      trigger = 0;
+    }
+    else{
+      digitalWrite(8, 0);
+      trigger = 1;
+    }
+}
+
 void setup(){
   initAccelerometer(MPU_addr);
 
@@ -55,13 +80,23 @@ void setup(){
   tickConfig();
   Task_ptr = task_getConfig();    // Get a pointer to the task configuration
 
-  Task task1(500,100);
-  task1.setFunc((task1));
 
+
+
+  Task task3P(500,100);
+  task3P.setFunc(&task3);
+  Task task4P(500,500);
+  task4P.setFunc(&task4);
+
+
+allTasks[0] = task3P;
+// Task allTasks[1] = {task3P, task4P};
 }
 
 
 void loop(){
+  allTasks[0].setFunc(&task4);
+  
   tick =  getSystemTick();
 
   for(TaskIndex = 0; TaskIndex < NumTasks; TaskIndex++)

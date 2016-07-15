@@ -1,23 +1,25 @@
 #include <stdint.h>
 
-
 class Task{
 private:
-  static uint16_t timeOut;
- static  uint16_t lastRun;
-  static uint16_t runStart;
-  static uint16_t interval;
-  // void (*Func)(void)
-  typedef void (*funcType)(void); // create a type to contain the function pointer
-  funcType pointedFunc; // pointedFunc is the variable with the function pointer
+   uint16_t timeOut;
+   uint16_t runStart;
+  typedef void (*funcPtr)(void); // create a type to contain the function pointer
+  funcPtr pointedFunc; // pointedFunc is the variable with the function pointer
 
 public:
+  // we need to poke at these as we're going through checking whether to run tasks or not, hence public
+    uint16_t lastRun;
+   uint16_t interval;
+
   Task(uint16_t timeout, uint16_t Interval); // constructor
  void setLastRun(uint16_t lastrun);
 void setRunStart(uint16_t runstart);
   void runTask();
-  void setFunc(funcType);
+  void setFunc(funcPtr f);
 };
+
+
 
 //
 // CFoo() : pointedFunc( NULL ) {}
