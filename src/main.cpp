@@ -83,7 +83,7 @@ void setup(){
 
 
 
-  Task task3P(500,100);
+  Task task3P(500,500);
   task3P.setFunc(&task3);
   Task task4P(500,500);
   task4P.setFunc(&task4);
@@ -95,22 +95,22 @@ allTasks[0] = task3P;
 
 
 void loop(){
-  allTasks[0].setFunc(&task4);
-  
-  tick =  getSystemTick();
 
-  for(TaskIndex = 0; TaskIndex < NumTasks; TaskIndex++)
+  tick =  getSystemTick();
+uint8_t numTasks = 1;
+
+  for(TaskIndex = 0; TaskIndex < numTasks; TaskIndex++)
   {
-    if(Task_ptr[TaskIndex].Interval == 0)
+    if(allTasks[TaskIndex].interval == 0)
     {
       // Run continuous tasks.
-      (*Task_ptr[TaskIndex].Func)();
+      allTasks[TaskIndex].runTask();
     }
-    else if((tick - Task_ptr[TaskIndex].LastTick) >= Task_ptr[TaskIndex].Interval) // Richard: add AND LastTick != current tick to prevent double running
+    else if((tick - allTasks[TaskIndex].lastRun) >= allTasks[TaskIndex].interval) // Richard: add AND LastTick != current tick to prevent double running
     {
-      (*Task_ptr[TaskIndex].Func)();         // Execute Task
+      allTasks[TaskIndex].runTask();         // Execute Task
 
-      Task_ptr[TaskIndex].LastTick = tick;  // Save last tick the task was ran.
+      allTasks[TaskIndex].setLastRun(tick);  // Save last tick the task was ran.
     }
   }// end for
   // LEDControl(1);
@@ -120,3 +120,11 @@ void loop(){
 // Serial.println(getSystemTick());
 
 }
+
+// Richard todo:
+// clean everything up
+// be able to add more objects to the array so multitasking works
+// make sure tasks have access to the tick pointer - or implement another timer that resets on each task
+// add stability checks to the task class
+// set the last run variable within the .runTask function and things like that
+// figure out why it stops after a while (overflow somewhere?)
