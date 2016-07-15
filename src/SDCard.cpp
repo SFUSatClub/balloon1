@@ -17,7 +17,6 @@ void SDCard::begin() {
 		state = State::BEGIN_SUCCESS;
 		
 		File root = SD.open("/");
-		printDirectory(root, 0);
 		root.close();
 
 		dataFile = SD.open("data.txt", FILE_WRITE);
@@ -89,67 +88,115 @@ void SDCard::registerModules(Module* _modules[]) {
 	return;
 }
 
-// Steven: Example code from Sparkfun to help troubleshoot SD card issues
+// Steven: diagnostics code from SdFat "QuickStart" example
 void SDCard::runDiagnostics() {
-  Sd2Card card;
-  SdVolume volume;
-  SdFile root;
-  // we'll use the initialization code from the utility libraries
-  // since we're just testing if the card is working!
-  if (!card.init(SPI_HALF_SPEED, 4)) {
-    Serial.println("initialization failed. Things to check:");
-    Serial.println("* is a card is inserted?");
-    Serial.println("* Is your wiring correct?");
-    Serial.println("* did you change the chipSelect pin to match your shield or module?");
-    return;
+  // Serial streams
+  ArduinoOutStream cout(Serial);
+
+  // input buffer for line
+  char cinBuf[40];
+  ArduinoInStream cin(Serial, cinBuf, sizeof(cinBuf));
+
+  // Set DISABLE_CHIP_SELECT to disable a second SPI device.
+  // For example, with the Ethernet shield, set DISABLE_CHIP_SELECT
+  // to 10 to disable the Ethernet controller.
+  const int8_t DISABLE_CHIP_SELECT = -1;
+  //
+  // Test with reduced SPI speed for breadboards.
+  // Change spiSpeed to SPI_FULL_SPEED for better performance
+  // Use SPI_QUARTER_SPEED for even slower SPI bus speed
+  const uint8_t spiSpeed = SPI_HALF_SPEED;
+
+  bool firstTry = true;
+  // read any existing Serial data
+  while (Serial.read() >= 0) {}
+
+  if (!firstTry) {
+    cout << F("\nRestarting\n");
+  }
+  firstTry = false;
+
+  cout << F("\nEnter the chip select pin number: ");
+  while (!Serial.available()) {}
+  delay(400);  // catch Due restart problem
+
+  cin.readline();
+  if (cin >> chipSelectPin) {
+    cout << chipSelectPin << endl;
   } else {
-    Serial.println("Wiring is correct and a card is present.");
-  }
-
-  // print the type of card
-  Serial.print("\nCard type: ");
-  switch (card.type()) {
-    case SD_CARD_TYPE_SD1:
-      Serial.println("SD1");
-      break;
-    case SD_CARD_TYPE_SD2:
-      Serial.println("SD2");
-      break;
-    case SD_CARD_TYPE_SDHC:
-      Serial.println("SDHC");
-      break;
-    default:
-      Serial.println("Unknown");
-  }
-
-  // Now we will try to open the 'volume'/'partition' - it should be FAT16 or FAT32
-  if (!volume.init(card)) {
-    Serial.println("Could not find FAT16/FAT32 partition.\nMake sure you've formatted the card");
+    cout << F("\nInvalid pin number\n");
     return;
   }
-}
-
-// Steven: from arduino.cc
-void printDirectory(File dir, int numTabs) {
-  while (true) {
-
-    File entry =  dir.openNextFile();
-    if (! entry) {
-      // no more files
-      break;
-    }
-    for (uint8_t i = 0; i < numTabs; i++) {
-      Serial.print('\t');
-    }
-    Serial.print(entry.name());
-    if (entry.isDirectory()) {
-      Serial.println("/");
-      printDirectory(entry, numTabs + 1);
-    } else {
-      // files have sizes, directories do not
-      Serial.print("\t\t");
-      Serial.println(entry.size(), DEC);
-    }
-    entry.close();
+  if (DISABLE_CHIP_SELECT < 0) {
+    cout << F(
+	"\nAssuming the SD is the only SPI device.\n"
+	"Edit DISABLE_CHIP_SELECT to disable another device.\n");
+  } else {
+    cout << F("\nDisabling SPI device on pin ");
+    cout << int(DISABLE_CHIP_SELECT) << endl;
+    pinMode(DISABLE_CHIP_SELECT, OUTPUT);
+    digitalWrite(DISABLE_CHIP_SELECT, HIGH);
   }
+  if (!SD.begin(chipSelectPin, spiSpeed)) {
+    if (SD.card()->errorCode()) {
+      cout << F(
+	  "\nSD initialization failed.\n"
+	  "Do not reformat the card!\n"
+	  "Is the card correctly inserted?\n"
+	  "Is chipSelectPin set to the correct value?\n"
+	  "Does another SPI device need to be disabled?\n"
+	  "Is there a wiring/soldering problem?\n");
+      cout << F("\nerrorCode: ") << hex << showbase;
+      cout << int(SD.card()->errorCode());
+      cout << F(", errorData: ") << int(SD.card()->errorData());
+      cout << dec << noshowbase << endl;
+      return;
+    }
+    cout << F("\nCard successfully initialized.\n");
+    if (SD.vol()->fatType() == 0) {
+      cout << F("Can't find a valid FAT16/FAT32 partition.\n");
+      cout << F("Check original reformatMsg()\n");
+      return;
+    }
+    if (!SD.vwd()->isOpen()) {
+      cout << F("Can't open root directory.\n");
+      cout << F("Check original reformatMsg()\n");
+      return;
+    }
+    cout << F("Can't determine error type\n");
+    return;
+  }
+  cout << F("\nCard successfully initialized.\n");
+  cout << endl;
+
+  uint32_t size = SD.card()->cardSize();
+  if (size == 0) {
+    cout << F("Can't determine the card size.\n");
+    cout << F("Check original cardOrSpeed()\n");
+    return;
+  }
+  uint32_t sizeMB = 0.000512 * size + 0.5;
+  cout << F("Card size: ") << sizeMB;
+  cout << F(" MB (MB = 1,000,000 bytes)\n");
+  cout << endl;
+  cout << F("Volume is FAT") << int(SD.vol()->fatType());
+  cout << F(", Cluster size (bytes): ") << 512L * SD.vol()->blocksPerCluster();
+  cout << endl << endl;
+
+  cout << F("Files found (date time size name):\n");
+  SD.ls(LS_R | LS_DATE | LS_SIZE);
+
+  if ((sizeMB > 1100 && SD.vol()->blocksPerCluster() < 64)
+      || (sizeMB < 2200 && SD.vol()->fatType() == 32)) {
+    cout << F("\nThis card should be reformatted for best performance.\n");
+    cout << F("Use a cluster size of 32 KB for cards larger than 1 GB.\n");
+    cout << F("Only cards larger than 2 GB should be formatted FAT32.\n");
+    cout << F("Check original reformatMsg()\n");
+    return;
+  }
+  // read any existing Serial data
+  while (Serial.read() >= 0) {}
+  cout << F("\nSuccess!  Type any character to restart.\n");
+  while (Serial.read() < 0) {}
 }
+

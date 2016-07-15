@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include <SD.h>
+#include <SdFat.h>
 #include "Module.h"
 
 class SDCard: public Module {
@@ -11,6 +11,7 @@ class SDCard: public Module {
 	int chipSelectPin;
 	Module **modules;
 	uint32_t timer;
+	SdFat SD;
 public:
 	SDCard(const int cs);
 	void begin();
@@ -22,4 +23,6 @@ public:
 	void registerModules(Module* modules[]);
 };
 
+
 #endif /* SDCARD_H */
+
