@@ -12,9 +12,9 @@
 // and help support open source hardware & software! -ada
 
 #include <Arduino.h>
-#include <stdarg.h>
 #include "Radio.h"
 #include "GPS.h"
+#include "SDCard.h"
 
 // This sketch is ONLY for the Arduino Due!
 // You should make the following connections with the Due and GPS module:
@@ -25,11 +25,13 @@
 //   GPS RX to Arduino Due Serial1 TX pin 18
 #define gpsSerial Serial1
 #define radioSerial Serial2
+const int sdChipSelectPin = 4;
 
 GPS gps(&gpsSerial);
 Radio radio(&radioSerial, 2);
+SDCard sd(sdChipSelectPin);
 
-Module* modules[] = {&gps, &radio};
+Module* modules[] = {&gps, &radio, &sd};
 
 void setup() {
   // connect at 115200 so we can read the GPS fast enough and echo without dropping chars
@@ -44,10 +46,15 @@ void setup() {
 
   gps.begin();
   radio.begin();
+  sd.begin();
+
+  // sd.runDiagnostics();
+  sd.registerModules(modules);
 }
 
 void loop() {
   gps.tick();
   radio.tick();
+  sd.tick();
 }
 
