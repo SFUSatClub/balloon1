@@ -1,4 +1,8 @@
 #include <stdint.h>
+#include "tasks.h"
+
+static volatile uint32_t tick = 0;
+void tickConfig(void);  // initializes timer 2 on the 328
 
 class Task{
 private:

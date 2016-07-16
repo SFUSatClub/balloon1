@@ -1,9 +1,11 @@
 // #include "task2.h"
 #include "tasks.h"
+// #include "IMU.h"
+
 static int trigger = 0;
 
 void task2(){
-  // Serial.println(*getAccel(MPU_addr));
+  Serial.println("Hello");
 
   if(trigger == 1){
     digitalWrite(8, 1);

@@ -1,5 +1,5 @@
-#include "richard.h"
-
+#include "schedule.h"
+#include <arduino.h>
 // Sets up timer 0 for 1kHz
 
 void tickConfig(void){

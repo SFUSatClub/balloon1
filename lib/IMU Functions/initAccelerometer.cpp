@@ -1,5 +1,5 @@
 // Richard: This function sets up the MPU 6050 accelerometer. Run once or after accelerometer power cycle.
-#include "richard.h"
+#include "IMU.h"
 
 void initAccelerometer(int MPU_addr){
   Wire.begin();

@@ -1,4 +1,4 @@
-#include "richard.h"
+#include "IMU.h"
 
 float Data [3] = {};
 float accelScale = 0.00059816; // 9.8/16387.5 (get into g and then m/s/s)
