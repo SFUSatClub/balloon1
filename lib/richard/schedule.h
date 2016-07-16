@@ -1,6 +1,4 @@
 #include <stdint.h>
-#include <arduino.h>
-// #include "tasks.h"
 
 class Task{
 private:
@@ -14,31 +12,14 @@ public:
     uint32_t lastRun;
    uint32_t interval;
 
-  Task(uint16_t timeout, uint32_t Interval, funcPtr setFn); // constructor
+  Task(uint16_t timeout, uint32_t Interval); // constructor
  void setLastRun(uint32_t lastrun);
 void setRunStart(uint32_t runstart);
   void runTask();
   void setFunc(funcPtr f);
 };
 
-// 
-// void task3(){
-//   static int trigger = 0;
-//
-//     if(trigger == 1){
-//       digitalWrite(13, 1);
-//       trigger = 0;
-//     }
-//     else{
-//       digitalWrite(13, 0);
-//       trigger = 1;
-//     }
-// }
-//
-// Task allTasks[1] = {
-//  Task(500,500,&task3)
-//  // Task(500,100,&task4)
-// };
+
 
 //
 // CFoo() : pointedFunc( NULL ) {}
