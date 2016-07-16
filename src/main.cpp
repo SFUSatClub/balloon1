@@ -106,7 +106,7 @@ uint8_t numTasks = 1;
       // Run continuous tasks.
       allTasks[TaskIndex].runTask();
     }
-    else if((tick - allTasks[TaskIndex].lastRun) >= allTasks[TaskIndex].interval) // Richard: add AND LastTick != current tick to prevent double running
+    else if((tick - allTasks[TaskIndex].lastRun) >= allTasks[TaskIndex].interval && allTasks[TaskIndex].lastRun < tick) // Richard: add AND LastTick != current tick to prevent double running
     {
       allTasks[TaskIndex].runTask();         // Execute Task
 
