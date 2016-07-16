@@ -1,12 +1,12 @@
 #include "schedule.h"
-#include "tasks.h"
+// #include "tasks.h"
 
-Task::Task(uint16_t timeout, uint32_t Interval){
+Task::Task(uint16_t timeout, uint32_t Interval, funcPtr setFn){
   timeOut = timeout;
   lastRun = 0;
   runStart = 0;
   interval = Interval;
-  pointedFunc =  nullptr; // pointedFunc(nullptr)
+  pointedFunc =  setFn; // pointedFunc(nullptr)
 }
 
 

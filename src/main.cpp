@@ -16,12 +16,14 @@
 #include <richard.h>
 #include "taskConfig.h"
 #include "schedule.h"
+#include "tasks.h"
 
 // Task variables
 static TaskType *Task_ptr;                 		// Task pointer
 static uint8_t TaskIndex = 0;					// Task index
 const uint8_t NumTasks = task_getNumTasks();		// Number of tasks
-static Task *allTasks;
+// static Task *allTasks;
+
 
 // static int toggle0 = 1;
 
@@ -83,21 +85,26 @@ void setup(){
 
 
 
-  Task task3P(500,500);
-  task3P.setFunc(&task3);
-  Task task4P(500,500);
-  task4P.setFunc(&task4);
+
+  // task3P.setFunc(&task3);
+  // Task task4P(500,500);
+  // task4P.setFunc(&task4);
 
 
-allTasks[0] = task3P;
+// allTasks[0] = task3P;
+
 // Task allTasks[1] = {task3P, task4P};
 }
 
+Task allTasks[2] = {
+    Task (500,500, &task3),
+    Task (100,100, &task4)
+};
+uint8_t numTasks = 2;
 
 void loop(){
 
   tick =  getSystemTick();
-uint8_t numTasks = 1;
 
   for(TaskIndex = 0; TaskIndex < numTasks; TaskIndex++)
   {

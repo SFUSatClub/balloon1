@@ -12,7 +12,7 @@ public:
     uint32_t lastRun;
    uint32_t interval;
 
-  Task(uint16_t timeout, uint32_t Interval); // constructor
+  Task(uint16_t timeout, uint32_t Interval, funcPtr setFn); // constructor
  void setLastRun(uint32_t lastrun);
 void setRunStart(uint32_t runstart);
   void runTask();
