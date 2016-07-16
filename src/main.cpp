@@ -21,7 +21,9 @@
 static TaskType *Task_ptr;                 		// Task pointer
 static uint8_t TaskIndex = 0;					// Task index
 const uint8_t NumTasks = task_getNumTasks();		// Number of tasks
-static Task *allTasks;
+ // Task *allTasks[1];
+ // Task allTasks[2];
+
 
 // static int toggle0 = 1;
 
@@ -83,21 +85,23 @@ void setup(){
 
 
 
-  Task task3P(500,500);
-  task3P.setFunc(&task3);
-  Task task4P(500,500);
-  task4P.setFunc(&task4);
+  // Task task3P(500,500, &task3);
+  // task3P.setFunc(&task3);
+  // Task task4P(500,500);
+  // task4P.setFunc(&task4);
 
-
-allTasks[0] = task3P;
+// allTasks[0] = new Task(500,500,&task3);
 // Task allTasks[1] = {task3P, task4P};
 }
-
+Task allTasks[2] = {
+    Task(500,500,&task3),
+    Task(500,100,&task4)
+  };
 
 void loop(){
 
   tick =  getSystemTick();
-uint8_t numTasks = 1;
+uint8_t numTasks = 2;
 
   for(TaskIndex = 0; TaskIndex < numTasks; TaskIndex++)
   {
