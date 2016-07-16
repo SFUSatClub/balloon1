@@ -96,10 +96,15 @@ void setup(){
 // Task allTasks[1] = {task3P, task4P};
 }
 
-Task allTasks[2] = {
-    Task (500,500, &task3),
-    Task (100,100, &task4)
+
+
+Task allTasksSave[2] = {
+    Task (500,200, &task1),
+    Task (100,100, &task2)
 };
+
+Task *allTasks[2] = {&allTasksSave[0],&allTasksSave[1]};
+
 uint8_t numTasks = 2;
 
 void loop(){
@@ -108,16 +113,16 @@ void loop(){
 
   for(TaskIndex = 0; TaskIndex < numTasks; TaskIndex++)
   {
-    if(allTasks[TaskIndex].interval == 0)
+    if(allTasks[TaskIndex]->interval == 0)
     {
       // Run continuous tasks.
-      allTasks[TaskIndex].runTask();
+      allTasks[TaskIndex]->runTask();
     }
-    else if((tick - allTasks[TaskIndex].lastRun) >= allTasks[TaskIndex].interval && allTasks[TaskIndex].lastRun < tick) // Richard: add AND LastTick != current tick to prevent double running
+    else if((tick - allTasks[TaskIndex]->lastRun) >= allTasks[TaskIndex]->interval && allTasks[TaskIndex]->lastRun < tick) // Richard: add AND LastTick != current tick to prevent double running
     {
-      allTasks[TaskIndex].runTask();         // Execute Task
+      allTasks[TaskIndex]->runTask();         // Execute Task
 
-      allTasks[TaskIndex].setLastRun(tick);  // Save last tick the task was ran.
+      allTasks[TaskIndex]->setLastRun(tick);  // Save last tick the task was ran.
     }
   }// end for
   // LEDControl(1);
