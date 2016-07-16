@@ -9,6 +9,7 @@ class Photocells: public Module {
         static const int CELLS=5;      //number of photocells
         static const int FIRST_PIN=0;  //first photosensor is attached to pin x
         int photocellData[CELLS];      //data acquired from sensor (assuming int datatype?)
+        char toWrite[200];             //max buffer size may have to change depending on data
         
     
 public:
