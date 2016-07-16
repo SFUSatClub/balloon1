@@ -83,9 +83,9 @@ void setup(){
 
 
 
-  Task task3P(500,500);
+  Task task3P(500);
   task3P.setFunc(&task3);
-  Task task4P(500,500);
+  Task task4P(500);
   task4P.setFunc(&task4);
 
 
@@ -109,8 +109,8 @@ uint8_t numTasks = 1;
     else if((tick - allTasks[TaskIndex].lastRun) >= allTasks[TaskIndex].interval) // Richard: add AND LastTick != current tick to prevent double running
     {
       allTasks[TaskIndex].runTask();         // Execute Task
-
       allTasks[TaskIndex].setLastRun(tick);  // Save last tick the task was ran.
+
     }
   }// end for
   // LEDControl(1);
