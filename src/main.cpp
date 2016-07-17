@@ -1,52 +1,29 @@
-// MPU-6050 Short Example Sketch
-// By Arduino User JohnChi
-// August 17, 2014
-// Public Domain
-
 // Richard Notes for SFUSat:
-// Simple 6050 IMU read example. See archive.txt for a more complicated example that sort of works, but is meant for a different board.
-// More info: github.com/jrowberg/i2cdevlib/blob/master/Arduino/MPU6050/MPU6050.cpp - from SparkFun product page
-// Connections: SDA = analog 4
-//              SCL  = analog 5
-//              3.3V power!
-// This example is from: playground.arduino.cc/Main/MPU-6050#short
+// Make sure to add the 328 or the Due to your platformio environment (PlatformIO > Initialize new platformio target or update existing, choose Due programming port)
+// if you have multiple targets, you might need to select the one to build or upload to, type:
+// platformio run --target upload --environment due
+// or select PlatformIO > Run Other target
+// the programming port on the Due is the one closest to the DC power jack
 
-#include <arduino.h> //Richard: required for platformIO
-#include <IMU.h>
-#include "schedule.h"
-#include "tasks.h"
+#include <Arduino.h> //Richard: required for platformIO
+#include "schedule.h" // deals with all the scheduling stuff (except ISR)
+#include "tasks.h"  // header for all of the task functions
+#include "ISR.h"  // keeping interrupt service routines here since there may be quite a few of them
 
-ISR(TIMER0_COMPA_vect){//timer0 interrupt 1kHz toggles pin 8
- Mytick ++; // increment our tick
-//generates pulse wave of frequency 2kHz/2 = 500Hz (takes two cycles for full wave- toggle high then toggle low)
-  // if (toggle0){
-  //   // digitalWrite(8,HIGH);
-  //   bitWrite(PORTB, 0, 1);
-  //   toggle0 = 0;
-  // }
-  // else{
-  //   // digitalWrite(8,LOW);
-  //   bitWrite(PORTB, 0, 0);
-  //
-  //   toggle0 = 1;
-  // }
-}
-//
 void setup(){
-  // initAccelerometer(0x86);
   Serial.begin(115200);
   pinMode(12, OUTPUT);
   pinMode(8, OUTPUT);
-  tickConfig();
+  tickConfig(); // configures the master tick (1kHz)
 }
 
-
+// setup the tasks, figure out a nicer way to do this
 const uint8_t numTasks = 2;
 Task *allTasks[numTasks] = {
     new Task(500,500, &task1)
   , new Task(500,100, &task2)
 };
- 
+
 void loop(){
     uint32_t tickNow =  getSystemTick();
 
@@ -68,7 +45,4 @@ void loop(){
 }
 
 // Richard todo:
-// make sure tasks have access to the tick pointer - or implement another timer that resets on each task
-// add stability checks to the task class
-// set the last run variable within the .runTask function and things like that
-// figure out why it stops after a while (overflow somewhere?)
+// add the watchdog to the Time -> runTask function
