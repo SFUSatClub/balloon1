@@ -1,17 +1,15 @@
 #include <Arduino.h>    
 #include "Module.h"
-#include "CheckDescent.h"
+#include "CheckLanded.h"
 
-//implementation that treats all photocells as a single unit, provided that they are all connected to consecutive ports 
-//first sensor attached to A1, second attached to A2, etc.
 
-CheckDescent::CheckDescent(HardwareSerial* ser,IMU* imuunit,GPS* gpsunit){
+CheckLanded::CheckLanded(HardwareSerial* ser,IMU* imuunit,GPS* gpsunit){
         serial=ser;
         theIMU=imuunit;
         theGPS=gpsunit;
 }
 
-void CheckDescent::begin(){
+void CheckLanded::begin(){
         timer=millis();
         altitude[0]=theGPS->getAltitude();
         pressure[0]=theIMU->getPressure();
@@ -19,7 +17,7 @@ void CheckDescent::begin(){
 }
 
 
-void CheckDescent::tick(){
+void CheckLanded::tick(){
         // if millis() or timer wraps around, we'll just reset it
         if (timer > millis())  timer = millis();
 
@@ -41,27 +39,28 @@ void CheckDescent::tick(){
                 deltaPressure=true; //assume true, check for a false case
                 deltaAltitude=true; //assume true, check for a false case
                 for (int i=SAVED_VALUES-1;i>=1;i--){
-                        if (pressure[i]>pressure[i-1])  deltaPressure=false;
-                        if (altitude[i]<altitude[i-1])  deltaAltitude=false;
-                } 
+                         
+                        if ( abs(pressure[i]-pressure[i-1])<PRESSURE_VARIES)   deltaPressure=false;
+                        if ( abs(altitude[i]-altitude[i-1])<ALTITUDE_VARIES )  deltaAltitude=false;
+                } //needs to be drift-resistant 
                
-                descending=(deltaAltitude && deltaPressure); 
+                landed=(deltaAltitude && deltaPressure); 
         }
 
 }
 
 
 
-bool CheckDescent::isDescending(){
-        return descending;
+bool CheckLanded::isLanded(){
+        return landed;
 }
 
 
-int CheckDescent::enable(){
+int CheckLanded::enable(){
         return 0;
 }
 
-void CheckDescent::disable(){
+void CheckLanded::disable(){
 
 }
 

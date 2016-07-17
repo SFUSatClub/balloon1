@@ -12,7 +12,6 @@ Photocells::Photocells(HardwareSerial* ser){
 
 void Photocells::begin(){
         serial->begin(9600);
-        delay(1000);
         timer=millis();
 }
 
