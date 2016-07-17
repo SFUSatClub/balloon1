@@ -16,12 +16,6 @@
 #include "schedule.h"
 #include "tasks.h"
 
-<<<<<<< HEAD
-
-static uint8_t TaskIndex = 0;					// Task index
-
-=======
->>>>>>> origin/Richard
 ISR(TIMER0_COMPA_vect){//timer0 interrupt 1kHz toggles pin 8
  Mytick ++; // increment our tick
 //generates pulse wave of frequency 2kHz/2 = 500Hz (takes two cycles for full wave- toggle high then toggle low)
