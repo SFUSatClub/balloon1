@@ -1,5 +1,10 @@
 #include "schedule.h"
+#include <arduino.h>
 // #include "tasks.h"
+uint32_t Mytick = 0;
+uint32_t getSystemTick(){
+  return Mytick;
+}
 
 Task::Task(uint16_t timeout, uint32_t Interval, funcPtr setFn){
   timeOut = timeout;
@@ -24,8 +29,14 @@ void Task::setFunc( funcPtr f ) {
 }
 
 void Task::runTask(){
+  uint32_t thing = getSystemTick();
+  Serial.println(thing);
+    (*pointedFunc)(); // run the function from the poitner
+
+
+
+  // thing = getSystemTick();
   // set the run start and the last run time
   // run the function
   // check that timeout has not occurred
-(*pointedFunc)(); // run the function from the poitner
 }

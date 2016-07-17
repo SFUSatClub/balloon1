@@ -1,11 +1,18 @@
+#ifndef SCHEDULE_H
+#define SCHEDULE_H
+
 #include <stdint.h>
 #include "tasks.h"
 
-static volatile uint32_t tick = 0;
+extern uint32_t Mytick;
 void tickConfig(void);  // initializes timer 2 on the 328
+// staticuint32_t tickPtr = &tick;
+
+extern uint32_t getSystemTick();
 
 class Task{
 private:
+  //  uint32_t Time1 = *tickPtr;
    uint16_t timeOut;
    uint32_t runStart;
   typedef void (*funcPtr)(void); // create a type to contain the function pointer
@@ -18,7 +25,7 @@ public:
 
   Task(uint16_t timeout, uint32_t Interval, funcPtr setFn); // constructor
  void setLastRun(uint32_t lastrun);
-void setRunStart(uint32_t runstart);
+ void setRunStart(uint32_t runstart);
   void runTask();
   void setFunc(funcPtr f);
 };
@@ -29,3 +36,4 @@ void setRunStart(uint32_t runstart);
 // CFoo() : pointedFunc( NULL ) {}
 //   typedef int (*funcType)(int, int);
 //   funcType pointedFunc;
+#endif // SCHEDULE_H
