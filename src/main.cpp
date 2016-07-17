@@ -16,6 +16,8 @@
 #include "GPS.h"
 #include "SDCard.h"
 
+using namespace std;
+
 // This sketch is ONLY for the Arduino Due!
 // You should make the following connections with the Due and GPS module:
 // GPS power pin to Arduino Due 3.3V output.
@@ -31,7 +33,9 @@ GPS gps(&gpsSerial);
 Radio radio(&radioSerial, 2);
 SDCard sd(sdChipSelectPin);
 
-Module* modules[] = {&gps, &radio, &sd};
+// Steven: maybe should use container classes. array/vector?
+const int numModules = 3;
+Module* modules[numModules] = {&gps, &radio, &sd};
 
 void setup() {
   // connect at 115200 so we can read the GPS fast enough and echo without dropping chars
@@ -48,8 +52,8 @@ void setup() {
   radio.begin();
   sd.begin();
 
-  // sd.runDiagnostics();
-  sd.registerModules(modules);
+  sd.registerModules(modules, numModules);
+  // sd.doSDTimingBenchmark();
 }
 
 void loop() {

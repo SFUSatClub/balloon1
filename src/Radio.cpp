@@ -38,3 +38,10 @@ int Radio::systems_check() {
 	return check_result;
 }
 
+const char* Radio::dataToPersist() {
+	return "returning some radio data";
+}
+
+const char* Radio::getModuleName() {
+	return "Radio";
+}

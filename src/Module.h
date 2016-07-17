@@ -2,6 +2,7 @@
 #define MODULE_H
 
 #include <Arduino.h>
+#include <FatLib/ArduinoStream.h>
 
 /* Base sensor class */
 class Module {
@@ -28,10 +29,16 @@ public:
 	// Disable the module, powersaving mode
 	virtual void disable() = 0;
 	// Should the module creates data and wants to persist it, this function
-	// will be called elsewhere to take care of it
+	// will be called by the SD module to take care of it
 	virtual const char* dataToPersist();
+	// The name of the module
+	virtual const char* getModuleName();
 protected:
 	State state;
 };
+
+extern ArduinoOutStream cout;
+
+extern ArduinoInStream cin;
 
 #endif /* MODULE_H */

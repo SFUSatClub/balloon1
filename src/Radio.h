@@ -11,6 +11,9 @@ public:
 	int enable();
 	void disable();
 
+	const char* getModuleName();
+	const char* dataToPersist();
+
 	bool transmit(String *packet);
 	String to_AX25(String *data);
 	int systems_check();

@@ -1,25 +1,16 @@
 #include "SDCard.h"
 
-// TODO: sd cards only deal in 512 byte blocks, so buffer 512 bytes before
-// performing any writes to sd
-
 SDCard::SDCard(int cs)
 	: dataFile()
 	, chipSelectPin(cs) 
+	, BUFFER_WRITE_SIZE(512)
 {
 }
-
-void printDirectory(File dir, int numTabs);
 
 void SDCard::begin() {
 	if(SD.begin(chipSelectPin)) {
 		Serial.println("SD Success");
 		state = State::BEGIN_SUCCESS;
-		
-		File root = SD.open("/");
-		root.close();
-
-		dataFile = SD.open("data.txt", FILE_WRITE);
 	} else {
 		Serial.println("SD Fail");
 		state = State::BEGIN_FAILED;
@@ -27,13 +18,10 @@ void SDCard::begin() {
 	timer = millis();
 }
 
-// Steven: TODO: iterate through each module and store that data
-static int test = 0;
 void SDCard::tick() {
 	if(state == State::BEGIN_FAILED) {
 		return;
 	}
-	test++;
 
 	// if millis() or timer wraps around, we'll just reset it
 	if (timer > millis())  timer = millis();
@@ -41,41 +29,30 @@ void SDCard::tick() {
 	// approximately every 2 seconds or so, do something with the sd card
 	if (millis() - timer > 2000) { 
 		timer = millis();
-		// Steven: TODO: see how long each file open() and close() takes for science,
-		// and if need be, only close/reopen when necessary
-		Serial.print("opening data.txt in write mode...");
-		dataFile = SD.open("data.txt", FILE_WRITE);
-		if(dataFile) {
-			Serial.println(" OK");
-			String toWrite = "test_data: ";
-			toWrite.concat(test);
-			Serial.println("writing to sd card: " + toWrite);
-			dataFile.println(toWrite);
-			dataFile.close();
-			Serial.println("closing file...");
-		} else {
-			Serial.println(" FAILED :(");
-		}
-		Serial.print("opening data.txt in read mode...");
-		dataFile = SD.open("data.txt", FILE_READ);
-		if(dataFile) {
-			Serial.println(" OK");
-			Serial.println("reading everything from the sd card...");
-			while(dataFile.available()) {
-				Serial.write(dataFile.read());
+		for(int currModule = 0; currModule < numModules; currModule++) {
+			const char* moduleName = modules[currModule]->getModuleName();
+			const char* moduleData = modules[currModule]->dataToPersist();
+			// Steven: add 1 for new line char
+			if(strlen(moduleName) + strlen(buffer) + strlen(moduleData) + 1 < BUFFER_WRITE_SIZE) {
+				strcat(buffer, moduleName);
+				strcat(buffer, ",");
+				strcat(buffer, moduleData);
+				strcat(buffer, "\n");
+				cout << "SD: appending, current buffer: " << buffer << endl;
+			} else {
+				cout << "SD: hit buffer size, writing to sd: " << buffer << endl;
+				switchToFile("datalog.txt", FILE_WRITE);
+				dataFile.write(buffer);
+				// Steven: c-style strings, clear the buffer with null char
+				buffer[0] = 0;
+				strcat(buffer, moduleData);
+				cout << "SD: appending, current buffer: " << buffer << endl;
 			}
-			dataFile.close();
-			Serial.println("closing file...");
-		} else {
-			Serial.println(" FAILED :(");
 		}
 	}
 }
 
 int SDCard::enable() {
-	if(!dataFile) {
-		dataFile = SD.open("data.txt", FILE_READ);
-	}
 	return 0;
 }
 
@@ -83,19 +60,57 @@ void SDCard::disable() {
 	dataFile.close();
 }
 
-void SDCard::registerModules(Module* _modules[]) {
+const char* SDCard::getModuleName() {
+  return "SDCard";
+}
+const char* SDCard::dataToPersist() {
+  return "returning sd data";
+}
+
+
+void SDCard::registerModules(Module **_modules, int _numModules) {
 	modules = _modules;
+	numModules = _numModules;
 	return;
+}
+
+void SDCard::doSDTimingBenchmark() {
+	switchToFile("temp.txt", FILE_WRITE);
+
+	const int numBytes = 512;
+	char *temp = new char[numBytes];
+	for(int i = 0; i < numBytes - 1; i++) {
+		*(temp + i) = 'x';
+	}
+	*(temp + numBytes - 1) = '\0'; 
+
+	unsigned long t1 = micros(); 
+	dataFile.write(temp);
+	dataFile.flush();
+	unsigned long t2 = micros(); 
+	cout << "writing and flushing " << numBytes << " bytes to sd card took: " << t2-t1 << " microseconds" <<  endl;
+
+	switchToFile("temp.txt", FILE_READ);
+
+	t1 = micros();
+	while(dataFile.available()) {
+		dataFile.read();
+	}
+	t2 = micros();
+	cout << "reading " << dataFile.size() << " bytes from the sd card took: " << t2-t1 << " microseconds" <<  endl;
+
+	delete[] temp;
+}
+
+bool SDCard::switchToFile(const char* file, uint8_t flag) {
+	dataFile.close();
+	dataFile = SD.open(file, flag);
+	// Steven: returns if the file is opened successfully or not
+	return dataFile;
 }
 
 // Steven: diagnostics code from SdFat "QuickStart" example
 void SDCard::runDiagnostics() {
-  // Serial streams
-  ArduinoOutStream cout(Serial);
-
-  // input buffer for line
-  char cinBuf[40];
-  ArduinoInStream cin(Serial, cinBuf, sizeof(cinBuf));
 
   // Set DISABLE_CHIP_SELECT to disable a second SPI device.
   // For example, with the Ethernet shield, set DISABLE_CHIP_SELECT
