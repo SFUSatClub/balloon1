@@ -16,9 +16,12 @@
 #include "schedule.h"
 #include "tasks.h"
 
+<<<<<<< HEAD
 
 static uint8_t TaskIndex = 0;					// Task index
 
+=======
+>>>>>>> origin/Richard
 ISR(TIMER0_COMPA_vect){//timer0 interrupt 1kHz toggles pin 8
  Mytick ++; // increment our tick
 //generates pulse wave of frequency 2kHz/2 = 500Hz (takes two cycles for full wave- toggle high then toggle low)
@@ -41,22 +44,19 @@ void setup(){
   pinMode(12, OUTPUT);
   pinMode(8, OUTPUT);
   tickConfig();
-
 }
 
-Task allTasksSave[2] = {
-  // timeout, interval
-    Task (500,500, &task1),
-    Task (500,100, &task2)
+ 
+const uint8_t numTasks = 2;
+Task *allTasks[numTasks] = {
+    new Task(500,500, &task1)
+  , new Task(500,100, &task2)
 };
-
-Task *allTasks[2] = {&allTasksSave[0],&allTasksSave[1]};
-uint8_t numTasks = 2;
 
 void loop(){
     uint32_t tickNow =  getSystemTick();
 
-    for(TaskIndex = 0; TaskIndex < numTasks; TaskIndex++)
+    for(uint8_t TaskIndex = 0; TaskIndex < numTasks; TaskIndex++)
     {
       if(allTasks[TaskIndex]->interval == 0)
       {
