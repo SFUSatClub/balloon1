@@ -29,9 +29,12 @@ void Task::setFunc( funcPtr f ) {
 }
 
 void Task::runTask(){
-  uint32_t thing = getSystemTick();
-  Serial.println(thing);
+  if (getSystemTick() != this->lastRun){
     (*pointedFunc)(); // run the function from the poitner
+
+  }
+  // uint32_t thing = getSystemTick();
+  // Serial.println(thing);
 
 
 

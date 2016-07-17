@@ -5,7 +5,7 @@
 static int trigger = 0;
 
 void task2(){
-  Serial.println("Hello");
+  // Serial.println("Hello");
 
   if(trigger == 1){
     digitalWrite(8, 1);
