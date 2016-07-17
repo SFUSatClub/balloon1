@@ -40,13 +40,13 @@ void setup(){
   tickConfig();
 }
 
- 
+
 const uint8_t numTasks = 2;
 Task *allTasks[numTasks] = {
     new Task(500,500, &task1)
   , new Task(500,100, &task2)
 };
-
+ 
 void loop(){
     uint32_t tickNow =  getSystemTick();
 
