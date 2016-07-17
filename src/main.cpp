@@ -16,6 +16,7 @@
 #include "schedule.h"
 #include "tasks.h"
 
+
 static uint8_t TaskIndex = 0;					// Task index
 
 ISR(TIMER0_COMPA_vect){//timer0 interrupt 1kHz toggles pin 8
@@ -37,7 +38,8 @@ ISR(TIMER0_COMPA_vect){//timer0 interrupt 1kHz toggles pin 8
 void setup(){
   // initAccelerometer(0x86);
   Serial.begin(115200);
-  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(8, OUTPUT);
   tickConfig();
 
 }
@@ -52,8 +54,6 @@ Task *allTasks[2] = {&allTasksSave[0],&allTasksSave[1]};
 uint8_t numTasks = 2;
 
 void loop(){
-  uint32_t tickNow =  getSystemTick();
-  while (tickNow > 10000){  // slow start while we're messing with watchdogs to prevent fuckups
     uint32_t tickNow =  getSystemTick();
 
     for(TaskIndex = 0; TaskIndex < numTasks; TaskIndex++)
@@ -70,9 +70,6 @@ void loop(){
         allTasks[TaskIndex]->setLastRun(tickNow);  // Save last tick the task was ran.
       }
     }// end for
-
-  }
-
 
 }
 
