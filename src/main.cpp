@@ -20,29 +20,25 @@ void setup(){
 // setup the tasks, figure out a nicer way to do this
 const uint8_t numTasks = 2;
 Task *allTasks[numTasks] = {
-    new Task(500,500, &task1)
-  , new Task(500,100, &task2)
+  new Task(500,500, &task1),
+  new Task(500,100, &task2)
 };
 
 void loop(){
-    uint32_t tickNow =  getSystemTick();
+  uint32_t tickNow =  getSystemTick();
 
-    for(uint8_t TaskIndex = 0; TaskIndex < numTasks; TaskIndex++)
-    {
-      if(allTasks[TaskIndex]->interval == 0)
-      {
-        // Run continuous tasks.
+  for(uint8_t TaskIndex = 0; TaskIndex < numTasks; TaskIndex++){
+
+    if(allTasks[TaskIndex]->interval == 0){  // run continuous tasks
         allTasks[TaskIndex]->runTask();
-      }
-      else if((tickNow - allTasks[TaskIndex]->lastRun) >= allTasks[TaskIndex]->interval && allTasks[TaskIndex]->lastRun < tickNow) // Richard: add AND LastTick != current tick to prevent double running
-      {
+    }
+
+    else if((tickNow - allTasks[TaskIndex]->lastRun) >= allTasks[TaskIndex]->interval && allTasks[TaskIndex]->lastRun < tickNow){
         allTasks[TaskIndex]->runTask();         // Execute Task
-
         allTasks[TaskIndex]->setLastRun(tickNow);  // Save last tick the task was ran.
-      }
-    }// end for
-
-}
+    }
+  }// end for
+} // loop
 
 // Richard todo:
 // add the watchdog to the Time -> runTask function
