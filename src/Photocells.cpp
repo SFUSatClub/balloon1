@@ -1,5 +1,6 @@
 #include <Arduino.h>    
 #include "Module.h"
+#include "Photocells.h"
 
 //implementation that treats all photocells as a single unit, provided that they are all connected to consecutive ports 
 //first sensor attached to A1, second attached to A2, etc.
@@ -11,14 +12,16 @@ Photocells::Photocells(HardwareSerial* ser){
 
 void Photocells::begin(){
         serial->begin(9600);
+        delay(1000);
+        timer=millis();
 }
 
 void Photocells::tick(){
-        //needs: scheduling functionality needed, reads sensor data how frequently?
-
+        timer= millis();
         for (int i=0;i<CELLS;i++){
-                photocellData[i]=AnalogRead(FIRST_PIN+i);
+                photocellData[i]=analogRead(FIRST_PIN+i);
         }
+        
 }
 
 int Photocells::enable(){
