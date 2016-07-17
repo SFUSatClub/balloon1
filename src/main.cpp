@@ -39,6 +39,7 @@ void setup(){
   Serial.begin(115200);
   pinMode(13, OUTPUT);
   tickConfig();
+
 }
 
 Task allTasksSave[2] = {
@@ -52,21 +53,27 @@ uint8_t numTasks = 2;
 
 void loop(){
   uint32_t tickNow =  getSystemTick();
+  while (tickNow > 10000){  // slow start while we're messing with watchdogs to prevent fuckups
+    uint32_t tickNow =  getSystemTick();
 
-  for(TaskIndex = 0; TaskIndex < numTasks; TaskIndex++)
-  {
-    if(allTasks[TaskIndex]->interval == 0)
+    for(TaskIndex = 0; TaskIndex < numTasks; TaskIndex++)
     {
-      // Run continuous tasks.
-      allTasks[TaskIndex]->runTask();
-    }
-    else if((tickNow - allTasks[TaskIndex]->lastRun) >= allTasks[TaskIndex]->interval && allTasks[TaskIndex]->lastRun < tickNow) // Richard: add AND LastTick != current tick to prevent double running
-    {
-      allTasks[TaskIndex]->runTask();         // Execute Task
+      if(allTasks[TaskIndex]->interval == 0)
+      {
+        // Run continuous tasks.
+        allTasks[TaskIndex]->runTask();
+      }
+      else if((tickNow - allTasks[TaskIndex]->lastRun) >= allTasks[TaskIndex]->interval && allTasks[TaskIndex]->lastRun < tickNow) // Richard: add AND LastTick != current tick to prevent double running
+      {
+        allTasks[TaskIndex]->runTask();         // Execute Task
 
-      allTasks[TaskIndex]->setLastRun(tickNow);  // Save last tick the task was ran.
-    }
-  }// end for
+        allTasks[TaskIndex]->setLastRun(tickNow);  // Save last tick the task was ran.
+      }
+    }// end for
+
+  }
+
+
 }
 
 // Richard todo:

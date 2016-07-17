@@ -29,10 +29,12 @@ void Task::setFunc( funcPtr f ) {
 }
 
 void Task::runTask(){
-this->setRunStart(getSystemTick());
+  this->setRunStart(getSystemTick());
+  bool functionDone = false;
   if (getSystemTick() != this->lastRun){  // prevents double running of functions
-    // while(getSystemTick() < (this->runStart + this->timeOut)){    // timeout check
+    //  while(getSystemTick() < (this->runStart + this->timeOut) || functionDone != true){    // timeout check
       (*pointedFunc)(); // run the function from the poitner
+      functionDone = true;
     // }
 
   }
