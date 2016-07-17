@@ -1,0 +1,26 @@
+#include "Module.h"
+#ifndef FSM_H
+#define FSM_H
+
+class FSM
+{
+public:
+	FSM();
+	FSM(GPS* location, IMU* IMU , HardwareSerial* serial);
+	~FSM();
+
+	bool Check_Health();
+	State Check_State( State Present_State, Event Active_Event);
+
+	HardwareSerial* serial;
+	IMU* IMU;
+	GPS* GPS;
+	bool Descending;
+	bool Landed;
+	State Present_State;
+	State Active_Event;
+
+	enum State{Non_Flight = 1, DF = 2, GR = 3, LP = 4 };
+	enum Event{Unhealthy = 1; Descend_Detected = 2; Land_Detected = 4 };	
+};
+#endif
