@@ -13,14 +13,22 @@ Scheduler::Scheduler(uint8_t _numMaxTasks) {
 }
 
 void Scheduler::run() {
-  uint32_t tickNow = schedulerTick;
+  systemTick = schedulerTick;
 
   for(int i = 0; i < numCurrTasks; i++) {
     Task *currTaskPtr = allTasks[i];
     if(currTaskPtr->interval == 0){  // run continuous tasks
-      currTaskPtr->runTask(tickNow);
-    } else if((tickNow - currTaskPtr->lastRun) >= currTaskPtr->interval && currTaskPtr->lastRun < tickNow){
-      currTaskPtr->runTask(tickNow); // Execute Task
+      currTaskPtr->runTask(systemTick);
+    } else {
+      bool shouldTaskRun = (systemTick - currTaskPtr->lastRun) >= currTaskPtr->interval;
+      // if tasks in this current system tick all finish early (within the
+      // current tick), Scheduler::run() will execute many times. Without this check, 
+      // these tasks will also be run more than once
+      bool taskDidNotRunYet = currTaskPtr->lastRun < systemTick;
+
+      if(shouldTaskRun && taskDidNotRunYet){
+        currTaskPtr->runTask(systemTick); // Execute Task
+      }
     }
   }
 }
