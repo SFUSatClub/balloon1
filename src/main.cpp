@@ -4,6 +4,9 @@
 // platformio run --target upload --environment due
 // or select PlatformIO > Run Other target
 // the programming port on the Due is the one closest to the DC power jack
+// Info about Due timer counter: http://2manyprojects.net/timer-interrupts
+//                              http://forum.arduino.cc/index.php?topic=130423.0
+// The functions used to configure the Due timers are from the Atmal ASF API: http://asf.atmel.com/docs/latest/api.html
 
 #include <Arduino.h> //Richard: required for platformIO
 #include "schedule.h" // deals with all the scheduling stuff (except ISR)
