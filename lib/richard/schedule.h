@@ -17,6 +17,7 @@ private:
    uint32_t runStart;
   typedef void (*funcPtr)(void); // create a type to contain the function pointer
   funcPtr pointedFunc; // pointedFunc is the variable with the function pointer
+  void setRunStart(uint32_t runstart);
 
 public:
   // we need to poke at these as we're going through checking whether to run tasks or not, hence public
@@ -25,7 +26,6 @@ public:
 
   Task(uint16_t timeout, uint32_t Interval, funcPtr setFn); // constructor
  void setLastRun(uint32_t lastrun);
- void setRunStart(uint32_t runstart);
   void runTask();
   void setFunc(funcPtr f);
 };

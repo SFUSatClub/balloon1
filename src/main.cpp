@@ -42,8 +42,9 @@ void setup(){
 }
 
 Task allTasksSave[2] = {
-    Task (50,500, &task1),
-    Task (100,100, &task2)
+  // timeout, interval
+    Task (500,500, &task1),
+    Task (500,100, &task2)
 };
 
 Task *allTasks[2] = {&allTasksSave[0],&allTasksSave[1]};

@@ -29,14 +29,13 @@ void Task::setFunc( funcPtr f ) {
 }
 
 void Task::runTask(){
-  if (getSystemTick() != this->lastRun){
-    (*pointedFunc)(); // run the function from the poitner
+this->setRunStart(getSystemTick());
+  if (getSystemTick() != this->lastRun){  // prevents double running of functions
+    // while(getSystemTick() < (this->runStart + this->timeOut)){    // timeout check
+      (*pointedFunc)(); // run the function from the poitner
+    // }
 
   }
-  // uint32_t thing = getSystemTick();
-  // Serial.println(thing);
-
-
 
   // thing = getSystemTick();
   // set the run start and the last run time
