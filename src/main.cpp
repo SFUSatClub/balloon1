@@ -9,39 +9,49 @@
 // The functions used to configure the Due timers are from the Atmal ASF API: http://asf.atmel.com/docs/latest/api.html
 
 #include <Arduino.h> //Richard: required for platformIO
-#include "schedule.h" // deals with all the scheduling stuff (except ISR)
-#include "tasks.h"  // header for all of the task functions
-#include "ISR.h"  // keeping interrupt service routines here since there may be quite a few of them
+#include "Task.h"
+#include "Scheduler.h" // deals with all the scheduling stuff
+
+Scheduler scheduler(2);
+
+void task1(void){
+  static int task1Trigger = 0;
+  if(task1Trigger == 1){
+    digitalWrite(12, 1);
+    task1Trigger = 0;
+  }
+  else{
+    digitalWrite(12, 0);
+    task1Trigger = 1;
+  }
+}
+
+void task2(){
+  static int task2Trigger = 0;
+  Serial.println("Hello");
+
+  if(task2Trigger == 1){
+    digitalWrite(8, 1);
+    task2Trigger = 0;
+  }
+  else{
+    digitalWrite(8, 0);
+    task2Trigger = 1;
+  }
+}
 
 void setup(){
   Serial.begin(115200);
   pinMode(12, OUTPUT);
   pinMode(8, OUTPUT);
-  tickConfig(); // configures the master tick (1kHz)
+  scheduler.addTask(new Task(500,500, &task1));
+  scheduler.addTask(new Task(500,100, &task2));
+  scheduler.setupISR();
 }
 
-// setup the tasks, figure out a nicer way to do this
-const uint8_t numTasks = 2;
-Task *allTasks[numTasks] = {
-  new Task(500,500, &task1),
-  new Task(500,100, &task2)
-};
-
 void loop(){
-  uint32_t tickNow =  getSystemTick();
-
-  for(uint8_t TaskIndex = 0; TaskIndex < numTasks; TaskIndex++){
-
-    if(allTasks[TaskIndex]->interval == 0){  // run continuous tasks
-        allTasks[TaskIndex]->runTask();
-    }
-
-    else if((tickNow - allTasks[TaskIndex]->lastRun) >= allTasks[TaskIndex]->interval && allTasks[TaskIndex]->lastRun < tickNow){
-        allTasks[TaskIndex]->runTask();         // Execute Task
-        allTasks[TaskIndex]->setLastRun(tickNow);  // Save last tick the task was ran.
-    }
-  }// end for
-} // loop
+  scheduler.run();
+}
 
 // Richard todo:
 // add the watchdog to the Time -> runTask function
