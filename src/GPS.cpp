@@ -25,20 +25,11 @@ void GPS::begin() {
 	// Request updates on antenna status, comment out to keep quiet
 	gpsImpl->sendCommand(PGCMD_ANTENNA);
 
-	// the nice thing about this code is you can have a timer0 interrupt go off
-	// every 1 millisecond, and read data from the GPS for you. that makes the
-	// loop code a heck of a lot easier!
-
-	delay(1000);
-
 	// Ask for firmware version
 	serial->println(PMTK_Q_RELEASE);
 	timer = millis();
 }
 
-/*
- * TICKs every tick lol
- */
 void GPS::tick() {
 	// read data from the GPS in the 'main loop'
 	char c = gpsImpl->read();
