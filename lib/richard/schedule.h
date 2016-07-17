@@ -6,7 +6,8 @@
 
 extern uint32_t Mytick;
 void tickConfig(void);  // initializes timer 2 on the 328
-// staticuint32_t tickPtr = &tick;
+void tickConfigDue(void);  // initializes timer on the Due
+
 
 extern uint32_t getSystemTick();
 
