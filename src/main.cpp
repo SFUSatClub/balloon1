@@ -15,8 +15,7 @@
 #include "Radio.h"
 #include "GPS.h"
 #include "SDCard.h"
-
-using namespace std;
+#include "Photocells.h"
 
 // This sketch is ONLY for the Arduino Due!
 // You should make the following connections with the Due and GPS module:
@@ -32,10 +31,16 @@ const int sdChipSelectPin = 4;
 GPS gps(&gpsSerial);
 Radio radio(&radioSerial, 2);
 SDCard sd(sdChipSelectPin);
+Photocells photocells(0, 5);
 
 // Steven: maybe should use container classes. array/vector?
-const int numModules = 3;
-Module* modules[numModules] = {&gps, &radio, &sd};
+const int numModules = 4;
+Module* modules[numModules] = {
+    &gps
+  , &radio
+  , &sd
+  , &photocells
+};
 
 void setup() {
   // connect at 115200 so we can read the GPS fast enough and echo without dropping chars
@@ -43,14 +48,10 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Adafruit GPS library basic test!");
 
-  // Steven: example base class usage
   for(Module *module : modules) {
     module->enable();
+    module->begin();
   }
-
-  gps.begin();
-  radio.begin();
-  sd.begin();
 
   sd.registerModules(modules, numModules);
   // sd.doSDTimingBenchmark();
