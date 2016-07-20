@@ -1,0 +1,8 @@
+<map id="setup" name="setup">
+<area shape="rect" id="node2" href="$classScheduler.html#abda1396d8606a41fce0301a92a225ccb" title="Scheduler::setupISR" alt="" coords="356,124,507,151"/>
+<area shape="rect" id="node3" href="$classScheduler.html#a0e3d7b3649f64a9dde58789282a0452f" title="Scheduler::addTask" alt="" coords="137,44,283,71"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#ab55078d807df0a75af8a2fa8eefdcc41" title="task1" alt="" coords="181,95,239,121"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#afb35a54f26606b4808ac0a8d9ad55433" title="task2" alt="" coords="181,145,239,172"/>
+<area shape="rect" id="node6" href="$classSDCard.html#a6495d590a016b7262b14bc4cf40e1514" title="SDCard::registerModules" alt="" coords="119,196,301,223"/>
+<area shape="rect" id="node7" href="$classScheduler.html#a9324bd2c541d0e300222156903e19415" title="Scheduler::registerModules\lAsTasks" alt="" coords="112,247,308,289"/>
+</map>

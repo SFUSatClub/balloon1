@@ -1,0 +1,9 @@
+<map id="Module" name="Module">
+<area shape="rect" id="node2" href="$classCheckDescent.html" title="{CheckDescent\n||+ CheckDescent()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ dataToPersist()\l+ isDescending()\l}" alt="" coords="5,255,144,421"/>
+<area shape="rect" id="node3" href="$classCheckLanded.html" title="{CheckLanded\n||+ CheckLanded()\l+ begin()\l+ tick()\l+ dataToPersist()\l+ isLanded()\l}" alt="" coords="168,270,301,406"/>
+<area shape="rect" id="node4" href="$classGPS.html" title="{GPS\n||+ GPS()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ dataToPersist()\l+ getModuleName()\l}" alt="" coords="326,255,479,421"/>
+<area shape="rect" id="node5" href="$classIMU.html" title="{IMU\n||+ IMU()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ dataToPersist()\l+ getModuleName()\l}" alt="" coords="503,255,657,421"/>
+<area shape="rect" id="node6" href="$classPhotocells.html" title="{Photocells\n||+ Photocells()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ dataToPersist()\l+ getModuleName()\l}" alt="" coords="681,255,834,421"/>
+<area shape="rect" id="node7" href="$classRadio.html" title="{Radio\n||+ Radio()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ getModuleName()\l+ dataToPersist()\l+ transmit()\l+ to_AX25()\l+ systems_check()\l}" alt="" coords="858,233,1011,443"/>
+<area shape="rect" id="node8" href="$classSDCard.html" title="{SDCard\n||+ SDCard()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ getModuleName()\l+ dataToPersist()\l+ doSDTimingBenchmark()\l+ runDiagnostics()\l+ registerModules()\l}" alt="" coords="1036,233,1233,443"/>
+</map>
