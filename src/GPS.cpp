@@ -95,3 +95,13 @@ int GPS::enable() {
 
 void GPS::disable() {
 }
+
+const char* GPS::dataToPersist() {
+	return "returning some gps data";
+}
+
+const char* GPS::getModuleName() {
+	return "GPS";
+}
+
+

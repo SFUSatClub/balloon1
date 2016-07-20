@@ -1,11 +1,12 @@
 #include "Radio.h"
 
-Radio::Radio(HardwareSerial *ser, int restart_time):radio_comms(ser) {
+Radio::Radio(HardwareSerial *ser, int restart_time)
+	: radio_comms(ser) {
 	restart_time_out  = restart_time;
-	radio_comms->begin(19200);
 }
 
 void Radio::begin() {
+	radio_comms->begin(19200);
 }
 
 void Radio::tick() {
@@ -37,3 +38,10 @@ int Radio::systems_check() {
 	return check_result;
 }
 
+const char* Radio::dataToPersist() {
+	return "returning some radio data";
+}
+
+const char* Radio::getModuleName() {
+	return "Radio";
+}
