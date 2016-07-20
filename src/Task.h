@@ -23,6 +23,9 @@ class Task{
     void setLastRun(uint32_t lastrun);
     void runTask(uint32_t systemTick);
     void setFunc(funcPtr f);
+
+    static const uint16_t DEFAULT_TIMEOUT = 100;
+    static const uint16_t DEFAULT_INTERVAL = 1000;
 };
 
 #endif // TASK_H

@@ -15,6 +15,13 @@ Scheduler::Scheduler(uint8_t _numMaxTasks) {
 void Scheduler::run() {
   systemTick = schedulerTick;
 
+  const bool isFirstTickOfCycle = systemTick % TICKS_PER_CYCLE == (TICKS_PER_CYCLE);
+  const bool isLastTickOfCycle = systemTick % TICKS_PER_CYCLE == (TICKS_PER_CYCLE - 1);
+  const bool isNearEndOfCycle = systemTick % TICKS_PER_CYCLE >= (int)(TICKS_PER_CYCLE * 0.80);
+  if(isLastTickOfCycle) {
+    // run the State detector(s) here
+  }
+
   for(int i = 0; i < numCurrTasks; i++) {
     Task *currTaskPtr = allTasks[i];
     if(currTaskPtr->interval == 0){  // run continuous tasks
@@ -27,6 +34,9 @@ void Scheduler::run() {
       bool taskDidNotRunYet = currTaskPtr->lastRun < systemTick;
 
       if(shouldTaskRun && taskDidNotRunYet){
+        /* if(isLastTickOfCycle) { */
+        /*   currTaskPtr->notify() */
+        /* } */
         currTaskPtr->runTask(systemTick); // Execute Task
       }
     }
@@ -53,7 +63,7 @@ void Scheduler::registerModulesAsTasks(Module **modules, int numModules) {
     }
   }
   for(int currModule = 0; currModule < numModules; currModule++) {
-    Task *taskptr = new Task(500, 500, modules[currModule]);
+    Task *taskptr = new Task(Task::DEFAULT_TIMEOUT, Task::DEFAULT_INTERVAL, modules[currModule]);
     allTasks[numCurrTasks++] = taskptr;
   }
   return;
