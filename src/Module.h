@@ -4,6 +4,12 @@
 #include <Arduino.h>
 #include <FatLib/ArduinoStream.h>
 
+
+typedef struct {
+	bool valid;	
+	uint32_t interval;
+} scheduling_freq;
+
 /* Base sensor class */
 class Module {
 public: 
@@ -30,6 +36,8 @@ public:
 	virtual int enable();
 	// Disable the module, powersaving mode
 	virtual void disable();
+	// 
+	virtual scheduling_freq onStateChanged();
 	// Should the module creates data and wants to persist it, this function
 	// will be called by the SD module to take care of it
 	virtual const char* dataToPersist();

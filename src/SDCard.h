@@ -14,7 +14,7 @@ class SDCard: public Module {
 	uint32_t timer;
 	SdFat SD;
 
-	const int BUFFER_WRITE_SIZE;
+	const uint32_t BUFFER_WRITE_SIZE;
 	char buffer[512];
 
 	bool switchToFile(const char* file, uint8_t flag);

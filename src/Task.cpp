@@ -6,6 +6,16 @@ Task::Task(uint16_t timeout, uint32_t Interval, funcPtr setFn){
   runStart = 0;
   interval = Interval;
   pointedFunc =  setFn; // pointedFunc(nullptr)
+  module = NULL;
+}
+
+Task::Task(uint16_t timeout, uint32_t Interval, Module *_module) {
+  timeOut = timeout;
+  lastRun = 0;
+  runStart = 0;
+  interval = Interval;
+  pointedFunc = NULL;
+  module = _module;
 }
 
 
@@ -27,6 +37,10 @@ void Task::runTask(uint32_t systemTick){
   lastRun = systemTick;
   if (systemTick != lastRun){  // prevents double running of functions
     // put watchdog things here
-    (*pointedFunc)(); // run the function from the poitner
+    if(pointedFunc == NULL) {
+      module->tick();
+    } else {
+      (*pointedFunc)(); // run the function from the poitner
+    }
   }
 }

@@ -24,6 +24,12 @@ void Module::disable() {
     return;
 }
 
+scheduling_freq Module::onStateChanged() {
+    scheduling_freq ret;
+    ret.valid = false;
+    return ret;
+}
+
 const char* Module::dataToPersist() {
     return NULL;
 }

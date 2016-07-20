@@ -14,6 +14,7 @@ class Scheduler {
   public:
     Scheduler(uint8_t numMaxTasks);
     bool addTask(Task *taskptr);
+    void registerModulesAsTasks(Module **modules, int numModules);
     void setupISR();
     uint32_t getSystemTick();
     void run();

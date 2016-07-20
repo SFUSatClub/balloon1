@@ -45,6 +45,20 @@ bool Scheduler::addTask(Task *taskptr) {
   return true;
 }
 
+
+void Scheduler::registerModulesAsTasks(Module **modules, int numModules) {
+  if(numCurrTasks + numModules >= numMaxTasks) {
+    while(true) {
+      Serial.println(F("SCHEDULER ERROR: CHECK NUMBER OF MAX TASKS"));
+    }
+  }
+  for(int currModule = 0; currModule < numModules; currModule++) {
+    Task *taskptr = new Task(500, 500, modules[currModule]);
+    allTasks[numCurrTasks++] = taskptr;
+  }
+  return;
+}
+
 #if defined(__AVR_ATmega328P__)
 void Scheduler::setupISR() {
   cli();//disable interrupts

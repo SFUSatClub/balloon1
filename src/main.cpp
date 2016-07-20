@@ -73,9 +73,9 @@ void setup() {
   pinMode(8, OUTPUT);
   Serial.println("SFUSat weather balloon1 says hi");
 
+  scheduler.setupISR();
   scheduler.addTask(new Task(500,500, &task1));
   scheduler.addTask(new Task(500,100, &task2));
-  scheduler.setupISR();
 
   for(Module *module : modules) {
     module->enable();
@@ -83,7 +83,7 @@ void setup() {
   }
 
   sd.registerModules(modules, numModules);
-  // sd.doSDTimingBenchmark();
+  scheduler.registerModulesAsTasks(modules, numModules);
 }
 
 void loop() {
