@@ -11,6 +11,7 @@ Scheduler::Scheduler(uint8_t _numMaxTasks) {
   for(int i = 0; i < numMaxTasks; i++) {
     allTasks[i] = NULL;
   }
+  stateHandler = NULL;
 }
 
 void Scheduler::run() {
@@ -20,7 +21,7 @@ void Scheduler::run() {
   const bool isNearEndOfCycle = systemTick % TICKS_PER_CYCLE >= (int)(TICKS_PER_CYCLE * 0.80);
   const bool isLastTickOfCycle = systemTick % TICKS_PER_CYCLE == (TICKS_PER_CYCLE - 1);
   bool hasStateChanged = false;
-  if(isLastTickOfCycle) {
+  if(isLastTickOfCycle && stateHandler != NULL) {
     stateHandler->tick();
     hasStateChanged = stateHandler->hasStateChanged();
   }
@@ -37,7 +38,7 @@ void Scheduler::run() {
       bool taskDidNotRunYet = currTask.lastRun < systemTick;
 
       if(shouldTaskRun && taskDidNotRunYet){
-        if(isLastTickOfCycle && hasStateChanged) {
+        if(isLastTickOfCycle && hasStateChanged && stateHandler != NULL) {
           scheduling_freq res = currTask.onStateChanged(stateHandler->getSystemState());
           res.valid = false; // to something with res to stop warning
         }

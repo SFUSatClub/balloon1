@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <FatLib/ArduinoStream.h>
 
-enum class SystemState {
+enum class SystemState : int8_t {
 	PRELAUNCH = 1,
 	FLIGHT,
 	DESCENT,
