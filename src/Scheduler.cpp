@@ -7,6 +7,7 @@ static uint32_t schedulerTick = 0;
 Scheduler::Scheduler(uint8_t _numMaxTasks) {
   numMaxTasks = _numMaxTasks;
   numCurrTasks = 0;
+  allTasks = new Task*[_numMaxTasks];
   for(int i = 0; i < numMaxTasks; i++) {
     allTasks[i] = NULL;
   }
@@ -16,28 +17,31 @@ void Scheduler::run() {
   systemTick = schedulerTick;
 
   const bool isFirstTickOfCycle = systemTick % TICKS_PER_CYCLE == (TICKS_PER_CYCLE);
-  const bool isLastTickOfCycle = systemTick % TICKS_PER_CYCLE == (TICKS_PER_CYCLE - 1);
   const bool isNearEndOfCycle = systemTick % TICKS_PER_CYCLE >= (int)(TICKS_PER_CYCLE * 0.80);
+  const bool isLastTickOfCycle = systemTick % TICKS_PER_CYCLE == (TICKS_PER_CYCLE - 1);
+  bool hasStateChanged = false;
   if(isLastTickOfCycle) {
-    // run the State detector(s) here
+    stateHandler->tick();
+    hasStateChanged = stateHandler->hasStateChanged();
   }
 
   for(int i = 0; i < numCurrTasks; i++) {
-    Task *currTaskPtr = allTasks[i];
-    if(currTaskPtr->interval == 0){  // run continuous tasks
-      currTaskPtr->runTask(systemTick);
+    Task currTask = *(allTasks[i]); // dereference the pointer so we can use dot-notation
+    if(currTask.interval == 0){  // run continuous tasks
+      currTask.runTask(systemTick);
     } else {
-      bool shouldTaskRun = (systemTick - currTaskPtr->lastRun) >= currTaskPtr->interval;
+      bool shouldTaskRun = (systemTick - currTask.lastRun) >= currTask.interval;
       // if tasks in this current system tick all finish early (within the
       // current tick), Scheduler::run() will execute many times. Without this check, 
       // these tasks will also be run more than once
-      bool taskDidNotRunYet = currTaskPtr->lastRun < systemTick;
+      bool taskDidNotRunYet = currTask.lastRun < systemTick;
 
       if(shouldTaskRun && taskDidNotRunYet){
-        /* if(isLastTickOfCycle) { */
-        /*   currTaskPtr->notify() */
-        /* } */
-        currTaskPtr->runTask(systemTick); // Execute Task
+        if(isLastTickOfCycle && hasStateChanged) {
+          scheduling_freq res = currTask.onStateChanged(stateHandler->getSystemState());
+          res.valid = false; // to something with res to stop warning
+        }
+        currTask.runTask(systemTick); // Execute Task
       }
     }
   }
@@ -67,6 +71,10 @@ void Scheduler::registerModulesAsTasks(Module **modules, int numModules) {
     allTasks[numCurrTasks++] = taskptr;
   }
   return;
+}
+
+void Scheduler::registerStateHandler(StateHandler *_stateHandler) {
+  stateHandler = _stateHandler;
 }
 
 #if defined(__AVR_ATmega328P__)

@@ -1,3 +1,6 @@
+#ifndef IMU_H
+#define IMU_H
+
 #include "Module.h"
 
 //implementation that treats all photocells as a single unit, provided that they are all connected to consecutive ports 
@@ -8,10 +11,9 @@ public:
 	IMU();
 	void begin();
 	void tick();
-	int enable();
-	void disable();
 
 	const char* dataToPersist();
 	const char* getModuleName();
 };
 
+#endif // IMU_H

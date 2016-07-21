@@ -12,13 +12,13 @@
 
 #include "Task.h"
 #include "Scheduler.h" // deals with all the scheduling stuff
+#include "StateHandler.h"
 
 #include "Radio.h"
 #include "GPS.h"
 #include "SDCard.h"
 #include "Photocells.h"
-
-Scheduler scheduler(2);
+#include "IMU.h"
 
 void task1(void){
   static int task1Trigger = 0;
@@ -55,6 +55,7 @@ GPS gps(&gpsSerial);
 Radio radio(&radioSerial, 2);
 SDCard sd(sdChipSelectPin);
 Photocells photocells(0, 5);
+IMU imu;
 
 // Steven: maybe should use container classes. array/vector?
 const int numModules = 4;
@@ -65,32 +66,33 @@ Module* modules[numModules] = {
   , &photocells
 };
 
+Scheduler scheduler(2 + numModules);
+StateHandler stateHandler(&imu, &gps);
+
 void setup() {
-  // connect at 115200 so we can read the GPS fast enough and echo without dropping chars
-  // also spit it out
   Serial.begin(115200);
   pinMode(12, OUTPUT);
   pinMode(8, OUTPUT);
   Serial.println("SFUSat weather balloon1 says hi");
 
-  scheduler.setupISR();
-  scheduler.addTask(new Task(500,500, &task1));
-  scheduler.addTask(new Task(500,100, &task2));
-
   for(Module *module : modules) {
     module->enable();
     module->begin();
   }
+  stateHandler.enable();
+  stateHandler.begin();
 
   sd.registerModules(modules, numModules);
+
+  scheduler.setupISR();
+  scheduler.addTask(new Task(500,500, &task1));
+  scheduler.addTask(new Task(500,100, &task2));
   scheduler.registerModulesAsTasks(modules, numModules);
+  scheduler.registerStateHandler(&stateHandler);
 }
 
 void loop() {
   scheduler.run();
-  gps.tick();
-  radio.tick();
-  sd.tick();
 }
 
 // Richard todo:

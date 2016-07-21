@@ -1,3 +1,6 @@
+#ifndef GPS_H
+#define GPS_H
+
 #include <Arduino.h>
 #include <Adafruit_GPS.h>
 #include "Module.h"
@@ -20,3 +23,5 @@ public:
 	const char* dataToPersist();
 	const char* getModuleName();
 };
+
+#endif // GPS_H

@@ -4,6 +4,13 @@
 #include <Arduino.h>
 #include <FatLib/ArduinoStream.h>
 
+enum class SystemState {
+	PRELAUNCH = 1,
+	FLIGHT,
+	DESCENT,
+	LOW_POWER,
+	INVALID = -1
+};
 
 typedef struct {
 	bool valid;	
@@ -57,12 +64,14 @@ public:
 	virtual void disable();
 
 	/** 
-	 * @brief Called by the Scheduler whenever an actionable state-change is detected
+	 * @brief Called by the Scheduler whenever an actionable state-change is detected 
 	 * 
-	 * @return a struct that the Scheduler uses to update how this module would run.
+	 * @param state what state the system just changed to
+	 * 
+	 * @return a scheduling_freq that the Scheduler uses to update how this module would run.
 	 * Be sure to set its .valid to true
 	 */
-	virtual scheduling_freq onStateChanged();
+	virtual scheduling_freq onStateChanged(const SystemState &state);
 
 	/** 
 	 * @brief Should the module creates data and wants to persist it, this function
@@ -78,6 +87,7 @@ public:
 	 * @return the c-style string for the name of this module
 	 */
 	virtual const char* getModuleName();
+
 protected:
 	State state;
 };

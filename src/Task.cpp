@@ -44,3 +44,13 @@ void Task::runTask(uint32_t systemTick){
     }
   }
 }
+
+scheduling_freq Task::onStateChanged(const SystemState &state) {
+  if(module == NULL) {
+    scheduling_freq ret;
+    ret.valid = false;
+    return ret;
+  } else {
+    return module->onStateChanged(state);
+  }
+}
