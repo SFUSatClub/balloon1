@@ -11,7 +11,6 @@ class SDCard: public Module {
 	int chipSelectPin;
 	int numModules;
 	Module **modules;
-	uint32_t timer;
 	SdFat SD;
 
 	const uint32_t BUFFER_WRITE_SIZE;

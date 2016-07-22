@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <FatLib/ArduinoStream.h>
+#include "Globals.h"
 
 enum class SystemState : int8_t {
 	PRELAUNCH = 1,
@@ -91,9 +92,5 @@ public:
 protected:
 	State state;
 };
-
-extern ArduinoOutStream cout;
-
-extern ArduinoInStream cin;
 
 #endif /* MODULE_H */

@@ -31,6 +31,7 @@ void GPS::begin() {
 }
 
 void GPS::tick() {
+	cout << "GPS has been ticked" << endl;
 	// read data from the GPS in the 'main loop'
 	char c = gpsImpl->read();
 	// if you want to debug, this is a good time to do it!

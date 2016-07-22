@@ -34,15 +34,22 @@ void Task::setFunc( funcPtr f ) {
 
 void Task::runTask(uint32_t systemTick){
   setRunStart(systemTick);
-  lastRun = systemTick;
   if (systemTick != lastRun){  // prevents double running of functions
+    uint32_t ms = millis();
+    uint32_t mins = (ms / 1000.0 ) / 60.0;
+    uint32_t secs = (ms / 1000 ) % 60;
+    cout << mins << ":" << secs << ":" << ms % 1000 << "\t";
     // put watchdog things here
     if(pointedFunc == NULL) {
+      cout << module->getModuleName() << "\t" 
+        << module->dataToPersist() << endl;
       module->tick();
     } else {
+      cout << "pointedFunc" << endl;
       (*pointedFunc)(); // run the function from the poitner
     }
   }
+  lastRun = systemTick;
 }
 
 scheduling_freq Task::onStateChanged(const SystemState &state) {

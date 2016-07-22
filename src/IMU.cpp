@@ -1,6 +1,8 @@
 #include "IMU.h"
 
-IMU::IMU() {
+IMU::IMU(int _i2cAddr)
+	: i2cAddr(_i2cAddr)
+{
 
 }
 
@@ -12,8 +14,6 @@ void IMU::tick(){
 
 }
 
-// SD formatter adds moduleName and \n
-// outputs in format <value1>, ... ,<value4>,<value5>
 const char* IMU::dataToPersist(){
 	return NULL;
 }

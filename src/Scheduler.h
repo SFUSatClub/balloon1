@@ -9,8 +9,8 @@ class Scheduler {
   private:
     uint32_t systemTick;
 
-    uint8_t numCurrTasks;
-    uint8_t numMaxTasks;
+    int numCurrTasks;
+    int numMaxTasks;
     Task **allTasks;
 
     StateHandler *stateHandler;
@@ -25,7 +25,6 @@ class Scheduler {
 
     static const uint16_t TICKS_PER_CYCLE = 1000;
 };
-
 
 #endif // SCHEDULER_H
 

@@ -15,7 +15,6 @@ void SDCard::begin() {
 		Serial.println("SD Fail");
 		state = State::BEGIN_FAILED;
 	}
-	timer = millis();
 }
 
 void SDCard::tick() {
@@ -23,32 +22,27 @@ void SDCard::tick() {
 		return;
 	}
 
-	// if millis() or timer wraps around, we'll just reset it
-	if (timer > millis())  timer = millis();
+	cout << "SDCard has been ticked" << endl;
 
-	// approximately every 2 seconds or so, do something with the sd card
-	if (millis() - timer > 2000) { 
-		timer = millis();
-		for(int currModule = 0; currModule < numModules; currModule++) {
-			const char* moduleName = modules[currModule]->getModuleName();
-			const char* moduleData = modules[currModule]->dataToPersist();
-			// Steven: add 1 for new line char
-			if(strlen(moduleName) + strlen(buffer) + strlen(moduleData) + 1 < BUFFER_WRITE_SIZE) {
-				strcat(buffer, moduleName);
-				strcat(buffer, ",");
-				strcat(buffer, moduleData);
-				strcat(buffer, "\n");
-				cout << "SD: appending, current buffer: " << buffer << endl;
-			} else {
-				cout << "SD: hit buffer size, writing to sd: " << buffer << endl;
-				switchToFile("datalog.txt", FILE_WRITE);
-				dataFile.write(buffer);
-				// Steven: c-style strings, clear the buffer with null char
-				buffer[0] = 0;
-				strcat(buffer, moduleData);
-				cout << "SD: appending, current buffer: " << buffer << endl;
-			}
-		}
+	for(int currModule = 0; currModule < numModules; currModule++) {
+		const char* moduleName = modules[currModule]->getModuleName();
+		const char* moduleData = modules[currModule]->dataToPersist();
+		// Steven: add 1 for new line char
+		if(strlen(moduleName) + strlen(buffer) + strlen(moduleData) + 1 < BUFFER_WRITE_SIZE) {
+			strcat(buffer, moduleName);
+			strcat(buffer, ",");
+			strcat(buffer, moduleData);
+			strcat(buffer, "\n");
+			/* cout << "SD: appending, current buffer: " << buffer << endl; */
+		} else {
+			/* cout << "SD: hit buffer size, writing to sd: " << buffer << endl; */
+			switchToFile("datalog.txt", FILE_WRITE);
+			dataFile.write(buffer);
+			// Steven: c-style strings, clear the buffer with null char
+			buffer[0] = 0;
+			strcat(buffer, moduleData);
+			/* cout << "SD: appending, current buffer: " << buffer << endl; */
+	  }
 	}
 }
 

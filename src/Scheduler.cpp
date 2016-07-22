@@ -1,6 +1,14 @@
 #include <Arduino.h>
 #include "Scheduler.h"
 
+/* 
+ * The watchdog on the Arduino Due (SAM3X8E) can only be enabled/disabled
+ * once, and the Arduino framework disables it by default, so first comment out
+ * line 51 in
+ *
+ * balloon1/.pioenvs/due/FrameworkArduino/watchdog.cpp 
+ */
+
 // doing it this way, there can only be one scheduler...
 static uint32_t schedulerTick = 0;
 
@@ -22,27 +30,29 @@ void Scheduler::run() {
   const bool isLastTickOfCycle = systemTick % TICKS_PER_CYCLE == (TICKS_PER_CYCLE - 1);
   bool hasStateChanged = false;
   if(isLastTickOfCycle && stateHandler != NULL) {
+    WATCHDOG_RESET();
     stateHandler->tick();
     hasStateChanged = stateHandler->hasStateChanged();
+    cout << systemTick << ": is last tick of a cycle" << endl;
   }
 
   for(int i = 0; i < numCurrTasks; i++) {
-    Task currTask = *(allTasks[i]); // dereference the pointer so we can use dot-notation
-    if(currTask.interval == 0){  // run continuous tasks
-      currTask.runTask(systemTick);
+    Task *currTask = allTasks[i];
+    if(currTask->interval == 0){  // run continuous tasks
+      currTask->runTask(systemTick);
     } else {
-      bool shouldTaskRun = (systemTick - currTask.lastRun) >= currTask.interval;
+      bool shouldTaskRun = (systemTick - currTask->lastRun) >= currTask->interval;
       // if tasks in this current system tick all finish early (within the
       // current tick), Scheduler::run() will execute many times. Without this check, 
       // these tasks will also be run more than once
-      bool taskDidNotRunYet = currTask.lastRun < systemTick;
+      bool taskDidNotRunYet = currTask->lastRun < systemTick;
 
       if(shouldTaskRun && taskDidNotRunYet){
         if(isLastTickOfCycle && hasStateChanged && stateHandler != NULL) {
-          scheduling_freq res = currTask.onStateChanged(stateHandler->getSystemState());
+          scheduling_freq res = currTask->onStateChanged(stateHandler->getSystemState());
           res.valid = false; // to something with res to stop warning
         }
-        currTask.runTask(systemTick); // Execute Task
+        currTask->runTask(systemTick); // Execute Task
       }
     }
   }
@@ -62,7 +72,7 @@ bool Scheduler::addTask(Task *taskptr) {
 
 
 void Scheduler::registerModulesAsTasks(Module **modules, int numModules) {
-  if(numCurrTasks + numModules >= numMaxTasks) {
+  if(numCurrTasks + numModules > numMaxTasks) {
     while(true) {
       Serial.println(F("SCHEDULER ERROR: CHECK NUMBER OF MAX TASKS"));
     }
@@ -103,6 +113,8 @@ ISR(TIMER0_COMPA_vect){//timer0 interrupt 1kHz toggles pin 8
 #endif
 
 #if defined (__arm__)
+#define __WDP_MS 4095
+
 void Scheduler::setupISR() {
   pmc_set_writeprotect(false);		 // disable write protection for pmc registers
   pmc_enable_periph_clk(ID_TC7);	 // enable peripheral clock TC7
@@ -119,6 +131,9 @@ void Scheduler::setupISR() {
   /* Enable the interrupt in the nested vector interrupt controller */
   /* TC4_IRQn where 4 is the timer number * timer channels (3) + the channel number (=(1*3)+1) for timer1 channel1 */
   NVIC_EnableIRQ(TC7_IRQn);
+
+  // enable the watchdog
+  WDT_Enable(WDT, 0x2000 | __WDP_MS | ( __WDP_MS << 16));
 }
 
 void TC7_Handler(){
