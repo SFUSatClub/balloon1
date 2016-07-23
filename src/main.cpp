@@ -56,18 +56,20 @@ Radio radio(&radioSerial, 2);
 SDCard sd(sdChipSelectPin);
 Photocells photocells(0, 5);
 IMU imu;
+Barometer barometer;
 
 // Steven: maybe should use container classes. array/vector?
-const int numModules = 4;
+const int numModules = 5;
 Module* modules[numModules] = {
     &gps
   , &radio
   , &sd
   , &photocells
+  , &barometer
 };
 
 Scheduler scheduler(2 + numModules);
-StateHandler stateHandler(&imu, &gps);
+StateHandler stateHandler(&barometer, &gps);
 
 void setup() {
   Serial.begin(115200);

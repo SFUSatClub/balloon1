@@ -11,7 +11,7 @@ StateHandler::StateHandler(Barometer *_barometer, GPS *_gps)
 	: barometer(_barometer)
 	, gps(_gps)
 {
-    balloonState=PRE_FLIGHT;   //start in preflight
+    balloonState=SystemState::PRE_FLIGHT;   //start in preflight
     stateChanged=false;
 }
 
@@ -25,26 +25,26 @@ void StateHandler::tick(){
     stateChanged=false; 
     //stateChanged should be modified in checker functions
 
-    if (balloonState==PRE_FLIGHT){
-        balloonState=DURING_FLIGHT; //only execute once
+    if (balloonState==SystemState::PRE_FLIGHT){
+        balloonState=SystemState::DURING_FLIGHT; //only execute once
         stateChanged=true;
     }
 
-    else if (balloonState==DURING_FLIGHT){
-        if (checkBattery())      balloonState=LOW_BATTERY;
-        else if (checkDescent()) balloonState=DURING_DESCENT;
+    else if (balloonState==SystemState::DURING_FLIGHT){
+        if (checkBattery())      balloonState=SystemState::LOW_BATTERY;
+        else if (checkDescent()) balloonState=SystemState::DURING_DESCENT;
     }
 
-    else if (balloonState==DURING_DESCENT){
-        if (checkBattery())     balloonState=LOW_BATTERY;
-        else if (checkLanded()) balloonState=LANDED;
+    else if (balloonState==SystemState::DURING_DESCENT){
+        if (checkBattery())     balloonState=SystemState::LOW_BATTERY;
+        else if (checkLanded()) balloonState=SystemState::LANDED;
     }
 
-    else if (balloonState==LOW_BATTERY){
-        if (checkLanded())      balloonState=LANDED;
+    else if (balloonState==SystemState::LOW_BATTERY){
+        if (checkLanded())      balloonState=SystemState::LANDED;
     }
 
-    else if (balloonState==LANDED){
+    else if (balloonState==SystemState::LANDED){
         stateChanged=true; //stop calling statehandler after this
     }
 }

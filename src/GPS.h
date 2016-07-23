@@ -22,6 +22,9 @@ public:
 
 	const char* dataToPersist();
 	const char* getModuleName();
+
+        float getSpeed();
+        float getAltitude();
 };
 
 #endif // GPS_H

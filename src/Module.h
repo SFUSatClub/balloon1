@@ -5,10 +5,11 @@
 #include <FatLib/ArduinoStream.h>
 
 enum class SystemState {
-	PRELAUNCH = 1,
-	FLIGHT,
-	DESCENT,
-	LOW_POWER,
+	PRE_FLIGHT = 1,
+	DURING_FLIGHT,
+	DURING_DESCENT,
+	LOW_BATTERY,
+        LANDED,
 	INVALID = -1
 };
 

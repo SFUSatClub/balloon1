@@ -6,7 +6,7 @@
 #include "GPS.h"
 
 class StateHandler: public Module {
-    SystemState balloonState=PRE_FLIGHT; 
+    SystemState balloonState=SystemState::PRE_FLIGHT; 
     bool stateChanged;
 
     static const int SAVED_VALUES=3;    //number of values saved in array
