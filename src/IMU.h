@@ -2,11 +2,11 @@
 #define IMU_H
 
 #include <Wire.h>
-#include <Adafruit_LSM303_U.h>
+#include <LSM303.h>
 #include "Module.h"
 
 class IMU: public Module {
-  Adafruit_LSM303_Mag_Unified  *imuImpl;
+  LSM303  *imuImpl;
 	uint32_t timer;
   int dataAccelerometer[3];
   int dataMagnetometer[3];
