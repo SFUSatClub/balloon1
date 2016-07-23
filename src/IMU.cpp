@@ -29,6 +29,18 @@ void IMU::tick(){
   delay(100);
 }
 
+int IMU::enable() {
+  return 0;
+}
+
+void IMU::disable() {
+
+}
+
+const char* IMU::getModuleName() {
+  return "IMU";
+}
+
 // Data in format <accX>,<accY>,<accZ>,<magX>,<magY>,<magZ>
 const char* IMU::dataToPersist() {
   toWrite[0] = '\0';

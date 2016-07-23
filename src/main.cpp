@@ -53,7 +53,7 @@ GPS gps(&gpsSerial);
 Radio radio(&radioSerial, 2);
 SDCard sd(sdChipSelectPin);
 Photocells photocells(0, 5);
-IMU imu(0x6b);
+IMU imu;
 
 // Steven: maybe should use container classes. array/vector?
 const int numModules = 5;
