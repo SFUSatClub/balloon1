@@ -96,4 +96,12 @@ const char* GPS::getModuleName() {
 	return "GPS";
 }
 
+float GPS::getSpeed(){
+    return gpsImpl->speed;
+}
+
+float GPS::getAltitude(){
+    return gpsImpl->altitude;
+}
+
 

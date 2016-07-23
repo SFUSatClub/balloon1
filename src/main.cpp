@@ -34,6 +34,8 @@ void task1(void){
 
 void task2(){
   static int task2Trigger = 0;
+  Serial.println("Hello");
+
   if(task2Trigger == 1){
     digitalWrite(8, 1);
     task2Trigger = 0;
@@ -53,7 +55,8 @@ GPS gps(&gpsSerial);
 Radio radio(&radioSerial, 2);
 SDCard sd(sdChipSelectPin);
 Photocells photocells(0, 5);
-IMU imu(0x6b);
+IMU imu;
+Barometer barometer;
 
 // Steven: maybe should use container classes. array/vector?
 const int numModules = 5;
@@ -62,11 +65,11 @@ Module* modules[numModules] = {
   , &radio
   , &sd
   , &photocells
-  , &imu
+  , &barometer
 };
 
 Scheduler scheduler(2 + numModules);
-StateHandler stateHandler(&imu, &gps);
+StateHandler stateHandler(&barometer, &gps);
 
 void setup() {
   Serial.begin(115200);
