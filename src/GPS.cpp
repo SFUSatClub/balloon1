@@ -31,7 +31,6 @@ void GPS::begin() {
 }
 
 void GPS::tick() {
-	cout << "GPS has been ticked" << endl;
 	// read data from the GPS in the 'main loop'
 	char c = gpsImpl->read();
 	// if you want to debug, this is a good time to do it!
@@ -79,6 +78,33 @@ void GPS::tick() {
 			Serial.print("Satellites: "); Serial.println((int)gpsImpl->satellites);
 		}
 	}
+}
+
+float GPS::getLatitude() {
+	return gpsImpl->latitude;
+}
+float GPS::getLongitude() {
+	return gpsImpl->longitude;
+}
+float GPS::getSpeed() {
+	return gpsImpl->speed;
+}
+float GPS::getAltitude() {
+	return gpsImpl->altitude;
+}
+const char* GPS::getTime() {
+	time[0] = '\0';
+	/* 2  : maximum field witdh to be read */
+	/* hh : expecting a pointer to signed or unsigned char */
+	/* x  : means unsigned hex-input */
+	snprintf(time, 16, "%2hhx:%2hhx:%2hhx %2hhx:%2hhx:%2hhx",
+			gpsImpl->hour,
+			gpsImpl->minute,
+			gpsImpl->seconds,
+			gpsImpl->year,
+			gpsImpl->month,
+			gpsImpl->day);
+	return time;
 }
 
 int GPS::enable() {

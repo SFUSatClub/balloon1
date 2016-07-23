@@ -12,7 +12,6 @@ void StateHandler::begin(){
 }
 
 void StateHandler::tick(){
-	cout << "StateHandler has been ticked" << endl;
 }
 
 bool StateHandler::hasStateChanged() {

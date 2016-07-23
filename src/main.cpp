@@ -32,25 +32,13 @@ void task1(void){
   }
 }
 
-void task2(){
-  static int task2Trigger = 0;
-  if(task2Trigger == 1){
-    digitalWrite(8, 1);
-    task2Trigger = 0;
-  }
-  else{
-    digitalWrite(8, 0);
-    task2Trigger = 1;
-  }
-}
-
 // Module setup
 #define gpsSerial Serial1
 #define radioSerial Serial2
 const int sdChipSelectPin = 4;
 
 GPS gps(&gpsSerial);
-Radio radio(&radioSerial, 2);
+Radio radio(&radioSerial, &gps);
 SDCard sd(sdChipSelectPin);
 Photocells photocells(0, 5);
 IMU imu(0x6b);
@@ -65,7 +53,7 @@ Module* modules[numModules] = {
   , &imu
 };
 
-Scheduler scheduler(2 + numModules);
+Scheduler scheduler(1 + numModules);
 StateHandler stateHandler(&imu, &gps);
 
 void setup() {
@@ -85,7 +73,6 @@ void setup() {
 
   scheduler.setupISR();
   scheduler.addTask(new Task(500,500, &task1));
-  scheduler.addTask(new Task(500,100, &task2));
   scheduler.registerModulesAsTasks(modules, numModules);
   scheduler.registerStateHandler(&stateHandler);
 }

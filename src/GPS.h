@@ -13,12 +13,19 @@ class GPS: public Module {
 	Adafruit_GPS *gpsImpl;
 	HardwareSerial *serial;
 	uint32_t timer;
+	char time[16];
 public: 
 	GPS(HardwareSerial *);
 	void begin();
 	void tick();
 	int enable();
 	void disable();
+
+	float getLatitude();
+	float getLongitude();
+	float getAltitude();
+	float getSpeed();
+	const char* getTime();
 
 	const char* dataToPersist();
 	const char* getModuleName();

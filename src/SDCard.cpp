@@ -22,13 +22,11 @@ void SDCard::tick() {
 		return;
 	}
 
-	cout << "SDCard has been ticked" << endl;
-
 	for(int currModule = 0; currModule < numModules; currModule++) {
 		const char* moduleName = modules[currModule]->getModuleName();
 		const char* moduleData = modules[currModule]->dataToPersist();
-		// Steven: add 1 for new line char
-		if(strlen(moduleName) + strlen(buffer) + strlen(moduleData) + 1 < BUFFER_WRITE_SIZE) {
+		// Steven: add 2 for comma and new line char
+		if(strlen(moduleName) + strlen(buffer) + strlen(moduleData) + 2 < BUFFER_WRITE_SIZE) {
 			strcat(buffer, moduleName);
 			strcat(buffer, ",");
 			strcat(buffer, moduleData);
@@ -40,7 +38,10 @@ void SDCard::tick() {
 			dataFile.write(buffer);
 			// Steven: c-style strings, clear the buffer with null char
 			buffer[0] = 0;
+			strcat(buffer, moduleName);
+			strcat(buffer, ",");
 			strcat(buffer, moduleData);
+			strcat(buffer, "\n");
 			/* cout << "SD: appending, current buffer: " << buffer << endl; */
 	  }
 	}

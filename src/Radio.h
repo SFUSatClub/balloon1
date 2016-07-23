@@ -1,11 +1,12 @@
 #include <Arduino.h>
 #include "Module.h"
+#include "GPS.h"
 
 class Radio: public Module {
-	int restart_time_out;
+	GPS *gps;
 	HardwareSerial *radio_comms;
 public:
-	Radio(HardwareSerial *serial, int restart_time);
+	Radio(HardwareSerial *serial, GPS *gps);
 	void begin();
 	void tick();
 	int enable();
@@ -14,7 +15,6 @@ public:
 	const char* getModuleName();
 	const char* dataToPersist();
 
-	bool transmit(String *packet);
-	String to_AX25(String *data);
+	bool forwardAPRSToUno(const char *data_msg);
 	int systems_check();
 };

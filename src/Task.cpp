@@ -41,12 +41,12 @@ void Task::runTask(uint32_t systemTick){
     cout << mins << ":" << secs << ":" << ms % 1000 << "\t";
     // put watchdog things here
     if(pointedFunc == NULL) {
-      cout << module->getModuleName() << "\t" 
-        << module->dataToPersist() << endl;
       module->tick();
+      cout << module->getModuleName() << "\t\t"
+        << module->dataToPersist() << endl;
     } else {
-      cout << "pointedFunc" << endl;
       (*pointedFunc)(); // run the function from the poitner
+      cout << "pointedFunc" << endl;
     }
   }
   lastRun = systemTick;

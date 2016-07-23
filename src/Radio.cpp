@@ -1,8 +1,10 @@
 #include "Radio.h"
 
-Radio::Radio(HardwareSerial *ser, int restart_time)
-	: radio_comms(ser) {
-	restart_time_out  = restart_time;
+Radio::Radio(HardwareSerial *ser, GPS *_gps)
+	: gps(_gps)
+	, radio_comms(ser)
+{
+	
 }
 
 void Radio::begin() {
@@ -14,23 +16,23 @@ void Radio::tick() {
 
 int Radio::enable() {
 	//PD1
-	return restart_time_out;
+	return 0;
 }
 
 void Radio::disable() {
 	//PD0
 }
 
-
-bool Radio::transmit(String * packet) {
-	//PTT to low
-	//tx data over uart
+// <latitude>\t<longitude>\t<time>\t<altitude>\t<misc data>\n
+bool Radio::forwardAPRSToUno(const char *data_msg) {
+	char toUno[100];
+	snprintf(toUno, 100, 
+			"%f\t%f\t%s\t%f\t%s",
+			gps->getLatitude(), gps->getLongitude(),
+			gps->getTime(), gps->getAltitude(),
+			data_msg);
+	radio_comms->println(toUno);
 	return true;
-}
-
-String Radio::to_AX25(String * data) {
-	//encode data into packet
-	return " ";
 }
 
 int Radio::systems_check() {
