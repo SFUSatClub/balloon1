@@ -2,30 +2,32 @@
 #define STATEHANDLER_H
 
 #include "Module.h"
-#include "IMU.h"
+#include "Barometer.h"
 #include "GPS.h"
 #include "Battery.h"
 
 class StateHandler: public Module {
-	SystemState balloonState=PRE_FLIGHT;
-	bool stateChanged;
+    SystemState balloonState=PRE_FLIGHT; 
+    bool stateChanged;
 
     static const int SAVED_VALUES=3;    //number of values saved in array
-    int altitude[SAVED_VALUES]={0};    //most recent stored in altitude[0]
+    float altitude[SAVED_VALUES]={0};    //most recent stored in altitude[0]
+    float speed[SAVED_VALUES]={0};
     int pressure[SAVED_VALUES]={0};     //for compiling
-    static const int LANDED_PRESSURE_VARIES=0;	//note: data needed
+    static const int LANDED_SPEED_VARIES=0;	//note: data needed
     static const int LANDED_ALTIUDE_VARIES=0;   //note: data needed
 
-    IMU *imu;
+    Barometer *barometer;
     GPS *gps;
     Battery *battery;
 
     bool deltaAltitude=false;
     bool deltaPressure=false;
+    bool deltaSpeed=false;
 
 
 public:
-	StateHandler(IMU *, GPS *, Battery*);
+	StateHandler(Barometer *, GPS *, Battery*);
 
 	void begin();
 	void tick();
@@ -37,8 +39,8 @@ public:
 	SystemState getSystemState();
 
 	bool checkLanded();
-    bool checkDescent();
-    bool checkBattery();
+        bool checkDescent();
+        bool checkBattery();
 
 };
 

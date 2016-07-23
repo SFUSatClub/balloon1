@@ -7,8 +7,8 @@
 */
 
 
-StateHandler::StateHandler(IMU *_imu, GPS *_gps, Battery *_battery)
-	: imu(_imu)
+StateHandler::StateHandler(Barometer *_barometer, GPS *_gps, Battery *_battery)
+	: barometer(_barometer)
 	, gps(_gps)
 	, battery(_battery)
 {
@@ -17,8 +17,9 @@ StateHandler::StateHandler(IMU *_imu, GPS *_gps, Battery *_battery)
 }
 
 void StateHandler::begin(){
-	altitude[0]=gps->getAltitude();
-	pressure[0]=imu->getPressure();
+	altitude[0]=gps->gpsImpl->altitude;
+        speed[0]=gps->gpsImpl->speed;
+	pressure[0]=barometer->getPressure();
 }
 
 void StateHandler::tick(){
@@ -31,7 +32,7 @@ void StateHandler::tick(){
     }
 
     else if (balloonState==DURING_FLIGHT){
-        if (checkBattery())     balloonState=LOW_BATTERY;
+        if (checkBattery())      balloonState=LOW_BATTERY;
         else if (checkDescent()) balloonState=DURING_DESCENT;
     }
 
@@ -45,12 +46,7 @@ void StateHandler::tick(){
     }
 
     else if (balloonState==LANDED){
-        balloonState=SCREAMING;    //purpose of landed is to reduce frequency???
-        stateChanged=true;
-    }
-
-    else if (balloonState==SCREAMING){ 
-        //should stay here until it runs out of battery
+        stateChanged=true; //stop calling statehandler after this
     }
 }
 
@@ -78,8 +74,8 @@ bool CheckState::checkDescent(){
         altitude[i]=altitude[i-1];
         pressure[i]=pressure[i-1];
     }
-    altitude[0]=gps->getAltitude();
-    pressure[0]=imu->getPressure();
+    altitude[0]=gps->gpsImpl->altitude;
+    pressure[0]=barometer->getPressure();
 
     //calculate deltas (assume true, check for contradiction)
     deltaPressure=true; 
@@ -98,21 +94,20 @@ bool CheckState::checkLanded(){
     //update value arrays
     for (int i=SAVED_VALUES-1;i>=1;i--){
         altitude[i]=altitude[i-1];
-        pressure[i]=pressure[i-1];
+        speed[i]=speed[i-1];
     }
-    altitude[0]=gps->getAltitude();
-    pressure[0]=imu->getPressure();
+    altitude[0]=gps->gpsImpl->altitude;
+    speed[0]=gps->gpsImpl->speed;
 
     //calculate deltas (assume true, check for contradiction)
-    deltaPressure=true; 
+    deltaSpeed=true; 
     deltaAltitude=true; 
     for (int i=SAVED_VALUES-1;i>=1;i--){
-        if ( abs(pressure[i]-pressure[i-1])<LANDED_PRESSURE_VARIES)     deltaPressure=false;
+        if ( abs(speed[i]-speed[i-1])<LANDED_SPEED_VARIES)              deltaSpeed=false;
         if ( abs(altitude[i]-altitude[i-1])<LANDED_ALTIUDE_VARIES)      deltaAltitude=false;
     } //needs to be drift-resistant 
-     
 
-    stateChanged= (deltaAltitude && deltaPressure);
+    stateChanged= (deltaAltitude && deltaSpeed);
     
     return stateChanged;
 }
