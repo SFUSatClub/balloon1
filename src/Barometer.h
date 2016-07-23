@@ -3,18 +3,16 @@
 #include <SFE_BMP180.h>
 #include <Wire.h>
 
-//implementation that treats all photocells as a single unit, provided that they are all connected to consecutive ports 
-//first sensor attached to A1, second attached to A2, etc.
+//on Due, attach SDA to 20, SCL to 21 
 
 class Barometer: public Module { 
 	SFE_BMP180 *baromImpl;
-	float altitude, temp, pressure, p0, a;
-	HardwareSerial *Serial;
+        double temperature, pressure;
 
 	char toWrite[200];             //max buffer size may have to change depending on data
 
 public:
-	Barometer(HardwareSerial *);
+	Barometer();
 	void begin();
 	void tick();
 	int enable();
@@ -22,4 +20,6 @@ public:
 
 	const char* dataToPersist();
 	const char* getModuleName();
+
+        float getPressure();
 };

@@ -1,15 +1,12 @@
 #include "Barometer.h"
 
-Barometer::BarometerHardwareSerial *ser) {
+Barometer::Barometer() {
 	baromImpl=new SFE_BMP180; //constructor??
-	Serial=ser;
 } // on Due, SDA to 20, SCL to 21
 
 void Barometer::begin() {
-	Serial->begin(9600);
-	if ( baromImpl->>begin() )
-		Serial.println("works");
-	else Serial.println("error initializng barometer");
+	if ( baromImpl->begin() ) cout << "initialized properly." <<endl;
+	else cout << "barometer failed to initialize" <<endl;
 }
 
 void Barometer::tick() {
@@ -27,9 +24,9 @@ void Barometer::tick() {
 	// Note that the measurement is stored in the variable T.
 	// Function returns 1 if successful, 0 if failure.
 
-	status = baromImpl->getTemperature(T);
+	status = baromImpl->getTemperature(temperature);
 	// Print out the measurement:
-	Serial.print("temperature: "); Serial.print(T,2); Serial.print(" deg C, ");
+        cout << "temperature: " << temperature << "deg C" <<endl;
 
 	// Start a pressure measurement:
 	// The parameter is the oversampling setting, from 0 to 3 (highest res, longest wait).
@@ -46,11 +43,11 @@ void Barometer::tick() {
 	// (If temperature is stable, you can do one temperature measurement for a number of pressure measurements.)
 	// Function returns 1 if successful, 0 if failure.
 
-	status = baromImpl->getPressure(P,T);
+	status = baromImpl->getPressure(pressure,temperature);
 
 	// Print out the measurement:
-	Serial.print("absolute pressure: "); Serial.print(P,2); Serial.print(" mb, ");
-	Serial.print(P*0.0295333727,2); Serial.println(" inHg");
+        cout << "absolute pressure:" << pressure << "in mb:";
+        cout << pressure*0.0295333727 << "inHg"<< endl;
 }
 
 /*
@@ -91,8 +88,8 @@ void Barometer::disable() {
 
 const char* Barometer::dataToPersist() {
 	toWrite[0] = '\0';
-	sprintf(strchr(toWrite,'\0'), "temp,%0.2f,",T);
-	sprintf(strchr(toWrite,'\0'), "AbsPress,%0.2f,",P);
+	sprintf(strchr(toWrite,'\0'), "temp,%0.6f,",temperature);
+	sprintf(strchr(toWrite,'\0'), "AbsPress,%0.6f,",pressure);
 	return toWrite;
 }
 
@@ -100,4 +97,6 @@ const char* Barometer::getModuleName() {
 	return "Barometer";
 }
 
-
+float Barometer::getPressure(){
+    return pressure;
+}
