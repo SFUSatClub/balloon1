@@ -1,7 +1,7 @@
 #include "Globals.h"
 
 void WATCHDOG_RESET() {
-  WDT_Restart(WDT);
+	WDT_Restart(WDT);
 }
 
 // Serial streams

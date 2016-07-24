@@ -22,15 +22,15 @@
 #include "Barometer.h"
 
 void task1(void){
-  static int task1Trigger = 0;
-  if(task1Trigger == 1){
-    digitalWrite(12, 1);
-    task1Trigger = 0;
-  }
-  else{
-    digitalWrite(12, 0);
-    task1Trigger = 1;
-  }
+	static int task1Trigger = 0;
+	if(task1Trigger == 1){
+		digitalWrite(12, 1);
+		task1Trigger = 0;
+	}
+	else{
+		digitalWrite(12, 0);
+		task1Trigger = 1;
+	}
 }
 
 // Module setup
@@ -50,39 +50,39 @@ Barometer barometer;
 // Steven: maybe should use container classes. array/vector?
 const int numModules = 5;
 Module* modules[numModules] = {
-    &gps
-  , &radio
-  , &sd
-  , &photocells
-  , &barometer
+	&gps
+		, &radio
+		, &sd
+		, &photocells
+		, &barometer
 };
 
 Scheduler scheduler(1 + numModules);
 StateHandler stateHandler(&barometer, &gps);
 
 void setup() {
-  Wire.begin();
-  Serial.begin(115200);
-  pinMode(12, OUTPUT);
-  Serial.println("SFUSat weather balloon1 says hi");
+	Wire.begin();
+	Serial.begin(115200);
+	pinMode(12, OUTPUT);
+	Serial.println("SFUSat weather balloon1 says hi");
 
-  for(Module *module : modules) {
-    module->enable();
-    module->begin();
-  }
-  stateHandler.enable();
-  stateHandler.begin();
+	for(Module *module : modules) {
+		module->enable();
+		module->begin();
+	}
+	stateHandler.enable();
+	stateHandler.begin();
 
-  sd.registerModules(modules, numModules);
+	sd.registerModules(modules, numModules);
 
-  scheduler.setupISR();
-  scheduler.addTask(new Task(500,500, &task1));
-  scheduler.registerModulesAsTasks(modules, numModules);
-  scheduler.registerStateHandler(&stateHandler);
+	scheduler.setupISR();
+	scheduler.addTask(new Task(500,500, &task1));
+	scheduler.registerModulesAsTasks(modules, numModules);
+	scheduler.registerStateHandler(&stateHandler);
 }
 
 void loop() {
-  scheduler.run();
+	scheduler.run();
 }
 
 // Richard todo:

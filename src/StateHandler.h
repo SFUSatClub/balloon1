@@ -6,26 +6,26 @@
 #include "GPS.h"
 
 class StateHandler: public Module {
-    SystemState balloonState=SystemState::PRE_FLIGHT; 
-    bool stateChanged;
+	SystemState balloonState=SystemState::PRE_FLIGHT; 
+	bool stateChanged;
 
-    static const int SAVED_VALUES=3;    //number of values saved in array
-    float altitude[SAVED_VALUES]={0};    //most recent stored in altitude[0]
-    float speed[SAVED_VALUES]={0};
-    float pressure[SAVED_VALUES]={0};     //for compiling
-    static const int LANDED_SPEED_VARIES=0;	//note: data needed
-    static const int LANDED_ALTIUDE_VARIES=0;   //note: data needed
+	static const int SAVED_VALUES=3;    //number of values saved in array
+	float altitude[SAVED_VALUES]={0};    //most recent stored in altitude[0]
+	float speed[SAVED_VALUES]={0};
+	float pressure[SAVED_VALUES]={0};     //for compiling
+	static const int LANDED_SPEED_VARIES=0;	//note: data needed
+	static const int LANDED_ALTIUDE_VARIES=0;   //note: data needed
 
-    static const int VOLT_PIN=3; //something!!
-    int voltLevel;
-    static const int LOW_BATTERY_LEVEL=100; //something!
+	static const int VOLT_PIN=3; //something!!
+	int voltLevel;
+	static const int LOW_BATTERY_LEVEL=100; //something!
 
-    Barometer *barometer;
-    GPS *gps;
+	Barometer *barometer;
+	GPS *gps;
 
-    bool deltaAltitude=false;
-    bool deltaPressure=false;
-    bool deltaSpeed=false;
+	bool deltaAltitude=false;
+	bool deltaPressure=false;
+	bool deltaSpeed=false;
 
 
 public:
@@ -41,8 +41,8 @@ public:
 	SystemState getSystemState();
 
 	bool checkLanded();
-        bool checkDescent();
-        bool checkBattery();
+	bool checkDescent();
+	bool checkBattery();
 
 };
 

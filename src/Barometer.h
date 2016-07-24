@@ -10,7 +10,7 @@
 
 class Barometer: public Module { 
 	SFE_BMP180 *baromImpl;
-        double temperature, pressure;
+	double temperature, pressure;
 
 	char toWrite[100];             //max buffer size may have to change depending on data
 
@@ -24,7 +24,7 @@ public:
 	const char* dataToPersist();
 	const char* getModuleName();
 
-        float getPressure();
+	float getPressure();
 };
 
 #endif // BAROMETER_H
