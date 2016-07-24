@@ -93,6 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classScheduler-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Scheduler Class Reference</div>  </div>
@@ -104,6 +105,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Collaboration diagram for Scheduler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classScheduler__coll__graph.png" border="0" usemap="#Scheduler_coll__map" alt="Collaboration graph"/></div>
+<map name="Scheduler_coll__map" id="Scheduler_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -114,12 +117,19 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0e3d7b3649f64a9dde58789282a0452f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9324bd2c541d0e300222156903e19415"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#a9324bd2c541d0e300222156903e19415">registerModulesAsTasks</a> (<a class="el" href="classModule.html">Module</a> **<a class="el" href="main_8cpp.html#a1d9af2d6bb511e0fb8004db806efa478">modules</a>, int <a class="el" href="main_8cpp.html#a5a751fcf7866d168672d462dd759e911">numModules</a>)</td></tr>
 <tr class="separator:a9324bd2c541d0e300222156903e19415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52d40db32862204f7b2f2d376bc4c158"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#a52d40db32862204f7b2f2d376bc4c158">registerStateHandler</a> (<a class="el" href="classStateHandler.html">StateHandler</a> *stateHandler)</td></tr>
+<tr class="separator:a52d40db32862204f7b2f2d376bc4c158"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abda1396d8606a41fce0301a92a225ccb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#abda1396d8606a41fce0301a92a225ccb">setupISR</a> ()</td></tr>
 <tr class="separator:abda1396d8606a41fce0301a92a225ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f6cc701623afb6fcf4a3c17ef4dd403"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#a6f6cc701623afb6fcf4a3c17ef4dd403">getSystemTick</a> ()</td></tr>
 <tr class="separator:a6f6cc701623afb6fcf4a3c17ef4dd403"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58fba108ce2748870a6288cd6f5fd1e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#a58fba108ce2748870a6288cd6f5fd1e3">run</a> ()</td></tr>
 <tr class="separator:a58fba108ce2748870a6288cd6f5fd1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a3592784507cf885fa8eb432e6e93cb76"><td class="memItemLeft" align="right" valign="top">static const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScheduler.html#a3592784507cf885fa8eb432e6e93cb76">TICKS_PER_CYCLE</a> = 1000</td></tr>
+<tr class="separator:a3592784507cf885fa8eb432e6e93cb76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aefd867b1a92502c61085a4fa2d2f902b"></a>
@@ -199,7 +209,33 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classScheduler_a9324bd2c541d0e300222156903e19415_cgraph.png" border="0" usemap="#classScheduler_a9324bd2c541d0e300222156903e19415_cgraph" alt=""/></div>
 <map name="classScheduler_a9324bd2c541d0e300222156903e19415_cgraph" id="classScheduler_a9324bd2c541d0e300222156903e19415_cgraph">
-<area shape="rect" id="node2" href="classScheduler.html#abda1396d8606a41fce0301a92a225ccb" title="Scheduler::setupISR" alt="" coords="249,13,400,39"/>
+<area shape="rect" id="node2" href="classModule.html#ae577b831df42b5bcf6762817e7d38649" title="Module::getSchedulingFreq" alt="" coords="249,13,444,39"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a52d40db32862204f7b2f2d376bc4c158"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Scheduler::registerStateHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classStateHandler.html">StateHandler</a> *&#160;</td>
+          <td class="paramname"><em>stateHandler</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classScheduler_a52d40db32862204f7b2f2d376bc4c158_cgraph.png" border="0" usemap="#classScheduler_a52d40db32862204f7b2f2d376bc4c158_cgraph" alt=""/></div>
+<map name="classScheduler_a52d40db32862204f7b2f2d376bc4c158_cgraph" id="classScheduler_a52d40db32862204f7b2f2d376bc4c158_cgraph">
+<area shape="rect" id="node2" href="classScheduler.html#abda1396d8606a41fce0301a92a225ccb" title="Scheduler::setupISR" alt="" coords="232,13,383,39"/>
 </map>
 </div>
 </p>
@@ -224,8 +260,23 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classScheduler_a58fba108ce2748870a6288cd6f5fd1e3_cgraph.png" border="0" usemap="#classScheduler_a58fba108ce2748870a6288cd6f5fd1e3_cgraph" alt=""/></div>
 <map name="classScheduler_a58fba108ce2748870a6288cd6f5fd1e3_cgraph" id="classScheduler_a58fba108ce2748870a6288cd6f5fd1e3_cgraph">
-<area shape="rect" id="node2" href="classTask.html#a7d1efa56f944a29ebb4c02c2f727ae92" title="Task::runTask" alt="" coords="168,5,273,32"/>
-<area shape="rect" id="node3" href="classModule.html#ad2577ebdcd23d54884a630447ef77c78" title="Called periodically by the Scheduler. " alt="" coords="321,5,420,32"/>
+<area shape="rect" id="node2" href="Globals_8cpp.html#a237bdbf0e16743c61bfdfea44b63d54a" title="WATCHDOG_RESET" alt="" coords="212,19,355,45"/>
+<area shape="rect" id="node4" href="classStateHandler.html#a53aa42d2e6b4bce54408e84abcff1c03" title="Called periodically by the Scheduler. " alt="" coords="215,120,352,147"/>
+<area shape="rect" id="node11" href="classStateHandler.html#a052275aa7bb8d1d622e3655523e2b615" title="StateHandler::hasStateChanged" alt="" coords="168,196,399,223"/>
+<area shape="rect" id="node12" href="classTask.html#a7d1efa56f944a29ebb4c02c2f727ae92" title="Task::runTask" alt="" coords="231,247,336,273"/>
+<area shape="rect" id="node16" href="classTask.html#a0d8a58ddb8e8e657237e4a861c59ce74" title="Task::onStateChanged" alt="" coords="201,297,366,324"/>
+<area shape="rect" id="node18" href="classStateHandler.html#a9ea1a91bdd90450b98694bda5d842e70" title="StateHandler::getSystemState" alt="" coords="173,348,393,375"/>
+<area shape="rect" id="node3" href="Globals_8cpp.html#ab41bc15799f5fa4838b040a08ac6ca36" title="cout" alt="" coords="524,5,575,32"/>
+<area shape="rect" id="node5" href="classStateHandler.html#a8bd87e887c05b09fb45bed750430e2e3" title="StateHandler::checkBattery" alt="" coords="450,56,649,83"/>
+<area shape="rect" id="node6" href="classStateHandler.html#ae8d09931d9e207c3da104a778577dba2" title="StateHandler::checkDescent" alt="" coords="447,107,652,133"/>
+<area shape="rect" id="node9" href="classStateHandler.html#ad17626f2e8a745d5f54a9c154b1e7614" title="StateHandler::checkLanded" alt="" coords="450,157,649,184"/>
+<area shape="rect" id="node7" href="classGPS.html#abbb46429b3d87e7dfd63a38a1831e710" title="GPS::getAltitude" alt="" coords="725,132,851,159"/>
+<area shape="rect" id="node8" href="classBarometer.html#a23aee3f635ff7289c8bbf978ff1561c5" title="Barometer::getPressure" alt="" coords="700,81,876,108"/>
+<area shape="rect" id="node10" href="classGPS.html#a6be61437fe89ae91c8b8bda292125a74" title="GPS::getSpeed" alt="" coords="729,183,847,209"/>
+<area shape="rect" id="node13" href="classModule.html#ad2577ebdcd23d54884a630447ef77c78" title="Called periodically by the Scheduler. " alt="" coords="500,208,599,235"/>
+<area shape="rect" id="node14" href="classModule.html#af596ad7a28c8a1999cb5771bad746afd" title="Called by the SD module and used as a label for this module&#39;s CSV output. " alt="" coords="458,259,641,285"/>
+<area shape="rect" id="node15" href="classModule.html#a1b09b23602e5491206dcc96e4714ddac" title="Should the module creates data and wants to persist it, this function would be called by the SD modul..." alt="" coords="469,309,630,336"/>
+<area shape="rect" id="node17" href="classModule.html#ad36b9d35ee30dd654fcafd282e4d677e" title="Called by the Scheduler whenever an actionable state&#45;change is detected. " alt="" coords="457,360,641,387"/>
 </map>
 </div>
 </p>
@@ -243,6 +294,27 @@ Here is the call graph for this function:</div>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a3592784507cf885fa8eb432e6e93cb76"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint16_t Scheduler::TICKS_PER_CYCLE = 1000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

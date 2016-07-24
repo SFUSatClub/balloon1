@@ -1,0 +1,6 @@
+<map id="Adafruit_GPS::LOCUS_ReadStatus" name="Adafruit_GPS::LOCUS_ReadStatus">
+<area shape="rect" id="node2" href="$classAdafruit__GPS.html#abd7e2f17f11188dfc99fff55e3560dfb" title="Adafruit_GPS::sendCommand" alt="" coords="216,5,428,32"/>
+<area shape="rect" id="node3" href="$classAdafruit__GPS.html#a93a140ac59cff5a034eff003d25935dd" title="Adafruit_GPS::waitForSentence" alt="" coords="212,56,432,83"/>
+<area shape="rect" id="node5" href="$classAdafruit__GPS.html#a6938dadca5d72ec6e89e86a5b01b9b67" title="Adafruit_GPS::lastNMEA" alt="" coords="508,107,683,133"/>
+<area shape="rect" id="node4" href="$classAdafruit__GPS.html#accb1fa960283447d2868c59951f0a9a1" title="Adafruit_GPS::newNMEAreceived" alt="" coords="480,56,711,83"/>
+</map>

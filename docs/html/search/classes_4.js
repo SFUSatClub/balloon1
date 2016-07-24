@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['photocells',['Photocells',['../classPhotocells.html',1,'']]]
+  ['lsm303',['LSM303',['../classLSM303.html',1,'']]]
 ];

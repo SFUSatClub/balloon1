@@ -110,19 +110,22 @@ Inheritance diagram for Module:</div>
 <div class="dyncontent">
 <div class="center"><img src="classModule__inherit__graph.png" border="0" usemap="#Module_inherit__map" alt="Inheritance graph"/></div>
 <map name="Module_inherit__map" id="Module_inherit__map">
-<area shape="rect" id="node2" href="classCheckDescent.html" title="{CheckDescent\n||+ CheckDescent()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ dataToPersist()\l+ isDescending()\l}" alt="" coords="5,255,144,421"/>
-<area shape="rect" id="node3" href="classCheckLanded.html" title="{CheckLanded\n||+ CheckLanded()\l+ begin()\l+ tick()\l+ dataToPersist()\l+ isLanded()\l}" alt="" coords="168,270,301,406"/>
-<area shape="rect" id="node4" href="classGPS.html" title="{GPS\n||+ GPS()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ dataToPersist()\l+ getModuleName()\l}" alt="" coords="326,255,479,421"/>
-<area shape="rect" id="node5" href="classIMU.html" title="{IMU\n||+ IMU()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ dataToPersist()\l+ getModuleName()\l}" alt="" coords="503,255,657,421"/>
-<area shape="rect" id="node6" href="classPhotocells.html" title="{Photocells\n||+ Photocells()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ dataToPersist()\l+ getModuleName()\l}" alt="" coords="681,255,834,421"/>
-<area shape="rect" id="node7" href="classRadio.html" title="{Radio\n||+ Radio()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ getModuleName()\l+ dataToPersist()\l+ transmit()\l+ to_AX25()\l+ systems_check()\l}" alt="" coords="858,233,1011,443"/>
-<area shape="rect" id="node8" href="classSDCard.html" title="{SDCard\n||+ SDCard()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ getModuleName()\l+ dataToPersist()\l+ doSDTimingBenchmark()\l+ runDiagnostics()\l+ registerModules()\l}" alt="" coords="1036,233,1233,443"/>
+<area shape="rect" id="node2" href="classBarometer.html" title="{Barometer\n||+ Barometer()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ dataToPersist()\l+ getModuleName()\l+ getPressure()\l}" alt="" coords="5,307,159,487"/>
+<area shape="rect" id="node3" href="classBuzzer.html" title="{Buzzer\n||+ Buzzer()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ dataToPersist()\l+ getModuleName()\l}" alt="" coords="183,314,336,479"/>
+<area shape="rect" id="node4" href="classGPS.html" title="{GPS\n||+ GPS()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ getLatitude()\l+ getLongitude()\l+ getAltitude()\l+ getSpeed()\l+ getGPSEpoch()\l+ getTime()\l+ getSchedulingFreq()\l+ dataToPersist()\l+ getModuleName()\l}" alt="" coords="361,263,526,531"/>
+<area shape="rect" id="node5" href="classIMU.html" title="{IMU\n||+ IMU()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ dataToPersist()\l+ getModuleName()\l+ getAccX()\l+ getAccY()\l+ getAccZ()\l+ getMagX()\l+ getMagY()\l+ getMagZ()\l}" alt="" coords="551,270,704,523"/>
+<area shape="rect" id="node6" href="classPhotocells.html" title="{Photocells\n||+ Photocells()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ dataToPersist()\l+ getModuleName()\l}" alt="" coords="728,314,881,479"/>
+<area shape="rect" id="node7" href="classRadio.html" title="{Radio\n||+ Radio()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ getModuleName()\l+ dataToPersist()\l+ getSchedulingFreq()\l+ registerModules()\l+ forwardAPRSToUno()\l+ systems_check()\l}" alt="" coords="905,285,1072,509"/>
+<area shape="rect" id="node8" href="classSDCard.html" title="{SDCard\n||+ SDCard()\l+ begin()\l+ tick()\l+ enable()\l+ disable()\l+ getModuleName()\l+ dataToPersist()\l+ doSDTimingBenchmark()\l+ runDiagnostics()\l+ registerModules()\l}" alt="" coords="1097,292,1294,501"/>
+<area shape="rect" id="node9" href="classStateHandler.html" title="{StateHandler\n||+ StateHandler()\l+ begin()\l+ tick()\l+ dataToPersist()\l+ getModuleName()\l+ hasStateChanged()\l+ getSystemState()\l+ checkLanded()\l+ checkDescent()\l+ checkBattery()\l}" alt="" coords="1318,292,1481,501"/>
 </map>
 </div>
 <div class="dynheader">
 Collaboration diagram for Module:</div>
 <div class="dyncontent">
 <div class="center"><img src="classModule__coll__graph.png" border="0" usemap="#Module_coll__map" alt="Collaboration graph"/></div>
+<map name="Module_coll__map" id="Module_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -150,11 +153,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a48995e424e092bf809361ab41de160c4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a48995e424e092bf809361ab41de160c4">disable</a> ()</td></tr>
 <tr class="memdesc:a48995e424e092bf809361ab41de160c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the module and enter powersaving mode.  <a href="#a48995e424e092bf809361ab41de160c4">More...</a><br /></td></tr>
 <tr class="separator:a48995e424e092bf809361ab41de160c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9d62f7aac5752b7e05b453da65873c6"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ab9d62f7aac5752b7e05b453da65873c6">onStateChanged</a> ()</td></tr>
-<tr class="memdesc:ab9d62f7aac5752b7e05b453da65873c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the <a class="el" href="classScheduler.html">Scheduler</a> whenever an actionable state-change is detected.  <a href="#ab9d62f7aac5752b7e05b453da65873c6">More...</a><br /></td></tr>
-<tr class="separator:ab9d62f7aac5752b7e05b453da65873c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad36b9d35ee30dd654fcafd282e4d677e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ad36b9d35ee30dd654fcafd282e4d677e">onStateChanged</a> (const <a class="el" href="Module_8h.html#aa51313be2faacb739a18fdeecefbac75">SystemState</a> &amp;<a class="el" href="classModule.html#a75ab7c2da6e1c0263560ebfc3a8fb593">state</a>)</td></tr>
+<tr class="memdesc:ad36b9d35ee30dd654fcafd282e4d677e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the <a class="el" href="classScheduler.html">Scheduler</a> whenever an actionable state-change is detected.  <a href="#ad36b9d35ee30dd654fcafd282e4d677e">More...</a><br /></td></tr>
+<tr class="separator:ad36b9d35ee30dd654fcafd282e4d677e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae577b831df42b5bcf6762817e7d38649"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ae577b831df42b5bcf6762817e7d38649">getSchedulingFreq</a> ()</td></tr>
+<tr class="separator:ae577b831df42b5bcf6762817e7d38649"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9108dc19857c69f1dd0084f303874392"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a9108dc19857c69f1dd0084f303874392">dataToSend</a> ()</td></tr>
+<tr class="memdesc:a9108dc19857c69f1dd0084f303874392"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to send it over the uno-&gt;radio link, this function would be called by the <a class="el" href="classRadio.html">Radio</a> module to handle it.  <a href="#a9108dc19857c69f1dd0084f303874392">More...</a><br /></td></tr>
+<tr class="separator:a9108dc19857c69f1dd0084f303874392"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b09b23602e5491206dcc96e4714ddac"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a1b09b23602e5491206dcc96e4714ddac">dataToPersist</a> ()</td></tr>
-<tr class="memdesc:a1b09b23602e5491206dcc96e4714ddac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to persist it, this function would be called by the SD module to take care of it.  <a href="#a1b09b23602e5491206dcc96e4714ddac">More...</a><br /></td></tr>
+<tr class="memdesc:a1b09b23602e5491206dcc96e4714ddac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to persist it, this function would be called by the SD module to handle it.  <a href="#a1b09b23602e5491206dcc96e4714ddac">More...</a><br /></td></tr>
 <tr class="separator:a1b09b23602e5491206dcc96e4714ddac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af596ad7a28c8a1999cb5771bad746afd"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#af596ad7a28c8a1999cb5771bad746afd">getModuleName</a> ()</td></tr>
 <tr class="memdesc:af596ad7a28c8a1999cb5771bad746afd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the SD module and used as a label for this module's CSV output.  <a href="#af596ad7a28c8a1999cb5771bad746afd">More...</a><br /></td></tr>
@@ -239,7 +247,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Called once in <a class="el" href="archive_8txt.html#a4fc01d736fe50cf5b977f755b675f11d">setup()</a> </p>
 
-<p>Implemented in <a class="el" href="classCheckLanded.html#a7a21b290e4ee6c7d19f8dab545465f09">CheckLanded</a>, <a class="el" href="classCheckDescent.html#ad7146c59c6803bc00f3be5f574c63e7a">CheckDescent</a>, <a class="el" href="classSDCard.html#aafda7d500da11cb4fc60be58bc5dd4fb">SDCard</a>, <a class="el" href="classGPS.html#a1a06504c62498b8e5924e73bcabbf098">GPS</a>, <a class="el" href="classPhotocells.html#a99e5cc48de060f9fba443ae92978a77c">Photocells</a>, <a class="el" href="classIMU.html#a5e3fa05283132daacd63fa5669a9173a">IMU</a>, and <a class="el" href="classRadio.html#a39a39dcaa422bed2092bc2761161d1be">Radio</a>.</p>
+<p>Implemented in <a class="el" href="classStateHandler.html#abb33ef80a763b32edd46880d68e0524e">StateHandler</a>, <a class="el" href="classSDCard.html#aafda7d500da11cb4fc60be58bc5dd4fb">SDCard</a>, <a class="el" href="classGPS.html#a1a06504c62498b8e5924e73bcabbf098">GPS</a>, <a class="el" href="classBarometer.html#aa1528dd684384258077238b28614c4c9">Barometer</a>, <a class="el" href="classIMU.html#a5e3fa05283132daacd63fa5669a9173a">IMU</a>, <a class="el" href="classRadio.html#a39a39dcaa422bed2092bc2761161d1be">Radio</a>, <a class="el" href="classBuzzer.html#a22194d9bf84b4236cfac1888a13600ba">Buzzer</a>, and <a class="el" href="classPhotocells.html#a99e5cc48de060f9fba443ae92978a77c">Photocells</a>.</p>
 
 </div>
 </div>
@@ -264,10 +272,36 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Should the module creates data and wants to persist it, this function would be called by the SD module to take care of it. </p>
+<p>Should the module creates data and wants to persist it, this function would be called by the SD module to handle it. </p>
 <dl class="section return"><dt>Returns</dt><dd>the c-style string to be written to the SD card </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classSDCard.html#ac41b7380d86ff7fbacf6111797ed127f">SDCard</a>, <a class="el" href="classCheckDescent.html#a2845173e6af83fdf7cb26a855e844a89">CheckDescent</a>, <a class="el" href="classCheckLanded.html#a8b1826f5df8b11c50b22c561fd97ef7b">CheckLanded</a>, <a class="el" href="classGPS.html#a040b833d06fe8edd08d6f799fba81fda">GPS</a>, <a class="el" href="classPhotocells.html#a70cc1408ffd1c1e7c925d55a83ecdf21">Photocells</a>, <a class="el" href="classRadio.html#af8dbef097e1270c6950e3b11dcb415f0">Radio</a>, and <a class="el" href="classIMU.html#a44b0ed05b0e84b51fa0b932c466c4623">IMU</a>.</p>
+<p>Reimplemented in <a class="el" href="classStateHandler.html#a51bb6408ad5d031e4ce4a9f661595cc6">StateHandler</a>, <a class="el" href="classGPS.html#a040b833d06fe8edd08d6f799fba81fda">GPS</a>, <a class="el" href="classSDCard.html#ac41b7380d86ff7fbacf6111797ed127f">SDCard</a>, <a class="el" href="classBarometer.html#ae7df951876ea29c61c73599d49fd2ff5">Barometer</a>, <a class="el" href="classRadio.html#af8dbef097e1270c6950e3b11dcb415f0">Radio</a>, <a class="el" href="classBuzzer.html#acf89a35c24393c70ad1617f7c2277e21">Buzzer</a>, <a class="el" href="classIMU.html#a44b0ed05b0e84b51fa0b932c466c4623">IMU</a>, and <a class="el" href="classPhotocells.html#a70cc1408ffd1c1e7c925d55a83ecdf21">Photocells</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9108dc19857c69f1dd0084f303874392"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * Module::dataToSend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Should the module creates data and wants to send it over the uno-&gt;radio link, this function would be called by the <a class="el" href="classRadio.html">Radio</a> module to handle it. </p>
+<dl class="section return"><dt>Returns</dt><dd>the c-style string to be sent over the radio </dd></dl>
 
 </div>
 </div>
@@ -294,7 +328,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Disable the module and enter powersaving mode. </p>
 
-<p>Reimplemented in <a class="el" href="classCheckDescent.html#a977a33dec45243a05e498cbdc524622b">CheckDescent</a>, <a class="el" href="classSDCard.html#a144655935847ed1229d4779fc28cd07b">SDCard</a>, <a class="el" href="classGPS.html#a7ac9bbb4f45cccf4025b4463363d88a1">GPS</a>, <a class="el" href="classPhotocells.html#abbadd2dd86f19a80d0672321856bea78">Photocells</a>, <a class="el" href="classIMU.html#a974ae95c940007e5f044f3a1012a6edc">IMU</a>, and <a class="el" href="classRadio.html#ac8c8d58caf6385634d5b41d533470436">Radio</a>.</p>
+<p>Reimplemented in <a class="el" href="classSDCard.html#a144655935847ed1229d4779fc28cd07b">SDCard</a>, <a class="el" href="classGPS.html#a7ac9bbb4f45cccf4025b4463363d88a1">GPS</a>, <a class="el" href="classBarometer.html#a30fb399197f2199954db744e9718543e">Barometer</a>, <a class="el" href="classBuzzer.html#a0c7d98a413bc25cbab15996bed3c9124">Buzzer</a>, <a class="el" href="classIMU.html#a974ae95c940007e5f044f3a1012a6edc">IMU</a>, <a class="el" href="classRadio.html#ac8c8d58caf6385634d5b41d533470436">Radio</a>, and <a class="el" href="classPhotocells.html#abbadd2dd86f19a80d0672321856bea78">Photocells</a>.</p>
 
 </div>
 </div>
@@ -322,7 +356,7 @@ Protected Attributes</h2></td></tr>
 <p>Enable the module and exit powersaving mode. </p>
 <dl class="section return"><dt>Returns</dt><dd>something for success, something for failure </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classCheckDescent.html#ac927a3f249bc5fe5600f55fdffb10b3f">CheckDescent</a>, <a class="el" href="classSDCard.html#a8eb53c466e76064304b7315cf8635249">SDCard</a>, <a class="el" href="classGPS.html#a30eca640688c44335f58044f2b9a6ed5">GPS</a>, <a class="el" href="classPhotocells.html#af1ef2d7071cf2afd2f100f33bb15a07a">Photocells</a>, <a class="el" href="classIMU.html#a8c15fb2fcc90c18914d1c71e5dea8410">IMU</a>, and <a class="el" href="classRadio.html#ac8127f31197d4aa3fbf9ad99aa649f86">Radio</a>.</p>
+<p>Reimplemented in <a class="el" href="classSDCard.html#a8eb53c466e76064304b7315cf8635249">SDCard</a>, <a class="el" href="classGPS.html#a30eca640688c44335f58044f2b9a6ed5">GPS</a>, <a class="el" href="classBarometer.html#a75f5c712ed4b81c89a48e6432c43e077">Barometer</a>, <a class="el" href="classBuzzer.html#a80441049dddb3de5cc9d2691ad072988">Buzzer</a>, <a class="el" href="classIMU.html#a8c15fb2fcc90c18914d1c71e5dea8410">IMU</a>, <a class="el" href="classRadio.html#ac8127f31197d4aa3fbf9ad99aa649f86">Radio</a>, and <a class="el" href="classPhotocells.html#af1ef2d7071cf2afd2f100f33bb15a07a">Photocells</a>.</p>
 
 </div>
 </div>
@@ -350,21 +384,11 @@ Protected Attributes</h2></td></tr>
 <p>Called by the SD module and used as a label for this module's CSV output. </p>
 <dl class="section return"><dt>Returns</dt><dd>the c-style string for the name of this module </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classSDCard.html#ad7bfa910783b7eff300a23257dfd6193">SDCard</a>, <a class="el" href="classGPS.html#aa99093f43ffcf5cb88e477a3d3be11ba">GPS</a>, <a class="el" href="classPhotocells.html#a192c883c462e379a55ecee5730f6a4e4">Photocells</a>, <a class="el" href="classIMU.html#af0f8d795e5a7d81264e0834542866588">IMU</a>, and <a class="el" href="classRadio.html#a54b739e787c09d7de9e72df137e09b47">Radio</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classModule_af596ad7a28c8a1999cb5771bad746afd_cgraph.png" border="0" usemap="#classModule_af596ad7a28c8a1999cb5771bad746afd_cgraph" alt=""/></div>
-<map name="classModule_af596ad7a28c8a1999cb5771bad746afd_cgraph" id="classModule_af596ad7a28c8a1999cb5771bad746afd_cgraph">
-<area shape="rect" id="node2" href="Module_8cpp.html#ab41bc15799f5fa4838b040a08ac6ca36" title="cout" alt="" coords="236,5,287,32"/>
-</map>
-</div>
-</p>
+<p>Reimplemented in <a class="el" href="classStateHandler.html#ace371aebc735d8f6ee1657585d186016">StateHandler</a>, <a class="el" href="classGPS.html#aa99093f43ffcf5cb88e477a3d3be11ba">GPS</a>, <a class="el" href="classSDCard.html#ad7bfa910783b7eff300a23257dfd6193">SDCard</a>, <a class="el" href="classBarometer.html#a0e30dd4463d8d1dba5fd53098585f81a">Barometer</a>, <a class="el" href="classBuzzer.html#a8e188664e3d6bef07ab071e5149c97fe">Buzzer</a>, <a class="el" href="classIMU.html#af0f8d795e5a7d81264e0834542866588">IMU</a>, <a class="el" href="classPhotocells.html#a192c883c462e379a55ecee5730f6a4e4">Photocells</a>, and <a class="el" href="classRadio.html#a54b739e787c09d7de9e72df137e09b47">Radio</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab9d62f7aac5752b7e05b453da65873c6"></a>
+<a class="anchor" id="ae577b831df42b5bcf6762817e7d38649"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -372,7 +396,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structscheduling__freq.html">scheduling_freq</a> Module::onStateChanged </td>
+          <td class="memname"><a class="el" href="structscheduling__freq.html">scheduling_freq</a> Module::getSchedulingFreq </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -384,9 +408,42 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Reimplemented in <a class="el" href="classGPS.html#a4aa70779f1499a27c5155e8212d781f5">GPS</a>, and <a class="el" href="classRadio.html#a064c6e4e04968dc7b9e9a2453b9cb4f8">Radio</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad36b9d35ee30dd654fcafd282e4d677e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structscheduling__freq.html">scheduling_freq</a> Module::onStateChanged </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="Module_8h.html#aa51313be2faacb739a18fdeecefbac75">SystemState</a> &amp;&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 <p>Called by the <a class="el" href="classScheduler.html">Scheduler</a> whenever an actionable state-change is detected. </p>
-<dl class="section return"><dt>Returns</dt><dd>a struct that the <a class="el" href="classScheduler.html">Scheduler</a> uses to update how this module would run. Be sure to set its .valid to true </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td>what state the system just changed to</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="structscheduling__freq.html">scheduling_freq</a> that the <a class="el" href="classScheduler.html">Scheduler</a> uses to update how this module would run. Be sure to set its .valid to true </dd></dl>
 
 </div>
 </div>
@@ -413,7 +470,7 @@ Here is the call graph for this function:</div>
 
 <p>Called periodically by the <a class="el" href="classScheduler.html">Scheduler</a>. </p>
 
-<p>Implemented in <a class="el" href="classCheckLanded.html#a9a8f60dfd0950bbd713745e8a0ba3133">CheckLanded</a>, <a class="el" href="classCheckDescent.html#abbd63f07ceb3f08eed31c4713a230f43">CheckDescent</a>, <a class="el" href="classSDCard.html#aa56224a079ddecfc2ea0d71d5a995aa5">SDCard</a>, <a class="el" href="classGPS.html#a13241c482f311ea66313d36477d1774f">GPS</a>, <a class="el" href="classPhotocells.html#af64cdae2cec3470c42e09cd8eebb6e0c">Photocells</a>, <a class="el" href="classIMU.html#a5b1f6d4847d2d9e3c726704d4ac69963">IMU</a>, and <a class="el" href="classRadio.html#a88bd1942f4034c3d3de2b50903122de4">Radio</a>.</p>
+<p>Implemented in <a class="el" href="classStateHandler.html#a53aa42d2e6b4bce54408e84abcff1c03">StateHandler</a>, <a class="el" href="classSDCard.html#aa56224a079ddecfc2ea0d71d5a995aa5">SDCard</a>, <a class="el" href="classGPS.html#a13241c482f311ea66313d36477d1774f">GPS</a>, <a class="el" href="classBarometer.html#ac865f6fa680c9a0cff02e1aaa47ce7ab">Barometer</a>, <a class="el" href="classBuzzer.html#a6c59860431d8de04c296dc4f88f8146d">Buzzer</a>, <a class="el" href="classIMU.html#a5b1f6d4847d2d9e3c726704d4ac69963">IMU</a>, <a class="el" href="classRadio.html#a88bd1942f4034c3d3de2b50903122de4">Radio</a>, and <a class="el" href="classPhotocells.html#af64cdae2cec3470c42e09cd8eebb6e0c">Photocells</a>.</p>
 
 </div>
 </div>

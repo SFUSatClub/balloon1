@@ -1,4 +1,23 @@
 var searchData=
 [
-  ['nummodules',['numModules',['../main_8cpp.html#a5a751fcf7866d168672d462dd759e911',1,'main.cpp']]]
+  ['m',['m',['../classLSM303.html#a773d68d3d00d8dd0aec7e91931540495',1,'LSM303']]],
+  ['m_5fmax',['m_max',['../classLSM303.html#a46f3ac13cdd309558b9e02da105c8a93',1,'LSM303']]],
+  ['m_5fmin',['m_min',['../classLSM303.html#a2e211642cfd7b18b252def22987438f2',1,'LSM303']]],
+  ['mag',['mag',['../classAdafruit__GPS.html#a13af36459c90392c2378ce14248cfcfb',1,'Adafruit_GPS']]],
+  ['magvariation',['magvariation',['../classAdafruit__GPS.html#a32541feed4b712c20949938049f84a7e',1,'Adafruit_GPS']]],
+  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['makerelativepathsinflagsabsolute',['MakeRelativePathsInFlagsAbsolute',['../_8ycm__extra__conf_8py.html#aa20d30f8cc08fc0ab076b4cf458e0d3d',1,'.ycm_extra_conf.py']]],
+  ['maxlinelength',['MAXLINELENGTH',['../Adafruit__GPS_8cpp.html#a083ec68ee7d55f29605714c8cc4b17f3',1,'Adafruit_GPS.cpp']]],
+  ['maxwaitsentence',['MAXWAITSENTENCE',['../Adafruit__GPS_8h.html#aeebf6a58258596ef38bd7ea07e056a94',1,'Adafruit_GPS.h']]],
+  ['milliseconds',['milliseconds',['../classAdafruit__GPS.html#a19903b7505072a54a8dcdccf12e490d9',1,'Adafruit_GPS']]],
+  ['minute',['minute',['../classAdafruit__GPS.html#afe5b0d9d8cdd4351e9ef1be98192249f',1,'Adafruit_GPS']]],
+  ['module',['Module',['../classModule.html',1,'Module'],['../classModule.html#a5a240a8a9ab1813b17bcb810b24ceaea',1,'Module::Module()']]],
+  ['module_2ecpp',['Module.cpp',['../Module_8cpp.html',1,'']]],
+  ['module_2eh',['Module.h',['../Module_8h.html',1,'']]],
+  ['modules',['modules',['../main_8cpp.html#a1d9af2d6bb511e0fb8004db806efa478',1,'main.cpp']]],
+  ['month',['month',['../classAdafruit__GPS.html#a613f1926fbff9829256d85f7aeec7e1f',1,'Adafruit_GPS']]],
+  ['mr_5freg_5fm',['MR_REG_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a3dfeefab7898ba6cd0346a6e102b9326',1,'LSM303']]],
+  ['mx',['mx',['../archive_8txt.html#aed3c06d40de711fbf86af656aecc5ac1',1,'archive.txt']]],
+  ['my',['my',['../archive_8txt.html#a805117803b40bce501bce617d9599424',1,'archive.txt']]],
+  ['mz',['mz',['../archive_8txt.html#a739bf5aca5e2b050daa5c283944e3777',1,'archive.txt']]]
 ];

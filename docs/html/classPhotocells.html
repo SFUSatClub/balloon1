@@ -105,7 +105,7 @@ Inheritance diagram for Photocells:</div>
 <div class="dyncontent">
 <div class="center"><img src="classPhotocells__inherit__graph.png" border="0" usemap="#Photocells_inherit__map" alt="Inheritance graph"/></div>
 <map name="Photocells_inherit__map" id="Photocells_inherit__map">
-<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="5,5,160,185"/>
+<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="5,5,171,215"/>
 </map>
 </div>
 <div class="dynheader">
@@ -113,7 +113,7 @@ Collaboration diagram for Photocells:</div>
 <div class="dyncontent">
 <div class="center"><img src="classPhotocells__coll__graph.png" border="0" usemap="#Photocells_coll__map" alt="Collaboration graph"/></div>
 <map name="Photocells_coll__map" id="Photocells_coll__map">
-<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="5,145,160,325"/>
+<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="5,145,171,355"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -134,7 +134,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abbadd2dd86f19a80d0672321856bea78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the module and enter powersaving mode.  <a href="#abbadd2dd86f19a80d0672321856bea78">More...</a><br /></td></tr>
 <tr class="separator:abbadd2dd86f19a80d0672321856bea78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70cc1408ffd1c1e7c925d55a83ecdf21"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPhotocells.html#a70cc1408ffd1c1e7c925d55a83ecdf21">dataToPersist</a> ()</td></tr>
-<tr class="memdesc:a70cc1408ffd1c1e7c925d55a83ecdf21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to persist it, this function would be called by the SD module to take care of it.  <a href="#a70cc1408ffd1c1e7c925d55a83ecdf21">More...</a><br /></td></tr>
+<tr class="memdesc:a70cc1408ffd1c1e7c925d55a83ecdf21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to persist it, this function would be called by the SD module to handle it.  <a href="#a70cc1408ffd1c1e7c925d55a83ecdf21">More...</a><br /></td></tr>
 <tr class="separator:a70cc1408ffd1c1e7c925d55a83ecdf21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a192c883c462e379a55ecee5730f6a4e4"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPhotocells.html#a192c883c462e379a55ecee5730f6a4e4">getModuleName</a> ()</td></tr>
 <tr class="memdesc:a192c883c462e379a55ecee5730f6a4e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the SD module and used as a label for this module's CSV output.  <a href="#a192c883c462e379a55ecee5730f6a4e4">More...</a><br /></td></tr>
@@ -142,9 +142,14 @@ Public Member Functions</h2></td></tr>
 <tr class="inherit_header pub_methods_classModule"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classModule')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classModule.html">Module</a></td></tr>
 <tr class="memitem:a5a240a8a9ab1813b17bcb810b24ceaea inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a5a240a8a9ab1813b17bcb810b24ceaea">Module</a> ()</td></tr>
 <tr class="separator:a5a240a8a9ab1813b17bcb810b24ceaea inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9d62f7aac5752b7e05b453da65873c6 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ab9d62f7aac5752b7e05b453da65873c6">onStateChanged</a> ()</td></tr>
-<tr class="memdesc:ab9d62f7aac5752b7e05b453da65873c6 inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the <a class="el" href="classScheduler.html">Scheduler</a> whenever an actionable state-change is detected.  <a href="#ab9d62f7aac5752b7e05b453da65873c6">More...</a><br /></td></tr>
-<tr class="separator:ab9d62f7aac5752b7e05b453da65873c6 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad36b9d35ee30dd654fcafd282e4d677e inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ad36b9d35ee30dd654fcafd282e4d677e">onStateChanged</a> (const <a class="el" href="Module_8h.html#aa51313be2faacb739a18fdeecefbac75">SystemState</a> &amp;<a class="el" href="classModule.html#a75ab7c2da6e1c0263560ebfc3a8fb593">state</a>)</td></tr>
+<tr class="memdesc:ad36b9d35ee30dd654fcafd282e4d677e inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the <a class="el" href="classScheduler.html">Scheduler</a> whenever an actionable state-change is detected.  <a href="#ad36b9d35ee30dd654fcafd282e4d677e">More...</a><br /></td></tr>
+<tr class="separator:ad36b9d35ee30dd654fcafd282e4d677e inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae577b831df42b5bcf6762817e7d38649 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ae577b831df42b5bcf6762817e7d38649">getSchedulingFreq</a> ()</td></tr>
+<tr class="separator:ae577b831df42b5bcf6762817e7d38649 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9108dc19857c69f1dd0084f303874392 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a9108dc19857c69f1dd0084f303874392">dataToSend</a> ()</td></tr>
+<tr class="memdesc:a9108dc19857c69f1dd0084f303874392 inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to send it over the uno-&gt;radio link, this function would be called by the <a class="el" href="classRadio.html">Radio</a> module to handle it.  <a href="#a9108dc19857c69f1dd0084f303874392">More...</a><br /></td></tr>
+<tr class="separator:a9108dc19857c69f1dd0084f303874392 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -235,7 +240,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Should the module creates data and wants to persist it, this function would be called by the SD module to take care of it. </p>
+<p>Should the module creates data and wants to persist it, this function would be called by the SD module to handle it. </p>
 <dl class="section return"><dt>Returns</dt><dd>the c-style string to be written to the SD card </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classModule.html#a1b09b23602e5491206dcc96e4714ddac">Module</a>.</p>

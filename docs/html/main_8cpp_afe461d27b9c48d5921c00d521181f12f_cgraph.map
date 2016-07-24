@@ -1,9 +1,20 @@
 <map id="loop" name="loop">
-<area shape="rect" id="node2" href="$classScheduler.html#a58fba108ce2748870a6288cd6f5fd1e3" title="Scheduler::run" alt="" coords="103,5,217,32"/>
-<area shape="rect" id="node5" href="$classSDCard.html#aa56224a079ddecfc2ea0d71d5a995aa5" title="Called periodically by the Scheduler. " alt="" coords="109,56,211,83"/>
-<area shape="rect" id="node3" href="$classTask.html#a7d1efa56f944a29ebb4c02c2f727ae92" title="Task::runTask" alt="" coords="304,5,409,32"/>
-<area shape="rect" id="node4" href="$classModule.html#ad2577ebdcd23d54884a630447ef77c78" title="Called periodically by the Scheduler. " alt="" coords="496,5,595,32"/>
-<area shape="rect" id="node6" href="$classModule.html#af596ad7a28c8a1999cb5771bad746afd" title="Called by the SD module and used as a label for this module&#39;s CSV output. " alt="" coords="265,56,448,83"/>
-<area shape="rect" id="node8" href="$classModule.html#a1b09b23602e5491206dcc96e4714ddac" title="Should the module creates data and wants to persist it, this function would be called by the SD modul..." alt="" coords="276,107,437,133"/>
-<area shape="rect" id="node7" href="$Module_8cpp.html#ab41bc15799f5fa4838b040a08ac6ca36" title="cout" alt="" coords="520,56,571,83"/>
+<area shape="rect" id="node2" href="$classScheduler.html#a58fba108ce2748870a6288cd6f5fd1e3" title="Scheduler::run" alt="" coords="103,221,217,248"/>
+<area shape="rect" id="node3" href="$Globals_8cpp.html#a237bdbf0e16743c61bfdfea44b63d54a" title="WATCHDOG_RESET" alt="" coords="309,19,452,45"/>
+<area shape="rect" id="node5" href="$classStateHandler.html#a53aa42d2e6b4bce54408e84abcff1c03" title="Called periodically by the Scheduler. " alt="" coords="312,120,449,147"/>
+<area shape="rect" id="node12" href="$classStateHandler.html#a052275aa7bb8d1d622e3655523e2b615" title="StateHandler::hasStateChanged" alt="" coords="265,196,496,223"/>
+<area shape="rect" id="node13" href="$classTask.html#a7d1efa56f944a29ebb4c02c2f727ae92" title="Task::runTask" alt="" coords="328,247,433,273"/>
+<area shape="rect" id="node17" href="$classTask.html#a0d8a58ddb8e8e657237e4a861c59ce74" title="Task::onStateChanged" alt="" coords="298,297,463,324"/>
+<area shape="rect" id="node19" href="$classStateHandler.html#a9ea1a91bdd90450b98694bda5d842e70" title="StateHandler::getSystemState" alt="" coords="271,348,491,375"/>
+<area shape="rect" id="node4" href="$Globals_8cpp.html#ab41bc15799f5fa4838b040a08ac6ca36" title="cout" alt="" coords="621,5,672,32"/>
+<area shape="rect" id="node6" href="$classStateHandler.html#a8bd87e887c05b09fb45bed750430e2e3" title="StateHandler::checkBattery" alt="" coords="547,56,746,83"/>
+<area shape="rect" id="node7" href="$classStateHandler.html#ae8d09931d9e207c3da104a778577dba2" title="StateHandler::checkDescent" alt="" coords="544,107,749,133"/>
+<area shape="rect" id="node10" href="$classStateHandler.html#ad17626f2e8a745d5f54a9c154b1e7614" title="StateHandler::checkLanded" alt="" coords="547,157,746,184"/>
+<area shape="rect" id="node8" href="$classGPS.html#abbb46429b3d87e7dfd63a38a1831e710" title="GPS::getAltitude" alt="" coords="822,132,949,159"/>
+<area shape="rect" id="node9" href="$classBarometer.html#a23aee3f635ff7289c8bbf978ff1561c5" title="Barometer::getPressure" alt="" coords="797,81,973,108"/>
+<area shape="rect" id="node11" href="$classGPS.html#a6be61437fe89ae91c8b8bda292125a74" title="GPS::getSpeed" alt="" coords="826,183,945,209"/>
+<area shape="rect" id="node14" href="$classModule.html#ad2577ebdcd23d54884a630447ef77c78" title="Called periodically by the Scheduler. " alt="" coords="597,208,696,235"/>
+<area shape="rect" id="node15" href="$classModule.html#af596ad7a28c8a1999cb5771bad746afd" title="Called by the SD module and used as a label for this module&#39;s CSV output. " alt="" coords="555,259,738,285"/>
+<area shape="rect" id="node16" href="$classModule.html#a1b09b23602e5491206dcc96e4714ddac" title="Should the module creates data and wants to persist it, this function would be called by the SD modul..." alt="" coords="566,309,727,336"/>
+<area shape="rect" id="node18" href="$classModule.html#ad36b9d35ee30dd654fcafd282e4d677e" title="Called by the Scheduler whenever an actionable state&#45;change is detected. " alt="" coords="555,360,739,387"/>
 </map>

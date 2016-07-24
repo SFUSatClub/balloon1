@@ -104,22 +104,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="Task_8h_source.html">Task.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Scheduler_8h_source.html">Scheduler.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="StateHandler_8h_source.html">StateHandler.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Radio_8h_source.html">Radio.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="GPS_8h_source.html">GPS.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="SDCard_8h_source.html">SDCard.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Photocells_8h_source.html">Photocells.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="IMU_8h_source.html">IMU.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Barometer_8h_source.html">Barometer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Buzzer_8h_source.html">Buzzer.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#src_2main_8cpp" alt=""/></div>
 <map name="src_2main_8cpp" id="src_2main_8cpp">
-<area shape="rect" id="node3" href="Task_8h.html" title="Task.h" alt="" coords="242,155,303,181"/>
-<area shape="rect" id="node7" href="Scheduler_8h.html" title="Scheduler.h" alt="" coords="407,80,504,107"/>
-<area shape="rect" id="node8" href="Radio_8h.html" title="Radio.h" alt="" coords="501,155,570,181"/>
-<area shape="rect" id="node9" href="GPS_8h.html" title="GPS.h" alt="" coords="143,155,205,181"/>
-<area shape="rect" id="node11" href="SDCard_8h.html" title="SDCard.h" alt="" coords="594,155,677,181"/>
-<area shape="rect" id="node14" href="Photocells_8h.html" title="Photocells.h" alt="" coords="327,155,426,181"/>
-<area shape="rect" id="node5" href="Module_8h.html" title="Module.h" alt="" coords="295,229,375,256"/>
+<area shape="rect" id="node3" href="Task_8h.html" title="Task.h" alt="" coords="32,155,93,181"/>
+<area shape="rect" id="node8" href="Scheduler_8h.html" title="Scheduler.h" alt="" coords="149,80,246,107"/>
+<area shape="rect" id="node9" href="StateHandler_8h.html" title="StateHandler.h" alt="" coords="505,155,623,181"/>
+<area shape="rect" id="node10" href="Barometer_8h.html" title="Barometer.h" alt="" coords="725,229,827,256"/>
+<area shape="rect" id="node13" href="GPS_8h.html" title="GPS.h" alt="" coords="537,229,599,256"/>
+<area shape="rect" id="node17" href="Radio_8h.html" title="Radio.h" alt="" coords="411,155,480,181"/>
+<area shape="rect" id="node18" href="SDCard_8h.html" title="SDCard.h" alt="" coords="1013,229,1096,256"/>
+<area shape="rect" id="node21" href="Photocells_8h.html" title="Photocells.h" alt="" coords="313,229,412,256"/>
+<area shape="rect" id="node22" href="IMU_8h.html" title="IMU.h" alt="" coords="880,229,939,256"/>
+<area shape="rect" id="node24" href="Buzzer_8h.html" title="Buzzer.h" alt="" coords="623,229,700,256"/>
+<area shape="rect" id="node5" href="Module_8h.html" title="Module.h" alt="" coords="364,304,444,331"/>
+<area shape="rect" id="node7" href="Globals_8h.html" title="Globals.h" alt="" coords="157,379,238,405"/>
+<area shape="rect" id="node14" href="Adafruit__GPS_8h.html" title="Adafruit_GPS.h" alt="" coords="469,304,587,331"/>
+<area shape="rect" id="node23" href="LSM303_8h.html" title="LSM303.h" alt="" coords="919,379,1004,405"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -134,8 +145,8 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:ab55078d807df0a75af8a2fa8eefdcc41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ab55078d807df0a75af8a2fa8eefdcc41">task1</a> (void)</td></tr>
 <tr class="separator:ab55078d807df0a75af8a2fa8eefdcc41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb35a54f26606b4808ac0a8d9ad55433"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#afb35a54f26606b4808ac0a8d9ad55433">task2</a> ()</td></tr>
-<tr class="separator:afb35a54f26606b4808ac0a8d9ad55433"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a993762584718b05973578435f0178a2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classScheduler.html">Scheduler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a993762584718b05973578435f0178a2b">scheduler</a> (1+<a class="el" href="main_8cpp.html#a5a751fcf7866d168672d462dd759e911">numModules</a>)</td></tr>
+<tr class="separator:a993762584718b05973578435f0178a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
 <tr class="separator:a4fc01d736fe50cf5b977f755b675f11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
@@ -143,10 +154,10 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a5a9fcbf1f1e4c13d311aad5aa8197b0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classScheduler.html">Scheduler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a5a9fcbf1f1e4c13d311aad5aa8197b0f">scheduler</a> (2)</td></tr>
-<tr class="separator:a5a9fcbf1f1e4c13d311aad5aa8197b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3d6d0d9f7c5a96541112ef0cee2c7ab"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aa3d6d0d9f7c5a96541112ef0cee2c7ab">sdChipSelectPin</a> = 4</td></tr>
 <tr class="separator:aa3d6d0d9f7c5a96541112ef0cee2c7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc12a2790815f312ddadaee0f39cab7a"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#abc12a2790815f312ddadaee0f39cab7a">buzzerEnablePin</a> = 13</td></tr>
+<tr class="separator:abc12a2790815f312ddadaee0f39cab7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8810e6f5699e6985d7705d7caa7df771"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGPS.html">GPS</a> gps &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a8810e6f5699e6985d7705d7caa7df771">gpsSerial</a></td></tr>
 <tr class="separator:a8810e6f5699e6985d7705d7caa7df771"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a303937a7d344149861796b213d65f810"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRadio.html">Radio</a> radio &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a303937a7d344149861796b213d65f810">radioSerial</a></td></tr>
@@ -155,7 +166,13 @@ Variables</h2></td></tr>
 <tr class="separator:a5a7086226145a25b544d05b48bae4da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff7794f4778a207a5d6081e9c80ff46b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPhotocells.html">Photocells</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aff7794f4778a207a5d6081e9c80ff46b">photocells</a> (0, 5)</td></tr>
 <tr class="separator:aff7794f4778a207a5d6081e9c80ff46b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a751fcf7866d168672d462dd759e911"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a5a751fcf7866d168672d462dd759e911">numModules</a> = 4</td></tr>
+<tr class="memitem:a047a89b0208974c18d5c49656240616a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIMU.html">IMU</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a047a89b0208974c18d5c49656240616a">imu</a></td></tr>
+<tr class="separator:a047a89b0208974c18d5c49656240616a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad913154302ba8e8e42b8579e3331b1ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBarometer.html">Barometer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ad913154302ba8e8e42b8579e3331b1ba">barometer</a></td></tr>
+<tr class="separator:ad913154302ba8e8e42b8579e3331b1ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1389a7beda1e55055a8c4df1d55051fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBuzzer.html">Buzzer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a1389a7beda1e55055a8c4df1d55051fa">buzzer</a> (<a class="el" href="main_8cpp.html#abc12a2790815f312ddadaee0f39cab7a">buzzerEnablePin</a>)</td></tr>
+<tr class="separator:a1389a7beda1e55055a8c4df1d55051fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a751fcf7866d168672d462dd759e911"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a5a751fcf7866d168672d462dd759e911">numModules</a> = 6</td></tr>
 <tr class="separator:a5a751fcf7866d168672d462dd759e911"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d9af2d6bb511e0fb8004db806efa478"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classModule.html">Module</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a1d9af2d6bb511e0fb8004db806efa478">modules</a> [<a class="el" href="main_8cpp.html#a5a751fcf7866d168672d462dd759e911">numModules</a>]</td></tr>
 <tr class="separator:a1d9af2d6bb511e0fb8004db806efa478"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,16 +221,43 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp_afe461d27b9c48d5921c00d521181f12f_cgraph.png" border="0" usemap="#main_8cpp_afe461d27b9c48d5921c00d521181f12f_cgraph" alt=""/></div>
 <map name="main_8cpp_afe461d27b9c48d5921c00d521181f12f_cgraph" id="main_8cpp_afe461d27b9c48d5921c00d521181f12f_cgraph">
-<area shape="rect" id="node2" href="classScheduler.html#a58fba108ce2748870a6288cd6f5fd1e3" title="Scheduler::run" alt="" coords="103,5,217,32"/>
-<area shape="rect" id="node5" href="classSDCard.html#aa56224a079ddecfc2ea0d71d5a995aa5" title="Called periodically by the Scheduler. " alt="" coords="109,56,211,83"/>
-<area shape="rect" id="node3" href="classTask.html#a7d1efa56f944a29ebb4c02c2f727ae92" title="Task::runTask" alt="" coords="304,5,409,32"/>
-<area shape="rect" id="node4" href="classModule.html#ad2577ebdcd23d54884a630447ef77c78" title="Called periodically by the Scheduler. " alt="" coords="496,5,595,32"/>
-<area shape="rect" id="node6" href="classModule.html#af596ad7a28c8a1999cb5771bad746afd" title="Called by the SD module and used as a label for this module&#39;s CSV output. " alt="" coords="265,56,448,83"/>
-<area shape="rect" id="node8" href="classModule.html#a1b09b23602e5491206dcc96e4714ddac" title="Should the module creates data and wants to persist it, this function would be called by the SD modul..." alt="" coords="276,107,437,133"/>
-<area shape="rect" id="node7" href="Module_8cpp.html#ab41bc15799f5fa4838b040a08ac6ca36" title="cout" alt="" coords="520,56,571,83"/>
+<area shape="rect" id="node2" href="classScheduler.html#a58fba108ce2748870a6288cd6f5fd1e3" title="Scheduler::run" alt="" coords="103,221,217,248"/>
+<area shape="rect" id="node3" href="Globals_8cpp.html#a237bdbf0e16743c61bfdfea44b63d54a" title="WATCHDOG_RESET" alt="" coords="309,19,452,45"/>
+<area shape="rect" id="node5" href="classStateHandler.html#a53aa42d2e6b4bce54408e84abcff1c03" title="Called periodically by the Scheduler. " alt="" coords="312,120,449,147"/>
+<area shape="rect" id="node12" href="classStateHandler.html#a052275aa7bb8d1d622e3655523e2b615" title="StateHandler::hasStateChanged" alt="" coords="265,196,496,223"/>
+<area shape="rect" id="node13" href="classTask.html#a7d1efa56f944a29ebb4c02c2f727ae92" title="Task::runTask" alt="" coords="328,247,433,273"/>
+<area shape="rect" id="node17" href="classTask.html#a0d8a58ddb8e8e657237e4a861c59ce74" title="Task::onStateChanged" alt="" coords="298,297,463,324"/>
+<area shape="rect" id="node19" href="classStateHandler.html#a9ea1a91bdd90450b98694bda5d842e70" title="StateHandler::getSystemState" alt="" coords="271,348,491,375"/>
+<area shape="rect" id="node4" href="Globals_8cpp.html#ab41bc15799f5fa4838b040a08ac6ca36" title="cout" alt="" coords="621,5,672,32"/>
+<area shape="rect" id="node6" href="classStateHandler.html#a8bd87e887c05b09fb45bed750430e2e3" title="StateHandler::checkBattery" alt="" coords="547,56,746,83"/>
+<area shape="rect" id="node7" href="classStateHandler.html#ae8d09931d9e207c3da104a778577dba2" title="StateHandler::checkDescent" alt="" coords="544,107,749,133"/>
+<area shape="rect" id="node10" href="classStateHandler.html#ad17626f2e8a745d5f54a9c154b1e7614" title="StateHandler::checkLanded" alt="" coords="547,157,746,184"/>
+<area shape="rect" id="node8" href="classGPS.html#abbb46429b3d87e7dfd63a38a1831e710" title="GPS::getAltitude" alt="" coords="822,132,949,159"/>
+<area shape="rect" id="node9" href="classBarometer.html#a23aee3f635ff7289c8bbf978ff1561c5" title="Barometer::getPressure" alt="" coords="797,81,973,108"/>
+<area shape="rect" id="node11" href="classGPS.html#a6be61437fe89ae91c8b8bda292125a74" title="GPS::getSpeed" alt="" coords="826,183,945,209"/>
+<area shape="rect" id="node14" href="classModule.html#ad2577ebdcd23d54884a630447ef77c78" title="Called periodically by the Scheduler. " alt="" coords="597,208,696,235"/>
+<area shape="rect" id="node15" href="classModule.html#af596ad7a28c8a1999cb5771bad746afd" title="Called by the SD module and used as a label for this module&#39;s CSV output. " alt="" coords="555,259,738,285"/>
+<area shape="rect" id="node16" href="classModule.html#a1b09b23602e5491206dcc96e4714ddac" title="Should the module creates data and wants to persist it, this function would be called by the SD modul..." alt="" coords="566,309,727,336"/>
+<area shape="rect" id="node18" href="classModule.html#ad36b9d35ee30dd654fcafd282e4d677e" title="Called by the Scheduler whenever an actionable state&#45;change is detected. " alt="" coords="555,360,739,387"/>
 </map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a993762584718b05973578435f0178a2b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classScheduler.html">Scheduler</a> scheduler </td>
+          <td>(</td>
+          <td class="paramtype">1+&#160;</td>
+          <td class="paramname"><em>numModules</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -235,12 +279,18 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp_a4fc01d736fe50cf5b977f755b675f11d_cgraph.png" border="0" usemap="#main_8cpp_a4fc01d736fe50cf5b977f755b675f11d_cgraph" alt=""/></div>
 <map name="main_8cpp_a4fc01d736fe50cf5b977f755b675f11d_cgraph" id="main_8cpp_a4fc01d736fe50cf5b977f755b675f11d_cgraph">
-<area shape="rect" id="node2" href="classScheduler.html#abda1396d8606a41fce0301a92a225ccb" title="Scheduler::setupISR" alt="" coords="356,124,507,151"/>
-<area shape="rect" id="node3" href="classScheduler.html#a0e3d7b3649f64a9dde58789282a0452f" title="Scheduler::addTask" alt="" coords="137,44,283,71"/>
-<area shape="rect" id="node4" href="main_8cpp.html#ab55078d807df0a75af8a2fa8eefdcc41" title="task1" alt="" coords="181,95,239,121"/>
-<area shape="rect" id="node5" href="main_8cpp.html#afb35a54f26606b4808ac0a8d9ad55433" title="task2" alt="" coords="181,145,239,172"/>
-<area shape="rect" id="node6" href="classSDCard.html#a6495d590a016b7262b14bc4cf40e1514" title="SDCard::registerModules" alt="" coords="119,196,301,223"/>
-<area shape="rect" id="node7" href="classScheduler.html#a9324bd2c541d0e300222156903e19415" title="Scheduler::registerModules\lAsTasks" alt="" coords="112,247,308,289"/>
+<area shape="rect" id="node2" href="classModule.html#a33a3301d72adc3f78838526c3a0b08d8" title="Enable the module and exit powersaving mode. " alt="" coords="151,5,269,32"/>
+<area shape="rect" id="node3" href="classStateHandler.html#abb33ef80a763b32edd46880d68e0524e" title="Called once in setup() " alt="" coords="135,56,285,83"/>
+<area shape="rect" id="node7" href="classSDCard.html#a6495d590a016b7262b14bc4cf40e1514" title="SDCard::registerModules" alt="" coords="119,107,301,133"/>
+<area shape="rect" id="node8" href="classScheduler.html#abda1396d8606a41fce0301a92a225ccb" title="Scheduler::setupISR" alt="" coords="378,237,529,264"/>
+<area shape="rect" id="node9" href="classScheduler.html#a0e3d7b3649f64a9dde58789282a0452f" title="Scheduler::addTask" alt="" coords="137,208,283,235"/>
+<area shape="rect" id="node10" href="main_8cpp.html#ab55078d807df0a75af8a2fa8eefdcc41" title="task1" alt="" coords="181,259,239,285"/>
+<area shape="rect" id="node11" href="classScheduler.html#a9324bd2c541d0e300222156903e19415" title="Scheduler::registerModules\lAsTasks" alt="" coords="112,375,308,417"/>
+<area shape="rect" id="node13" href="classScheduler.html#a52d40db32862204f7b2f2d376bc4c158" title="Scheduler::registerState\lHandler" alt="" coords="121,310,299,351"/>
+<area shape="rect" id="node4" href="classGPS.html#abbb46429b3d87e7dfd63a38a1831e710" title="GPS::getAltitude" alt="" coords="390,5,517,32"/>
+<area shape="rect" id="node5" href="classGPS.html#a6be61437fe89ae91c8b8bda292125a74" title="GPS::getSpeed" alt="" coords="394,56,513,83"/>
+<area shape="rect" id="node6" href="classBarometer.html#a23aee3f635ff7289c8bbf978ff1561c5" title="Barometer::getPressure" alt="" coords="365,107,541,133"/>
+<area shape="rect" id="node12" href="classModule.html#ae577b831df42b5bcf6762817e7d38649" title="Module::getSchedulingFreq" alt="" coords="356,383,551,409"/>
 </map>
 </div>
 </p>
@@ -263,28 +313,61 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="afb35a54f26606b4808ac0a8d9ad55433"></a>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="ad913154302ba8e8e42b8579e3331b1ba"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void task2 </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname"><a class="el" href="classStateHandler.html">StateHandler</a> stateHandler &amp; barometer</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a1389a7beda1e55055a8c4df1d55051fa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classBuzzer.html">Buzzer</a> buzzer(<a class="el" href="main_8cpp.html#abc12a2790815f312ddadaee0f39cab7a">buzzerEnablePin</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abc12a2790815f312ddadaee0f39cab7a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int buzzerEnablePin = 13</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a8810e6f5699e6985d7705d7caa7df771"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classGPS.html">GPS</a> gps&amp; gpsSerial</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a047a89b0208974c18d5c49656240616a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classIMU.html">IMU</a> imu</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -300,7 +383,9 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">    &amp;gps</div><div class="line">  , &amp;radio</div><div class="line">  , &amp;<a class="code" href="main_8cpp.html#a5a7086226145a25b544d05b48bae4da2">sd</a></div><div class="line">  , &amp;<a class="code" href="main_8cpp.html#aff7794f4778a207a5d6081e9c80ff46b">photocells</a></div><div class="line">}</div><div class="ttc" id="main_8cpp_html_a5a7086226145a25b544d05b48bae4da2"><div class="ttname"><a href="main_8cpp.html#a5a7086226145a25b544d05b48bae4da2">sd</a></div><div class="ttdeci">SDCard sd(sdChipSelectPin)</div></div>
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">      &amp;gps</div><div class="line">    , &amp;radio</div><div class="line">    , &amp;<a class="code" href="main_8cpp.html#a5a7086226145a25b544d05b48bae4da2">sd</a></div><div class="line">    , &amp;<a class="code" href="main_8cpp.html#aff7794f4778a207a5d6081e9c80ff46b">photocells</a></div><div class="line">    </div><div class="line">    , &amp;<a class="code" href="main_8cpp.html#ad913154302ba8e8e42b8579e3331b1ba">barometer</a></div><div class="line">    , &amp;<a class="code" href="main_8cpp.html#a1389a7beda1e55055a8c4df1d55051fa">buzzer</a></div><div class="line">}</div><div class="ttc" id="main_8cpp_html_a5a7086226145a25b544d05b48bae4da2"><div class="ttname"><a href="main_8cpp.html#a5a7086226145a25b544d05b48bae4da2">sd</a></div><div class="ttdeci">SDCard sd(sdChipSelectPin)</div></div>
+<div class="ttc" id="main_8cpp_html_ad913154302ba8e8e42b8579e3331b1ba"><div class="ttname"><a href="main_8cpp.html#ad913154302ba8e8e42b8579e3331b1ba">barometer</a></div><div class="ttdeci">Barometer barometer</div><div class="ttdef"><b>Definition:</b> main.cpp:50</div></div>
+<div class="ttc" id="main_8cpp_html_a1389a7beda1e55055a8c4df1d55051fa"><div class="ttname"><a href="main_8cpp.html#a1389a7beda1e55055a8c4df1d55051fa">buzzer</a></div><div class="ttdeci">Buzzer buzzer(buzzerEnablePin)</div></div>
 <div class="ttc" id="main_8cpp_html_aff7794f4778a207a5d6081e9c80ff46b"><div class="ttname"><a href="main_8cpp.html#aff7794f4778a207a5d6081e9c80ff46b">photocells</a></div><div class="ttdeci">Photocells photocells(0, 5)</div></div>
 </div><!-- fragment -->
 </div>
@@ -310,7 +395,7 @@ Here is the call graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const int numModules = 4</td>
+          <td class="memname">const int numModules = 6</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -335,18 +420,6 @@ Here is the call graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classRadio.html">Radio</a> radio&amp; radioSerial</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5a9fcbf1f1e4c13d311aad5aa8197b0f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classScheduler.html">Scheduler</a> scheduler(2)</td>
         </tr>
       </table>
 </div><div class="memdoc">

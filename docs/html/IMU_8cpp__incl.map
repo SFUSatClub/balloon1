@@ -1,4 +1,6 @@
 <map id="src/IMU.cpp" name="src/IMU.cpp">
-<area shape="rect" id="node2" href="$IMU_8h.html" title="IMU.h" alt="" coords="93,80,152,107"/>
-<area shape="rect" id="node3" href="$Module_8h.html" title="Module.h" alt="" coords="83,155,163,181"/>
+<area shape="rect" id="node2" href="$IMU_8h.html" title="IMU.h" alt="" coords="75,80,133,107"/>
+<area shape="rect" id="node4" href="$LSM303_8h.html" title="LSM303.h" alt="" coords="21,229,107,256"/>
+<area shape="rect" id="node6" href="$Module_8h.html" title="Module.h" alt="" coords="143,155,223,181"/>
+<area shape="rect" id="node8" href="$Globals_8h.html" title="Globals.h" alt="" coords="182,229,263,256"/>
 </map>

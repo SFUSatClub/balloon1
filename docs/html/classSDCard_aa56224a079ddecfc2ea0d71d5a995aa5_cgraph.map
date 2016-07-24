@@ -1,5 +1,4 @@
 <map id="SDCard::tick" name="SDCard::tick">
-<area shape="rect" id="node2" href="$classModule.html#af596ad7a28c8a1999cb5771bad746afd" title="Called by the SD module and used as a label for this module&#39;s CSV output. " alt="" coords="155,5,337,32"/>
-<area shape="rect" id="node4" href="$classModule.html#a1b09b23602e5491206dcc96e4714ddac" title="Should the module creates data and wants to persist it, this function would be called by the SD modul..." alt="" coords="165,56,327,83"/>
-<area shape="rect" id="node3" href="$Module_8cpp.html#ab41bc15799f5fa4838b040a08ac6ca36" title="cout" alt="" coords="385,5,436,32"/>
+<area shape="rect" id="node2" href="$classModule.html#a1b09b23602e5491206dcc96e4714ddac" title="Should the module creates data and wants to persist it, this function would be called by the SD modul..." alt="" coords="165,5,327,32"/>
+<area shape="rect" id="node3" href="$classModule.html#af596ad7a28c8a1999cb5771bad746afd" title="Called by the SD module and used as a label for this module&#39;s CSV output. " alt="" coords="155,56,337,83"/>
 </map>

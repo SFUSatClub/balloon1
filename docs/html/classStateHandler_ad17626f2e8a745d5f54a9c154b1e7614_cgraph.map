@@ -1,0 +1,4 @@
+<map id="StateHandler::checkLanded" name="StateHandler::checkLanded">
+<area shape="rect" id="node2" href="$classGPS.html#abbb46429b3d87e7dfd63a38a1831e710" title="GPS::getAltitude" alt="" coords="252,5,379,32"/>
+<area shape="rect" id="node3" href="$classGPS.html#a6be61437fe89ae91c8b8bda292125a74" title="GPS::getSpeed" alt="" coords="256,56,375,83"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="LSM303::writeReg" name="LSM303::writeReg">
+<area shape="rect" id="node2" href="$classLSM303.html#a470fa63cc2571442d0dcd9f9613482ac" title="LSM303::writeMagReg" alt="" coords="188,5,349,32"/>
+<area shape="rect" id="node3" href="$classLSM303.html#aa381bad81ac2b1c844a310c31c55851d" title="LSM303::writeAccReg" alt="" coords="190,56,347,83"/>
+</map>

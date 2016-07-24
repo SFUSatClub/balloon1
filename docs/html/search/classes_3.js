@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['module',['Module',['../classModule.html',1,'']]]
+  ['imu',['IMU',['../classIMU.html',1,'']]]
 ];

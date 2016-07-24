@@ -1,0 +1,7 @@
+<map id="IMU::begin" name="IMU::begin">
+<area shape="rect" id="node2" href="$classLSM303.html#a123959c3c9fc7ea31083843c0db286c0" title="LSM303::init" alt="" coords="178,5,278,32"/>
+<area shape="rect" id="node3" href="$classLSM303.html#a253992f24eb62d618c740c00f9604619" title="LSM303::enableDefault" alt="" coords="143,56,313,83"/>
+<area shape="rect" id="node4" href="$classLSM303.html#a37813b3ab37b06d57926fe41e31a0fb3" title="LSM303::writeReg" alt="" coords="361,56,496,83"/>
+<area shape="rect" id="node5" href="$classLSM303.html#a470fa63cc2571442d0dcd9f9613482ac" title="LSM303::writeMagReg" alt="" coords="544,31,705,57"/>
+<area shape="rect" id="node6" href="$classLSM303.html#aa381bad81ac2b1c844a310c31c55851d" title="LSM303::writeAccReg" alt="" coords="546,93,703,120"/>
+</map>

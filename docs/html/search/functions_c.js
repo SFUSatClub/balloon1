@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['radio',['Radio',['../classRadio.html#a0949e73cfcac2439abeb228b1488d38d',1,'Radio']]],
-  ['ready',['ready',['../doxy-boot_8js.html#a5d977532648d95bc833a5752b796456f',1,'doxy-boot.js']]],
-  ['registermodules',['registerModules',['../classSDCard.html#a6495d590a016b7262b14bc4cf40e1514',1,'SDCard']]],
-  ['registermodulesastasks',['registerModulesAsTasks',['../classScheduler.html#a9324bd2c541d0e300222156903e19415',1,'Scheduler']]],
-  ['run',['run',['../classScheduler.html#a58fba108ce2748870a6288cd6f5fd1e3',1,'Scheduler']]],
-  ['rundiagnostics',['runDiagnostics',['../classSDCard.html#a77109424a6a29fe457521ce98890f9a4',1,'SDCard']]],
-  ['runtask',['runTask',['../classTask.html#a7d1efa56f944a29ebb4c02c2f727ae92',1,'Task']]]
+  ['onstatechanged',['onStateChanged',['../classModule.html#ad36b9d35ee30dd654fcafd282e4d677e',1,'Module::onStateChanged()'],['../classTask.html#a0d8a58ddb8e8e657237e4a861c59ce74',1,'Task::onStateChanged()']]],
+  ['operator_26',['operator&amp;',['../Module_8cpp.html#ab1acd3bcc4bc00732b4cdafd7284ba3a',1,'Module.cpp']]],
+  ['operator_7c',['operator|',['../Module_8cpp.html#a5fdb667e524cef110fa0f2ef626eff28',1,'Module.cpp']]],
+  ['operator_7c_3d',['operator|=',['../Module_8cpp.html#ac871b8a856dee02c6bd95e4eab8e2228',1,'Module.cpp']]]
 ];

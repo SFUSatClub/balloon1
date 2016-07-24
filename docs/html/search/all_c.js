@@ -1,9 +1,25 @@
 var searchData=
 [
-  ['photocells',['Photocells',['../classPhotocells.html',1,'Photocells'],['../classPhotocells.html#ade1272e954914c123d6210ee65e5f1f0',1,'Photocells::Photocells()'],['../main_8cpp.html#aff7794f4778a207a5d6081e9c80ff46b',1,'photocells():&#160;main.cpp']]],
-  ['photocells_2ecpp',['Photocells.cpp',['../Photocells_8cpp.html',1,'']]],
-  ['photocells_2eh',['Photocells.h',['../Photocells_8h.html',1,'']]],
-  ['platformioautogen',['PlatformioAutogen',['../_8ycm__extra__conf_8py.html#ad091a573bda066413e115611a5602918',1,'.ycm_extra_conf.py']]],
-  ['platformiocore',['PlatformioCore',['../_8ycm__extra__conf_8py.html#a1c090ea9b3c79ac00cf3ea006059940a',1,'.ycm_extra_conf.py']]],
-  ['platformiolibs',['PlatformioLibs',['../_8ycm__extra__conf_8py.html#a166fb1ab861ef4b55eb40771d3dc3815',1,'.ycm_extra_conf.py']]]
+  ['offset_5fx_5fh_5fm',['OFFSET_X_H_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a13877ddd287a33156efb7d9578a3ba79',1,'LSM303']]],
+  ['offset_5fx_5fl_5fm',['OFFSET_X_L_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a63be77d855ae550dbfc3b6de7fcf1e90',1,'LSM303']]],
+  ['offset_5fy_5fh_5fm',['OFFSET_Y_H_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a4ab64bbd88487d99782852a166cfb9d7',1,'LSM303']]],
+  ['offset_5fy_5fl_5fm',['OFFSET_Y_L_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875aac5ae1b7cf7ba76a8148c1dde815297a',1,'LSM303']]],
+  ['offset_5fz_5fh_5fm',['OFFSET_Z_H_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875accc9f72dd5189e486ef38f5e98dd3d28',1,'LSM303']]],
+  ['offset_5fz_5fl_5fm',['OFFSET_Z_L_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a5d7ab8247634973ceab919bd3b198d94',1,'LSM303']]],
+  ['onstatechanged',['onStateChanged',['../classModule.html#ad36b9d35ee30dd654fcafd282e4d677e',1,'Module::onStateChanged()'],['../classTask.html#a0d8a58ddb8e8e657237e4a861c59ce74',1,'Task::onStateChanged()']]],
+  ['operator_26',['operator&amp;',['../Module_8cpp.html#ab1acd3bcc4bc00732b4cdafd7284ba3a',1,'Module.cpp']]],
+  ['operator_7c',['operator|',['../Module_8cpp.html#a5fdb667e524cef110fa0f2ef626eff28',1,'Module.cpp']]],
+  ['operator_7c_3d',['operator|=',['../Module_8cpp.html#ac871b8a856dee02c6bd95e4eab8e2228',1,'Module.cpp']]],
+  ['out_5fx_5fh_5fa',['OUT_X_H_A',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a9c52d6a6ee141099986ee38cab447563',1,'LSM303']]],
+  ['out_5fx_5fh_5fm',['OUT_X_H_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a50f6c1b192c6d7bf749e670ba30c958d',1,'LSM303']]],
+  ['out_5fx_5fl_5fa',['OUT_X_L_A',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a6c4a6298ce4ea1f0a65468d9311d8646',1,'LSM303']]],
+  ['out_5fx_5fl_5fm',['OUT_X_L_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a004a30b4cef91c9072d91d657d466971',1,'LSM303']]],
+  ['out_5fy_5fh_5fa',['OUT_Y_H_A',['../classLSM303.html#aec959b54c433194ac47239d613ab9875aa682ea3c31532d8c92d2a9e6726075a3',1,'LSM303']]],
+  ['out_5fy_5fh_5fm',['OUT_Y_H_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a178423783c606d5d7fae2c6c726e4367',1,'LSM303']]],
+  ['out_5fy_5fl_5fa',['OUT_Y_L_A',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a5da8125b7e4f67c76bb48338d979c1fb',1,'LSM303']]],
+  ['out_5fy_5fl_5fm',['OUT_Y_L_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875afb6c4ac632e4640f7683330bfc527b67',1,'LSM303']]],
+  ['out_5fz_5fh_5fa',['OUT_Z_H_A',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a96ee98ed5c1bb44177805b21be9cc5ce',1,'LSM303']]],
+  ['out_5fz_5fh_5fm',['OUT_Z_H_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875adab10e233ef0f4658fe8a2b35c9dfe1f',1,'LSM303']]],
+  ['out_5fz_5fl_5fa',['OUT_Z_L_A',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a2cfcfc1d4d15c38765d766b2f170e631',1,'LSM303']]],
+  ['out_5fz_5fl_5fm',['OUT_Z_L_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a402626389494c64d7299ae1e285d07ea',1,'LSM303']]]
 ];

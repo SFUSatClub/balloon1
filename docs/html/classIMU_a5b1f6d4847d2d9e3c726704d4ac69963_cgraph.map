@@ -1,0 +1,5 @@
+<map id="IMU::tick" name="IMU::tick">
+<area shape="rect" id="node2" href="$classLSM303.html#a9f40456878f534bba32490d19f3a64ce" title="LSM303::read" alt="" coords="129,31,240,57"/>
+<area shape="rect" id="node3" href="$classLSM303.html#ac1396a51b288eadc41fd19fbd79ef68e" title="LSM303::readAcc" alt="" coords="290,5,423,32"/>
+<area shape="rect" id="node4" href="$classLSM303.html#abc93e8d8101c6b00df2ae85c5f8ded9e" title="LSM303::readMag" alt="" coords="288,56,425,83"/>
+</map>

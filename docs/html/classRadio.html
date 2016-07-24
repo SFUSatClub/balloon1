@@ -105,7 +105,7 @@ Inheritance diagram for Radio:</div>
 <div class="dyncontent">
 <div class="center"><img src="classRadio__inherit__graph.png" border="0" usemap="#Radio_inherit__map" alt="Inheritance graph"/></div>
 <map name="Radio_inherit__map" id="Radio_inherit__map">
-<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="5,5,160,185"/>
+<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="6,5,171,215"/>
 </map>
 </div>
 <div class="dynheader">
@@ -113,14 +113,14 @@ Collaboration diagram for Radio:</div>
 <div class="dyncontent">
 <div class="center"><img src="classRadio__coll__graph.png" border="0" usemap="#Radio_coll__map" alt="Collaboration graph"/></div>
 <map name="Radio_coll__map" id="Radio_coll__map">
-<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="5,145,160,325"/>
+<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="6,145,171,355"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0949e73cfcac2439abeb228b1488d38d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRadio.html#a0949e73cfcac2439abeb228b1488d38d">Radio</a> (HardwareSerial *serial, int restart_time)</td></tr>
-<tr class="separator:a0949e73cfcac2439abeb228b1488d38d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4636a754ced2eb9ad6b6433ca074f465"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRadio.html#a4636a754ced2eb9ad6b6433ca074f465">Radio</a> (HardwareSerial *serial, <a class="el" href="classGPS.html">GPS</a> *gps)</td></tr>
+<tr class="separator:a4636a754ced2eb9ad6b6433ca074f465"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39a39dcaa422bed2092bc2761161d1be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRadio.html#a39a39dcaa422bed2092bc2761161d1be">begin</a> ()</td></tr>
 <tr class="memdesc:a39a39dcaa422bed2092bc2761161d1be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called once in <a class="el" href="archive_8txt.html#a4fc01d736fe50cf5b977f755b675f11d">setup()</a>  <a href="#a39a39dcaa422bed2092bc2761161d1be">More...</a><br /></td></tr>
 <tr class="separator:a39a39dcaa422bed2092bc2761161d1be"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,20 +137,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a54b739e787c09d7de9e72df137e09b47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the SD module and used as a label for this module's CSV output.  <a href="#a54b739e787c09d7de9e72df137e09b47">More...</a><br /></td></tr>
 <tr class="separator:a54b739e787c09d7de9e72df137e09b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8dbef097e1270c6950e3b11dcb415f0"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRadio.html#af8dbef097e1270c6950e3b11dcb415f0">dataToPersist</a> ()</td></tr>
-<tr class="memdesc:af8dbef097e1270c6950e3b11dcb415f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to persist it, this function would be called by the SD module to take care of it.  <a href="#af8dbef097e1270c6950e3b11dcb415f0">More...</a><br /></td></tr>
+<tr class="memdesc:af8dbef097e1270c6950e3b11dcb415f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to persist it, this function would be called by the SD module to handle it.  <a href="#af8dbef097e1270c6950e3b11dcb415f0">More...</a><br /></td></tr>
 <tr class="separator:af8dbef097e1270c6950e3b11dcb415f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab60c78461919830d9c0b991986881793"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRadio.html#ab60c78461919830d9c0b991986881793">transmit</a> (String *packet)</td></tr>
-<tr class="separator:ab60c78461919830d9c0b991986881793"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fd5c1d3cdb37ee959f9469377e67e15"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRadio.html#a0fd5c1d3cdb37ee959f9469377e67e15">to_AX25</a> (String *data)</td></tr>
-<tr class="separator:a0fd5c1d3cdb37ee959f9469377e67e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a064c6e4e04968dc7b9e9a2453b9cb4f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRadio.html#a064c6e4e04968dc7b9e9a2453b9cb4f8">getSchedulingFreq</a> ()</td></tr>
+<tr class="separator:a064c6e4e04968dc7b9e9a2453b9cb4f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7cb90213d7efd02b3f2670ac0841bb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRadio.html#ac7cb90213d7efd02b3f2670ac0841bb2">registerModules</a> (<a class="el" href="classModule.html">Module</a> *modules[], int numModules)</td></tr>
+<tr class="separator:ac7cb90213d7efd02b3f2670ac0841bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7ee441216f1557a2407177d5c76a7a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRadio.html#aca7ee441216f1557a2407177d5c76a7a">forwardAPRSToUno</a> (const char *data_msg)</td></tr>
+<tr class="separator:aca7ee441216f1557a2407177d5c76a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8115034797c4475f4cbcf7b77701bee0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRadio.html#a8115034797c4475f4cbcf7b77701bee0">systems_check</a> ()</td></tr>
 <tr class="separator:a8115034797c4475f4cbcf7b77701bee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classModule"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classModule')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classModule.html">Module</a></td></tr>
 <tr class="memitem:a5a240a8a9ab1813b17bcb810b24ceaea inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a5a240a8a9ab1813b17bcb810b24ceaea">Module</a> ()</td></tr>
 <tr class="separator:a5a240a8a9ab1813b17bcb810b24ceaea inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9d62f7aac5752b7e05b453da65873c6 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ab9d62f7aac5752b7e05b453da65873c6">onStateChanged</a> ()</td></tr>
-<tr class="memdesc:ab9d62f7aac5752b7e05b453da65873c6 inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the <a class="el" href="classScheduler.html">Scheduler</a> whenever an actionable state-change is detected.  <a href="#ab9d62f7aac5752b7e05b453da65873c6">More...</a><br /></td></tr>
-<tr class="separator:ab9d62f7aac5752b7e05b453da65873c6 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad36b9d35ee30dd654fcafd282e4d677e inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ad36b9d35ee30dd654fcafd282e4d677e">onStateChanged</a> (const <a class="el" href="Module_8h.html#aa51313be2faacb739a18fdeecefbac75">SystemState</a> &amp;<a class="el" href="classModule.html#a75ab7c2da6e1c0263560ebfc3a8fb593">state</a>)</td></tr>
+<tr class="memdesc:ad36b9d35ee30dd654fcafd282e4d677e inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the <a class="el" href="classScheduler.html">Scheduler</a> whenever an actionable state-change is detected.  <a href="#ad36b9d35ee30dd654fcafd282e4d677e">More...</a><br /></td></tr>
+<tr class="separator:ad36b9d35ee30dd654fcafd282e4d677e inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9108dc19857c69f1dd0084f303874392 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a9108dc19857c69f1dd0084f303874392">dataToSend</a> ()</td></tr>
+<tr class="memdesc:a9108dc19857c69f1dd0084f303874392 inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to send it over the uno-&gt;radio link, this function would be called by the <a class="el" href="classRadio.html">Radio</a> module to handle it.  <a href="#a9108dc19857c69f1dd0084f303874392">More...</a><br /></td></tr>
+<tr class="separator:a9108dc19857c69f1dd0084f303874392 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -166,7 +171,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a75ab7c2da6e1c0263560ebfc3a8fb593 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a0949e73cfcac2439abeb228b1488d38d"></a>
+<a class="anchor" id="a4636a754ced2eb9ad6b6433ca074f465"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -179,8 +184,8 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>restart_time</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classGPS.html">GPS</a> *&#160;</td>
+          <td class="paramname"><em>gps</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -241,10 +246,20 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Should the module creates data and wants to persist it, this function would be called by the SD module to take care of it. </p>
+<p>Should the module creates data and wants to persist it, this function would be called by the SD module to handle it. </p>
 <dl class="section return"><dt>Returns</dt><dd>the c-style string to be written to the SD card </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classModule.html#a1b09b23602e5491206dcc96e4714ddac">Module</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRadio_af8dbef097e1270c6950e3b11dcb415f0_cgraph.png" border="0" usemap="#classRadio_af8dbef097e1270c6950e3b11dcb415f0_cgraph" alt=""/></div>
+<map name="classRadio_af8dbef097e1270c6950e3b11dcb415f0_cgraph" id="classRadio_af8dbef097e1270c6950e3b11dcb415f0_cgraph">
+<area shape="rect" id="node2" href="classGPS.html#a79b6e9aeb4f5edbc4554c47bdd720f3e" title="GPS::getTime" alt="" coords="204,5,313,32"/>
+</map>
+</div>
+</p>
 
 </div>
 </div>
@@ -303,6 +318,35 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aca7ee441216f1557a2407177d5c76a7a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Radio::forwardAPRSToUno </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>data_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRadio_aca7ee441216f1557a2407177d5c76a7a_cgraph.png" border="0" usemap="#classRadio_aca7ee441216f1557a2407177d5c76a7a_cgraph" alt=""/></div>
+<map name="classRadio_aca7ee441216f1557a2407177d5c76a7a_cgraph" id="classRadio_aca7ee441216f1557a2407177d5c76a7a_cgraph">
+<area shape="rect" id="node2" href="classGPS.html#ab4d2e452693d9aaf68408912856f5721" title="GPS::getLatitude" alt="" coords="245,5,376,32"/>
+<area shape="rect" id="node3" href="classGPS.html#afde48a47d035f4f2ecf1bfb74da64675" title="GPS::getLongitude" alt="" coords="240,56,381,83"/>
+<area shape="rect" id="node4" href="classGPS.html#abfc4954a61fc1ef7ccf3b0a96140419d" title="GPS::getGPSEpoch" alt="" coords="239,107,383,133"/>
+<area shape="rect" id="node5" href="classGPS.html#abbb46429b3d87e7dfd63a38a1831e710" title="GPS::getAltitude" alt="" coords="247,157,374,184"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
 <a class="anchor" id="a54b739e787c09d7de9e72df137e09b47"></a>
 <div class="memitem">
 <div class="memproto">
@@ -328,6 +372,58 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>the c-style string for the name of this module </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classModule.html#af596ad7a28c8a1999cb5771bad746afd">Module</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a064c6e4e04968dc7b9e9a2453b9cb4f8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structscheduling__freq.html">scheduling_freq</a> Radio::getSchedulingFreq </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Reimplemented from <a class="el" href="classModule.html#ae577b831df42b5bcf6762817e7d38649">Module</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac7cb90213d7efd02b3f2670ac0841bb2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Radio::registerModules </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classModule.html">Module</a> *&#160;</td>
+          <td class="paramname"><em>modules</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numModules</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -371,37 +467,20 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classModule.html#ad2577ebdcd23d54884a630447ef77c78">Module</a>.</p>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRadio_a88bd1942f4034c3d3de2b50903122de4_cgraph.png" border="0" usemap="#classRadio_a88bd1942f4034c3d3de2b50903122de4_cgraph" alt=""/></div>
+<map name="classRadio_a88bd1942f4034c3d3de2b50903122de4_cgraph" id="classRadio_a88bd1942f4034c3d3de2b50903122de4_cgraph">
+<area shape="rect" id="node2" href="classModule.html#a1b09b23602e5491206dcc96e4714ddac" title="Should the module creates data and wants to persist it, this function would be called by the SD modul..." alt="" coords="152,31,313,57"/>
+<area shape="rect" id="node3" href="classRadio.html#aca7ee441216f1557a2407177d5c76a7a" title="Radio::forwardAPRSToUno" alt="" coords="140,81,325,108"/>
+<area shape="rect" id="node4" href="classGPS.html#ab4d2e452693d9aaf68408912856f5721" title="GPS::getLatitude" alt="" coords="380,5,511,32"/>
+<area shape="rect" id="node5" href="classGPS.html#afde48a47d035f4f2ecf1bfb74da64675" title="GPS::getLongitude" alt="" coords="375,56,516,83"/>
+<area shape="rect" id="node6" href="classGPS.html#abfc4954a61fc1ef7ccf3b0a96140419d" title="GPS::getGPSEpoch" alt="" coords="373,107,517,133"/>
+<area shape="rect" id="node7" href="classGPS.html#abbb46429b3d87e7dfd63a38a1831e710" title="GPS::getAltitude" alt="" coords="382,157,509,184"/>
+</map>
 </div>
-</div>
-<a class="anchor" id="a0fd5c1d3cdb37ee959f9469377e67e15"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String Radio::to_AX25 </td>
-          <td>(</td>
-          <td class="paramtype">String *&#160;</td>
-          <td class="paramname"><em>data</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ab60c78461919830d9c0b991986881793"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Radio::transmit </td>
-          <td>(</td>
-          <td class="paramtype">String *&#160;</td>
-          <td class="paramname"><em>packet</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+</p>
 
 </div>
 </div>

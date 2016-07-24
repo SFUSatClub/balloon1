@@ -1,0 +1,19 @@
+<map id="LSM303::getDeviceType" name="LSM303::getDeviceType">
+<area shape="rect" id="node2" href="$classLSM303.html#a253992f24eb62d618c740c00f9604619" title="LSM303::enableDefault" alt="" coords="237,88,407,115"/>
+<area shape="rect" id="node3" href="$classLSM303.html#a37813b3ab37b06d57926fe41e31a0fb3" title="LSM303::writeReg" alt="" coords="478,139,613,165"/>
+<area shape="rect" id="node4" href="$classLSM303.html#a470fa63cc2571442d0dcd9f9613482ac" title="LSM303::writeMagReg" alt="" coords="673,37,835,64"/>
+<area shape="rect" id="node5" href="$classLSM303.html#aa381bad81ac2b1c844a310c31c55851d" title="LSM303::writeAccReg" alt="" coords="675,139,833,165"/>
+<area shape="rect" id="node6" href="$classLSM303.html#a25e8e01561d1ecd6e126ecf00a4098d3" title="LSM303::readAccReg" alt="" coords="467,265,623,292"/>
+<area shape="rect" id="node7" href="$classLSM303.html#a35172bd35bac593d0db127d4da1ef2d9" title="LSM303::readMagReg" alt="" coords="465,329,625,356"/>
+<area shape="rect" id="node8" href="$classLSM303.html#a3866d19f8996011378b4832805ee5fc4" title="LSM303::readReg" alt="" coords="255,291,389,317"/>
+<area shape="rect" id="node9" href="$classLSM303.html#ac1396a51b288eadc41fd19fbd79ef68e" title="LSM303::readAcc" alt="" coords="479,404,612,431"/>
+<area shape="rect" id="node10" href="$classLSM303.html#abc93e8d8101c6b00df2ae85c5f8ded9e" title="LSM303::readMag" alt="" coords="477,468,614,495"/>
+<area shape="rect" id="node11" href="$classLSM303.html#a9f40456878f534bba32490d19f3a64ce" title="LSM303::read" alt="" coords="267,443,377,469"/>
+<area shape="rect" id="node12" href="$classLSM303.html#a707c5bfed3ff837aeeb2f990ad1151a9" title="LSM303::setTimeout" alt="" coords="245,544,399,571"/>
+<area shape="rect" id="node13" href="$classLSM303.html#a1aed58ffe20e8b323776df616eabd598" title="LSM303::getTimeout" alt="" coords="245,595,399,621"/>
+<area shape="rect" id="node14" href="$classLSM303.html#a07602f1b10223a65173d7949b86c9eaf" title="LSM303::timeoutOccurred" alt="" coords="227,645,417,672"/>
+<area shape="rect" id="node15" href="$classLSM303.html#ab81e2babe4d3011d642dc78ea71863de" title="LSM303::heading" alt="" coords="256,696,388,723"/>
+<area shape="rect" id="node16" href="$classLSM303.html#ae590be5fbc5f3dc2b20349c462dd80bb" title="LSM303::vector_cross" alt="" coords="241,747,403,773"/>
+<area shape="rect" id="node17" href="$classLSM303.html#a1fac94fcc4b58c085dee979544599037" title="LSM303::vector_dot" alt="" coords="471,823,620,849"/>
+<area shape="rect" id="node18" href="$classLSM303.html#ab0117d66614a77b1ef215c04fb47dcdc" title="LSM303::vector_normalize" alt="" coords="227,797,417,824"/>
+</map>

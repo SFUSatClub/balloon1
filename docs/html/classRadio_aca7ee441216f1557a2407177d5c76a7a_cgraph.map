@@ -1,0 +1,6 @@
+<map id="Radio::forwardAPRSToUno" name="Radio::forwardAPRSToUno">
+<area shape="rect" id="node2" href="$classGPS.html#ab4d2e452693d9aaf68408912856f5721" title="GPS::getLatitude" alt="" coords="245,5,376,32"/>
+<area shape="rect" id="node3" href="$classGPS.html#afde48a47d035f4f2ecf1bfb74da64675" title="GPS::getLongitude" alt="" coords="240,56,381,83"/>
+<area shape="rect" id="node4" href="$classGPS.html#abfc4954a61fc1ef7ccf3b0a96140419d" title="GPS::getGPSEpoch" alt="" coords="239,107,383,133"/>
+<area shape="rect" id="node5" href="$classGPS.html#abbb46429b3d87e7dfd63a38a1831e710" title="GPS::getAltitude" alt="" coords="247,157,374,184"/>
+</map>

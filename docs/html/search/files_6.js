@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['photocells_2ecpp',['Photocells.cpp',['../Photocells_8cpp.html',1,'']]],
-  ['photocells_2eh',['Photocells.h',['../Photocells_8h.html',1,'']]]
+  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['module_2ecpp',['Module.cpp',['../Module_8cpp.html',1,'']]],
+  ['module_2eh',['Module.h',['../Module_8h.html',1,'']]]
 ];

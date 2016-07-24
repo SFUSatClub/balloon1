@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['checkdescent',['CheckDescent',['../classCheckDescent.html',1,'']]],
-  ['checklanded',['CheckLanded',['../classCheckLanded.html',1,'']]]
+  ['adafruit_5fgps',['Adafruit_GPS',['../classAdafruit__GPS.html',1,'']]]
 ];

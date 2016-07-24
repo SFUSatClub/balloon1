@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['imu',['IMU',['../classIMU.html',1,'']]]
+  ['gps',['GPS',['../classGPS.html',1,'']]]
 ];

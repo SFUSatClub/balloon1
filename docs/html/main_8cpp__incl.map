@@ -1,9 +1,16 @@
 <map id="src/main.cpp" name="src/main.cpp">
-<area shape="rect" id="node3" href="$Task_8h.html" title="Task.h" alt="" coords="242,155,303,181"/>
-<area shape="rect" id="node7" href="$Scheduler_8h.html" title="Scheduler.h" alt="" coords="407,80,504,107"/>
-<area shape="rect" id="node8" href="$Radio_8h.html" title="Radio.h" alt="" coords="501,155,570,181"/>
-<area shape="rect" id="node9" href="$GPS_8h.html" title="GPS.h" alt="" coords="143,155,205,181"/>
-<area shape="rect" id="node11" href="$SDCard_8h.html" title="SDCard.h" alt="" coords="594,155,677,181"/>
-<area shape="rect" id="node14" href="$Photocells_8h.html" title="Photocells.h" alt="" coords="327,155,426,181"/>
-<area shape="rect" id="node5" href="$Module_8h.html" title="Module.h" alt="" coords="295,229,375,256"/>
+<area shape="rect" id="node3" href="$Task_8h.html" title="Task.h" alt="" coords="32,155,93,181"/>
+<area shape="rect" id="node8" href="$Scheduler_8h.html" title="Scheduler.h" alt="" coords="149,80,246,107"/>
+<area shape="rect" id="node9" href="$StateHandler_8h.html" title="StateHandler.h" alt="" coords="505,155,623,181"/>
+<area shape="rect" id="node10" href="$Barometer_8h.html" title="Barometer.h" alt="" coords="725,229,827,256"/>
+<area shape="rect" id="node13" href="$GPS_8h.html" title="GPS.h" alt="" coords="537,229,599,256"/>
+<area shape="rect" id="node17" href="$Radio_8h.html" title="Radio.h" alt="" coords="411,155,480,181"/>
+<area shape="rect" id="node18" href="$SDCard_8h.html" title="SDCard.h" alt="" coords="1013,229,1096,256"/>
+<area shape="rect" id="node21" href="$Photocells_8h.html" title="Photocells.h" alt="" coords="313,229,412,256"/>
+<area shape="rect" id="node22" href="$IMU_8h.html" title="IMU.h" alt="" coords="880,229,939,256"/>
+<area shape="rect" id="node24" href="$Buzzer_8h.html" title="Buzzer.h" alt="" coords="623,229,700,256"/>
+<area shape="rect" id="node5" href="$Module_8h.html" title="Module.h" alt="" coords="364,304,444,331"/>
+<area shape="rect" id="node7" href="$Globals_8h.html" title="Globals.h" alt="" coords="157,379,238,405"/>
+<area shape="rect" id="node14" href="$Adafruit__GPS_8h.html" title="Adafruit_GPS.h" alt="" coords="469,304,587,331"/>
+<area shape="rect" id="node23" href="$LSM303_8h.html" title="LSM303.h" alt="" coords="919,379,1004,405"/>
 </map>

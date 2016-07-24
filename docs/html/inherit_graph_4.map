@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classModule.html" title="Base sensor class. " alt="" coords="5,183,73,209"/>
+<area shape="rect" id="node2" href="$classBarometer.html" title="Barometer" alt="" coords="129,5,220,32"/>
+<area shape="rect" id="node3" href="$classBuzzer.html" title="Buzzer" alt="" coords="141,56,208,83"/>
+<area shape="rect" id="node4" href="$classGPS.html" title="GPS" alt="" coords="150,107,199,133"/>
+<area shape="rect" id="node5" href="$classIMU.html" title="IMU" alt="" coords="151,157,198,184"/>
+<area shape="rect" id="node6" href="$classPhotocells.html" title="Photocells" alt="" coords="131,208,218,235"/>
+<area shape="rect" id="node7" href="$classRadio.html" title="Radio" alt="" coords="146,259,203,285"/>
+<area shape="rect" id="node8" href="$classSDCard.html" title="SDCard" alt="" coords="139,309,210,336"/>
+<area shape="rect" id="node9" href="$classStateHandler.html" title="StateHandler" alt="" coords="121,360,228,387"/>
+</map>

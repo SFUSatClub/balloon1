@@ -1,0 +1,8 @@
+<map id="StateHandler::tick" name="StateHandler::tick">
+<area shape="rect" id="node2" href="$classStateHandler.html#a8bd87e887c05b09fb45bed750430e2e3" title="StateHandler::checkBattery" alt="" coords="194,5,393,32"/>
+<area shape="rect" id="node3" href="$classStateHandler.html#ae8d09931d9e207c3da104a778577dba2" title="StateHandler::checkDescent" alt="" coords="191,56,396,83"/>
+<area shape="rect" id="node6" href="$classStateHandler.html#ad17626f2e8a745d5f54a9c154b1e7614" title="StateHandler::checkLanded" alt="" coords="194,107,393,133"/>
+<area shape="rect" id="node4" href="$classGPS.html#abbb46429b3d87e7dfd63a38a1831e710" title="GPS::getAltitude" alt="" coords="469,81,595,108"/>
+<area shape="rect" id="node5" href="$classBarometer.html#a23aee3f635ff7289c8bbf978ff1561c5" title="Barometer::getPressure" alt="" coords="444,31,620,57"/>
+<area shape="rect" id="node7" href="$classGPS.html#a6be61437fe89ae91c8b8bda292125a74" title="GPS::getSpeed" alt="" coords="473,132,591,159"/>
+</map>

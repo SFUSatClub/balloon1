@@ -1,9 +1,17 @@
 var searchData=
 [
-  ['task',['Task',['../classTask.html#ac5e0eef637fc245d6411d90d3df85b4b',1,'Task::Task(uint16_t timeout, uint32_t Interval, funcPtr setFn)'],['../classTask.html#af9bd0bcba039d2baf8532db4aee2877d',1,'Task::Task(uint16_t timeout, uint32_t Interval, Module *module)']]],
-  ['task1',['task1',['../main_8cpp.html#ab55078d807df0a75af8a2fa8eefdcc41',1,'main.cpp']]],
-  ['task2',['task2',['../main_8cpp.html#afb35a54f26606b4808ac0a8d9ad55433',1,'main.cpp']]],
-  ['tick',['tick',['../classCheckDescent.html#abbd63f07ceb3f08eed31c4713a230f43',1,'CheckDescent::tick()'],['../classCheckLanded.html#a9a8f60dfd0950bbd713745e8a0ba3133',1,'CheckLanded::tick()'],['../classGPS.html#a13241c482f311ea66313d36477d1774f',1,'GPS::tick()'],['../classIMU.html#a5b1f6d4847d2d9e3c726704d4ac69963',1,'IMU::tick()'],['../classModule.html#ad2577ebdcd23d54884a630447ef77c78',1,'Module::tick()'],['../classPhotocells.html#af64cdae2cec3470c42e09cd8eebb6e0c',1,'Photocells::tick()'],['../classRadio.html#a88bd1942f4034c3d3de2b50903122de4',1,'Radio::tick()'],['../classSDCard.html#aa56224a079ddecfc2ea0d71d5a995aa5',1,'SDCard::tick()']]],
-  ['to_5fax25',['to_AX25',['../classRadio.html#a0fd5c1d3cdb37ee959f9469377e67e15',1,'Radio']]],
-  ['transmit',['transmit',['../classRadio.html#ab60c78461919830d9c0b991986881793',1,'Radio']]]
+  ['radio',['Radio',['../classRadio.html#a4636a754ced2eb9ad6b6433ca074f465',1,'Radio']]],
+  ['read',['read',['../classAdafruit__GPS.html#a776378bc3e4e8a098dce88d6a4ffb0b8',1,'Adafruit_GPS::read()'],['../classLSM303.html#a9f40456878f534bba32490d19f3a64ce',1,'LSM303::read()']]],
+  ['readacc',['readAcc',['../classLSM303.html#ac1396a51b288eadc41fd19fbd79ef68e',1,'LSM303']]],
+  ['readaccreg',['readAccReg',['../classLSM303.html#a25e8e01561d1ecd6e126ecf00a4098d3',1,'LSM303']]],
+  ['readmag',['readMag',['../classLSM303.html#abc93e8d8101c6b00df2ae85c5f8ded9e',1,'LSM303']]],
+  ['readmagreg',['readMagReg',['../classLSM303.html#a35172bd35bac593d0db127d4da1ef2d9',1,'LSM303']]],
+  ['readreg',['readReg',['../classLSM303.html#a3866d19f8996011378b4832805ee5fc4',1,'LSM303']]],
+  ['ready',['ready',['../doxy-boot_8js.html#a5d977532648d95bc833a5752b796456f',1,'doxy-boot.js']]],
+  ['registermodules',['registerModules',['../classRadio.html#ac7cb90213d7efd02b3f2670ac0841bb2',1,'Radio::registerModules()'],['../classSDCard.html#a6495d590a016b7262b14bc4cf40e1514',1,'SDCard::registerModules()']]],
+  ['registermodulesastasks',['registerModulesAsTasks',['../classScheduler.html#a9324bd2c541d0e300222156903e19415',1,'Scheduler']]],
+  ['registerstatehandler',['registerStateHandler',['../classScheduler.html#a52d40db32862204f7b2f2d376bc4c158',1,'Scheduler']]],
+  ['run',['run',['../classScheduler.html#a58fba108ce2748870a6288cd6f5fd1e3',1,'Scheduler']]],
+  ['rundiagnostics',['runDiagnostics',['../classSDCard.html#a77109424a6a29fe457521ce98890f9a4',1,'SDCard']]],
+  ['runtask',['runTask',['../classTask.html#a7d1efa56f944a29ebb4c02c2f727ae92',1,'Task']]]
 ];

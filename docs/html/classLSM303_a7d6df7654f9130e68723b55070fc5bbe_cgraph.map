@@ -1,0 +1,6 @@
+<map id="LSM303::heading" name="LSM303::heading">
+<area shape="rect" id="node2" href="$classLSM303.html#ae590be5fbc5f3dc2b20349c462dd80bb" title="LSM303::vector_cross" alt="" coords="199,5,362,32"/>
+<area shape="rect" id="node3" href="$classLSM303.html#ab0117d66614a77b1ef215c04fb47dcdc" title="LSM303::vector_normalize" alt="" coords="185,56,376,83"/>
+<area shape="rect" id="node4" href="$classLSM303.html#a1fac94fcc4b58c085dee979544599037" title="LSM303::vector_dot" alt="" coords="424,81,573,108"/>
+<area shape="rect" id="node5" href="$classLSM303.html#ab81e2babe4d3011d642dc78ea71863de" title="LSM303::heading" alt="" coords="215,157,347,184"/>
+</map>

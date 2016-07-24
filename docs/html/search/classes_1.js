@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['gps',['GPS',['../classGPS.html',1,'']]]
+  ['barometer',['Barometer',['../classBarometer.html',1,'']]],
+  ['buzzer',['Buzzer',['../classBuzzer.html',1,'']]]
 ];

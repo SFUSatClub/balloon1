@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['imu',['IMU',['../classIMU.html',1,'IMU'],['../classIMU.html#a5d36c5fa0688efe1a013679dbdcef4cc',1,'IMU::IMU()']]],
-  ['imu_2ecpp',['IMU.cpp',['../IMU_8cpp.html',1,'']]],
-  ['imu_2eh',['IMU.h',['../IMU_8h.html',1,'']]],
-  ['interval',['interval',['../structscheduling__freq.html#ac22fc3d2b38f7abeeed051f7462cdc11',1,'scheduling_freq::interval()'],['../classTask.html#a69faa950f39c37c73ee78365ae2a125e',1,'Task::interval()']]],
-  ['isdescending',['isDescending',['../classCheckDescent.html#a77eef81874f0e277de73011da5564b12',1,'CheckDescent']]],
-  ['isheaderfile',['IsHeaderFile',['../_8ycm__extra__conf_8py.html#a6bb59f541be0dcbde53eba606d48ddf8',1,'.ycm_extra_conf.py']]],
-  ['islanded',['isLanded',['../classCheckLanded.html#a7498500156100c672335b82328295326',1,'CheckLanded']]]
+  ['hasstatechanged',['hasStateChanged',['../classStateHandler.html#a052275aa7bb8d1d622e3655523e2b615',1,'StateHandler']]],
+  ['hdop',['HDOP',['../classAdafruit__GPS.html#ac1c1aebd73d420ba18d1db79bbd0142a',1,'Adafruit_GPS']]],
+  ['heading',['heading',['../classLSM303.html#ab81e2babe4d3011d642dc78ea71863de',1,'LSM303::heading(void)'],['../classLSM303.html#a7d6df7654f9130e68723b55070fc5bbe',1,'LSM303::heading(vector&lt; T &gt; from)']]],
+  ['hour',['hour',['../classAdafruit__GPS.html#a6030cb60c15e0b8a6f55655e8df94a2f',1,'Adafruit_GPS']]],
+  ['hp_5ffilter_5freset_5fa',['HP_FILTER_RESET_A',['../classLSM303.html#aec959b54c433194ac47239d613ab9875accbbbf990df9431271811b462954ea54',1,'LSM303']]]
 ];

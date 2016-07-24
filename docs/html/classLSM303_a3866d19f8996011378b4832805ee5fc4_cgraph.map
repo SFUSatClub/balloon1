@@ -1,0 +1,4 @@
+<map id="LSM303::readReg" name="LSM303::readReg">
+<area shape="rect" id="node2" href="$classLSM303.html#a35172bd35bac593d0db127d4da1ef2d9" title="LSM303::readMagReg" alt="" coords="187,5,347,32"/>
+<area shape="rect" id="node3" href="$classLSM303.html#a25e8e01561d1ecd6e126ecf00a4098d3" title="LSM303::readAccReg" alt="" coords="189,56,345,83"/>
+</map>

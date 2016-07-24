@@ -1,7 +1,24 @@
 var searchData=
 [
+  ['getaccx',['getAccX',['../classIMU.html#a92521187cf8f9eacc379d8255ab9ad54',1,'IMU']]],
+  ['getaccy',['getAccY',['../classIMU.html#af592c808760a236484fafcf67659d5a9',1,'IMU']]],
+  ['getaccz',['getAccZ',['../classIMU.html#a9c9dfb8e4a7e6b97a581c1fd1990c987',1,'IMU']]],
+  ['getaltitude',['getAltitude',['../classGPS.html#abbb46429b3d87e7dfd63a38a1831e710',1,'GPS']]],
   ['getcompilationinfoforfile',['GetCompilationInfoForFile',['../_8ycm__extra__conf_8py.html#a42a14573593ce75cd6e385a85326111f',1,'.ycm_extra_conf.py']]],
-  ['getmodulename',['getModuleName',['../classGPS.html#aa99093f43ffcf5cb88e477a3d3be11ba',1,'GPS::getModuleName()'],['../classIMU.html#af0f8d795e5a7d81264e0834542866588',1,'IMU::getModuleName()'],['../classModule.html#af596ad7a28c8a1999cb5771bad746afd',1,'Module::getModuleName()'],['../classPhotocells.html#a192c883c462e379a55ecee5730f6a4e4',1,'Photocells::getModuleName()'],['../classRadio.html#a54b739e787c09d7de9e72df137e09b47',1,'Radio::getModuleName()'],['../classSDCard.html#ad7bfa910783b7eff300a23257dfd6193',1,'SDCard::getModuleName()']]],
+  ['getdevicetype',['getDeviceType',['../classLSM303.html#a75ba91833135a3d2b242a28bbd38b60d',1,'LSM303']]],
+  ['getgpsepoch',['getGPSEpoch',['../classGPS.html#abfc4954a61fc1ef7ccf3b0a96140419d',1,'GPS']]],
+  ['getlatitude',['getLatitude',['../classGPS.html#ab4d2e452693d9aaf68408912856f5721',1,'GPS']]],
+  ['getlongitude',['getLongitude',['../classGPS.html#afde48a47d035f4f2ecf1bfb74da64675',1,'GPS']]],
+  ['getmagx',['getMagX',['../classIMU.html#a1313bb447b4228409dcbe051772b5085',1,'IMU']]],
+  ['getmagy',['getMagY',['../classIMU.html#a87e8df261526d260582cc64da74bafdf',1,'IMU']]],
+  ['getmagz',['getMagZ',['../classIMU.html#a63cb0293f381872c881b04f90b9a75df',1,'IMU']]],
+  ['getmodulename',['getModuleName',['../classBarometer.html#a0e30dd4463d8d1dba5fd53098585f81a',1,'Barometer::getModuleName()'],['../classBuzzer.html#a8e188664e3d6bef07ab071e5149c97fe',1,'Buzzer::getModuleName()'],['../classGPS.html#aa99093f43ffcf5cb88e477a3d3be11ba',1,'GPS::getModuleName()'],['../classIMU.html#af0f8d795e5a7d81264e0834542866588',1,'IMU::getModuleName()'],['../classModule.html#af596ad7a28c8a1999cb5771bad746afd',1,'Module::getModuleName()'],['../classPhotocells.html#a192c883c462e379a55ecee5730f6a4e4',1,'Photocells::getModuleName()'],['../classRadio.html#a54b739e787c09d7de9e72df137e09b47',1,'Radio::getModuleName()'],['../classSDCard.html#ad7bfa910783b7eff300a23257dfd6193',1,'SDCard::getModuleName()'],['../classStateHandler.html#ace371aebc735d8f6ee1657585d186016',1,'StateHandler::getModuleName()']]],
+  ['getpressure',['getPressure',['../classBarometer.html#a23aee3f635ff7289c8bbf978ff1561c5',1,'Barometer']]],
+  ['getschedulingfreq',['getSchedulingFreq',['../classGPS.html#a4aa70779f1499a27c5155e8212d781f5',1,'GPS::getSchedulingFreq()'],['../classModule.html#ae577b831df42b5bcf6762817e7d38649',1,'Module::getSchedulingFreq()'],['../classRadio.html#a064c6e4e04968dc7b9e9a2453b9cb4f8',1,'Radio::getSchedulingFreq()']]],
+  ['getspeed',['getSpeed',['../classGPS.html#a6be61437fe89ae91c8b8bda292125a74',1,'GPS']]],
+  ['getsystemstate',['getSystemState',['../classStateHandler.html#a9ea1a91bdd90450b98694bda5d842e70',1,'StateHandler']]],
   ['getsystemtick',['getSystemTick',['../classScheduler.html#a6f6cc701623afb6fcf4a3c17ef4dd403',1,'Scheduler']]],
+  ['gettime',['getTime',['../classGPS.html#a79b6e9aeb4f5edbc4554c47bdd720f3e',1,'GPS']]],
+  ['gettimeout',['getTimeout',['../classLSM303.html#a1aed58ffe20e8b323776df616eabd598',1,'LSM303']]],
   ['gps',['GPS',['../classGPS.html#a5ae910e41140fea35b4f9ec6d078f56a',1,'GPS']]]
 ];

@@ -1,0 +1,9 @@
+<map id="GPS::tick" name="GPS::tick">
+<area shape="rect" id="node2" href="$classAdafruit__GPS.html#a776378bc3e4e8a098dce88d6a4ffb0b8" title="Adafruit_GPS::read" alt="" coords="176,31,319,57"/>
+<area shape="rect" id="node5" href="$classAdafruit__GPS.html#accb1fa960283447d2868c59951f0a9a1" title="Adafruit_GPS::newNMEAreceived" alt="" coords="132,81,363,108"/>
+<area shape="rect" id="node6" href="$classAdafruit__GPS.html#acbcf98b71ccfb7f51844a3eb5815d6ad" title="Adafruit_GPS::parse" alt="" coords="172,132,323,159"/>
+<area shape="rect" id="node8" href="$classAdafruit__GPS.html#a6938dadca5d72ec6e89e86a5b01b9b67" title="Adafruit_GPS::lastNMEA" alt="" coords="160,183,335,209"/>
+<area shape="rect" id="node3" href="$classAdafruit__GPS.html#a3dd74265015def9c893170f38bab1b61" title="Adafruit_GPS::Adafruit_GPS" alt="" coords="411,5,609,32"/>
+<area shape="rect" id="node4" href="$classAdafruit__GPS.html#ab8a2fe20ce1874b10a6e9f007c236b30" title="Adafruit_GPS::common_init" alt="" coords="657,31,855,57"/>
+<area shape="rect" id="node7" href="$classAdafruit__GPS.html#aabc3fe099a15bc672047f40e96270293" title="Adafruit_GPS::parseHex" alt="" coords="423,132,597,159"/>
+</map>
