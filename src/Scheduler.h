@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include "Task.h"
 #include "StateHandler.h"
+#include "Globals.h"
 
 class Scheduler {
   private:
