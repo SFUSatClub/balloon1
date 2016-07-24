@@ -19,6 +19,7 @@
 #include "SDCard.h"
 #include "Photocells.h"
 #include "IMU.h"
+#include "Barometer.h"
 
 void task1(void){
   static int task1Trigger = 0;
@@ -41,7 +42,8 @@ GPS gps(&gpsSerial);
 Radio radio(&radioSerial, &gps);
 SDCard sd(sdChipSelectPin);
 Photocells photocells(0, 5);
-IMU imu(0x6b);
+IMU imu;
+Barometer barometer;
 
 // Steven: maybe should use container classes. array/vector?
 const int numModules = 5;
@@ -50,11 +52,11 @@ Module* modules[numModules] = {
   , &radio
   , &sd
   , &photocells
-  , &imu
+  , &barometer
 };
 
 Scheduler scheduler(1 + numModules);
-StateHandler stateHandler(&imu, &gps);
+StateHandler stateHandler(&barometer, &gps);
 
 void setup() {
   Serial.begin(115200);

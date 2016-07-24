@@ -28,7 +28,7 @@ void Radio::disable() {
 bool Radio::forwardAPRSToUno(const char *data_msg) {
 	char toUno[100];
 	snprintf(toUno, 100, 
-			"%f\t%f\t%d\t%f\t%s",
+			"%f\t%f\t%lu\t%f\t%s",
 			gps->getLatitude(), gps->getLongitude(),
 			gps->getGPSEpoch(), gps->getAltitude(),
 			data_msg);

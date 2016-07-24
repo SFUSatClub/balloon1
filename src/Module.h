@@ -5,12 +5,13 @@
 #include <FatLib/ArduinoStream.h>
 #include "Globals.h"
 
-enum class SystemState : int8_t {
-	PRELAUNCH = 1,
-	FLIGHT,
-	DESCENT,
-	LOW_POWER,
-	INVALID = -1
+enum class SystemState {
+        PRE_FLIGHT = 1,
+        DURING_FLIGHT,
+        DURING_DESCENT,
+        LOW_BATTERY,
+        LANDED,
+        INVALID = -1
 };
 
 typedef struct {
@@ -98,7 +99,8 @@ public:
 	virtual const char* getModuleName();
 
 protected:
-	State state;
+        State state;
 };
 
 #endif /* MODULE_H */
+
