@@ -12,7 +12,34 @@ void Radio::begin() {
 }
 
 void Radio::tick() {
-	forwardAPRSToUno("stuff");
+	bool alreadyForwarded = false;
+	for(int currModule = 0; currModule < numModules; currModule++) {
+		const char* moduleRadioData = modules[currModule]->dataToPersist();
+		if(moduleRadioData == NULL) {
+			continue;
+		}
+		// Steven: add 2 for comma and new line char
+		if(strlen(buffer) + strlen(moduleRadioData) + 2 < BUFFER_WRITE_SIZE) {
+			strcat(buffer, moduleRadioData);
+			strcat(buffer, "\n");
+			/* cout << "Radio: appending, current buffer: " << buffer << endl; */
+		} else {
+			/* cout << "Radio: hit buffer size, sending to uno: " << buffer << endl; */
+			// Steven: c-style strings, clear the buffer with null char
+			// WARNING: will send multiple aprs packets if we are sending a lot of data
+			// maybe should just throw away all data if full again in current tick
+			forwardAPRSToUno(buffer);
+			alreadyForwarded = true;
+			buffer[0] = 0;
+			strcat(buffer, moduleRadioData);
+			strcat(buffer, "\n");
+			/* cout << "Radio: appending, current buffer: " << buffer << endl; */
+		}
+	}
+	// Make sure we still send telemetry data even if we don't have any msgs to send
+	if(!alreadyForwarded) {
+		forwardAPRSToUno(NULL);
+	}
 }
 
 int Radio::enable() {
@@ -26,19 +53,21 @@ void Radio::disable() {
 
 // <latitude>\t<longitude>\t<time>\t<altitude>\t<misc data>\n
 bool Radio::forwardAPRSToUno(const char *data_msg) {
-	char toUno[100];
-	snprintf(toUno, 100, 
+	char toUno[BUFFER_UNO_SIZE];
+	int all = snprintf(toUno, BUFFER_UNO_SIZE,
 			"%f\t%f\t%d\t%f\t%s",
 			gps->getLatitude(), gps->getLongitude(),
 			gps->getGPSEpoch(), gps->getAltitude(),
 			data_msg);
-	/* snprintf(toUno, 100, */ 
+	/* snprintf(toUno, BUFFER_UNO_SIZE, */
 	/* 		"%f\t%f\t%d\t%f\t%s", */
 	/* 		49.2142, 122.2342, */
 	/* 		2019013901, 452.2, */
 	/* 		data_msg); */
 	radio_comms->println(toUno);
-	return true;
+	// return if the full string length of what we want to send (all) would
+	// have fit in the buffer size of BUFFER_UNO_SIZE chars
+	return all < BUFFER_UNO_SIZE;
 }
 
 scheduling_freq Radio::getSchedulingFreq() {
@@ -60,4 +89,10 @@ const char* Radio::dataToPersist() {
 
 const char* Radio::getModuleName() {
 	return "Radio";
+}
+
+void Radio::registerModules(Module **_modules, int _numModules) {
+	modules = _modules;
+	numModules = _numModules;
+	return;
 }

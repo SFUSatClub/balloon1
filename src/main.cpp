@@ -20,6 +20,7 @@
 #include "Photocells.h"
 #include "IMU.h"
 #include "Barometer.h"
+#include "Buzzer.h"
 
 void task1(void){
 	static int task1Trigger = 0;
@@ -37,6 +38,7 @@ void task1(void){
 #define gpsSerial Serial1
 #define radioSerial Serial2
 const int sdChipSelectPin = 4;
+const int buzzerEnablePin = 13;
 
 GPS gps(&gpsSerial);
 Radio radio(&radioSerial, &gps);
@@ -46,15 +48,18 @@ Photocells photocells(0, 5);
 IMU imu;
 // uses i2c init, internal addr
 Barometer barometer;
+Buzzer buzzer(buzzerEnablePin);
 
 // Steven: maybe should use container classes. array/vector?
-const int numModules = 5;
+const int numModules = 6;
 Module* modules[numModules] = {
-	&gps
-		, &radio
-		, &sd
-		, &photocells
-		, &barometer
+	  &gps
+	, &radio
+	, &sd
+	, &photocells
+	// , &imu
+	, &barometer
+	, &buzzer
 };
 
 Scheduler scheduler(1 + numModules);
@@ -74,6 +79,7 @@ void setup() {
 	stateHandler.begin();
 
 	sd.registerModules(modules, numModules);
+	radio.registerModules(modules, numModules);
 
 	scheduler.setupISR();
 	scheduler.addTask(new Task(500,500, &task1));

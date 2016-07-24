@@ -42,6 +42,10 @@ const char* Module::dataToPersist() {
     return NULL;
 }
 
+const char* Module::dataToSend() {
+    return NULL;
+}
+
 const char* Module::getModuleName() {
     return "Module";
 }

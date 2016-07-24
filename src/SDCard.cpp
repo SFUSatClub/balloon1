@@ -2,8 +2,7 @@
 
 SDCard::SDCard(int cs)
 	: dataFile()
-	, chipSelectPin(cs) 
-	, BUFFER_WRITE_SIZE(512)
+	, chipSelectPin(cs)
 {
 }
 
@@ -23,8 +22,12 @@ void SDCard::tick() {
 	}
 
 	for(int currModule = 0; currModule < numModules; currModule++) {
-		const char* moduleName = modules[currModule]->getModuleName();
 		const char* moduleData = modules[currModule]->dataToPersist();
+		if(moduleData == NULL) {
+			continue;
+		}
+		const char* moduleName = modules[currModule]->getModuleName();
+
 		// Steven: add 2 for comma and new line char
 		if(strlen(moduleName) + strlen(buffer) + strlen(moduleData) + 2 < BUFFER_WRITE_SIZE) {
 			strcat(buffer, moduleName);
@@ -77,12 +80,12 @@ void SDCard::doSDTimingBenchmark() {
 	for(int i = 0; i < numBytes - 1; i++) {
 		*(temp + i) = 'x';
 	}
-	*(temp + numBytes - 1) = '\0'; 
+	*(temp + numBytes - 1) = '\0';
 
-	unsigned long t1 = micros(); 
+	unsigned long t1 = micros();
 	dataFile.write(temp);
 	dataFile.flush();
-	unsigned long t2 = micros(); 
+	unsigned long t2 = micros();
 	cout << "writing and flushing " << numBytes << " bytes to sd card took: " << t2-t1 << " microseconds" <<  endl;
 
 	switchToFile("temp.txt", FILE_READ);

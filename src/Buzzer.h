@@ -7,6 +7,8 @@
 class Buzzer: public Module {
 	int charLength;
 	int buzzerPin;
+	char toWrite[16];
+	uint32_t enabledTime;
 public:
 	Buzzer(int buzzerPin);
 	//set up pin as an OUTPUT, return nothing
