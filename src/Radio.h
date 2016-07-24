@@ -14,6 +14,7 @@ public:
 
 	const char* getModuleName();
 	const char* dataToPersist();
+	scheduling_freq getSchedulingFreq();
 
 	bool forwardAPRSToUno(const char *data_msg);
 	int systems_check();

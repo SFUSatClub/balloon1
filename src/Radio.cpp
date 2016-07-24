@@ -41,6 +41,14 @@ bool Radio::forwardAPRSToUno(const char *data_msg) {
 	return true;
 }
 
+scheduling_freq Radio::getSchedulingFreq() {
+    scheduling_freq ret;
+    ret.valid = true;
+    ret.timeout = 1000;
+    ret.interval = 1000*10;
+    return ret;
+}
+
 int Radio::systems_check() {
 	int check_result = 1337;
 	return check_result;
