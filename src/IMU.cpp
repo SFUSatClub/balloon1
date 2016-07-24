@@ -13,14 +13,15 @@ void IMU::begin() {
 void IMU::tick(){
   char response[80];
   Serial.print("Tick IMU\n");
-  return; // imuImpl->read() locks up due, watchdog resets
+//  return; // imuImpl->read() locks up due, watchdog resets
+  // Richard: pushed a potential fix. Let's see if it works :D
   imuImpl->read();
   dataAccelerometer[0] = imuImpl->a.x;
   dataAccelerometer[1] = imuImpl->a.y;
   dataAccelerometer[2] = imuImpl->a.z;
-  dataMagnetometer[0] = imuImpl->a.x;
-  dataMagnetometer[1] = imuImpl->a.y;
-  dataMagnetometer[2] = imuImpl->a.z;
+  dataMagnetometer[0] = imuImpl->m.x; // Richard: these were set to a.x before, which are the accelerometer values
+  dataMagnetometer[1] = imuImpl->m.y;
+  dataMagnetometer[2] = imuImpl->m.z;
   snprintf(response, sizeof(response), "A: %6d %6d %6d    M: %6d %6d %6d",
     imuImpl->a.x, imuImpl->a.y, imuImpl->a.z,
     imuImpl->m.x, imuImpl->m.y, imuImpl->m.z);
