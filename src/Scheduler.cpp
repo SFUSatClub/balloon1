@@ -78,7 +78,9 @@ void Scheduler::registerModulesAsTasks(Module **modules, int numModules) {
     }
   }
   for(int currModule = 0; currModule < numModules; currModule++) {
-    Task *taskptr = new Task(Task::DEFAULT_TIMEOUT, Task::DEFAULT_INTERVAL, modules[currModule]);
+    Module *currModulePtr = modules[currModule];
+    scheduling_freq freq = currModulePtr->getSchedulingFreq();
+    Task *taskptr = new Task(freq.timeout, freq.interval, currModulePtr);
     allTasks[numCurrTasks++] = taskptr;
   }
   return;

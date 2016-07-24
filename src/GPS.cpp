@@ -92,18 +92,21 @@ float GPS::getSpeed() {
 float GPS::getAltitude() {
 	return gpsImpl->altitude;
 }
+uint32_t GPS::getGPSEpoch() {
+	return gpsImpl->time;
+}
 const char* GPS::getTime() {
 	time[0] = '\0';
 	/* 2  : maximum field witdh to be read */
 	/* hh : expecting a pointer to signed or unsigned char */
 	/* x  : means unsigned hex-input */
-	snprintf(time, 16, "%2hhx:%2hhx:%2hhx %2hhx:%2hhx:%2hhx",
+	snprintf(time, 16, "%02d:%02d:%02d %02d/%02d/20%02d",
 			gpsImpl->hour,
 			gpsImpl->minute,
 			gpsImpl->seconds,
-			gpsImpl->year,
+			gpsImpl->day,
 			gpsImpl->month,
-			gpsImpl->day);
+			gpsImpl->year);
 	return time;
 }
 
@@ -114,8 +117,16 @@ int GPS::enable() {
 void GPS::disable() {
 }
 
+scheduling_freq GPS::getSchedulingFreq() {
+    scheduling_freq ret;
+    ret.valid = true;
+    ret.timeout = 1000;
+    ret.interval = 0;
+    return ret;
+}
+
 const char* GPS::dataToPersist() {
-	return "returning some gps data";
+	return NULL;
 }
 
 const char* GPS::getModuleName() {

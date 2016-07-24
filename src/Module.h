@@ -15,6 +15,7 @@ enum class SystemState : int8_t {
 
 typedef struct {
 	bool valid;	
+	uint16_t timeout;
 	uint32_t interval;
 } scheduling_freq;
 
@@ -73,6 +74,13 @@ public:
 	 * Be sure to set its .valid to true
 	 */
 	virtual scheduling_freq onStateChanged(const SystemState &state);
+
+	/** 
+	 * @brief 
+	 * 
+	 * @return 
+	 */
+	virtual scheduling_freq getSchedulingFreq();
 
 	/** 
 	 * @brief Should the module creates data and wants to persist it, this function

@@ -30,6 +30,14 @@ scheduling_freq Module::onStateChanged(const SystemState &state) {
     return ret;
 }
 
+scheduling_freq Module::getSchedulingFreq() {
+    scheduling_freq ret;
+    ret.valid = true;
+    ret.timeout = 1000;
+    ret.interval = 1000;
+    return ret;
+}
+
 const char* Module::dataToPersist() {
     return NULL;
 }

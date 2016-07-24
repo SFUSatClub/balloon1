@@ -7,7 +7,7 @@
 
 // Set GPSECHO to 'false' to turn off echoing the GPS data to the Serial console
 // Set to 'true' if you want to debug and listen to the raw GPS sentences. 
-#define GPSECHO  true
+#define GPSECHO  false
 
 class GPS: public Module {
 	Adafruit_GPS *gpsImpl;
@@ -25,8 +25,10 @@ public:
 	float getLongitude();
 	float getAltitude();
 	float getSpeed();
+	uint32_t getGPSEpoch();
 	const char* getTime();
 
+	scheduling_freq getSchedulingFreq();
 	const char* dataToPersist();
 	const char* getModuleName();
 };

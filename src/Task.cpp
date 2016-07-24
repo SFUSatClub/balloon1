@@ -38,14 +38,17 @@ void Task::runTask(uint32_t systemTick){
     uint32_t ms = millis();
     uint32_t mins = (ms / 1000.0 ) / 60.0;
     uint32_t secs = (ms / 1000 ) % 60;
-    cout << mins << ":" << secs << ":" << ms % 1000 << "\t";
     // put watchdog things here
     if(pointedFunc == NULL) {
       module->tick();
-      cout << module->getModuleName() << "\t\t"
-        << module->dataToPersist() << endl;
+      if(module->dataToPersist() != NULL) {
+        cout << mins << ":" << secs << ":" << ms % 1000 << "\t";
+        cout << module->getModuleName() << "\t\t"
+          << module->dataToPersist() << endl;
+      }
     } else {
       (*pointedFunc)(); // run the function from the poitner
+      cout << mins << ":" << secs << ":" << ms % 1000 << "\t";
       cout << "pointedFunc" << endl;
     }
   }

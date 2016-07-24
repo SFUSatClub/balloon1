@@ -12,6 +12,7 @@ void Radio::begin() {
 }
 
 void Radio::tick() {
+	forwardAPRSToUno("stuff");
 }
 
 int Radio::enable() {
@@ -27,10 +28,15 @@ void Radio::disable() {
 bool Radio::forwardAPRSToUno(const char *data_msg) {
 	char toUno[100];
 	snprintf(toUno, 100, 
-			"%f\t%f\t%s\t%f\t%s",
+			"%f\t%f\t%d\t%f\t%s",
 			gps->getLatitude(), gps->getLongitude(),
-			gps->getTime(), gps->getAltitude(),
+			gps->getGPSEpoch(), gps->getAltitude(),
 			data_msg);
+	/* snprintf(toUno, 100, */ 
+	/* 		"%f\t%f\t%d\t%f\t%s", */
+	/* 		49.2142, 122.2342, */
+	/* 		2019013901, 452.2, */
+	/* 		data_msg); */
 	radio_comms->println(toUno);
 	return true;
 }
@@ -41,7 +47,7 @@ int Radio::systems_check() {
 }
 
 const char* Radio::dataToPersist() {
-	return "returning some radio data";
+	return gps->getTime();
 }
 
 const char* Radio::getModuleName() {
