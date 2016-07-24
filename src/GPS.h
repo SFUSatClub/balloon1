@@ -14,6 +14,7 @@ class GPS: public Module {
 	HardwareSerial *serial;
 	uint32_t timer;
 	char time[16];
+	char toWrite[100];
 public: 
 	GPS(HardwareSerial *);
 	void begin();

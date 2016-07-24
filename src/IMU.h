@@ -10,7 +10,7 @@ class IMU: public Module {
 	uint32_t timer;
 	int dataAccelerometer[3];
 	int dataMagnetometer[3];
-	char toWrite[200];
+	char toWrite[150];
 public:
 	IMU();
 	void begin();

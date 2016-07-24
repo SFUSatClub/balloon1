@@ -8,6 +8,7 @@ class Task{
   private:
     uint16_t timeOut;
     uint32_t runStart;
+    uint32_t printTimer;
     typedef void (*funcPtr)(void); // create a type to contain the function pointer
     funcPtr pointedFunc; // pointedFunc is the variable with the function pointer
     Module *module;

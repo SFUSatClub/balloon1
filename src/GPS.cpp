@@ -127,15 +127,24 @@ void GPS::disable() {
 }
 
 scheduling_freq GPS::getSchedulingFreq() {
-    scheduling_freq ret;
-    ret.valid = true;
-    ret.timeout = 1000;
-    ret.interval = 0;
-    return ret;
+	scheduling_freq ret;
+	ret.valid = true;
+	ret.timeout = 1000;
+	ret.interval = 0;
+	return ret;
 }
 
+// Data format: <lat>,<long>,<speed>,<altitude>,<fix>,<fix quality>,<satellites>
 const char* GPS::dataToPersist() {
-	return NULL;
+	toWrite[0] = '\0';
+	snprintf(toWrite, 100, 
+			"%.6f,%.6f,"
+			"%.6f,%.6f,%.6f,"
+			"%d,%d,%d",
+			gpsImpl->latitude, gpsImpl->longitude,
+			gpsImpl->speed, gpsImpl->altitude, gpsImpl->angle,
+			gpsImpl->fix, gpsImpl->fixquality, gpsImpl->satellites);
+	return toWrite;
 }
 
 const char* GPS::getModuleName() {

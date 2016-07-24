@@ -12,7 +12,7 @@ class Barometer: public Module {
 	SFE_BMP180 *baromImpl;
         double temperature, pressure;
 
-	char toWrite[200];             //max buffer size may have to change depending on data
+	char toWrite[100];             //max buffer size may have to change depending on data
 
 public:
 	Barometer();

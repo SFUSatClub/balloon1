@@ -1,12 +1,9 @@
-#ifndef BUZZER_H
-#define BUZZER_H
-
-
-#include <Arduino.h>
 #include "Buzzer.h"
 
-Buzzer::Buzzer() {
-charLength = 4;
+Buzzer::Buzzer(int _buzzerPin)
+  : buzzerPin(_buzzerPin) 
+{
+  charLength = 4;
 }
 
 void Buzzer::tick()
@@ -31,12 +28,11 @@ void Buzzer::disable()
 }
 
 const char* Buzzer::dataToPersist() {
-	char system_time[charLength];
+  char system_time[charLength];
   return ultoa(millis(),system_time,10);
 }
 
 const char* Buzzer::getModuleName() {
-	return "Buzzer";
+  return "Buzzer";
 }
 
-#endif

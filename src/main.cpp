@@ -48,13 +48,12 @@ IMU imu;
 Barometer barometer;
 
 // Steven: maybe should use container classes. array/vector?
-const int numModules = 6;
+const int numModules = 5;
 Module* modules[numModules] = {
     &gps
   , &radio
   , &sd
   , &photocells
-  , &imu
   , &barometer
 };
 
@@ -65,7 +64,6 @@ void setup() {
   Wire.begin();
   Serial.begin(115200);
   pinMode(12, OUTPUT);
-  pinMode(8, OUTPUT);
   Serial.println("SFUSat weather balloon1 says hi");
 
   for(Module *module : modules) {

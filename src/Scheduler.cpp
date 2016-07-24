@@ -33,7 +33,7 @@ void Scheduler::run() {
     WATCHDOG_RESET();
     stateHandler->tick();
     hasStateChanged = stateHandler->hasStateChanged();
-    cout << systemTick << ": is last tick of a cycle" << endl;
+    /* cout << systemTick << ": is last tick of a cycle" << endl; */
   }
 
   for(int i = 0; i < numCurrTasks; i++) {
