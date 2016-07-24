@@ -56,10 +56,7 @@ Radio radio(&radioSerial, 2);
 SDCard sd(sdChipSelectPin);
 Photocells photocells(0, 5);
 IMU imu;
-<<<<<<< HEAD
 Barometer barometer;
-=======
->>>>>>> lana
 
 // Steven: maybe should use container classes. array/vector?
 const int numModules = 5;
