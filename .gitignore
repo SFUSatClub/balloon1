@@ -7,3 +7,5 @@ tags
 .clang_complete
 .gcc-flags.json
 .gch
+*.d
+*.o

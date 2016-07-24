@@ -1,5 +1,14 @@
 #include "GPS.h"
 
+/* Time: 3:6:28.0 */
+/* Date: 24/7/2016 */
+/* Fix: 1 quality: 1 */
+/* Location: 4916.6938N, 12255.0732W */
+/* Speed (knots): 0.02 */
+/* Angle: 212.16 */
+/* Altitude: 352.30 */
+/* Satellites: 7 */
+
 GPS::GPS(HardwareSerial *ser) {
 	gpsImpl = new Adafruit_GPS(ser); // Constructor when using HardwareSerial
 
@@ -80,6 +89,36 @@ void GPS::tick() {
 	}
 }
 
+float GPS::getLatitude() {
+	return gpsImpl->latitude;
+}
+float GPS::getLongitude() {
+	return gpsImpl->longitude;
+}
+float GPS::getSpeed() {
+	return gpsImpl->speed;
+}
+float GPS::getAltitude() {
+	return gpsImpl->altitude;
+}
+uint32_t GPS::getGPSEpoch() {
+	return gpsImpl->time;
+}
+const char* GPS::getTime() {
+	time[0] = '\0';
+	/* 2  : maximum field witdh to be read */
+	/* hh : expecting a pointer to signed or unsigned char */
+	/* x  : means unsigned hex-input */
+	snprintf(time, 16, "%02d:%02d:%02d %02d/%02d/20%02d",
+			gpsImpl->hour,
+			gpsImpl->minute,
+			gpsImpl->seconds,
+			gpsImpl->day,
+			gpsImpl->month,
+			gpsImpl->year);
+	return time;
+}
+
 int GPS::enable() {
 	return 0;
 }
@@ -87,8 +126,25 @@ int GPS::enable() {
 void GPS::disable() {
 }
 
+scheduling_freq GPS::getSchedulingFreq() {
+	scheduling_freq ret;
+	ret.valid = true;
+	ret.timeout = 1000;
+	ret.interval = 0;
+	return ret;
+}
+
+// Data format: <lat>,<long>,<speed>,<altitude>,<fix>,<fix quality>,<satellites>
 const char* GPS::dataToPersist() {
-	return "returning some gps data";
+	toWrite[0] = '\0';
+	snprintf(toWrite, 100, 
+			"%.6f,%.6f,"
+			"%.6f,%.6f,%.6f,"
+			"%d,%d,%d",
+			gpsImpl->latitude, gpsImpl->longitude,
+			gpsImpl->speed, gpsImpl->altitude, gpsImpl->angle,
+			gpsImpl->fix, gpsImpl->fixquality, gpsImpl->satellites);
+	return toWrite;
 }
 
 const char* GPS::getModuleName() {

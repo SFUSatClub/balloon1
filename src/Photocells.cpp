@@ -34,7 +34,8 @@ void Photocells::disable(){
 const char* Photocells::dataToPersist(){
 	toWrite[0] = '\0';
 	for (int i=0;i<NUM_CELLS;i++){
-		sprintf(strchr(toWrite,'\0'), "%d,", photocellData[i]); //appends to output str
+		// if is last iteration, skip the comma
+		sprintf(strchr(toWrite,'\0'), i==NUM_CELLS-1?"%d":"%d,", photocellData[i]); //appends to output str
 	}
 	return toWrite;
 }

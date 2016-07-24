@@ -11,11 +11,10 @@ class SDCard: public Module {
 	int chipSelectPin;
 	int numModules;
 	Module **modules;
-	uint32_t timer;
 	SdFat SD;
 
-	const uint32_t BUFFER_WRITE_SIZE;
-	char buffer[512];
+	static const uint32_t BUFFER_WRITE_SIZE = 512;
+	char buffer[BUFFER_WRITE_SIZE];
 
 	bool switchToFile(const char* file, uint8_t flag);
 public:

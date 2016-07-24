@@ -24,9 +24,17 @@ void Module::disable() {
     return;
 }
 
-scheduling_freq Module::onStateChanged() {
+scheduling_freq Module::onStateChanged(const SystemState &state) {
     scheduling_freq ret;
     ret.valid = false;
+    return ret;
+}
+
+scheduling_freq Module::getSchedulingFreq() {
+    scheduling_freq ret;
+    ret.valid = true;
+    ret.timeout = 1000;
+    ret.interval = 1000;
     return ret;
 }
 
@@ -34,14 +42,11 @@ const char* Module::dataToPersist() {
     return NULL;
 }
 
+const char* Module::dataToSend() {
+    return NULL;
+}
+
 const char* Module::getModuleName() {
     return "Module";
 }
-
-// Serial streams
-ArduinoOutStream cout(Serial);
-
-// input buffer for line
-char cinBuf[40];
-ArduinoInStream cin(Serial, cinBuf, sizeof(cinBuf));
 
