@@ -32,12 +32,12 @@ void IMU::tick(){
   dataAccelerometer[0] = imuImpl->a.x;
   dataAccelerometer[1] = imuImpl->a.y;
   dataAccelerometer[2] = imuImpl->a.z;
-  dataMagnetometer[0] = imuImpl->a.x;
-  dataMagnetometer[1] = imuImpl->a.y;
-  dataMagnetometer[2] = imuImpl->a.z;
+  dataMagnetometer[0] = imuImpl->m.x;
+  dataMagnetometer[1] = imuImpl->m.y;
+  dataMagnetometer[2] = imuImpl->m.z;
   snprintf(response, 80, "A: %6d %6d %6d    M: %6d %6d %6d",
-    imuImpl->a.x, imuImpl->a.y, imuImpl->a.z,
-    imuImpl->m.x, imuImpl->m.y, imuImpl->m.z);
+      imuImpl->a.x, imuImpl->a.y, imuImpl->a.z,
+      imuImpl->m.x, imuImpl->m.y, imuImpl->m.z);
   cout << "Resp: " << response << endl;
 }
 
