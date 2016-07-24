@@ -1,12 +1,10 @@
 #include "IMU.h"
 
 IMU::IMU() {
-  imuImpl = new LSM303;
+  imuImpl = new LSM303();
 }
 
 void IMU::begin() {
-  Serial.begin(9600);
-  Wire.begin();
   Serial.print("Begin IMU\n");
   imuImpl->init();
   imuImpl->enableDefault();
@@ -15,6 +13,7 @@ void IMU::begin() {
 void IMU::tick(){
   char response[80];
   Serial.print("Tick IMU\n");
+  return; // imuImpl->read() locks up due, watchdog resets
   imuImpl->read();
   dataAccelerometer[0] = imuImpl->a.x;
   dataAccelerometer[1] = imuImpl->a.y;
@@ -26,7 +25,6 @@ void IMU::tick(){
     imuImpl->a.x, imuImpl->a.y, imuImpl->a.z,
     imuImpl->m.x, imuImpl->m.y, imuImpl->m.z);
   Serial.println(response);
-  delay(100);
 }
 
 int IMU::enable() {

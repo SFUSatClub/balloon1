@@ -1,12 +1,15 @@
 #include "Barometer.h"
 
 Barometer::Barometer() {
-	baromImpl=new SFE_BMP180; //constructor??
+	baromImpl = new SFE_BMP180();
 } // on Due, SDA to 20, SCL to 21
 
 void Barometer::begin() {
-	if ( baromImpl->begin() ) cout << "initialized properly." <<endl;
-	else cout << "barometer failed to initialize" <<endl;
+	if ( baromImpl->begin() ) {
+	    cout << "Barometer initialized properly." << endl;
+	} else { 
+	    cout << "Barometer failed to initialize" << endl;
+	}
 }
 
 void Barometer::tick() {

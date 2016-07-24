@@ -1,5 +1,14 @@
 #include "GPS.h"
 
+/* Time: 3:6:28.0 */
+/* Date: 24/7/2016 */
+/* Fix: 1 quality: 1 */
+/* Location: 4916.6938N, 12255.0732W */
+/* Speed (knots): 0.02 */
+/* Angle: 212.16 */
+/* Altitude: 352.30 */
+/* Satellites: 7 */
+
 GPS::GPS(HardwareSerial *ser) {
 	gpsImpl = new Adafruit_GPS(ser); // Constructor when using HardwareSerial
 

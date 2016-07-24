@@ -42,16 +42,19 @@ GPS gps(&gpsSerial);
 Radio radio(&radioSerial, &gps);
 SDCard sd(sdChipSelectPin);
 Photocells photocells(0, 5);
+// uses i2c init, internal addr
 IMU imu;
+// uses i2c init, internal addr
 Barometer barometer;
 
 // Steven: maybe should use container classes. array/vector?
-const int numModules = 5;
+const int numModules = 6;
 Module* modules[numModules] = {
     &gps
   , &radio
   , &sd
   , &photocells
+  , &imu
   , &barometer
 };
 
@@ -59,6 +62,7 @@ Scheduler scheduler(1 + numModules);
 StateHandler stateHandler(&barometer, &gps);
 
 void setup() {
+  Wire.begin();
   Serial.begin(115200);
   pinMode(12, OUTPUT);
   pinMode(8, OUTPUT);
