@@ -20,7 +20,7 @@ public:
 
 	//
 	Task(uint16_t timeout, uint32_t Interval, funcPtr setFn); // constructor
-	Task(uint16_t timeout, uint32_t Interval, Module *module); // constructor
+	Task(Module *module); // constructor
 	void setLastRun(uint32_t lastrun);
 	void runTask(uint32_t systemTick);
 	void setFunc(funcPtr f);

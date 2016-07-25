@@ -2,19 +2,20 @@
 
 Task::Task(uint16_t timeout, uint32_t Interval, funcPtr setFn){
 	timeOut = timeout;
+	interval = Interval;
 	lastRun = 0;
 	runStart = 0;
-	interval = Interval;
 	pointedFunc =  setFn; // pointedFunc(nullptr)
 	module = NULL;
 	printTimer = 0;
 }
 
-Task::Task(uint16_t timeout, uint32_t Interval, Module *_module) {
-	timeOut = timeout;
+Task::Task(Module *_module) {
+	scheduling_freq f = _module->getSchedulingFreq();
+	timeOut = f.timeout;
+	interval = f.interval;
 	lastRun = 0;
 	runStart = 0;
-	interval = Interval;
 	pointedFunc = NULL;
 	module = _module;
 	printTimer = 0;
@@ -36,16 +37,17 @@ void Task::setFunc( funcPtr f ) {
 void Task::runTask(uint32_t systemTick){
 	setRunStart(systemTick);
 	if (systemTick != lastRun){  // prevents double running of functions
-		uint32_t ms = millis();
-		uint32_t mins = (ms / 1000.0 ) / 60.0;
-		uint32_t secs = (ms / 1000 ) % 60;
-		char buffer[16];
-		snprintf(buffer, 16, "%02d:%02d:%03d\t", mins, secs, ms % 1000);
 		if(pointedFunc == NULL) {
 			module->tick();
 			bool okayToPrint = systemTick - printTimer > 1000;
 			if(okayToPrint) {
 				printTimer = systemTick;
+				uint32_t ms = millis();
+				uint32_t mins = (ms / 1000.0 ) / 60.0;
+				uint32_t secs = (ms / 1000 ) % 60;
+				char buffer[16];
+				snprintf(buffer, 16, "%02d:%02d:%03d\t", mins, secs, ms % 1000);
+				cout << buffer;
 				// -12 = left align to fit 12 chars in field
 				// right pad with spaces and tabulate for aligned columns
 				snprintf(buffer, 16, "%-12s\t", module->getModuleName());
@@ -56,6 +58,12 @@ void Task::runTask(uint32_t systemTick){
 			bool okayToPrint = systemTick - printTimer > 1000;
 			if(okayToPrint) {
 				printTimer = systemTick;
+				uint32_t ms = millis();
+				uint32_t mins = (ms / 1000.0 ) / 60.0;
+				uint32_t secs = (ms / 1000 ) % 60;
+				char buffer[16];
+				snprintf(buffer, 16, "%02d:%02d:%03d\t", mins, secs, ms % 1000);
+				cout << buffer;
 				snprintf(buffer, 16, "%-12s\n", "pointedFunc");
 				cout << buffer;
 			}

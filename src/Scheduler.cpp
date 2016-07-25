@@ -1,12 +1,12 @@
 #include <Arduino.h>
 #include "Scheduler.h"
 
-/* 
+/*
  * The watchdog on the Arduino Due (SAM3X8E) can only be enabled/disabled
  * once, and the Arduino framework disables it by default, so first comment out
  * line 51 in
  *
- * balloon1/.pioenvs/due/FrameworkArduino/watchdog.cpp 
+ * balloon1/.pioenvs/due/FrameworkArduino/watchdog.cpp
  */
 
 // doing it this way, there can only be one scheduler...
@@ -43,7 +43,7 @@ void Scheduler::run() {
 		} else {
 			bool shouldTaskRun = (systemTick - currTask->lastRun) >= currTask->interval;
 			// if tasks in this current system tick all finish early (within the
-			// current tick), Scheduler::run() will execute many times. Without this check, 
+			// current tick), Scheduler::run() will execute many times. Without this check,
 			// these tasks will also be run more than once
 			bool taskDidNotRunYet = currTask->lastRun < systemTick;
 
@@ -78,9 +78,7 @@ void Scheduler::registerModulesAsTasks(Module **modules, int numModules) {
 		}
 	}
 	for(int currModule = 0; currModule < numModules; currModule++) {
-		Module *currModulePtr = modules[currModule];
-		scheduling_freq freq = currModulePtr->getSchedulingFreq();
-		Task *taskptr = new Task(freq.timeout, freq.interval, currModulePtr);
+		Task *taskptr = new Task(modules[currModule]);
 		allTasks[numCurrTasks++] = taskptr;
 	}
 	return;
