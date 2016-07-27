@@ -1,11 +1,18 @@
 #include <Arduino.h>
 #include "Module.h"
+#include "GPS.h"
 
 class Radio: public Module {
-	int restart_time_out;
+	GPS *gps;
 	HardwareSerial *radio_comms;
+
+	int numModules;
+	Module **modules;
+	static const uint16_t BUFFER_UNO_SIZE = 100;
+	static const uint32_t BUFFER_WRITE_SIZE = 99;
+	char buffer[BUFFER_WRITE_SIZE];
 public:
-	Radio(HardwareSerial *serial, int restart_time);
+	Radio(HardwareSerial *serial, GPS *gps);
 	void begin();
 	void tick();
 	int enable();
@@ -13,8 +20,9 @@ public:
 
 	const char* getModuleName();
 	const char* dataToPersist();
+	scheduling_freq getSchedulingFreq();
 
-	bool transmit(String *packet);
-	String to_AX25(String *data);
+	void registerModules(Module *modules[], int numModules);
+	bool forwardAPRSToUno(const char *data_msg);
 	int systems_check();
 };
