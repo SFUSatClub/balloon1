@@ -55,9 +55,9 @@ void Radio::disable() {
 bool Radio::forwardAPRSToUno(const char *data_msg) {
 	char toUno[BUFFER_UNO_SIZE];
 	int all = snprintf(toUno, BUFFER_UNO_SIZE,
-			"%f\t%f\t%d\t%f\t%s",
+			"%f\t%f\t%lu\t%f\t%s",
 			gps->getLatitude(), gps->getLongitude(),
-			gps->getGPSEpoch(), gps->getAltitude(),
+			(long)gps->getGPSEpoch(), gps->getAltitude(),
 			data_msg);
 	/* snprintf(toUno, BUFFER_UNO_SIZE, */
 	/* 		"%f\t%f\t%d\t%f\t%s", */
