@@ -67,6 +67,7 @@ StateHandler stateHandler(&barometer, &gps);
 
 void setup() {
 	Wire.begin();
+	Wire.setClock(400000);
 	Serial.begin(115200);
 	pinMode(12, OUTPUT);
 	Serial.println("SFUSat weather balloon1 says hi");

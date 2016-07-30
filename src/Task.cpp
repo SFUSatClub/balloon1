@@ -43,10 +43,10 @@ void Task::runTask(uint32_t systemTick){
 			if(okayToPrint) {
 				printTimer = systemTick;
 				uint32_t ms = millis();
-				uint32_t mins = (ms / 1000.0 ) / 60.0;
-				uint32_t secs = (ms / 1000 ) % 60;
+				int mins = (ms / 1000.0 ) / 60.0;
+				int secs = (ms / 1000 ) % 60;
 				char buffer[16];
-				snprintf(buffer, 16, "%02d:%02d:%03d\t", mins, secs, ms % 1000);
+				snprintf(buffer, 16, "%02d:%02d:%03d\t", mins, secs, (int)ms % 1000);
 				cout << buffer;
 				// -12 = left align to fit 12 chars in field
 				// right pad with spaces and tabulate for aligned columns
@@ -59,10 +59,10 @@ void Task::runTask(uint32_t systemTick){
 			if(okayToPrint) {
 				printTimer = systemTick;
 				uint32_t ms = millis();
-				uint32_t mins = (ms / 1000.0 ) / 60.0;
-				uint32_t secs = (ms / 1000 ) % 60;
+				int mins = (ms / 1000.0 ) / 60.0;
+				int secs = (ms / 1000 ) % 60;
 				char buffer[16];
-				snprintf(buffer, 16, "%02d:%02d:%03d\t", mins, secs, ms % 1000);
+				snprintf(buffer, 16, "%02d:%02d:%03d\t", mins, secs, (int)ms % 1000);
 				cout << buffer;
 				snprintf(buffer, 16, "%-12s\n", "pointedFunc");
 				cout << buffer;

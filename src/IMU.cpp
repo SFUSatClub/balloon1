@@ -2,6 +2,7 @@
 
 IMU::IMU() {
 	imuImpl = new LSM303();
+	imuImpl2 = new MPU6050();
 }
 
 void IMU::begin() {
@@ -10,7 +11,7 @@ void IMU::begin() {
 	/* last_status = Wire.endTransmission() */
 	/* 0:success */
 	/* 1:data too long to fit in transmit buffer */
-	/* 2:received NACK on transmit of address 
+	/* 2:received NACK on transmit of address
 	 * 	<- if not connected, last_status will be 2 and imuImpl->read() in IMU::tick() will BLOCK */
 	/* 3:received NACK on transmit of data */
 	/* 4:other error */
@@ -19,6 +20,15 @@ void IMU::begin() {
 		state = State::BEGIN_SUCCESS;
 	} else {
 		cout << "IMU failed" << endl;
+		state = State::BEGIN_FAILED;
+	}
+
+	imuImpl2->initialize();
+	if(imuImpl2->testConnection()) {
+		cout << "IMU2 success" << endl;
+		state = State::BEGIN_SUCCESS;
+	} else {
+		cout << "IMU2 failed" << endl;
 		state = State::BEGIN_FAILED;
 	}
 }
