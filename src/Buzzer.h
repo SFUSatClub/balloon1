@@ -5,22 +5,23 @@
 #include "Module.h"
 
 class Buzzer: public Module {
-	int charLength;
-	int buzzerPin;
-	char toWrite[16];
-	uint32_t enabledTime;
+private:
+int charLength;
+const int buzzerPin=13;
+
 public:
-	Buzzer(int buzzerPin);
-	//set up pin as an OUTPUT, return nothing
-	void begin();
+Buzzer();
+  //set up pin as an OUTPUT, return nothing
+void begin();
 
-	void tick();
-	int enable();
-	void disable(); //?
+void tick();
+int enable();
+void disable(); //?
 
-	const char* dataToPersist();
-	const char* getModuleName();
+const char* dataToPersist();
+const char* getModuleName();
 
 };
+
 
 #endif // BUZZER_H
