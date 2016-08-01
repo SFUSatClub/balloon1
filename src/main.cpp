@@ -1,57 +1,64 @@
-// Richard Notes for SFUSat:
-// Make sure to add the 328 or the Due to your platformio environment (PlatformIO > Initialize new platformio target or update existing, choose Due programming port)
-// if you have multiple targets, you might need to select the one to build or upload to, type:
-// platformio run --target upload --environment due
-// or select PlatformIO > Run Other target
-// the programming port on the Due is the one closest to the DC power jack
-// Info about Due timer counter: http://2manyprojects.net/timer-interrupts
-//                              http://forum.arduino.cc/index.php?topic=130423.0
-// The functions used to configure the Due timers are from the Atmal ASF API: http://asf.atmel.com/docs/latest/api.html
 
-#include <Arduino.h> //Richard: required for platformIO
-#include "Task.h"
-#include "Scheduler.h" // deals with all the scheduling stuff
+// Test code for Adafruit GPS modules using MTK3329/MTK3339 driver
+//
+// This code shows how to listen to the GPS module in an interrupt
+// which allows the program to have more 'freedom' - just parse
+// when a new NMEA sentence is available! Then access data when
+// desired.
+//
+// Tested and works great with the Adafruit Ultimate GPS module
+// using MTK33x9 chipset
+//    ------> http://www.adafruit.com/products/746
+// Pick one up today at the Adafruit electronics shop 
+// and help support open source hardware & software! -ada
 
-Scheduler scheduler(2);
+#include <Arduino.h>
+#include "Radio.h"
+#include "GPS.h"
+#include "SDCard.h"
 
-void task1(void){
-  static int task1Trigger = 0;
-  if(task1Trigger == 1){
-    digitalWrite(12, 1);
-    task1Trigger = 0;
-  }
-  else{
-    digitalWrite(12, 0);
-    task1Trigger = 1;
-  }
-}
+using namespace std;
 
-void task2(){
-  static int task2Trigger = 0;
-  Serial.println("Hello");
+// This sketch is ONLY for the Arduino Due!
+// You should make the following connections with the Due and GPS module:
+// GPS power pin to Arduino Due 3.3V output.
+// GPS ground pin to Arduino Due ground.
+// For hardware serial 1 (recommended):
+//   GPS TX to Arduino Due Serial1 RX pin 19
+//   GPS RX to Arduino Due Serial1 TX pin 18
+#define gpsSerial Serial1
+#define radioSerial Serial2
+const int sdChipSelectPin = 4;
 
-  if(task2Trigger == 1){
-    digitalWrite(8, 1);
-    task2Trigger = 0;
-  }
-  else{
-    digitalWrite(8, 0);
-    task2Trigger = 1;
-  }
-}
+GPS gps(&gpsSerial);
+Radio radio(&radioSerial, 2);
+SDCard sd(sdChipSelectPin);
 
-void setup(){
+// Steven: maybe should use container classes. array/vector?
+const int numModules = 3;
+Module* modules[numModules] = {&gps, &radio, &sd};
+
+void setup() {
+  // connect at 115200 so we can read the GPS fast enough and echo without dropping chars
+  // also spit it out
   Serial.begin(115200);
-  pinMode(12, OUTPUT);
-  pinMode(8, OUTPUT);
-  scheduler.addTask(new Task(500,500, &task1));
-  scheduler.addTask(new Task(500,100, &task2));
-  scheduler.setupISR();
+  Serial.println("Adafruit GPS library basic test!");
+
+  // Steven: example base class usage
+  for(Module *module : modules) {
+    module->enable();
+  }
+
+  gps.begin();
+  radio.begin();
+  sd.begin();
+
+  sd.registerModules(modules, numModules);
+  // sd.doSDTimingBenchmark();
 }
 
-void loop(){
-  scheduler.run();
+void loop() {
+  gps.tick();
+  radio.tick();
+  sd.tick();
 }
-
-// Richard todo:
-// add the watchdog to the Time -> runTask function
