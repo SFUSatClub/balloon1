@@ -21,6 +21,7 @@
 #include "IMU.h"
 #include "Barometer.h"
 #include "Buzzer.h"
+#include "Barometer5540.h"	// Richard: the nice barometer
 
 #define DEBUG
 
@@ -103,6 +104,3 @@ void loop() {
 	}
 #endif  // DEBUG
 }
-
-// Richard todo:
-// add the watchdog to the Time -> runTask function
