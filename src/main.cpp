@@ -22,6 +22,8 @@
 #include "Barometer.h"
 #include "Buzzer.h"
 
+#define DEBUG
+
 void task1(void){
 	static int task1Trigger = 0;
 	if(task1Trigger == 1){
@@ -90,6 +92,16 @@ void setup() {
 
 void loop() {
 	scheduler.run();
+#ifdef DEBUG
+	while(Serial.available()) {
+		/* char buffer[10]; */
+		/* Serial.readBytesUntil('\n', buffer, 10); */
+		cin.readline();
+		char command;
+		cin >> command;
+		cout << "said: " << command << endl;
+	}
+#endif  // DEBUG
 }
 
 // Richard todo:

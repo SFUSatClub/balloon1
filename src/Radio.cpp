@@ -9,6 +9,33 @@ Radio::Radio(HardwareSerial *ser, GPS *_gps)
 
 void Radio::begin() {
 	radio_comms->begin(19200);
+	// on startup, uno expects "s\n" to be sent
+	cout << "Waiting for radio..." << endl;
+	long startTime = millis();
+	bool success = false;
+	while(millis() - startTime < 10000 && !success) {
+		radio_comms->print("s\r");
+		if(radio_comms->available()) {
+			/* char buffer[8]; */
+			/* int b = radio_comms->readBytes(buffer, 3); */
+			/* cout << "radio got: " << buffer << endl; */
+			/* buffer[b] = '\0'; */
+			/* if(strcmp(buffer, "ack") == 0) { */
+			/* 	success = true; */
+			/* } */
+			char buffer[8];
+			int b = radio_comms->readBytesUntil('\r', buffer, 8);
+			buffer[b] = '\0';
+			if(strcmp(buffer, "ack") == 0) {
+				success = true;
+			}
+		}
+	}
+	if(success) {
+		cout << "Radio connected" << endl;
+	} else {
+		cout << "Radio failed to connect" << endl;
+	}
 }
 
 void Radio::tick() {
@@ -28,8 +55,10 @@ void Radio::tick() {
 			// Steven: c-style strings, clear the buffer with null char
 			// WARNING: will send multiple aprs packets if we are sending a lot of data
 			// maybe should just throw away all data if full again in current tick
-			forwardAPRSToUno(buffer);
-			alreadyForwarded = true;
+			if(!alreadyForwarded) {
+				forwardAPRSToUno(buffer);
+				alreadyForwarded = true;
+			}
 			buffer[0] = 0;
 			strcat(buffer, moduleRadioData);
 			strcat(buffer, "\n");
@@ -51,20 +80,23 @@ void Radio::disable() {
 	//PD0
 }
 
-// <latitude>\t<longitude>\t<time>\t<altitude>\t<misc data>\n
+// a<latitude>\t<longitude>\t<time>\t<altitude>\t<misc data>\r
 bool Radio::forwardAPRSToUno(const char *data_msg) {
 	char toUno[BUFFER_UNO_SIZE];
+	char millisStr[10];
+	snprintf(millisStr, 10, "%d", millis());
 	int all = snprintf(toUno, BUFFER_UNO_SIZE,
-			"%f\t%f\t%lu\t%f\t%s",
+			"a%f\t%f\t%d\t%f\t%s\r",
 			gps->getLatitude(), gps->getLongitude(),
-			(long)gps->getGPSEpoch(), gps->getAltitude(),
-			data_msg);
+			gps->getGPSEpoch(), gps->getAltitude(),
+			millisStr);
 	/* snprintf(toUno, BUFFER_UNO_SIZE, */
 	/* 		"%f\t%f\t%d\t%f\t%s", */
 	/* 		49.2142, 122.2342, */
 	/* 		2019013901, 452.2, */
 	/* 		data_msg); */
-	radio_comms->println(toUno);
+	cout << "Sending to radio...." << endl << toUno << endl;
+	radio_comms->print(toUno);
 	// return if the full string length of what we want to send (all) would
 	// have fit in the buffer size of BUFFER_UNO_SIZE chars
 	return all < BUFFER_UNO_SIZE;
