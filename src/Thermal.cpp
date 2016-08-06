@@ -1,9 +1,9 @@
 #include <Thermal.h>
 #include <Arduino.h>
-#include <Wire.h>
 
-#define VCC 3.3
+#define VCC 3.3 
 #define VA 3.3 // Max voltage for analog pins. 3.3 for Due, 5 for Uno
+#define R2 9.93 // R2 in voltage divider used to caculate R1 (Thermistor R), in kOhms
 
 Thermal::Thermal(int pin) : THERMAL_PIN(pin) {
 
@@ -16,7 +16,7 @@ void Thermal::begin() {
 void Thermal::tick() {
 	int sensorValue = analogRead(THERMAL_PIN);
 	float vout = sensorValue * VA / 1024.0;
-	float thermR = 9.93 * (VCC / vout - 1);
+	float thermR = R2 * (VCC / vout - 1);
   currentR = thermR;
 }
 
