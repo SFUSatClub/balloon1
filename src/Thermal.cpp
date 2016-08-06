@@ -18,12 +18,6 @@ void Thermal::tick() {
 	float vout = sensorValue * VA / 1024.0;
 	float thermR = 9.93 * (VCC / vout - 1);
   currentR = thermR;
-  Serial.print(sensorValue);
-  Serial.print("\t");
-  Serial.print(vout);
-  Serial.print("\t");
-  Serial.print(thermR);
-  Serial.println();
 }
 
 int Thermal::enable() {
@@ -38,7 +32,5 @@ const char* Thermal::getModuleName() {
 const char* Thermal::dataToPersist() {
 	toWrite[0] = '\0';
   snprintf(toWrite, 100, "%.6f", currentR);
-  Serial.print("To card: ");
-  Serial.println(currentR);
 	return toWrite;
 }
