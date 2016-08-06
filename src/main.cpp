@@ -22,6 +22,7 @@
 #include "Barometer.h"
 #include "Buzzer.h"
 #include "Barometer5540.h"	// Richard: the nice barometer
+#include "Thermal.h"
 
 #define DEBUG
 
@@ -52,9 +53,10 @@ IMU imu;
 // uses i2c init, internal addr
 Barometer barometer;
 Buzzer buzzer(buzzerEnablePin);
+Thermal tempSensor(6);
 
 // Steven: maybe should use container classes. array/vector?
-const int numModules = 6;
+const int numModules = 7;
 Module* modules[numModules] = {
 	  &gps
 	, &radio
@@ -63,6 +65,7 @@ Module* modules[numModules] = {
 	// , &imu
 	, &barometer
 	, &buzzer
+	, &tempSensor
 };
 
 Scheduler scheduler(1 + numModules);
