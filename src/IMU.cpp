@@ -51,14 +51,6 @@ void IMU::tick(){
 	cout << "Resp: " << response << endl;
 }
 
-int IMU::enable() {
-	return 0;
-}
-
-void IMU::disable() {
-
-}
-
 const char* IMU::getModuleName() {
 	return "IMU";
 }

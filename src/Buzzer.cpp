@@ -52,4 +52,3 @@ const char* Buzzer::dataToPersist() {
 const char* Buzzer::getModuleName() {
 	return "Buzzer";
 }
-

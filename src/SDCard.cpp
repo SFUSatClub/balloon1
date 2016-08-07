@@ -50,10 +50,6 @@ void SDCard::tick() {
 	}
 }
 
-int SDCard::enable() {
-	return 0;
-}
-
 void SDCard::disable() {
 	dataFile.close();
 }
@@ -201,4 +197,3 @@ void SDCard::runDiagnostics() {
 	cout << F("\nSuccess!  Type any character to restart.\n");
 	while (Serial.read() < 0) {}
 }
-

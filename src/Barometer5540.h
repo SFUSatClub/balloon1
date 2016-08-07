@@ -19,8 +19,6 @@ class Barometer5540: public Module {
 public:
 	void begin();
 	void tick();
-	// int enable();
-  // int disable();
 
 	float getTemperature();
 	float getPressure();

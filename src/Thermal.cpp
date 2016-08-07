@@ -36,10 +36,6 @@ void Thermal::tick() {
 	currentTempC = tempC;
 }
 
-int Thermal::enable() {
-  return 0;
-}
-
 const char* Thermal::getModuleName() {
   return "Therml Sensor";
 }

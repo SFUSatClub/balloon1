@@ -8,7 +8,7 @@ void Barometer::begin() {
 	if ( baromImpl->begin() ) {
 		cout << "Barometer initialized properly." << endl;
 		state =  State::BEGIN_SUCCESS;
-	} else { 
+	} else {
 		cout << "Barometer failed to initialize" << endl;
 		state =  State::BEGIN_FAILED;
 	}
@@ -85,14 +85,6 @@ Serial.print(a*3.28084,0);
 Serial.println(" feet");
 
 */
-
-
-int Barometer::enable() {
-	return 0;
-}
-
-void Barometer::disable() {
-}
 
 // Data format: <temperature in deg c>,<abs pressure in Hg>
 const char* Barometer::dataToPersist() {

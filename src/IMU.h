@@ -17,8 +17,6 @@ public:
 	IMU();
 	void begin();
 	void tick();
-	int enable();
-	void disable();
 
 	const char* dataToPersist();
 	const char* getModuleName();

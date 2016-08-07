@@ -15,8 +15,6 @@ public:
 	Radio(HardwareSerial *serial, GPS *gps);
 	void begin();
 	void tick();
-	int enable();
-	void disable();
 
 	const char* getModuleName();
 	const char* dataToPersist();

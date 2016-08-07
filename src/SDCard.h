@@ -21,7 +21,6 @@ public:
 	SDCard(const int cs);
 	void begin();
 	void tick();
-	int enable();
 	void disable();
 
 	const char* getModuleName();
@@ -34,4 +33,3 @@ public:
 
 
 #endif /* SDCARD_H */
-

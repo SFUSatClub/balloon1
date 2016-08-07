@@ -71,15 +71,6 @@ void Radio::tick() {
 	}
 }
 
-int Radio::enable() {
-	//PD1
-	return 0;
-}
-
-void Radio::disable() {
-	//PD0
-}
-
 // a<latitude>\t<longitude>\t<time>\t<altitude>\t<misc data>\r
 bool Radio::forwardAPRSToUno(const char *data_msg) {
 	char toUno[BUFFER_UNO_SIZE];
