@@ -1,8 +1,8 @@
-#include <Arduino.h>    
+#include <Arduino.h>
 #include "Module.h"
 #include "Photocells.h"
 
-//implementation that treats all photocells as a single unit, provided that they are all connected to consecutive ports 
+//implementation that treats all photocells as a single unit, provided that they are all connected to consecutive ports
 //first sensor attached to A1, second attached to A2, etc.
 Photocells::Photocells(uint8_t _firstPin, uint8_t _numCells)
 	: FIRST_PIN(_firstPin)
@@ -21,14 +21,6 @@ void Photocells::tick(){
 	}
 }
 
-int Photocells::enable(){
-	return 0;
-}
-
-void Photocells::disable(){
-
-}
-
 // SD formatter adds moduleName and \n
 // outputs in format <value1>, ... ,<value4>,<value5>
 const char* Photocells::dataToPersist(){
@@ -43,4 +35,3 @@ const char* Photocells::dataToPersist(){
 const char* Photocells::getModuleName() {
 	return "Photocells";
 }
-

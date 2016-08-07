@@ -9,5 +9,7 @@ void WATCHDOG_RESET();
 extern ArduinoOutStream cout;
 extern ArduinoInStream cin;
 
+/* int getFreeRam(); */
+
 #endif // GLOBALS_H
 

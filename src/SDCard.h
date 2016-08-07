@@ -6,6 +6,8 @@
 #include <SdFat.h>
 #include "Module.h"
 
+//#define SD_DEBUG
+
 class SDCard: public Module {
 	File dataFile;
 	int chipSelectPin;
@@ -13,7 +15,7 @@ class SDCard: public Module {
 	Module **modules;
 	SdFat SD;
 
-	static const uint32_t BUFFER_WRITE_SIZE = 512;
+	static const uint32_t BUFFER_WRITE_SIZE = 2048;
 	char buffer[BUFFER_WRITE_SIZE];
 
 	bool switchToFile(const char* file, uint8_t flag);
@@ -21,17 +23,17 @@ public:
 	SDCard(const int cs);
 	void begin();
 	void tick();
-	int enable();
 	void disable();
 
 	const char* getModuleName();
 	const char* dataToPersist();
 
+	void registerModules(Module *modules[], int numModules);
+#ifdef SD_DEBUG
 	void doSDTimingBenchmark();
 	void runDiagnostics();
-	void registerModules(Module *modules[], int numModules);
+#endif // SD_DEBUG
 };
 
 
 #endif /* SDCARD_H */
-

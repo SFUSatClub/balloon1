@@ -21,6 +21,10 @@
 #include "IMU.h"
 #include "Barometer.h"
 #include "Buzzer.h"
+#include "Barometer5540.h"	// Richard: the nice barometer
+#include "Thermal.h"
+
+#define DEBUG
 
 void task1(void){
 	static int task1Trigger = 0;
@@ -49,17 +53,19 @@ IMU imu;
 // uses i2c init, internal addr
 Barometer barometer;
 Buzzer buzzer(buzzerEnablePin);
+Thermal tempSensor(6);
 
 // Steven: maybe should use container classes. array/vector?
-const int numModules = 6;
+const int numModules = 8;
 Module* modules[numModules] = {
 	  &gps
 	, &radio
 	, &sd
 	, &photocells
-	// , &imu
+	, &imu
 	, &barometer
 	, &buzzer
+	, &tempSensor
 };
 
 Scheduler scheduler(1 + numModules);
@@ -67,6 +73,7 @@ StateHandler stateHandler(&barometer, &gps);
 
 void setup() {
 	Wire.begin();
+	Wire.setClock(400000);
 	Serial.begin(115200);
 	pinMode(12, OUTPUT);
 	Serial.println("SFUSat weather balloon1 says hi");
@@ -89,7 +96,14 @@ void setup() {
 
 void loop() {
 	scheduler.run();
+#ifdef DEBUG
+	while(Serial.available()) {
+		/* char buffer[10]; */
+		/* Serial.readBytesUntil('\n', buffer, 10); */
+		cin.readline();
+		char command;
+		cin >> command;
+		cout << "said: " << command << endl;
+	}
+#endif  // DEBUG
 }
-
-// Richard todo:
-// add the watchdog to the Time -> runTask function

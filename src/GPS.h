@@ -6,7 +6,7 @@
 #include "Module.h"
 
 // Set GPSECHO to 'false' to turn off echoing the GPS data to the Serial console
-// Set to 'true' if you want to debug and listen to the raw GPS sentences. 
+// Set to 'true' if you want to debug and listen to the raw GPS sentences.
 #define GPSECHO  false
 
 class GPS: public Module {
@@ -15,12 +15,10 @@ class GPS: public Module {
 	uint32_t timer;
 	char time[16];
 	char toWrite[100];
-public: 
+public:
 	GPS(HardwareSerial *);
 	void begin();
 	void tick();
-	int enable();
-	void disable();
 
 	float getLatitude();
 	float getLongitude();
