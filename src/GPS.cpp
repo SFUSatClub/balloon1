@@ -49,7 +49,7 @@ void GPS::tick() {
 	// if a sentence is received, we can check the checksum, parse it...
 	if (gpsImpl->newNMEAreceived()) {
 		// a tricky thing here is if we print the NMEA sentence, or data
-		// we end up not listening and catching other sentences! 
+		// we end up not listening and catching other sentences!
 		// so be very wary if using OUTPUT_ALLDATA and trytng to print out data
 		//Serial.println(gpsImpl->lastNMEA());   // this also sets the newNMEAreceived() flag to false
 
@@ -61,7 +61,7 @@ void GPS::tick() {
 	if (timer > millis())  timer = millis();
 
 	// approximately every 2 seconds or so, print out the current stats
-	if (millis() - timer > 2000) { 
+	if (millis() - timer > 2000) {
 		timer = millis(); // reset the timer
 
 		Serial.print("\nTime: ");
@@ -74,11 +74,11 @@ void GPS::tick() {
 		Serial.print(gpsImpl->month, DEC); Serial.print("/20");
 		Serial.println(gpsImpl->year, DEC);
 		Serial.print("Fix: "); Serial.print((int)gpsImpl->fix);
-		Serial.print(" quality: "); Serial.println((int)gpsImpl->fixquality); 
+		Serial.print(" quality: "); Serial.println((int)gpsImpl->fixquality);
 		if (gpsImpl->fix) {
 			Serial.print("Location: ");
 			Serial.print(gpsImpl->latitude, 4); Serial.print(gpsImpl->lat);
-			Serial.print(", "); 
+			Serial.print(", ");
 			Serial.print(gpsImpl->longitude, 4); Serial.println(gpsImpl->lon);
 
 			Serial.print("Speed (knots): "); Serial.println(gpsImpl->speed);
@@ -119,13 +119,6 @@ const char* GPS::getTime() {
 	return time;
 }
 
-int GPS::enable() {
-	return 0;
-}
-
-void GPS::disable() {
-}
-
 scheduling_freq GPS::getSchedulingFreq() {
 	scheduling_freq ret;
 	ret.valid = true;
@@ -137,7 +130,7 @@ scheduling_freq GPS::getSchedulingFreq() {
 // Data format: <lat>,<long>,<speed>,<altitude>,<fix>,<fix quality>,<satellites>
 const char* GPS::dataToPersist() {
 	toWrite[0] = '\0';
-	snprintf(toWrite, 100, 
+	snprintf(toWrite, 100,
 			"%.6f,%.6f,"
 			"%.6f,%.6f,%.6f,"
 			"%d,%d,%d",
@@ -150,5 +143,3 @@ const char* GPS::dataToPersist() {
 const char* GPS::getModuleName() {
 	return "GPS";
 }
-
-

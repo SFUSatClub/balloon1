@@ -6,6 +6,8 @@
 #include <SdFat.h>
 #include "Module.h"
 
+//#define SD_DEBUG
+
 class SDCard: public Module {
 	File dataFile;
 	int chipSelectPin;
@@ -21,17 +23,17 @@ public:
 	SDCard(const int cs);
 	void begin();
 	void tick();
-	int enable();
 	void disable();
 
 	const char* getModuleName();
 	const char* dataToPersist();
 
+	void registerModules(Module *modules[], int numModules);
+#ifdef SD_DEBUG
 	void doSDTimingBenchmark();
 	void runDiagnostics();
-	void registerModules(Module *modules[], int numModules);
+#endif // SD_DEBUG
 };
 
 
 #endif /* SDCARD_H */
-

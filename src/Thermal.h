@@ -13,7 +13,6 @@ public:
   Thermal(int pin);
   void begin();
   void tick();
-  int enable();
 
   const char* dataToPersist();
   const char* getModuleName();

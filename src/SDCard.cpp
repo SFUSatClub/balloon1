@@ -52,10 +52,6 @@ void SDCard::tick() {
 	}
 }
 
-int SDCard::enable() {
-	return 0;
-}
-
 void SDCard::disable() {
 	dataFile.close();
 }
@@ -74,6 +70,14 @@ void SDCard::registerModules(Module **_modules, int _numModules) {
 	return;
 }
 
+bool SDCard::switchToFile(const char* file, uint8_t flag) {
+	dataFile.close();
+	dataFile = SD.open(file, flag);
+	// Steven: returns if the file is opened successfully or not
+	return dataFile;
+}
+
+#ifdef SD_DEBUG
 void SDCard::doSDTimingBenchmark() {
 	switchToFile("temp.txt", FILE_WRITE);
 
@@ -100,13 +104,6 @@ void SDCard::doSDTimingBenchmark() {
 	cout << "reading " << dataFile.size() << " bytes from the sd card took: " << t2-t1 << " microseconds" <<  endl;
 
 	delete[] temp;
-}
-
-bool SDCard::switchToFile(const char* file, uint8_t flag) {
-	dataFile.close();
-	dataFile = SD.open(file, flag);
-	// Steven: returns if the file is opened successfully or not
-	return dataFile;
 }
 
 // Steven: diagnostics code from SdFat "QuickStart" example
@@ -203,4 +200,4 @@ void SDCard::runDiagnostics() {
 	cout << F("\nSuccess!  Type any character to restart.\n");
 	while (Serial.read() < 0) {}
 }
-
+#endif // SD_DEBUG
