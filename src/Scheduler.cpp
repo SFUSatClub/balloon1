@@ -33,6 +33,7 @@ void Scheduler::run() {
 		WATCHDOG_RESET();
 		stateHandler->tick();
 		hasStateChanged = stateHandler->hasStateChanged();
+		/* cout << "RAM: " << getFreeRam() << endl; */
 		/* cout << systemTick << ": is last tick of a cycle" << endl; */
 	}
 
