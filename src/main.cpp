@@ -48,7 +48,7 @@ Radio radio(&radioSerial, &gps);
 SDCard sd(sdChipSelectPin);
 Photocells photocells(0, 5);
 // uses i2c init, internal addr
-IMU imu;
+IMU imu(19);
 // uses i2c init, internal addr
 Barometer barometer;
 Buzzer buzzer(buzzerEnablePin);
