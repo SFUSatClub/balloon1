@@ -37,8 +37,10 @@ void SDCard::tick() {
 			/* cout << "SD: appending, current buffer: " << buffer << endl; */
 		} else {
 			/* cout << "SD: hit buffer size, writing to sd: " << buffer << endl; */
+			int t1 = millis();
 			switchToFile("datalog.txt", FILE_WRITE);
 			dataFile.write(buffer);
+			cout << "SD: writing " << BUFFER_WRITE_SIZE << "B took " << millis() - t1 << "ms" << endl;
 			// Steven: c-style strings, clear the buffer with null char
 			buffer[0] = 0;
 			strcat(buffer, moduleName);

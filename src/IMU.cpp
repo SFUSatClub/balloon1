@@ -1,31 +1,12 @@
 #include "IMU.h"
 
 
-IMU::IMU(int _extIntPin)
-	: extIntPin(_extIntPin)
-{
-	imuImpl = new LSM303();
+IMU::IMU() {
 	imuImpl2 = new MPU6050();
+	toWrite[0] = 0;
 }
 
 void IMU::begin() {
-	imuImpl->init();
-	imuImpl->enableDefault();
-	/* last_status = Wire.endTransmission() */
-	/* 0:success */
-	/* 1:data too long to fit in transmit buffer */
-	/* 2:received NACK on transmit of address
-	 * 	<- if not connected, last_status will be 2 and imuImpl->read() in IMU::tick() will BLOCK */
-	/* 3:received NACK on transmit of data */
-	/* 4:other error */
-	if(imuImpl->last_status == 0) {
-		cout << "IMU success" << endl;
-		state = State::BEGIN_SUCCESS;
-	} else {
-		cout << "IMU failed" << endl;
-		state = State::BEGIN_FAILED;
-	}
-
 	imuImpl2->initialize();
 	if(imuImpl2->testConnection()) {
 		cout << "IMU2 success" << endl;
@@ -76,7 +57,7 @@ void IMU::tick(){
 	if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
 		// reset so we can continue cleanly
 		imuImpl2->resetFIFO();
-		Serial.println(F("FIFO overflow!"));
+		//Serial.println(F("FIFO overflow!"));
 
 		// otherwise, check for DMP data ready interrupt (this should happen frequently)
 	} else if (mpuIntStatus & 0x02) {
@@ -97,10 +78,25 @@ void IMU::tick(){
 		imuImpl2->dmpGetYawPitchRoll(ypr, &q, &gravity);
 		imuImpl2->dmpGetLinearAccel(&aaReal, &aa, &gravity);
 		imuImpl2->dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
-		// to degrees
-		for(size_t i = 0; i < 3; i++) {
-			euler[i] *= 180/M_PI;
-			ypr[i] *= 180/M_PI;
+
+		if(currSample <= SAMPLE_RATE_HZ && toWriteIndex < BUFFER_SIZE) {
+			for(size_t i = 0; i < 3; i++) {
+				euler[i] *= 180/M_PI;
+				ypr[i] *= 180/M_PI;
+			}
+			if(currSample == 0) {
+				toWrite[0] = '\0';
+			}
+
+			toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex
+					, "%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%d,%d,%d\n"
+					, euler[0], euler[1], euler[2]
+					, ypr[0], ypr[1], ypr[2]
+					, aaReal.x, aaReal.y, aaReal.z);
+
+			currSample++;
+		} else {
+			cout << F("IMU BUFFER OVERFLOW!!!") << endl;
 		}
 
 #ifdef OUTPUT_READABLE_QUATERNION
@@ -191,8 +187,8 @@ scheduling_freq IMU::getSchedulingFreq() {
 	scheduling_freq ret;
 	ret.valid = true;
 	ret.timeout = 1000;
-	// 15hz = 1000/15 = 66ms
-	ret.interval = 66;
+	// ret.interval = 20hz = 1000/20 = 50ms
+	ret.interval = 1000/SAMPLE_RATE_HZ;
 	return ret;
 }
 
@@ -202,34 +198,8 @@ const char* IMU::getModuleName() {
 
 // Data in format <eulerX>,<eulerY>,<eulerZ>,<yaw>,<pitch>,<roll>,<accX>,<accY>,<accZ>
 const char* IMU::dataToPersist() {
-	toWrite[0] = '\0';
-	int written = 0;
-	for (int i=0;i<3;i++){
-		written += snprintf(toWrite + written, 100 - written, "%f,", euler[i]);
-	}
-	for (int i=0;i<3;i++){
-		written += snprintf(toWrite + written, 100 - written, "%f,", ypr[i]);
-	}
-	written += snprintf(toWrite + written, 100 - written, "%d,%d,%d", aaReal.x, aaReal.y, aaReal.z);
+	currSample = 0;
+	toWriteIndex = 0;
 	return toWrite;
-}
-
-int IMU::getAccX() {
-	return dataAccelerometer[0];
-}
-int IMU::getAccY() {
-	return dataAccelerometer[1];
-}
-int IMU::getAccZ() {
-	return dataAccelerometer[2];
-}
-int IMU::getMagX() {
-	return dataMagnetometer[0];
-}
-int IMU::getMagY() {
-	return dataMagnetometer[1];
-}
-int IMU::getMagZ() {
-	return dataMagnetometer[2];
 }
 

@@ -49,20 +49,20 @@ Radio radio(&radioSerial, &gps);
 SDCard sd(sdChipSelectPin);
 Photocells photocells(0, 5);
 // uses i2c init, internal addr
-IMU imu(19);
+IMU imu;
 // uses i2c init, internal addr
 Barometer barometer;
 Buzzer buzzer(buzzerEnablePin);
 Thermal tempSensor(6);
 
 // Steven: maybe should use container classes. array/vector?
-const int numModules = 7;
+const int numModules = 8;
 Module* modules[numModules] = {
 	  &gps
 	, &radio
 	, &sd
 	, &photocells
-	// , &imu
+	, &imu
 	, &barometer
 	, &buzzer
 	, &tempSensor

@@ -13,7 +13,7 @@ class SDCard: public Module {
 	Module **modules;
 	SdFat SD;
 
-	static const uint32_t BUFFER_WRITE_SIZE = 512;
+	static const uint32_t BUFFER_WRITE_SIZE = 2048;
 	char buffer[BUFFER_WRITE_SIZE];
 
 	bool switchToFile(const char* file, uint8_t flag);
