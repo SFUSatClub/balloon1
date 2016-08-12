@@ -4,15 +4,8 @@
 #include <Arduino.h>
 #include <FatLib/ArduinoStream.h>
 #include "Globals.h"
+#include "SystemState.h"
 
-enum class SystemState {
-        PRE_FLIGHT = 1,
-        DURING_FLIGHT,
-        DURING_DESCENT,
-        LOW_BATTERY,
-        LANDED,
-        INVALID = -1
-};
 
 typedef struct {
 	bool valid;
@@ -111,4 +104,3 @@ protected:
 };
 
 #endif /* MODULE_H */
-
