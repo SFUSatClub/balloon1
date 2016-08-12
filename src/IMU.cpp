@@ -3,7 +3,7 @@
 
 IMU::IMU() {
 	imuImpl = new MPU6050();
-	toWrite[0] = 0;
+	toWrite[0] = '\0';
 }
 
 void IMU::begin() {
@@ -84,7 +84,7 @@ void IMU::tick(){
 		imuImpl->dmpGetLinearAccel(&aaReal, &aa, &gravity);
 		imuImpl->dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
 
-		if(currSample <= SAMPLE_RATE_HZ && toWriteIndex < BUFFER_SIZE) {
+		if(currSample <= SAMPLE_RATE_HZ && toWriteIndex < BUFFER_SIZE - 1) {
 			for(size_t i = 0; i < 3; i++) {
 				euler[i] *= 180/M_PI;
 				ypr[i] *= 180/M_PI;
@@ -93,11 +93,30 @@ void IMU::tick(){
 				toWrite[0] = '\0';
 			}
 
-			toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex
-					, "%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%d,%d,%d\n"
+			char tempBuffer[OVERFLOW_BUFFER_SIZE*2];
+			int tmpBufferSize = snprintf(tempBuffer, OVERFLOW_BUFFER_SIZE*2
+					, "%s%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%d,%d,%d\n"
+					// if toWriteOverflow is not empty, then that means there
+					// was text left over from last write, so store this first
+					// before storing the current line
+					, toWriteOverflow[0] == '\0' ? "\0" : toWriteOverflow
 					, euler[0], euler[1], euler[2]
 					, ypr[0], ypr[1], ypr[2]
 					, aaReal.x, aaReal.y, aaReal.z);
+			int bytesCopied = snprintf(toWrite + toWriteIndex, BUFFER_SIZE - (toWriteIndex + 1) // written size is index + 1
+					, "%s"
+					, tempBuffer);
+			toWriteIndex += bytesCopied;
+			cout << "diff?: " << tmpBufferSize << " : " << bytesCopied << endl;
+			// if did not fully copy over the complete tempBuffer, store the rest in the overflow buffer
+			if(bytesCopied < tmpBufferSize) {
+				snprintf(toWriteOverflow, OVERFLOW_BUFFER_SIZE, "%s", tempBuffer + bytesCopied - 1); // index is size - 1
+				cout << "overflowwww: " << toWriteOverflow << endl;
+			} else {
+				// if fully copied over, reset the overflow buffer
+				toWriteOverflow[0] = '\0';
+			}
+
 
 			currSample++;
 		} else {

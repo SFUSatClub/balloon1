@@ -21,6 +21,8 @@ private:
 	uint8_t currSample;
 	int toWriteIndex;
 	char toWrite[BUFFER_SIZE];
+	static const int OVERFLOW_BUFFER_SIZE = 54; // rounded up from 52 (36 + 15 + 1)
+	char toWriteOverflow[OVERFLOW_BUFFER_SIZE];
 
 	uint8_t mpuIntStatus;
 	uint16_t packetSize;
