@@ -17,10 +17,8 @@ Thermal::Thermal(int pin, double R, char const* id) :
 	THERMAL_PIN(pin),
 	R2(R)
 {
-	char str[50];
-	strcpy(str, "Temperature sensor ");
-	strcat(str, id);
-	name = str;
+	strcpy(name, "Temperature sensor ");
+	strcat(name, id);
 }
 
 void Thermal::begin() {
