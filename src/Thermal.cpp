@@ -4,10 +4,7 @@
 
 #define VCC 3.3
 #define VA 3.3 // Max voltage for analog pins. 3.3 for Due, 5 for Uno
- // R2 in voltage divider used to caculate R1 (Thermistor R), in kOhms
- // Resistor needs to be changed if more precision is required in different temperature ranges
- // Ex: get a resistor with higher resistance to obtain bigger precision for negative temperatures
-#define R2 9.93
+
 // Values obtained from the datasheet for the thermistor NTCLE100E3333JB0
 // Need to be changed if abother termistor is used
 #define A1T 0.003354016
@@ -16,8 +13,12 @@
 #define D1T 0.0000001105179
 #define RREF 33 // Reference resistance in kOhms
 
-Thermal::Thermal(int pin) : THERMAL_PIN(pin) {
-
+Thermal::Thermal(int pin, double R, char const* id) :
+	THERMAL_PIN(pin),
+	R2(R)
+{
+	strcpy(name, "Temperature sensor ");
+	strcat(name, id);
 }
 
 void Thermal::begin() {
@@ -37,7 +38,7 @@ void Thermal::tick() {
 }
 
 const char* Thermal::getModuleName() {
-  return "Therml Sensor";
+  return name;
 }
 
 // Data format:<current resistance>
