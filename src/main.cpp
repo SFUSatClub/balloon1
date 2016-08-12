@@ -97,13 +97,46 @@ void setup() {
 void loop() {
 	scheduler.run();
 #ifdef DEBUG
-	while(Serial.available()) {
-		/* char buffer[10]; */
-		/* Serial.readBytesUntil('\n', buffer, 10); */
-		cin.readline();
-		char command;
-		cin >> command;
-		cout << "said: " << command << endl;
+	if(Serial.available()) {
+		char buffer[32];
+		buffer[0] = '\0';
+		Serial.readBytesUntil('\n', buffer, 32);
+		int inputLen = strlen(buffer);
+		cout << "inputLen: " << inputLen << endl;
+
+		switch(buffer[0]) {
+			default: // fall-through
+			case 'h': { // help
+				cout <<
+					F("\n\nSFUSat Balloon1\n\n"
+					">h\n"
+					"\tDisplay this help screen\n\n"
+					">l\n"
+					"\tDisplay a list of activated module IDs and their names\n\n"
+					">s[MODULE_ID|(a)ll][PROPERTY_TYPE][PROPERTY_VALUE] - set module attribute\n"
+					"\tUse \"a\" instead of MODULE_ID to target all modules\n"
+					"\tEx: s0p0 - set module with id 0 property p a value of 0 (tells it to stop printing)\n"
+					"\n\n"
+					)
+				<< endl;
+				break;
+			} case 'l': { // list module ids and their names
+				for(size_t i = 0; i < numModules; i++) {
+					Module* m = modules[i];
+					cout << i << " - " << m->getModuleName() << endl;
+				}
+				break;
+			} case 's': { // set module attributes
+				// min length is 5 characters s0p0\0
+				if(inputLen < 5) {
+					cout << "Too few characters; try again" << endl;
+					break;
+				}
+
+				break;
+			}
+		}
+		cout << "said: " << buffer << endl;
 	}
 #endif  // DEBUG
 }
