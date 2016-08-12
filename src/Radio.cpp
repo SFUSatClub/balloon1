@@ -13,7 +13,7 @@ void Radio::begin() {
 	cout << "Waiting for radio..." << endl;
 	long startTime = millis();
 	bool success = false;
-	while(millis() - startTime < 10000 && !success) {
+	while(millis() - startTime < 2000 && !success) {
 		radio_comms->print("s\r");
 		if(radio_comms->available()) {
 			/* char buffer[8]; */
@@ -41,11 +41,12 @@ void Radio::begin() {
 void Radio::tick() {
 	bool alreadyForwarded = false;
 	for(int currModule = 0; currModule < numModules; currModule++) {
-		const char* moduleRadioData = modules[currModule]->dataToPersist();
+		const char* moduleRadioData = modules[currModule]->dataToSend();
 		if(moduleRadioData == NULL) {
 			continue;
 		}
 		// Steven: add 2 for comma and new line char
+		// TODO: fix when dataToSend size is bigger than BUFFER_WRITE_SIZE, due will crash
 		if(strlen(buffer) + strlen(moduleRadioData) + 2 < BUFFER_WRITE_SIZE) {
 			strcat(buffer, moduleRadioData);
 			strcat(buffer, "\n");
