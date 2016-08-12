@@ -9,7 +9,7 @@
 
 class IMU: public Module {
 private:
-	MPU6050  *imuImpl2; // 0x68 default
+	MPU6050  *imuImpl; // 0x68 default
 	uint32_t timer;
 
 	// assuming worst case widths (eg, 180 for each float, 65536 for each int)

@@ -2,41 +2,46 @@
 
 
 IMU::IMU() {
-	imuImpl2 = new MPU6050();
+	imuImpl = new MPU6050();
 	toWrite[0] = 0;
 }
 
 void IMU::begin() {
-	imuImpl2->initialize();
-	if(imuImpl2->testConnection()) {
-		cout << "IMU2 success" << endl;
+	imuImpl->initialize();
+	if(imuImpl->testConnection()) {
+		cout << "IMU success" << endl;
 		state = State::BEGIN_SUCCESS;
 	} else {
-		cout << "IMU2 failed" << endl;
+		cout << "IMU failed" << endl;
 		state = State::BEGIN_FAILED;
 	}
 	if(state == State::BEGIN_SUCCESS) {
-		cout << "IMU2 Initializing DMP" << endl;
-		int retStat = imuImpl2->dmpInitialize();
+		cout << "IMU Initializing DMP" << endl;
+		int retStat = imuImpl->dmpInitialize();
 		// offsets to be adjusted
-		imuImpl2->setXGyroOffset(220);
-		imuImpl2->setYGyroOffset(76);
-		imuImpl2->setZGyroOffset(-85);
-		imuImpl2->setZAccelOffset(1788);
+		imuImpl->setXGyroOffset(220);
+		imuImpl->setYGyroOffset(76);
+		imuImpl->setZGyroOffset(-85);
+		imuImpl->setZAccelOffset(1788);
 		if(retStat == 0) {
-			cout << "IMU2 Enabling DMP" << endl;
-			imuImpl2->setDMPEnabled(true);
+			cout << "IMU Enabling DMP" << endl;
+			imuImpl->setDMPEnabled(true);
+
+			cout << "IMU Rate before: " << (int)imuImpl->getRate() << endl;
+
+			cout << "IMU Setting new rate: " << 10 << endl;
+			imuImpl->setRate(10);
+			cout << "IMU Rate after: " << (int)imuImpl->getRate() << endl;
+
+			packetSize = imuImpl->dmpGetFIFOPacketSize();
 
 			state = State::BEGIN_SUCCESS;
-
-			packetSize = imuImpl2->dmpGetFIFOPacketSize();
-			cout << "IMU2 Ready for first interrupt" << endl;
 		} else {
 			// ERROR!
 			// 1 = initial memory load failed
 			// 2 = DMP configuration updates failed
 			// (if it's going to break, usually the code will be 1)
-			cout << "IMU2 Initialization failed: " << retStat << endl;
+			cout << "IMU Initialization failed: " << retStat << endl;
 			state = State::BEGIN_FAILED;
 		}
 	}
@@ -48,36 +53,36 @@ void IMU::tick(){
 	}
 
 	// reset interrupt flag and get INT_STATUS byte
-	mpuIntStatus = imuImpl2->getIntStatus();
+	mpuIntStatus = imuImpl->getIntStatus();
 
 	// get current FIFO count
-	fifoCount = imuImpl2->getFIFOCount();
+	fifoCount = imuImpl->getFIFOCount();
 
 	// check for overflow (this should never happen unless our code is too inefficient)
 	if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
 		// reset so we can continue cleanly
-		imuImpl2->resetFIFO();
-		//Serial.println(F("FIFO overflow!"));
+		imuImpl->resetFIFO();
+		Serial.println(F("FIFO overflow!"));
 
 		// otherwise, check for DMP data ready interrupt (this should happen frequently)
 	} else if (mpuIntStatus & 0x02) {
 		// wait for correct available data length, should be a VERY short wait
-		while (fifoCount < packetSize) fifoCount = imuImpl2->getFIFOCount();
+		while (fifoCount < packetSize) fifoCount = imuImpl->getFIFOCount();
 
 		// read a packet from FIFO
-		imuImpl2->getFIFOBytes(fifoBuffer, packetSize);
+		imuImpl->getFIFOBytes(fifoBuffer, packetSize);
 
 		// track FIFO count here in case there is > 1 packet available
 		// (this lets us immediately read more without waiting for an interrupt)
 		fifoCount -= packetSize;
 
-		imuImpl2->dmpGetAccel(&aa, fifoBuffer);
-		imuImpl2->dmpGetQuaternion(&q, fifoBuffer);
-		imuImpl2->dmpGetEuler(euler, &q);
-		imuImpl2->dmpGetGravity(&gravity, &q);
-		imuImpl2->dmpGetYawPitchRoll(ypr, &q, &gravity);
-		imuImpl2->dmpGetLinearAccel(&aaReal, &aa, &gravity);
-		imuImpl2->dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
+		imuImpl->dmpGetAccel(&aa, fifoBuffer);
+		imuImpl->dmpGetQuaternion(&q, fifoBuffer);
+		imuImpl->dmpGetEuler(euler, &q);
+		imuImpl->dmpGetGravity(&gravity, &q);
+		imuImpl->dmpGetYawPitchRoll(ypr, &q, &gravity);
+		imuImpl->dmpGetLinearAccel(&aaReal, &aa, &gravity);
+		imuImpl->dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
 
 		if(currSample <= SAMPLE_RATE_HZ && toWriteIndex < BUFFER_SIZE) {
 			for(size_t i = 0; i < 3; i++) {
@@ -101,7 +106,7 @@ void IMU::tick(){
 
 #ifdef OUTPUT_READABLE_QUATERNION
 		// display quaternion values in easy matrix form: w x y z
-		imuImpl2->dmpGetQuaternion(&q, fifoBuffer);
+		imuImpl->dmpGetQuaternion(&q, fifoBuffer);
 		Serial.print("quat\t");
 		Serial.print(q.w);
 		Serial.print("\t");
@@ -114,8 +119,8 @@ void IMU::tick(){
 
 #ifdef OUTPUT_READABLE_EULER
 		// display Euler angles in degrees
-		imuImpl2->dmpGetQuaternion(&q, fifoBuffer);
-		imuImpl2->dmpGetEuler(euler, &q);
+		imuImpl->dmpGetQuaternion(&q, fifoBuffer);
+		imuImpl->dmpGetEuler(euler, &q);
 		Serial.print("euler\t");
 		Serial.print(euler[0] * 180/M_PI);
 		Serial.print("\t");
@@ -126,9 +131,9 @@ void IMU::tick(){
 
 #ifdef OUTPUT_READABLE_YAWPITCHROLL
 		// display Euler angles in degrees
-		imuImpl2->dmpGetQuaternion(&q, fifoBuffer);
-		imuImpl2->dmpGetGravity(&gravity, &q);
-		imuImpl2->dmpGetYawPitchRoll(ypr, &q, &gravity);
+		imuImpl->dmpGetQuaternion(&q, fifoBuffer);
+		imuImpl->dmpGetGravity(&gravity, &q);
+		imuImpl->dmpGetYawPitchRoll(ypr, &q, &gravity);
 		Serial.print("ypr\t");
 		Serial.print(ypr[0] * 180/M_PI);
 		Serial.print("\t");
@@ -139,10 +144,10 @@ void IMU::tick(){
 
 #ifdef OUTPUT_READABLE_REALACCEL
 		// display real acceleration, adjusted to remove gravity
-		imuImpl2->dmpGetQuaternion(&q, fifoBuffer);
-		imuImpl2->dmpGetAccel(&aa, fifoBuffer);
-		imuImpl2->dmpGetGravity(&gravity, &q);
-		imuImpl2->dmpGetLinearAccel(&aaReal, &aa, &gravity);
+		imuImpl->dmpGetQuaternion(&q, fifoBuffer);
+		imuImpl->dmpGetAccel(&aa, fifoBuffer);
+		imuImpl->dmpGetGravity(&gravity, &q);
+		imuImpl->dmpGetLinearAccel(&aaReal, &aa, &gravity);
 		Serial.print("areal\t");
 		Serial.print(aaReal.x);
 		Serial.print("\t");
@@ -154,11 +159,11 @@ void IMU::tick(){
 #ifdef OUTPUT_READABLE_WORLDACCEL
 		// display initial world-frame acceleration, adjusted to remove gravity
 		// and rotated based on known orientation from quaternion
-		imuImpl2->dmpGetQuaternion(&q, fifoBuffer);
-		imuImpl2->dmpGetAccel(&aa, fifoBuffer);
-		imuImpl2->dmpGetGravity(&gravity, &q);
-		imuImpl2->dmpGetLinearAccel(&aaReal, &aa, &gravity);
-		imuImpl2->dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
+		imuImpl->dmpGetQuaternion(&q, fifoBuffer);
+		imuImpl->dmpGetAccel(&aa, fifoBuffer);
+		imuImpl->dmpGetGravity(&gravity, &q);
+		imuImpl->dmpGetLinearAccel(&aaReal, &aa, &gravity);
+		imuImpl->dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
 		Serial.print("aworld\t");
 		Serial.print(aaWorld.x);
 		Serial.print("\t");
