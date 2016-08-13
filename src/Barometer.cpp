@@ -6,10 +6,10 @@ Barometer::Barometer() {
 
 void Barometer::begin() {
 	if ( baromImpl->begin() ) {
-		cout << "Barometer initialized properly." << endl;
+		cout << "Barometer success" << endl;
 		state =  State::BEGIN_SUCCESS;
 	} else {
-		cout << "Barometer failed to initialize" << endl;
+		cout << "Barometer failed" << endl;
 		state =  State::BEGIN_FAILED;
 	}
 }

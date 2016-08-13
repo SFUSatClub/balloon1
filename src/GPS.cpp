@@ -104,6 +104,15 @@ float GPS::getAltitude() {
 uint32_t GPS::getGPSEpoch() {
 	return gpsImpl->time;
 }
+bool GPS::getFix() {
+	return gpsImpl->fix;
+}
+uint8_t GPS::getFixQuality() {
+	return gpsImpl->fixquality;
+}
+uint8_t GPS::getSats() {
+	return gpsImpl->satellites;
+}
 const char* GPS::getTime() {
 	time[0] = '\0';
 	/* 2  : maximum field witdh to be read */
@@ -127,10 +136,10 @@ scheduling_freq GPS::getSchedulingFreq() {
 	return ret;
 }
 
-// Data format: <lat>,<long>,<speed>,<altitude>,<fix>,<fix quality>,<satellites>
+// Data format: <lat>,<long>,<speed>,<altitude>,<angle>,<fix>,<fix quality>,<satellites>
 const char* GPS::dataToPersist() {
 	toWrite[0] = '\0';
-	snprintf(toWrite, 100,
+	snprintf(toWrite, BUFFER_SIZE,
 			"%.6f,%.6f,"
 			"%.6f,%.6f,%.6f,"
 			"%d,%d,%d",

@@ -14,7 +14,8 @@ class GPS: public Module {
 	HardwareSerial *serial;
 	uint32_t timer;
 	char time[16];
-	char toWrite[100];
+	static const int BUFFER_SIZE = 100;
+	char toWrite[BUFFER_SIZE];
 public:
 	GPS(HardwareSerial *);
 	void begin();
@@ -24,6 +25,9 @@ public:
 	float getLongitude();
 	float getAltitude();
 	float getSpeed();
+	bool getFix();
+	uint8_t getFixQuality();
+	uint8_t getSats();
 	uint32_t getGPSEpoch();
 	const char* getTime();
 
