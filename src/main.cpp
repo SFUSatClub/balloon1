@@ -41,7 +41,7 @@ IMU imu;
 // uses i2c init, internal addr
 Barometer barometer;
 Buzzer buzzer(buzzerEnablePin);
-Thermal tempSensor(6);
+Thermal tempSensor(6, 10.0, "inner"); 
 
 // Steven: maybe should use container classes. array/vector?
 const int numModules = 8;
