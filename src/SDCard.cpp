@@ -2,8 +2,12 @@
 
 SDCard::SDCard(int cs)
 	: dataFile()
+<<<<<<< HEAD
 	, chipSelectPin(cs) 
 	, BUFFER_WRITE_SIZE(512)
+=======
+	, chipSelectPin(cs)
+>>>>>>> Steven
 {
 }
 
@@ -15,7 +19,10 @@ void SDCard::begin() {
 		Serial.println("SD Fail");
 		state = State::BEGIN_FAILED;
 	}
+<<<<<<< HEAD
 	timer = millis();
+=======
+>>>>>>> Steven
 }
 
 void SDCard::tick() {
@@ -23,6 +30,7 @@ void SDCard::tick() {
 		return;
 	}
 
+<<<<<<< HEAD
 	// if millis() or timer wraps around, we'll just reset it
 	if (timer > millis())  timer = millis();
 
@@ -48,23 +56,62 @@ void SDCard::tick() {
 				strcat(buffer, moduleData);
 				cout << "SD: appending, current buffer: " << buffer << endl;
 			}
+=======
+	for(int currModule = 0; currModule < numModules; currModule++) {
+		const char* moduleData = modules[currModule]->dataToPersist();
+		if(moduleData == NULL) {
+			continue;
+		}
+		const char* moduleName = modules[currModule]->getModuleName();
+
+		// Steven: add 2 for comma and new line char
+		if(strlen(moduleName) + strlen(buffer) + strlen(moduleData) + 2 < BUFFER_WRITE_SIZE) {
+			strcat(buffer, moduleName);
+			strcat(buffer, ",");
+			strcat(buffer, moduleData);
+			strcat(buffer, "\n");
+			/* cout << "SD: appending, current buffer: " << buffer << endl; */
+		} else {
+			/* cout << "SD: hit buffer size, writing to sd: " << buffer << endl; */
+			int t1 = millis();
+			switchToFile("datalog.txt", FILE_WRITE);
+			dataFile.write(buffer);
+			cout << "SD: writing " << BUFFER_WRITE_SIZE << "B took " << millis() - t1 << "ms" << endl;
+			// Steven: c-style strings, clear the buffer with null char
+			buffer[0] = 0;
+			strcat(buffer, moduleName);
+			strcat(buffer, ",");
+			strcat(buffer, moduleData);
+			strcat(buffer, "\n");
+			/* cout << "SD: appending, current buffer: " << buffer << endl; */
+>>>>>>> Steven
 		}
 	}
 }
 
+<<<<<<< HEAD
 int SDCard::enable() {
 	return 0;
 }
 
+=======
+>>>>>>> Steven
 void SDCard::disable() {
 	dataFile.close();
 }
 
 const char* SDCard::getModuleName() {
+<<<<<<< HEAD
   return "SDCard";
 }
 const char* SDCard::dataToPersist() {
   return "returning sd data";
+=======
+	return "SDCard";
+}
+const char* SDCard::dataToPersist() {
+	return "returning sd data";
+>>>>>>> Steven
 }
 
 
@@ -74,6 +121,17 @@ void SDCard::registerModules(Module **_modules, int _numModules) {
 	return;
 }
 
+<<<<<<< HEAD
+=======
+bool SDCard::switchToFile(const char* file, uint8_t flag) {
+	dataFile.close();
+	dataFile = SD.open(file, flag);
+	// Steven: returns if the file is opened successfully or not
+	return dataFile;
+}
+
+#ifdef SD_DEBUG
+>>>>>>> Steven
 void SDCard::doSDTimingBenchmark() {
 	switchToFile("temp.txt", FILE_WRITE);
 
@@ -82,12 +140,21 @@ void SDCard::doSDTimingBenchmark() {
 	for(int i = 0; i < numBytes - 1; i++) {
 		*(temp + i) = 'x';
 	}
+<<<<<<< HEAD
 	*(temp + numBytes - 1) = '\0'; 
 
 	unsigned long t1 = micros(); 
 	dataFile.write(temp);
 	dataFile.flush();
 	unsigned long t2 = micros(); 
+=======
+	*(temp + numBytes - 1) = '\0';
+
+	unsigned long t1 = micros();
+	dataFile.write(temp);
+	dataFile.flush();
+	unsigned long t2 = micros();
+>>>>>>> Steven
 	cout << "writing and flushing " << numBytes << " bytes to sd card took: " << t2-t1 << " microseconds" <<  endl;
 
 	switchToFile("temp.txt", FILE_READ);
@@ -102,6 +169,7 @@ void SDCard::doSDTimingBenchmark() {
 	delete[] temp;
 }
 
+<<<<<<< HEAD
 bool SDCard::switchToFile(const char* file, uint8_t flag) {
 	dataFile.close();
 	dataFile = SD.open(file, flag);
@@ -204,3 +272,100 @@ void SDCard::runDiagnostics() {
   while (Serial.read() < 0) {}
 }
 
+=======
+// Steven: diagnostics code from SdFat "QuickStart" example
+void SDCard::runDiagnostics() {
+
+	// Set DISABLE_CHIP_SELECT to disable a second SPI device.
+	// For example, with the Ethernet shield, set DISABLE_CHIP_SELECT
+	// to 10 to disable the Ethernet controller.
+	const int8_t DISABLE_CHIP_SELECT = -1;
+	//
+	// Test with reduced SPI speed for breadboards.
+	// Change spiSpeed to SPI_FULL_SPEED for better performance
+	// Use SPI_QUARTER_SPEED for even slower SPI bus speed
+	const uint8_t spiSpeed = SPI_HALF_SPEED;
+
+	bool firstTry = true;
+	// read any existing Serial data
+	while (Serial.read() >= 0) {}
+
+	if (!firstTry) {
+		cout << F("\nRestarting\n");
+	}
+	firstTry = false;
+
+	if (DISABLE_CHIP_SELECT < 0) {
+		cout << F(
+				"\nAssuming the SD is the only SPI device.\n"
+				"Edit DISABLE_CHIP_SELECT to disable another device.\n");
+	} else {
+		cout << F("\nDisabling SPI device on pin ");
+		cout << int(DISABLE_CHIP_SELECT) << endl;
+		pinMode(DISABLE_CHIP_SELECT, OUTPUT);
+		digitalWrite(DISABLE_CHIP_SELECT, HIGH);
+	}
+	if (!SD.begin(chipSelectPin, spiSpeed)) {
+		if (SD.card()->errorCode()) {
+			cout << F(
+					"\nSD initialization failed.\n"
+					"Do not reformat the card!\n"
+					"Is the card correctly inserted?\n"
+					"Is chipSelectPin set to the correct value?\n"
+					"Does another SPI device need to be disabled?\n"
+					"Is there a wiring/soldering problem?\n");
+			cout << F("\nerrorCode: ") << hex << showbase;
+			cout << int(SD.card()->errorCode());
+			cout << F(", errorData: ") << int(SD.card()->errorData());
+			cout << dec << noshowbase << endl;
+			return;
+		}
+		cout << F("\nCard successfully initialized.\n");
+		if (SD.vol()->fatType() == 0) {
+			cout << F("Can't find a valid FAT16/FAT32 partition.\n");
+			cout << F("Check original reformatMsg()\n");
+			return;
+		}
+		if (!SD.vwd()->isOpen()) {
+			cout << F("Can't open root directory.\n");
+			cout << F("Check original reformatMsg()\n");
+			return;
+		}
+		cout << F("Can't determine error type\n");
+		return;
+	}
+	cout << F("\nCard successfully initialized.\n");
+	cout << endl;
+
+	uint32_t size = SD.card()->cardSize();
+	if (size == 0) {
+		cout << F("Can't determine the card size.\n");
+		cout << F("Check original cardOrSpeed()\n");
+		return;
+	}
+	uint32_t sizeMB = 0.000512 * size + 0.5;
+	cout << F("Card size: ") << sizeMB;
+	cout << F(" MB (MB = 1,000,000 bytes)\n");
+	cout << endl;
+	cout << F("Volume is FAT") << int(SD.vol()->fatType());
+	cout << F(", Cluster size (bytes): ") << 512L * SD.vol()->blocksPerCluster();
+	cout << endl << endl;
+
+	cout << F("Files found (date time size name):\n");
+	SD.ls(LS_R | LS_DATE | LS_SIZE);
+
+	if ((sizeMB > 1100 && SD.vol()->blocksPerCluster() < 64)
+			|| (sizeMB < 2200 && SD.vol()->fatType() == 32)) {
+		cout << F("\nThis card should be reformatted for best performance.\n");
+		cout << F("Use a cluster size of 32 KB for cards larger than 1 GB.\n");
+		cout << F("Only cards larger than 2 GB should be formatted FAT32.\n");
+		cout << F("Check original reformatMsg()\n");
+		return;
+	}
+	// read any existing Serial data
+	while (Serial.read() >= 0) {}
+	cout << F("\nSuccess!  Type any character to restart.\n");
+	while (Serial.read() < 0) {}
+}
+#endif // SD_DEBUG
+>>>>>>> Steven
