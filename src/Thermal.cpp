@@ -1,6 +1,4 @@
-#include <Thermal.h>
-#include <Arduino.h>
-#include <math.h>
+#include "Thermal.h"
 
 #define VCC 3.3
 #define VA 3.3 // Max voltage for analog pins. 3.3 for Due, 5 for Uno
@@ -17,7 +15,7 @@ Thermal::Thermal(int pin, double R, char const* id) :
 	THERMAL_PIN(pin),
 	R2(R)
 {
-	strcpy(name, "Temperature sensor ");
+	strcpy(name, "Tmp:");
 	strcat(name, id);
 }
 
@@ -29,7 +27,7 @@ void Thermal::tick() {
 	int sensorValue = analogRead(THERMAL_PIN);
 	float vout = sensorValue * VA / 1024.0;
 	float thermR = R2 * (VCC / vout - 1);
-  currentR = thermR;
+	currentR = thermR;
 	// Calculating temperature using Steinhart–Hart equation
 	float lnRRref = log(thermR/RREF);
 	float tempK = 1/(A1T+B1T*lnRRref+C1T*(lnRRref*lnRRref)+D1T*(lnRRref*lnRRref*lnRRref));
@@ -38,12 +36,12 @@ void Thermal::tick() {
 }
 
 const char* Thermal::getModuleName() {
-  return name;
+	return name;
 }
 
-// Data format:<current resistance>
+// Data format:<current>,<resistance>
 const char* Thermal::dataToPersist() {
 	toWrite[0] = '\0';
-  snprintf(toWrite, 100, "%.6f %.6f", currentR, currentTempC);
+	snprintf(toWrite, BUFFER_SIZE, "%.6f,%.6f", currentR, currentTempC);
 	return toWrite;
 }
