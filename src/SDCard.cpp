@@ -4,6 +4,7 @@ SDCard::SDCard(int cs)
 	: dataFile()
 	, chipSelectPin(cs)
 {
+	scheduler = NULL;
 }
 
 void SDCard::begin() {
@@ -21,35 +22,36 @@ void SDCard::tick() {
 		return;
 	}
 
+	int t1 = millis();
 	for(int currModule = 0; currModule < numModules; currModule++) {
 		const char* moduleData = modules[currModule]->dataToPersist();
 		if(moduleData == NULL) {
 			continue;
 		}
 		const char* moduleName = modules[currModule]->getModuleName();
+		const int moduleDataLen = strlen(moduleData);
 
-		// Steven: add 2 for comma and new line char
-		if(strlen(moduleName) + strlen(buffer) + strlen(moduleData) + 2 < BUFFER_WRITE_SIZE) {
-			strcat(buffer, moduleName);
-			strcat(buffer, ",");
-			strcat(buffer, moduleData);
-			strcat(buffer, "\n");
-			/* cout << "SD: appending, current buffer: " << buffer << endl; */
+		switchToFile(moduleName, FILE_WRITE);
+		// TODO: benchmark difference between multiple writes vs strcat and 1 write
+		if(moduleDataLen + 10 > BUFFER_WRITE_SIZE) {
+			dataFile.write(moduleData);
+			dataFile.write("\n");
 		} else {
-			/* cout << "SD: hit buffer size, writing to sd: " << buffer << endl; */
-			int t1 = millis();
-			switchToFile("datalog.txt", FILE_WRITE);
-			dataFile.write(buffer);
-			cout << "SD: writing " << BUFFER_WRITE_SIZE << "B took " << millis() - t1 << "ms" << endl;
-			// Steven: c-style strings, clear the buffer with null char
-			buffer[0] = 0;
-			strcat(buffer, moduleName);
-			strcat(buffer, ",");
+			buffer[0] = '\0';
+			// TODO: multiple strcats is n^2 operation, keep track of index for speed
+			/* sprintf(buffer, "%s\n". moduleData); */
 			strcat(buffer, moduleData);
 			strcat(buffer, "\n");
-			/* cout << "SD: appending, current buffer: " << buffer << endl; */
+			dataFile.write(buffer);
 		}
 	}
+	if(scheduler != NULL) {
+		switchToFile("Scheduler", FILE_WRITE);
+		const char* schedulerData = scheduler->dataToPersist();
+		dataFile.write(schedulerData);
+		dataFile.write("\n");
+	}
+	cout << "SD: writing this loop took " << millis() - t1 << "ms" << endl;
 }
 
 void SDCard::disable() {
@@ -67,6 +69,10 @@ const char* SDCard::dataToPersist() {
 void SDCard::registerModules(Module **_modules, int _numModules) {
 	modules = _modules;
 	numModules = _numModules;
+	return;
+}
+void SDCard::registerScheduler(Scheduler *_scheduler) {
+	scheduler = _scheduler;
 	return;
 }
 

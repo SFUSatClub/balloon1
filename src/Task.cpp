@@ -81,3 +81,4 @@ scheduling_freq Task::onStateChanged(const SystemState &state) {
 		return module->onStateChanged(state);
 	}
 }
+

@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include "Module.h"
 
+// TODO: flatten task into module (since all modules are tasks, just make Scheduler run Modules)
+
 class Task{
 private:
 	uint16_t timeOut;

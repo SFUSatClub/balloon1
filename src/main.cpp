@@ -26,18 +26,6 @@
 
 #define DEBUG
 
-void task1(void){
-	static int task1Trigger = 0;
-	if(task1Trigger == 1){
-		digitalWrite(12, 1);
-		task1Trigger = 0;
-	}
-	else{
-		digitalWrite(12, 0);
-		task1Trigger = 1;
-	}
-}
-
 // Module setup
 #define gpsSerial Serial1
 #define radioSerial Serial2
@@ -58,24 +46,26 @@ Thermal tempSensor(6);
 // Steven: maybe should use container classes. array/vector?
 const int numModules = 8;
 Module* modules[numModules] = {
+	// long running modules first
 	  &gps
 	, &radio
-	, &sd
-	, &photocells
 	, &imu
-	, &barometer
+	// quick running modules
 	, &buzzer
+	, &photocells
+	, &barometer
 	, &tempSensor
+	// if SD module is last, it will run last (write after all modules are ticked)
+	, &sd
 };
 
-Scheduler scheduler(1 + numModules);
+Scheduler scheduler(numModules);
 StateHandler stateHandler(&barometer, &gps);
 
 void setup() {
 	Wire.begin();
 	Wire.setClock(400000);
 	Serial.begin(115200);
-	pinMode(12, OUTPUT);
 	Serial.println("SFUSat weather balloon1 says hi");
 
 	for(Module *module : modules) {
@@ -86,15 +76,16 @@ void setup() {
 	stateHandler.begin();
 
 	sd.registerModules(modules, numModules);
+	sd.registerScheduler(&scheduler);
 	radio.registerModules(modules, numModules);
 
 	scheduler.setupISR();
-	scheduler.addTask(new Task(500,500, &task1));
-	scheduler.registerModulesAsTasks(modules, numModules);
+	scheduler.registerModules(modules, numModules);
 	scheduler.registerStateHandler(&stateHandler);
 }
 
 void loop() {
+	WATCHDOG_RESET();
 	scheduler.run();
 #ifdef DEBUG
 	if(Serial.available()) {
@@ -108,14 +99,16 @@ void loop() {
 			default: // fall-through
 			case 'h': { // help
 				cout <<
-					F("\n\nSFUSat Balloon1\n\n"
-					">h\n"
+					F("\n\nSFUSat Balloon1 Command Set\n\n"
+					"h\n"
 					"\tDisplay this help screen\n\n"
-					">l\n"
+					"l\n"
 					"\tDisplay a list of activated module IDs and their names\n\n"
-					">s[MODULE_ID|(a)ll][PROPERTY_TYPE][PROPERTY_VALUE] - set module attribute\n"
+					"s[MODULE_ID|(a)ll][PROPERTY_TYPE][PROPERTY_VALUE]\n"
+					"\tSet module attribute\n"
 					"\tUse \"a\" instead of MODULE_ID to target all modules\n"
-					"\tEx: s0p0 - set module with id 0 property p a value of 0 (tells it to stop printing)\n"
+					"\tEx: s0p0 - set property p of module with id 0 to a value of 0 (tells it to stop printing)\n"
+					"\tEx: sap1 - set property p of all values to a value of 1 (print everything from all modules)\n"
 					"\n\n"
 					)
 				<< endl;
