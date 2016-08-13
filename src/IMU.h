@@ -17,7 +17,7 @@ private:
 	// 15 chars = 3 ints * 5 chars (16 bit ints) = 65536 = xxxxx
 	// 20Hz * (36 chars + 15 chars + 1 new line) = 1040 chars
 	static const int SAMPLE_RATE_HZ = 20;
-	static const int BUFFER_SIZE = (SAMPLE_RATE_HZ + 2) * (36 + 15 + 1); // extra buffer room just in case
+	static const int BUFFER_SIZE = (SAMPLE_RATE_HZ + 4) * (36 + 15 + 1); // extra buffer room (sample rate + 4) just in case
 	uint8_t currSample;
 	int toWriteIndex;
 	char toWrite[BUFFER_SIZE];

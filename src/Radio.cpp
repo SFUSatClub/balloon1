@@ -4,7 +4,7 @@ Radio::Radio(HardwareSerial *ser, GPS *_gps)
 	: gps(_gps)
 	, radio_comms(ser)
 {
-
+	currForwardCount = 0;
 }
 
 void Radio::begin() {
@@ -34,7 +34,7 @@ void Radio::begin() {
 	if(success) {
 		cout << "Radio connected" << endl;
 	} else {
-		cout << "Radio failed to connect" << endl;
+		cout << "Radio failed" << endl;
 	}
 }
 
@@ -75,19 +75,18 @@ void Radio::tick() {
 // a<latitude>\t<longitude>\t<time>\t<altitude>\t<misc data>\r
 bool Radio::forwardAPRSToUno(const char *data_msg) {
 	char toUno[BUFFER_UNO_SIZE];
-	char millisStr[10];
-	snprintf(millisStr, 10, "%d", millis());
+	currForwardCount++;
 	int all = snprintf(toUno, BUFFER_UNO_SIZE,
-			"a%f\t%f\t%d\t%f\t%s\r",
+			"a%f\t%f\t%d\t%f\t%d,%d,%d\r",
 			gps->getLatitude(), gps->getLongitude(),
 			gps->getGPSEpoch(), gps->getAltitude(),
-			millisStr);
+			currForwardCount, gps->getFixQuality(), gps->getSats());
 	/* snprintf(toUno, BUFFER_UNO_SIZE, */
 	/* 		"%f\t%f\t%d\t%f\t%s", */
 	/* 		49.2142, 122.2342, */
 	/* 		2019013901, 452.2, */
 	/* 		data_msg); */
-	cout << "Sending to radio...." << endl << toUno << endl;
+	cout << "Sending to radio: " << endl << toUno << endl;
 	radio_comms->print(toUno);
 	// return if the full string length of what we want to send (all) would
 	// have fit in the buffer size of BUFFER_UNO_SIZE chars

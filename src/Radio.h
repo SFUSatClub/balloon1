@@ -5,6 +5,7 @@
 class Radio: public Module {
 	GPS *gps;
 	HardwareSerial *radio_comms;
+	uint32_t currForwardCount = 0;
 
 	int numModules;
 	Module **modules;
