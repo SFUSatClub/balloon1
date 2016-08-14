@@ -4,9 +4,11 @@
 #include "Module.h"
 #include "Barometer.h"
 #include "GPS.h"
+#include "SystemState.h"
+
 
 class StateHandler: public Module {
-	SystemState balloonState=SystemState::PRE_FLIGHT; 
+	SystemState balloonState=SystemState::PRE_FLIGHT;
 	bool stateChanged;
 
 	static const int SAVED_VALUES=3;    //number of values saved in array
@@ -22,6 +24,7 @@ class StateHandler: public Module {
 
 	Barometer *barometer;
 	GPS *gps;
+	char  *currentState;
 
 	bool deltaAltitude=false;
 	bool deltaPressure=false;
