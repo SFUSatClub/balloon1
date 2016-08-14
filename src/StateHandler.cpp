@@ -7,7 +7,9 @@
    */
 
 
-StateHandler::StateHandler(Barometer *_barometer, GPS *_gps) : barometer(_barometer), gps(_gps)
+StateHandler::StateHandler(Barometer *_barometer, GPS *_gps)
+	: barometer(_barometer)
+	, gps(_gps)
 {
 	balloonState=SystemState::PRE_FLIGHT;   //start in preflight
 	stateChanged=false;
@@ -55,24 +57,21 @@ SystemState StateHandler::getSystemState() {
 	return balloonState;
 }
 
-// SD formatter adds moduleName and \n
-// outputs in format <value1>, ... ,<value4>,<value5>
-//returns current system state
+// returns current system state
 const char* StateHandler::dataToPersist(){
-
 	switch(balloonState) {
-		 case SystemState::PRE_FLIGHT:
-		 		return "PRE_FLIGHT";
-		 case SystemState::DURING_FLIGHT:
-		 		return "DURING_FLIGHT";
-		 case SystemState::DURING_DESCENT:
-		 		return "DURING_DESCENT";
-		 case SystemState::LANDED:
-		 		return "LANDED";
-		 case SystemState::LOW_BATTERY:
-			 	return "LOW_BATTERY";
-		 case SystemState::INVALID:
-		 		return "INVALID";
+		case SystemState::PRE_FLIGHT:
+			return "PRE_FLIGHT";
+		case SystemState::DURING_FLIGHT:
+			return "DURING_FLIGHT";
+		case SystemState::DURING_DESCENT:
+			return "DURING_DESCENT";
+		case SystemState::LANDED:
+			return "LANDED";
+		case SystemState::LOW_BATTERY:
+			return "LOW_BATTERY";
+		case SystemState::INVALID:
+			return "INVALID";
 	}
 }
 

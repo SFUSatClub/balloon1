@@ -24,7 +24,7 @@ class StateHandler: public Module {
 
 	Barometer *barometer;
 	GPS *gps;
-	char  *currentState;
+	char *currentState;
 
 	bool deltaAltitude=false;
 	bool deltaPressure=false;
