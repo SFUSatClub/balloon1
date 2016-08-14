@@ -14,14 +14,13 @@ void Buzzer::tick()
 {
 	enabledTime = millis();
 
-if(flipFlop == 0){
-	digitalWrite(buzzerPin, HIGH);
-	flipFlop = 1;
-}
-else{
-	digitalWrite(buzzerPin, LOW);
-	flipFlop = 0;
-}
+	if(flipFlop == 0){
+		digitalWrite(buzzerPin, HIGH);
+		flipFlop = 1;
+	} else {
+		digitalWrite(buzzerPin, LOW);
+		flipFlop = 0;
+	}
 }
 
 void Buzzer::begin()

@@ -113,6 +113,7 @@ uint8_t GPS::getFixQuality() {
 uint8_t GPS::getSats() {
 	return gpsImpl->satellites;
 }
+// Formatted time: <hour:minute:second day:month:year>
 const char* GPS::getTime() {
 	time[0] = '\0';
 	/* 2  : maximum field witdh to be read */
