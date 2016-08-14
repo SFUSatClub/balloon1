@@ -11,6 +11,18 @@ ArduinoOutStream cout(Serial);
 char cinBuf[40];
 ArduinoInStream cin(Serial, cinBuf, sizeof(cinBuf));
 
+/* // http://stackoverflow.com/questions/440133/how-do-i-create-a-random-alpha-numeric-string-in-c */
+/* void genRandStr(char *s, const int len) { */
+/*     static const char alphanum[] = */
+/*         "0123456789" */
+/*         "ABCDEFGHIJKLMNOPQRSTUVWXYZ" */
+/*         "abcdefghijklmnopqrstuvwxyz"; */
+/*     for (int i = 0; i < len; ++i) { */
+/*         s[i] = alphanum[rand() % (sizeof(alphanum) - 1)]; */
+/*     } */
+/*     s[len] = 0; */
+/* } */
+
 /* int getFreeRam() { */
 /*   extern int __heap_start, *__brkval; */
 /*   int v; */

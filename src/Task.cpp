@@ -8,6 +8,8 @@ Task::Task(uint16_t timeout, uint32_t Interval, funcPtr setFn){
 	pointedFunc =  setFn; // pointedFunc(nullptr)
 	module = NULL;
 	printTimer = 0;
+
+	propertyShouldPrint = true;
 }
 
 Task::Task(Module *_module) {
@@ -19,6 +21,8 @@ Task::Task(Module *_module) {
 	pointedFunc = NULL;
 	module = _module;
 	printTimer = 0;
+
+	propertyShouldPrint = true;
 }
 
 void Task::setLastRun(uint32_t lastrun){
@@ -40,7 +44,7 @@ void Task::runTask(uint32_t systemTick){
 		if(pointedFunc == NULL) {
 			module->tick();
 			bool okayToPrint = systemTick - printTimer > 1000;
-			if(okayToPrint) {
+			if(okayToPrint && propertyShouldPrint) {
 				printTimer = systemTick;
 				uint32_t ms = millis();
 				int mins = (ms / 1000.0 ) / 60.0;
@@ -56,7 +60,7 @@ void Task::runTask(uint32_t systemTick){
 		} else {
 			(*pointedFunc)(); // run the function from the poitner
 			bool okayToPrint = systemTick - printTimer > 1000;
-			if(okayToPrint) {
+			if(okayToPrint && propertyShouldPrint) {
 				printTimer = systemTick;
 				uint32_t ms = millis();
 				int mins = (ms / 1000.0 ) / 60.0;
@@ -70,6 +74,10 @@ void Task::runTask(uint32_t systemTick){
 		}
 	}
 	lastRun = systemTick;
+}
+
+void Task::setPropertyPrint(bool _propertyShouldPrint) {
+	propertyShouldPrint = _propertyShouldPrint;
 }
 
 scheduling_freq Task::onStateChanged(const SystemState &state) {

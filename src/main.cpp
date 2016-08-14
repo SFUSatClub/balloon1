@@ -23,6 +23,7 @@
 #include "Buzzer.h"
 #include "Barometer5540.h"	// Richard: the nice barometer
 #include "Thermal.h"
+#include "Battery.h"
 
 #define DEBUG
 
@@ -31,6 +32,11 @@
 #define radioSerial Serial2
 const int sdChipSelectPin = 4;
 const int buzzerEnablePin = 13;
+// do not plug anything into A0; its floating value is used as seed for rng
+const int randomSeedPin = A0;
+const int tempInsidePin = A6;
+const int tempOutsidePin = A7;
+const int batteryPin = A8;
 
 GPS gps(&gpsSerial);
 Radio radio(&radioSerial, &gps);
@@ -41,10 +47,11 @@ IMU imu;
 // uses i2c init, internal addr
 Barometer barometer;
 Buzzer buzzer(buzzerEnablePin);
-Thermal tempSensor(6, 10.0, "inner"); 
+Thermal tempInside(tempInsidePin, 10.0, "in");
+Thermal tempOutside(tempOutsidePin, 10.0, "out");
+Battery battery(batteryPin);
 
-// Steven: maybe should use container classes. array/vector?
-const int numModules = 8;
+const int numModules = 10;
 Module* modules[numModules] = {
 	// long running modules first
 	  &gps
@@ -54,7 +61,9 @@ Module* modules[numModules] = {
 	, &buzzer
 	, &photocells
 	, &barometer
-	, &tempSensor
+	, &tempInside
+	, &tempOutside
+	, &battery
 	// if SD module is last, it will run last (write after all modules are ticked)
 	, &sd
 };
@@ -62,7 +71,17 @@ Module* modules[numModules] = {
 Scheduler scheduler(numModules);
 StateHandler stateHandler(&barometer, &gps);
 
+long seed = 0;
+
 void setup() {
+	// get a random seed to establish common startup id on logs
+	randomSeed(analogRead(randomSeedPin));
+	seed = random(10000, 99999);
+	// SAM3X8E hardware rng, to be tested.
+	/* pmc_enable_periph_clk(ID_TRNG); */
+	/* trng_enable(TRNG); */
+	/* uint32_t trand = trng_read_output_data(TRNG); */
+
 	Wire.begin();
 	Wire.setClock(400000);
 	Serial.begin(115200);
@@ -75,6 +94,8 @@ void setup() {
 	stateHandler.enable();
 	stateHandler.begin();
 
+	// random seed from system to identify this particular startup
+	sd.registerSeed(seed);
 	sd.registerModules(modules, numModules);
 	sd.registerScheduler(&scheduler);
 	radio.registerModules(modules, numModules);
@@ -95,7 +116,8 @@ void loop() {
 		int inputLen = strlen(buffer);
 		cout << "inputLen: " << inputLen << endl;
 
-		switch(buffer[0]) {
+		const char command = buffer[0];
+		switch(command) {
 			default: // fall-through
 			case 'h': { // help
 				cout <<
@@ -122,10 +144,31 @@ void loop() {
 			} case 's': { // set module attributes
 				// min length is 5 characters s0p0\0
 				if(inputLen < 5) {
-					cout << "Too few characters; try again" << endl;
+					cout << "Too few characters" << endl;
 					break;
 				}
+				const char moduleID = buffer[1];
+				const int moduleIDint = moduleID - '0';
+				// if moduleID is out of range, break
+				if(moduleID != 'a' && (moduleIDint < 0 || moduleIDint >= numModules)) {
+					cout << "Wrong moduleID" << endl;
+					break;
+				}
+				const char property = buffer[2];
+				const char val = buffer[3];
+				switch(property) {
+					case 'p': { // print
+						// selecting all modules
+						if(moduleID == 'a') {
+							for(size_t i = 0; i < numModules; i++) {
+								Module* m = modules[i];
+							}
+							break;
+						}
+						Module* m = modules[moduleIDint];
 
+					}
+				}
 				break;
 			}
 		}

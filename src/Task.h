@@ -15,6 +15,8 @@ private:
 	funcPtr pointedFunc; // pointedFunc is the variable with the function pointer
 	Module *module;
 	void setRunStart(uint32_t runstart);
+
+	bool propertyShouldPrint;
 public:
 	// we need to poke at these as we're going through checking whether to run tasks or not, hence public
 	uint32_t lastRun;
@@ -26,6 +28,8 @@ public:
 	void setLastRun(uint32_t lastrun);
 	void runTask(uint32_t systemTick);
 	void setFunc(funcPtr f);
+
+	void setPropertyPrint(bool propertyPrint);
 
 	// propogates state changes to modules/tasks
 	scheduling_freq onStateChanged(const SystemState &state);

@@ -16,9 +16,13 @@ class SDCard: public Module {
 	Scheduler *scheduler;
 	Module **modules;
 	SdFat SD;
+	long seed;
 
 	static const int BUFFER_WRITE_SIZE = 2048;
 	char buffer[BUFFER_WRITE_SIZE];
+
+	/* static const int TO_WRITE_BUFFER_SIZE = 16; */
+	/* char toWrite[TO_WRITE_BUFFER_SIZE]; */
 
 	bool switchToFile(const char* file, uint8_t flag);
 public:
@@ -30,6 +34,7 @@ public:
 	const char* getModuleName();
 	const char* dataToPersist();
 
+	void registerSeed(long seed);
 	void registerModules(Module *modules[], int numModules);
 	void registerScheduler(Scheduler *scheduler);
 #ifdef SD_DEBUG

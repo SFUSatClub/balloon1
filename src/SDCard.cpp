@@ -66,9 +66,20 @@ const char* SDCard::dataToPersist() {
 }
 
 
+void SDCard::registerSeed(long _seed) {
+	seed = _seed;
+}
 void SDCard::registerModules(Module **_modules, int _numModules) {
 	modules = _modules;
 	numModules = _numModules;
+
+	char seedMarker[32];
+	snprintf(seedMarker, 32, "::BOOT::%ld\n", seed);
+	for(int currModule = 0; currModule < numModules; currModule++) {
+		const char* moduleName = modules[currModule]->getModuleName();
+		switchToFile(moduleName, FILE_WRITE);
+		dataFile.write(seedMarker);
+	}
 	return;
 }
 void SDCard::registerScheduler(Scheduler *_scheduler) {
