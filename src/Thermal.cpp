@@ -39,7 +39,7 @@ const char* Thermal::getModuleName() {
 	return name;
 }
 
-// Data format:<current>,<resistance>
+// Data format:<resistance>,<temperature in C>
 const char* Thermal::dataToPersist() {
 	toWrite[0] = '\0';
 	snprintf(toWrite, BUFFER_SIZE, "%.6f,%.6f", currentR, currentTempC);
