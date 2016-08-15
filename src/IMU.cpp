@@ -1,6 +1,5 @@
 #include "IMU.h"
 
-
 IMU::IMU() {
 	imuImpl = new MPU6050();
 	toWrite[0] = 0;
@@ -26,17 +25,6 @@ void IMU::begin() {
 		if(retStat == 0) {
 			cout << "IMU Enabling DMP" << endl;
 			imuImpl->setDMPEnabled(true);
-
-			cout << "IMU Rate before: " << (int)imuImpl->getRate() << endl;
-			cout << "IMU FIFORate before: " << (int)imuImpl->dmpGetFIFORate() << endl;
-
-			cout << "IMU Setting new Rate: " << 10 << endl;
-			cout << "IMU Setting new FIFORate: " << 10 << endl;
-			imuImpl->setRate(10);
-			imuImpl->dmpSetFIFORate(10);
-
-			cout << "IMU Rate after: " << (int)imuImpl->getRate() << endl;
-			cout << "IMU FIFORate after: " << (int)imuImpl->dmpGetFIFORate() << endl;
 
 			packetSize = imuImpl->dmpGetFIFOPacketSize();
 

@@ -5,7 +5,10 @@
 #include <MPU6050_6Axis_MotionApps20.h>
 #include "Module.h"
 
-//#define OUTPUT_READABLE_EULER
+// NOTE: if changing DMP sample rate, change last hex value in line ~305 of
+// MPU6050_6Axis_MotionApps20.h
+// DMP output frequency calculated with: (200Hz / (1 + value))
+// We want sample rate of 20Hz (lets make it 25 to be safe), so we'll use 0x07
 
 class IMU: public Module {
 private:
