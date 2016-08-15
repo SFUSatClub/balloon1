@@ -8,9 +8,8 @@
 
 class Scheduler {
 private:
-	int numCurrTasks;
-	int numMaxTasks;
-	Task **allTasks;
+	int numModules;
+	Module **modules;
 
 	int toWriteIndex;
 	static const int BUFFER_SIZE = 256;
@@ -18,8 +17,7 @@ private:
 
 	StateHandler *stateHandler;
 public:
-	Scheduler(uint8_t numMaxTasks);
-	bool addTask(Task *taskptr);
+	Scheduler();
 	void registerModules(Module **modules, int numModules);
 	void registerStateHandler(StateHandler *stateHandler);
 	void setupISR();

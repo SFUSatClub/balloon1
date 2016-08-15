@@ -99,8 +99,12 @@ public:
 	 */
 	virtual const char* getModuleName();
 
+	bool shouldTick(uint32_t currSystemTick);
+	void setTicked(uint32_t currSystemTick);
+
 protected:
-        State state;
+	State state;
+	uint32_t lastSystemTick;
 };
 
 #endif /* MODULE_H */

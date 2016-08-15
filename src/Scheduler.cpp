@@ -12,13 +12,7 @@
 // doing it this way, there can only be one scheduler...
 static uint32_t schedulerTick = 0;
 
-Scheduler::Scheduler(uint8_t _numMaxTasks) {
-	numMaxTasks = _numMaxTasks;
-	numCurrTasks = 0;
-	allTasks = new Task*[_numMaxTasks];
-	for(int i = 0; i < numMaxTasks; i++) {
-		allTasks[i] = NULL;
-	}
+Scheduler::Scheduler() {
 	stateHandler = NULL;
 	toWrite[0] = '\0';
 }
@@ -39,7 +33,7 @@ void Scheduler::run() {
 			stateHandler->tick();
 			hasStateChanged = stateHandler->hasStateChanged();
 		}
-		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - 1 - toWriteIndex, "t,%d\n", millis());
+		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex, "t,%d\n", millis());
 	}
 
 	bool alreadyRanLastTickOfCycle = false;
@@ -49,55 +43,32 @@ void Scheduler::run() {
 		/* cout << systemTick << ": is last tick of a cycle" << endl; */
 	}
 
-	for(int i = 0; i < numCurrTasks; i++) {
-		Task *currTask = allTasks[i];
-		if(currTask->interval == 0) {  // run continuous tasks
-			currTask->runTask(schedulerTick);
-		} else {
-			bool shouldTaskRun = (schedulerTick - currTask->lastRun) >= currTask->interval;
-			// if tasks in this current system tick all finish early (within the
-			// current tick), Scheduler::run() will execute many times. Without this check,
-			// these tasks will also be run more than once
-			bool taskDidNotRunYet = currTask->lastRun < schedulerTick;
-
-			if(shouldTaskRun && taskDidNotRunYet){
-				if(isLastTickOfCycle && hasStateChanged && stateHandler != NULL) {
-					scheduling_freq res = currTask->onStateChanged(stateHandler->getSystemState());
-					res.valid = false; // to something with res to stop warning
-				}
-				uint32_t t1Sched = schedulerTick % TICKS_PER_CYCLE;
-				currTask->runTask(schedulerTick); // Execute Task
-				toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - 1 - toWriteIndex, "%d,%d,%d\n", i, t1Sched, (schedulerTick % TICKS_PER_CYCLE) - t1Sched);
+	for(int i = 0; i < numModules; i++) {
+		Module *currModule = modules[i];
+		if(currModule->shouldTick(schedulerTick)) {
+			const uint32_t schedulerTickBefore = schedulerTick;
+			currModule->tick();
+			toWriteIndex += snprintf(toWrite + toWriteIndex
+					, BUFFER_SIZE - toWriteIndex, "%d,%d,%d\n"
+					, i, schedulerTickBefore % TICKS_PER_CYCLE, schedulerTick - schedulerTickBefore);
+			currModule->setTicked(schedulerTickBefore);
+			if(hasStateChanged && stateHandler != NULL) {
+				currModule->onStateChanged(stateHandler->getSystemState());
 			}
 		}
 	}
 }
 
-bool Scheduler::addTask(Task *taskptr) {
-	if(numCurrTasks >= numMaxTasks) {
-		delete taskptr;
-		while(true) {
-			Serial.println(F("SCHEDULER ERROR: CHECK NUMBER OF MAX TASKS"));
-		}
-		return false;
-	}
-	allTasks[numCurrTasks++] = taskptr;
-	return true;
-}
+void Scheduler::registerModules(Module **_modules, int _numModules) {
+	modules = _modules;
+	numModules = _numModules;
 
+	for(int i = 0; i < numModules; i++) {
+		Module *currModule = modules[i];
+		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex
+				, "%d=%s\n", i, currModule->getModuleName());
+	}
 
-void Scheduler::registerModules(Module **modules, int numModules) {
-	if(numCurrTasks + numModules > numMaxTasks) {
-		while(true) {
-			Serial.println(F("SCHEDULER ERROR: CHECK NUMBER OF MAX TASKS"));
-		}
-	}
-	for(int currModule = 0; currModule < numModules; currModule++) {
-		Module *currModulePtr = modules[currModule];
-		Task *taskptr = new Task(currModulePtr);
-		allTasks[numCurrTasks++] = taskptr;
-		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - 1 - toWriteIndex, "%d=%s\n", currModule, currModulePtr->getModuleName());
-	}
 	return;
 }
 

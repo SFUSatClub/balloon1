@@ -50,3 +50,23 @@ const char* Module::getModuleName() {
     return "Module";
 }
 
+bool Module::shouldTick(uint32_t currSystemTick) {
+	scheduling_freq freq = getSchedulingFreq();
+
+	// continuous tasks should always be ticked
+	if(freq.interval == 0) {
+		return true;
+	}
+
+	bool shouldTaskRun = (currSystemTick - lastSystemTick) >= freq.interval;
+	// if tasks in this current system tick all finish early (within the
+	// current tick), Scheduler::run() will execute many times. Without this check,
+	// these tasks will also be run more than once
+	bool taskDidNotRunYet = lastSystemTick < currSystemTick;
+
+	return shouldTaskRun && taskDidNotRunYet;
+}
+
+void Module::setTicked(uint32_t currSystemTick) {
+	lastSystemTick = currSystemTick;
+}
