@@ -102,6 +102,8 @@ void setup() {
 	scheduler.setupISR();
 	scheduler.registerModules(modules, numModules);
 	scheduler.registerStateHandler(&stateHandler);
+
+	cout << "FreeStack: " << FreeStack() << endl;
 }
 
 void loop() {
