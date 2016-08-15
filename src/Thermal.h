@@ -14,7 +14,9 @@ class Thermal: public Module {
   // Resistor needs to be changed if more precision is required in different temperature ranges
   // Ex: get a resistor with higher resistance to obtain bigger precision for negative temperatures
   const double R2;
-  char name[20];
+
+  static const int NAME_SIZE = 16;
+  char name[NAME_SIZE];
 public:
   Thermal(int pin, double R, char const * id);
   void begin();

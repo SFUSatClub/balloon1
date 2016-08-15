@@ -47,8 +47,8 @@ IMU imu;
 // uses i2c init, internal addr
 Barometer barometer;
 Buzzer buzzer(buzzerEnablePin);
-Thermal tempInside(tempInsidePin, 10.0, "in");
-Thermal tempOutside(tempOutsidePin, 10.0, "out");
+Thermal tempInside(tempInsidePin, 10.0, "In");
+Thermal tempOutside(tempOutsidePin, 10.0, "Out");
 Battery battery(batteryPin);
 
 const int numModules = 10;

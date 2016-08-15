@@ -15,8 +15,7 @@ Thermal::Thermal(int pin, double R, char const* id) :
 	THERMAL_PIN(pin),
 	R2(R)
 {
-	strcpy(name, "Tmp:");
-	strcat(name, id);
+	snprintf(name, NAME_SIZE, "Tmp%s", id);
 }
 
 void Thermal::begin() {
@@ -42,6 +41,6 @@ const char* Thermal::getModuleName() {
 // Data format:<resistance>,<temperature in C>
 const char* Thermal::dataToPersist() {
 	toWrite[0] = '\0';
-	snprintf(toWrite, BUFFER_SIZE, "%.6f,%.6f", currentR, currentTempC);
+	snprintf(toWrite, BUFFER_SIZE, "%.3f,%.3f", currentR, currentTempC);
 	return toWrite;
 }
