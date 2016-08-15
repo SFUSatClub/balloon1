@@ -39,6 +39,7 @@ void Scheduler::run() {
 			stateHandler->tick();
 			hasStateChanged = stateHandler->hasStateChanged();
 		}
+		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - 1 - toWriteIndex, "t,%d\n", millis());
 	}
 
 	bool alreadyRanLastTickOfCycle = false;
@@ -46,7 +47,6 @@ void Scheduler::run() {
 		alreadyRanLastTickOfCycle = true;
 		/* cout << "RAM: " << getFreeRam() << endl; */
 		/* cout << systemTick << ": is last tick of a cycle" << endl; */
-		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - 1 - toWriteIndex, "t,%d\n", millis());
 	}
 
 	for(int i = 0; i < numCurrTasks; i++) {

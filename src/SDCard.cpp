@@ -39,7 +39,7 @@ void SDCard::tick() {
 		} else {
 			buffer[0] = '\0';
 			// TODO: multiple strcats is n^2 operation, keep track of index for speed
-			/* sprintf(buffer, "%s\n". moduleData); */
+			/* snprintf(buffer, BUFFER_WRITE_SIZE, "%s\n", moduleData); */
 			strcat(buffer, moduleData);
 			strcat(buffer, "\n");
 			dataFile.write(buffer);
@@ -84,6 +84,12 @@ void SDCard::registerModules(Module **_modules, int _numModules) {
 }
 void SDCard::registerScheduler(Scheduler *_scheduler) {
 	scheduler = _scheduler;
+
+	char seedMarker[32];
+	snprintf(seedMarker, 32, "::BOOT::%ld\n", seed);
+	switchToFile("Scheduler", FILE_WRITE);
+	dataFile.write(seedMarker);
+
 	return;
 }
 
