@@ -70,6 +70,7 @@ const char* StateHandler::dataToPersist(){
 			return "LANDED";
 		case SystemState::LOW_BATTERY:
 			return "LOW_BATTERY";
+		default: // fall-through
 		case SystemState::INVALID:
 			return "INVALID";
 	}

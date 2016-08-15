@@ -10,7 +10,6 @@
 
 #include <Arduino.h>
 
-#include "Task.h"
 #include "Scheduler.h" // deals with all the scheduling stuff
 #include "StateHandler.h"
 

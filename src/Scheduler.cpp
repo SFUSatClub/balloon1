@@ -33,7 +33,7 @@ void Scheduler::run() {
 			stateHandler->tick();
 			hasStateChanged = stateHandler->hasStateChanged();
 		}
-		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex, "t,%d\n", millis());
+		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex, "t,%lu\n", millis());
 	}
 
 	bool alreadyRanLastTickOfCycle = false;
@@ -49,7 +49,7 @@ void Scheduler::run() {
 			const uint32_t schedulerTickBefore = schedulerTick;
 			currModule->tick();
 			toWriteIndex += snprintf(toWrite + toWriteIndex
-					, BUFFER_SIZE - toWriteIndex, "%d,%d,%d\n"
+					, BUFFER_SIZE - toWriteIndex, "%d,%lu,%lu\n"
 					, i, schedulerTickBefore % TICKS_PER_CYCLE, schedulerTick - schedulerTickBefore);
 			currModule->setTicked(schedulerTickBefore);
 			if(hasStateChanged && stateHandler != NULL) {

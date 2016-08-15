@@ -77,7 +77,7 @@ bool Radio::forwardAPRSToUno(const char *data_msg) {
 	char toUno[BUFFER_UNO_SIZE];
 	currForwardCount++;
 	int all = snprintf(toUno, BUFFER_UNO_SIZE,
-			"a%f\t%f\t%d\t%f\t%d,%d,%d\r",
+			"a%f\t%f\t%lu\t%f\t%lu,%d,%d\r",
 			gps->getLatitude(), gps->getLongitude(),
 			gps->getGPSEpoch(), gps->getAltitude(),
 			currForwardCount, gps->getFixQuality(), gps->getSats());
