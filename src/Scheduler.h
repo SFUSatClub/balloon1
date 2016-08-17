@@ -22,7 +22,7 @@ public:
 	void setupISR();
 	uint32_t getSystemTick();
 	void run();
-	const char* dataToPersist();
+	const char* flushPersistBuffer();
 
 	static const uint16_t TICKS_PER_CYCLE = 1000;
 };

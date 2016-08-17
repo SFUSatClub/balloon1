@@ -37,7 +37,7 @@ public:
 	void begin();
 	void tick();
 
-	const char* dataToPersist();
+	const char* flushPersistBuffer();
 	const char* getModuleName();
 
 	bool hasStateChanged();

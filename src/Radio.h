@@ -18,7 +18,7 @@ public:
 	void tick();
 
 	const char* getModuleName();
-	const char* dataToPersist();
+	const char* flushPersistBuffer();
 
 	void registerModules(Module *modules[], int numModules);
 	bool forwardAPRSToUno(const char *data_msg);

@@ -58,7 +58,7 @@ SystemState StateHandler::getSystemState() {
 }
 
 // returns current system state
-const char* StateHandler::dataToPersist(){
+const char* StateHandler::flushPersistBuffer(){
 	switch(balloonState) {
 		case SystemState::PRE_FLIGHT:
 			return "PRE_FLIGHT";

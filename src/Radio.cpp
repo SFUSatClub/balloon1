@@ -43,12 +43,12 @@ void Radio::begin() {
 void Radio::tick() {
 	bool alreadyForwarded = false;
 	for(int currModule = 0; currModule < numModules; currModule++) {
-		const char* moduleRadioData = modules[currModule]->dataToSend();
+		const char* moduleRadioData = modules[currModule]->flushSendBuffer();
 		if(moduleRadioData == NULL) {
 			continue;
 		}
 		// Steven: add 2 for comma and new line char
-		// TODO: fix when dataToSend size is bigger than BUFFER_WRITE_SIZE, due will crash
+		// TODO: fix when flushSendBuffer size is bigger than BUFFER_WRITE_SIZE, due will crash
 		if(strlen(buffer) + strlen(moduleRadioData) + 2 < BUFFER_WRITE_SIZE) {
 			strcat(buffer, moduleRadioData);
 			strcat(buffer, "\n");
@@ -59,7 +59,7 @@ void Radio::tick() {
 			// WARNING: will send multiple aprs packets if we are sending a lot of data
 			// maybe should just throw away all data if full again in current tick
 			if(!alreadyForwarded) {
-				forwardAPRSToUno(buffer);
+				//forwardAPRSToUno(buffer);
 				alreadyForwarded = true;
 			}
 			buffer[0] = 0;
@@ -100,7 +100,7 @@ int Radio::systems_check() {
 	return check_result;
 }
 
-const char* Radio::dataToPersist() {
+const char* Radio::flushPersistBuffer() {
 	return gps->getTime();
 }
 

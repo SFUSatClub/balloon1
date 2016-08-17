@@ -2,7 +2,8 @@
 
 IMU::IMU() {
 	imuImpl = new MPU6050();
-	toWrite[0] = 0;
+
+	allocatePersistBuffer(BUFFER_SIZE);
 
 	// freq.interval = 20hz = 1000/20 = 50ms
 	freq.interval = 1000/SAMPLE_RATE_HZ;
@@ -80,16 +81,16 @@ void IMU::tick(){
 		imuImpl->dmpGetLinearAccel(&aaReal, &aa, &gravity);
 		imuImpl->dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
 
-		if(currSample <= SAMPLE_RATE_HZ && toWriteIndex < BUFFER_SIZE) {
+		if(currSample <= SAMPLE_RATE_HZ && persistBufferIndex < persistBufferSize) {
 			for(size_t i = 0; i < 3; i++) {
 				euler[i] *= 180/M_PI;
 				ypr[i] *= 180/M_PI;
 			}
 			if(currSample == 0) {
-				toWrite[0] = '\0';
+				persistBuffer[0] = '\0';
 			}
 
-			toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex
+			persistBufferIndex += snprintf(persistBuffer + persistBufferIndex, persistBufferSize - persistBufferIndex
 					, "%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%d,%d,%d\n"
 					, euler[0], euler[1], euler[2]
 					, ypr[0], ypr[1], ypr[2]
@@ -189,9 +190,9 @@ const char* IMU::getModuleName() {
 }
 
 // Data in format <eulerX>,<eulerY>,<eulerZ>,<yaw>,<pitch>,<roll>,<accX>,<accY>,<accZ>
-const char* IMU::dataToPersist() {
+const char* IMU::flushPersistBuffer() {
 	currSample = 0;
-	toWriteIndex = 0;
-	return toWrite;
+	persistBufferIndex = 0;
+	return persistBuffer;
 }
 

@@ -14,8 +14,6 @@ class GPS: public Module {
 	HardwareSerial *serial;
 	uint32_t timer;
 	char time[16];
-	static const int BUFFER_SIZE = 100;
-	char toWrite[BUFFER_SIZE];
 public:
 	GPS(HardwareSerial *);
 	void begin();
@@ -31,7 +29,7 @@ public:
 	uint32_t getGPSEpoch();
 	const char* getTime();
 
-	const char* dataToPersist();
+	const char* flushPersistBuffer();
 	const char* getModuleName();
 };
 

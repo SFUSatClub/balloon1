@@ -8,6 +8,8 @@ Buzzer::Buzzer(int _buzzerPin)
 {
 	charLength = 4;
 	flipFlop = 0;
+
+	allocatePersistBuffer(16);
 }
 
 void Buzzer::tick()
@@ -43,22 +45,22 @@ void Buzzer::begin()
 // 	// digitalWrite(buzzerPin, LOW);
 // }
 
-const char* Buzzer::dataToPersist() {
+const char* Buzzer::flushPersistBuffer() {
 	if(enabledTime == 0) {
 		return NULL;
 	}
 	if(flipFlop == 0) {
 		// enabledTime = 0;
-		toWrite[0] = '\0';
-		ultoa(enabledTime, toWrite, 10);
-		strcat(toWrite, " enabled");
-		return toWrite;
+		persistBuffer[0] = '\0';
+		ultoa(enabledTime, persistBuffer, 10);
+		strcat(persistBuffer, " enabled");
+		return persistBuffer;
 	} else { // enabledTime = -1
 		enabledTime = 0;
-		toWrite[0] = '\0';
-		ultoa(enabledTime, toWrite, 10);
-		strcat(toWrite, " disabled");
-		return toWrite;
+		persistBuffer[0] = '\0';
+		ultoa(enabledTime, persistBuffer, 10);
+		strcat(persistBuffer, " disabled");
+		return persistBuffer;
 	}
 }
 

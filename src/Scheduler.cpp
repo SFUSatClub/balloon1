@@ -78,7 +78,7 @@ void Scheduler::registerStateHandler(StateHandler *_stateHandler) {
 	stateHandler = _stateHandler;
 }
 
-const char* Scheduler::dataToPersist() {
+const char* Scheduler::flushPersistBuffer() {
 	toWriteIndex = 0;
 	return toWrite;
 }

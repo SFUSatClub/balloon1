@@ -8,13 +8,12 @@ class Photocells: public Module {
 	const int FIRST_PIN;  //first photosensor is attached to pin x
 	const int NUM_CELLS;      //number of photocells
 	int *photocellData;      //data acquired from sensor (assuming int datatype?)
-	char toWrite[200];             //max buffer size may have to change depending on data
 	unsigned long timer;
 public:
 	Photocells(uint8_t firstPin, uint8_t numCell);
 	void begin();
 	void tick();
 
-	const char* dataToPersist();
+	const char* flushPersistBuffer();
 	const char* getModuleName();
 };

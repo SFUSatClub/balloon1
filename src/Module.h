@@ -83,7 +83,7 @@ public:
 	 *
 	 * @return the c-style string to be sent over the radio
 	 */
-	virtual const char* dataToSend();
+	virtual const char* flushSendBuffer();
 
 	/**
 	 * @brief Should the module creates data and wants to persist it, this function
@@ -91,7 +91,7 @@ public:
 	 *
 	 * @return the c-style string to be written to the SD card
 	 */
-	virtual const char* dataToPersist();
+	virtual const char* flushPersistBuffer();
 
 	/**
 	 * @brief Called by the SD module and used as a label for this module's CSV output
@@ -100,12 +100,26 @@ public:
 	 */
 	virtual const char* getModuleName();
 
+	void allocatePersistBuffer(int bufferSize);
+	void allocateSendBuffer(int bufferSize);
+
+	const char* getPersistBuffer();
+	const char* getSendBuffer();
+
 	bool shouldTick(uint32_t currSystemTick);
 	void setTicked(uint32_t currSystemTick);
 	bool propertyShouldPrint;
 
 protected:
 	State state;
+
+	int persistBufferIndex;
+	int persistBufferSize;
+	char *persistBuffer;
+
+	int sendBufferIndex;
+	int sendBufferSize;
+	char *sendBuffer;
 
 	scheduling_freq freq;
 private:

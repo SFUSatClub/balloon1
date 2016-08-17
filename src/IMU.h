@@ -22,8 +22,6 @@ private:
 	static const int SAMPLE_RATE_HZ = 20;
 	static const int BUFFER_SIZE = (SAMPLE_RATE_HZ + 4) * (36 + 15 + 1); // extra buffer room (sample rate + 4) just in case
 	uint8_t currSample;
-	int toWriteIndex;
-	char toWrite[BUFFER_SIZE];
 
 	uint8_t mpuIntStatus;
 	uint16_t packetSize;
@@ -44,7 +42,7 @@ public:
 	void begin();
 	void tick();
 
-	const char* dataToPersist();
+	const char* flushPersistBuffer();
 	const char* getModuleName();
 
 	int getAccX();

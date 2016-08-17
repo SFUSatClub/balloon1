@@ -13,6 +13,9 @@ inline Module::State& operator |=(Module::State& a, Module::State b) {
 }
 
 Module::Module() {
+	persistBuffer = NULL;
+	sendBuffer = NULL;
+
 	// default module timeout, interval
 	freq.timeout = 1000;
 	freq.interval = 1000;
@@ -34,12 +37,44 @@ scheduling_freq Module::getSchedulingFreq() {
 	return freq;
 }
 
-const char* Module::dataToPersist() {
+const char* Module::flushPersistBuffer() {
 	return NULL;
 }
 
-const char* Module::dataToSend() {
+const char* Module::flushSendBuffer() {
 	return NULL;
+}
+
+void Module::allocatePersistBuffer(int bufferSize) {
+#ifdef DEBUG
+	if(persistBuffer != NULL) {
+		while(true) {
+			cout << "Module::allocateSendBuffer() called more than once" << endl;
+		}
+	}
+#endif
+	persistBufferSize = bufferSize;
+	persistBuffer = new char[bufferSize];
+}
+
+void Module::allocateSendBuffer(int bufferSize) {
+#ifdef DEBUG
+	if(sendBuffer != NULL) {
+		while(true) {
+			cout << "Module::allocateSendBuffer() called more than once" << endl;
+		}
+	}
+#endif
+	sendBufferSize = bufferSize;
+	sendBuffer = new char[bufferSize];
+}
+
+const char* Module::getPersistBuffer() {
+	return persistBuffer;
+}
+
+const char* Module::getSendBuffer() {
+	return sendBuffer;
 }
 
 const char* Module::getModuleName() {
@@ -59,9 +94,10 @@ bool Module::shouldTick(uint32_t currSystemTick) {
 	bool moduleDidNotRunYet = lastSystemTick < currSystemTick;
 
 #ifdef DEBUG
-	// if the print property is set, module should run,
+	// if the print property is set, module should run, or is continuous,
 	// and 1 second has passed since last print
-	if(propertyShouldPrint && shouldModuleRun && moduleDidNotRunYet
+	// then print just the timestamp
+	if(propertyShouldPrint && (freq.interval == 0 || (shouldModuleRun && moduleDidNotRunYet))
 			&& currSystemTick - lastPrintTick > 1000) {
 		lastPrintTick = currSystemTick;
 		const uint32_t ms = millis();
@@ -73,7 +109,7 @@ bool Module::shouldTick(uint32_t currSystemTick) {
 		// -12 = left align to fit 12 chars in field
 		// right pad with spaces and tabulate for aligned columns
 		snprintf(buffer, 16, "%-12s\t", getModuleName());
-		cout << buffer << dataToPersist() << endl;
+		cout << buffer << getPersistBuffer() << endl;
 		return true;
 	}
 #endif

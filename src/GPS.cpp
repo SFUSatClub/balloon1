@@ -11,9 +11,9 @@
 
 GPS::GPS(HardwareSerial *ser) {
 	gpsImpl = new Adafruit_GPS(ser); // Constructor when using HardwareSerial
-
 	serial = ser;
 
+	allocatePersistBuffer(100);
 	freq.interval = 0;
 }
 
@@ -62,6 +62,8 @@ void GPS::tick() {
 	// if millis() or timer wraps around, we'll just reset it
 	if (timer > millis())  timer = millis();
 
+#ifdef DEBUG
+	PP(
 	// approximately every 2 seconds or so, print out the current stats
 	if (millis() - timer > 2000) {
 		timer = millis(); // reset the timer
@@ -88,7 +90,8 @@ void GPS::tick() {
 			Serial.print("Altitude: "); Serial.println(gpsImpl->altitude);
 			Serial.print("Satellites: "); Serial.println((int)gpsImpl->satellites);
 		}
-	}
+	})
+#endif
 }
 
 float GPS::getLatitude() {
@@ -132,16 +135,16 @@ const char* GPS::getTime() {
 }
 
 // Data format: <lat>,<long>,<speed>,<altitude>,<angle>,<fix>,<fix quality>,<satellites>
-const char* GPS::dataToPersist() {
-	toWrite[0] = '\0';
-	snprintf(toWrite, BUFFER_SIZE,
+const char* GPS::flushPersistBuffer() {
+	persistBuffer[0] = '\0';
+	snprintf(persistBuffer, persistBufferSize,
 			"%.6f,%.6f,"
 			"%.6f,%.6f,%.6f,"
 			"%d,%d,%d",
 			gpsImpl->latitude, gpsImpl->longitude,
 			gpsImpl->speed, gpsImpl->altitude, gpsImpl->angle,
 			gpsImpl->fix, gpsImpl->fixquality, gpsImpl->satellites);
-	return toWrite;
+	return persistBuffer;
 }
 
 const char* GPS::getModuleName() {

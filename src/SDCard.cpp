@@ -24,7 +24,7 @@ void SDCard::tick() {
 
 	int t1 = millis();
 	for(int currModule = 0; currModule < numModules; currModule++) {
-		const char* moduleData = modules[currModule]->dataToPersist();
+		const char* moduleData = modules[currModule]->flushPersistBuffer();
 		if(moduleData == NULL) {
 			continue;
 		}
@@ -47,7 +47,7 @@ void SDCard::tick() {
 	}
 	if(scheduler != NULL) {
 		switchToFile("Scheduler", FILE_WRITE);
-		const char* schedulerData = scheduler->dataToPersist();
+		const char* schedulerData = scheduler->flushPersistBuffer();
 		dataFile.write(schedulerData);
 		dataFile.write("\n");
 	}
@@ -61,7 +61,7 @@ void SDCard::disable() {
 const char* SDCard::getModuleName() {
 	return "SDCard";
 }
-const char* SDCard::dataToPersist() {
+const char* SDCard::flushPersistBuffer() {
 	return "returning sd data";
 }
 

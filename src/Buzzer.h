@@ -7,11 +7,8 @@
 class Buzzer: public Module {
 	int charLength;
 	int buzzerPin;
-	char toWrite[16];
 	uint32_t enabledTime;
 	static int flipFlop;
-
-
 public:
 	Buzzer(int buzzerPin);
 
@@ -21,7 +18,7 @@ public:
 	// int enable();
 	// void disable(); //?
 
-	const char* dataToPersist();
+	const char* flushPersistBuffer();
 	const char* getModuleName();
 
 };

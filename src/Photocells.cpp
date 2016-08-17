@@ -9,6 +9,8 @@ Photocells::Photocells(uint8_t _firstPin, uint8_t _numCells)
 	, NUM_CELLS(_numCells)
 {
 	photocellData = new int[NUM_CELLS];
+
+	allocatePersistBuffer(200);
 }
 
 void Photocells::begin(){
@@ -21,15 +23,15 @@ void Photocells::tick(){
 	}
 }
 
-// SD formatter adds moduleName and \n
+// TODO: use persistBufferIndex instead of strchr for speed
 // outputs in format <value1>, ... ,<value4>,<value5>
-const char* Photocells::dataToPersist(){
-	toWrite[0] = '\0';
+const char* Photocells::flushPersistBuffer(){
+	persistBuffer[0] = '\0';
 	for (int i=0;i<NUM_CELLS;i++){
 		// if is last iteration, skip the comma
-		sprintf(strchr(toWrite,'\0'), i==NUM_CELLS-1?"%d":"%d,", photocellData[i]); //appends to output str
+		sprintf(strchr(persistBuffer,'\0'), i==NUM_CELLS-1?"%d":"%d,", photocellData[i]); //appends to output str
 	}
-	return toWrite;
+	return persistBuffer;
 }
 
 const char* Photocells::getModuleName() {

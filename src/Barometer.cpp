@@ -12,6 +12,7 @@ void Barometer::begin() {
 		cout << "Barometer failed" << endl;
 		state =  State::BEGIN_FAILED;
 	}
+	allocatePersistBuffer(100);
 }
 
 void Barometer::tick() {
@@ -87,10 +88,10 @@ Serial.println(" feet");
 */
 
 // Data format: <temperature in deg c>,<abs pressure in Hg>
-const char* Barometer::dataToPersist() {
-	toWrite[0] = '\0';
-	snprintf(toWrite, 100, "%0.6f,%0.6f",temperature,pressure);
-	return toWrite;
+const char* Barometer::flushPersistBuffer() {
+	persistBuffer[0] = '\0';
+	snprintf(persistBuffer, 100, "%0.6f,%0.6f",temperature,pressure);
+	return persistBuffer;
 }
 
 const char* Barometer::getModuleName() {
