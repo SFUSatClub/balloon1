@@ -11,6 +11,10 @@ ArduinoOutStream cout(Serial);
 char cinBuf[40];
 ArduinoInStream cin(Serial, cinBuf, sizeof(cinBuf));
 
+int FreeStack() {
+  char top;
+  return &top - reinterpret_cast<char*>(sbrk(0));
+}
 /* // http://stackoverflow.com/questions/440133/how-do-i-create-a-random-alpha-numeric-string-in-c */
 /* void genRandStr(char *s, const int len) { */
 /*     static const char alphanum[] = */
