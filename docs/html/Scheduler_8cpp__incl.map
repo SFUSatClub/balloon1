@@ -1,10 +1,11 @@
 <map id="src/Scheduler.cpp" name="src/Scheduler.cpp">
-<area shape="rect" id="node3" href="$Scheduler_8h.html" title="Scheduler.h" alt="" coords="345,80,443,107"/>
-<area shape="rect" id="node4" href="$Task_8h.html" title="Task.h" alt="" coords="245,155,306,181"/>
-<area shape="rect" id="node8" href="$Globals_8h.html" title="Globals.h" alt="" coords="89,379,171,405"/>
-<area shape="rect" id="node9" href="$StateHandler_8h.html" title="StateHandler.h" alt="" coords="335,155,453,181"/>
-<area shape="rect" id="node6" href="$Module_8h.html" title="Module.h" alt="" coords="169,304,249,331"/>
-<area shape="rect" id="node10" href="$Barometer_8h.html" title="Barometer.h" alt="" coords="449,229,552,256"/>
-<area shape="rect" id="node13" href="$GPS_8h.html" title="GPS.h" alt="" coords="363,229,425,256"/>
-<area shape="rect" id="node14" href="$Adafruit__GPS_8h.html" title="Adafruit_GPS.h" alt="" coords="273,304,392,331"/>
+<area shape="rect" id="node3" href="$Scheduler_8h.html" title="Scheduler.h" alt="" coords="235,80,333,107"/>
+<area shape="rect" id="node4" href="$StateHandler_8h.html" title="StateHandler.h" alt="" coords="417,155,535,181"/>
+<area shape="rect" id="node7" href="$Globals_8h.html" title="Globals.h" alt="" coords="713,379,794,405"/>
+<area shape="rect" id="node5" href="$Module_8h.html" title="Module.h" alt="" coords="533,304,613,331"/>
+<area shape="rect" id="node9" href="$SystemState_8h.html" title="SystemState.h" alt="" coords="417,379,535,405"/>
+<area shape="rect" id="node10" href="$Barometer_8h.html" title="Barometer.h" alt="" coords="605,229,707,256"/>
+<area shape="rect" id="node13" href="$GPS_8h.html" title="GPS.h" alt="" coords="363,229,424,256"/>
+<area shape="rect" id="node8" href="$Config_8h.html" title="Config.h" alt="" coords="735,453,809,480"/>
+<area shape="rect" id="node14" href="$Adafruit__GPS_8h.html" title="Adafruit_GPS.h" alt="" coords="222,304,341,331"/>
 </map>

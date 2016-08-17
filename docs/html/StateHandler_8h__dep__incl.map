@@ -1,6 +1,8 @@
 <map id="src/StateHandler.h" name="src/StateHandler.h">
-<area shape="rect" id="node2" href="$Scheduler_8h.html" title="src/Scheduler.h" alt="" coords="95,80,215,107"/>
-<area shape="rect" id="node3" href="$main_8cpp.html" title="src/main.cpp" alt="" coords="5,155,109,181"/>
-<area shape="rect" id="node5" href="$StateHandler_8cpp.html" title="src/StateHandler.cpp" alt="" coords="239,80,395,107"/>
-<area shape="rect" id="node4" href="$Scheduler_8cpp.html" title="src/Scheduler.cpp" alt="" coords="134,155,269,181"/>
+<area shape="rect" id="node2" href="$Scheduler_8h.html" title="src/Scheduler.h" alt="" coords="181,80,301,107"/>
+<area shape="rect" id="node3" href="$main_8cpp.html" title="src/main.cpp" alt="" coords="265,229,369,256"/>
+<area shape="rect" id="node7" href="$StateHandler_8cpp.html" title="src/StateHandler.cpp" alt="" coords="405,80,561,107"/>
+<area shape="rect" id="node4" href="$SDCard_8h.html" title="src/SDCard.h" alt="" coords="13,155,119,181"/>
+<area shape="rect" id="node6" href="$Scheduler_8cpp.html" title="src/Scheduler.cpp" alt="" coords="144,155,279,181"/>
+<area shape="rect" id="node5" href="$SDCard_8cpp.html" title="src/SDCard.cpp" alt="" coords="5,229,127,256"/>
 </map>

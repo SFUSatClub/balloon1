@@ -1,5 +1,6 @@
 var searchData=
 [
   ['adafruit_5fgps',['Adafruit_GPS',['../classAdafruit__GPS.html#a3dd74265015def9c893170f38bab1b61',1,'Adafruit_GPS']]],
-  ['addtask',['addTask',['../classScheduler.html#a0e3d7b3649f64a9dde58789282a0452f',1,'Scheduler']]]
+  ['allocatepersistbuffer',['allocatePersistBuffer',['../classModule.html#ad44c743adfe60b484ce08de5ac90b1f8',1,'Module']]],
+  ['allocatesendbuffer',['allocateSendBuffer',['../classModule.html#a25a3f9243dcc3329ade625377bb0338b',1,'Module']]]
 ];

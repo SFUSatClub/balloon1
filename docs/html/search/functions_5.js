@@ -1,5 +1,8 @@
 var searchData=
 [
   ['flagsforfile',['FlagsForFile',['../_8ycm__extra__conf_8py.html#a51f8bcdc9a3b791e6a88d798e6c786b3',1,'.ycm_extra_conf.py']]],
-  ['forwardaprstouno',['forwardAPRSToUno',['../classRadio.html#aca7ee441216f1557a2407177d5c76a7a',1,'Radio']]]
+  ['flushpersistbuffer',['flushPersistBuffer',['../classBarometer.html#a2aec948a73e4f00bd4468d8b65db7967',1,'Barometer::flushPersistBuffer()'],['../classBarometer5540.html#a47ee8362470f25dd1eede17b9054e656',1,'Barometer5540::flushPersistBuffer()'],['../classBattery.html#a4a8de02f0f5e0a30c0d4a70b1320dcbb',1,'Battery::flushPersistBuffer()'],['../classBuzzer.html#af6bc70e6aa9aeda074196870d6f61914',1,'Buzzer::flushPersistBuffer()'],['../classGPS.html#a124edb82c0e0b3c3b19144bdd9c532c3',1,'GPS::flushPersistBuffer()'],['../classIMU.html#a44999db8581f70341f3dcf6f3caebc8f',1,'IMU::flushPersistBuffer()'],['../classModule.html#a6632a69d8abfdeedd110ede451adc2e5',1,'Module::flushPersistBuffer()'],['../classPhotocells.html#af6342b3709ebfdc8e011d9f02a4bb600',1,'Photocells::flushPersistBuffer()'],['../classRadio.html#a0aa2eea3ada93f3137b337857bd627f0',1,'Radio::flushPersistBuffer()'],['../classScheduler.html#a0e6f700b2083e80afcaa67613227ca84',1,'Scheduler::flushPersistBuffer()'],['../classSDCard.html#ac69df836d7d6541d3094919e882ae289',1,'SDCard::flushPersistBuffer()'],['../classStateHandler.html#ae6069bf13dd146fbaad685259a0580ea',1,'StateHandler::flushPersistBuffer()'],['../classThermal.html#a74458dcf1bac9400ed358fcbd96a8b3c',1,'Thermal::flushPersistBuffer()']]],
+  ['flushsendbuffer',['flushSendBuffer',['../classModule.html#aab8fe8665b0256607974f2bb7782c39f',1,'Module']]],
+  ['forwardaprstouno',['forwardAPRSToUno',['../classRadio.html#aca7ee441216f1557a2407177d5c76a7a',1,'Radio']]],
+  ['freestack',['FreeStack',['../Globals_8cpp.html#a86da1fd0aa8dcc6a981803373bc8839d',1,'FreeStack():&#160;Globals.cpp'],['../Globals_8h.html#a86da1fd0aa8dcc6a981803373bc8839d',1,'FreeStack():&#160;Globals.cpp']]]
 ];

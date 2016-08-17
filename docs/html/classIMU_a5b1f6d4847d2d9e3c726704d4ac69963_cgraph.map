@@ -1,5 +1,6 @@
 <map id="IMU::tick" name="IMU::tick">
-<area shape="rect" id="node2" href="$classLSM303.html#a9f40456878f534bba32490d19f3a64ce" title="LSM303::read" alt="" coords="129,31,240,57"/>
-<area shape="rect" id="node3" href="$classLSM303.html#ac1396a51b288eadc41fd19fbd79ef68e" title="LSM303::readAcc" alt="" coords="290,5,423,32"/>
-<area shape="rect" id="node4" href="$classLSM303.html#abc93e8d8101c6b00df2ae85c5f8ded9e" title="LSM303::readMag" alt="" coords="288,56,425,83"/>
+<area shape="rect" id="node2" href="$classMPU6050.html#a550a735623cb1de950c72cd6931ee804" title="MPU6050::getIntStatus" alt="" coords="133,5,303,32"/>
+<area shape="rect" id="node3" href="$classMPU6050.html#ad96c7a75a39327ebaae01386bcbc58dd" title="MPU6050::getFIFOCount" alt="" coords="129,56,307,83"/>
+<area shape="rect" id="node4" href="$classMPU6050.html#aafa0dc38b7ea2acd1aecd5d9df8cbd08" title="MPU6050::resetFIFO" alt="" coords="143,107,293,133"/>
+<area shape="rect" id="node5" href="$classMPU6050.html#aba36dcb767b5cd8965053987aaa08a6a" title="MPU6050::getFIFOBytes" alt="" coords="131,157,305,184"/>
 </map>

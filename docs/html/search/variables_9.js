@@ -2,7 +2,6 @@ var searchData=
 [
   ['last_5fstatus',['last_status',['../classLSM303.html#a71331bb0974b49dd30d9748aef24836b',1,'LSM303']]],
   ['lastline',['lastline',['../Adafruit__GPS_8cpp.html#a02ce03f6bed92fbaedff4091013e8f6b',1,'Adafruit_GPS.cpp']]],
-  ['lastrun',['lastRun',['../classTask.html#a2a9b7414ad884ab99cb1640ab5c055d6',1,'Task']]],
   ['lat',['lat',['../classAdafruit__GPS.html#a2b04c8136e976cd8cd87aaa3526753d6',1,'Adafruit_GPS']]],
   ['latitude',['latitude',['../classAdafruit__GPS.html#a1b6477f3f89e0a804ceddcfd85d70c81',1,'Adafruit_GPS']]],
   ['latitude_5ffixed',['latitude_fixed',['../classAdafruit__GPS.html#a2d3b65036628a65d1e119d3d9a69678c',1,'Adafruit_GPS']]],

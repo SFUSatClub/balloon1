@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['photocells_2ecpp',['Photocells.cpp',['../Photocells_8cpp.html',1,'']]],
-  ['photocells_2eh',['Photocells.h',['../Photocells_8h.html',1,'']]]
+  ['lsm303_2ecpp',['LSM303.cpp',['../LSM303_8cpp.html',1,'']]],
+  ['lsm303_2eh',['LSM303.h',['../LSM303_8h.html',1,'']]]
 ];

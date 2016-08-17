@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['lsm303_2ecpp',['LSM303.cpp',['../LSM303_8cpp.html',1,'']]],
-  ['lsm303_2eh',['LSM303.h',['../LSM303_8h.html',1,'']]]
+  ['helper_5f3dmath_2eh',['helper_3dmath.h',['../helper__3dmath_8h.html',1,'']]]
 ];

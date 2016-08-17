@@ -100,15 +100,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <ol type="1">
 <li>Install git</li>
 </ol>
-<h3>PlatformIO</h3>
-<h4>Installation</h4>
 <ol type="1">
-<li><p class="startli">Since we plan on using the Arduino Due and there are some <a href="https://github.com/platformio/platformio/issues/710">issues</a> with the current version of PlatformIO, we will be using the <a href="https://github.com/platformio/platformio/issues/710">development version</a> for now. <b>Atom is recommended</b> but the command line is great as well.</p>
-<p class="startli">If you're using Atom, here's how to use the dev version:</p>
-<p class="startli">``` Menu PlatformIO: Settings &gt; PlatformIO IDE &gt; Use development version of PlatformIO ```</p>
-<p class="startli">If you're using the command-line, here's how to use the dev version:</p>
-<p class="startli">```sh </p><h1>install the latest development version of PlatformIO</h1>
-<p class="startli">pip install -U <a href="https://github.com/platformio/platformio/archive/develop.zip">https://github.com/platformio/platformio/archive/develop.zip</a> ```</p>
+<li>Install <a href="http://docs.platformio.org/en/stable/installation.html#installation">PlatformIO</a></li>
+</ol>
+<ol type="1">
+<li>Integrate your <a href="http://docs.platformio.org/en/stable/ide.html#ide">IDE with PlatformIO</a><ul>
+<li><a href="http://docs.platformio.org/en/stable/ide/atom.html">Atom</a> is recommended but using the PlatformIO CLI directly with your favourite editor is even nicer</li>
+</ul>
 </li>
 </ol>
 <h4>Usage</h4>
@@ -125,7 +123,68 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>serial monitor</h1>
 <p>platformio serialports monitor</p>
 <h1>library stuff</h1>
-<p>platformio lib ``` </p>
+<p>platformio lib ```</p>
+<h2>Overall System</h2>
+<ul>
+<li>Modules are created once on setup and globally stored in an array</li>
+<li>No dynamic memory allocations except in initialization</li>
+<li>Modules may persist data/send data over uno-&gt;radio link by overriding the appropriate methods</li>
+<li>Watchdog added</li>
+<li><a class="el" href="Globals_8h.html">Globals.h</a> added<ul>
+<li>Allow writing to Serial using c++ style cout and cin streams</li>
+<li><a class="el" href="Globals_8cpp.html#a237bdbf0e16743c61bfdfea44b63d54a">WATCHDOG_RESET()</a> method to appease the watchdog</li>
+</ul>
+</li>
+<li>Added a project editorconfig, makefile, and improved ycm completion</li>
+</ul>
+<h2>Modules</h2>
+<ul>
+<li><a class="el" href="classScheduler.html">Scheduler</a> and Tasks<ul>
+<li>IMPLEMENTED, WORKING: Successful multitasking of modules</li>
+</ul>
+</li>
+<li><a class="el" href="classRadio.html">Radio</a><ul>
+<li>IMPLEMENTED, WORKING: Successful relaying of <a class="el" href="classGPS.html">GPS</a> telemetry (lat,long,time,alt) over due-&gt;uno-&gt;radio link</li>
+<li>More testing needed to see if Modules can reliably relay information over the APRS data field</li>
+</ul>
+</li>
+<li><a class="el" href="classGPS.html">GPS</a><ul>
+<li>IMPLEMENTED, WORKING: <a class="el" href="classGPS.html">GPS</a> gets satellite fixes, logs data to SD card, and provides RTC+telemetry to system</li>
+<li>Only source of RTC for now</li>
+</ul>
+</li>
+<li><a class="el" href="classSDCard.html">SDCard</a><ul>
+<li>IMPLEMENTED, WORKING: <a class="el" href="classSDCard.html">SDCard</a> reliably persists all data from all modules</li>
+</ul>
+</li>
+<li><a class="el" href="classStateHandler.html">StateHandler</a><ul>
+<li>IMPLEMENTED, UNTESTED</li>
+<li>Analyze <a class="el" href="classGPS.html">GPS</a> and <a class="el" href="classBarometer.html">Barometer</a> values and relay state changes to system</li>
+</ul>
+</li>
+<li><a class="el" href="classIMU.html">IMU</a><ul>
+<li>IMPLEMENTED, UNTESTED i2c address crashing the due on runtime)</li>
+<li>Might change implementation and hardware <a class="el" href="classIMU.html">IMU</a> to the mpu6050</li>
+</ul>
+</li>
+<li><a class="el" href="classBuzzer.html">Buzzer</a><ul>
+<li>IMPLEMENTED, UNTESTED</li>
+<li>Toggles a digital pin to turn on a buzzer</li>
+</ul>
+</li>
+<li><a class="el" href="classBarometer.html">Barometer</a><ul>
+<li>IMPLEMENTED, UNTESTED</li>
+</ul>
+</li>
+<li><a class="el" href="classPhotocells.html">Photocells</a><ul>
+<li>IMPLEMENTED, UNTESTED</li>
+</ul>
+</li>
+<li>Temperature sensor<ul>
+<li>IMPLEMENTED, TESTED TODO: Add support for multiple temperature sensors TODO: Decide on the R2 value </li>
+</ul>
+</li>
+</ul>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->

@@ -1,8 +1,10 @@
 <map id="Radio::tick" name="Radio::tick">
-<area shape="rect" id="node2" href="$classModule.html#a1b09b23602e5491206dcc96e4714ddac" title="Should the module creates data and wants to persist it, this function would be called by the SD modul..." alt="" coords="152,31,313,57"/>
-<area shape="rect" id="node3" href="$classRadio.html#aca7ee441216f1557a2407177d5c76a7a" title="Radio::forwardAPRSToUno" alt="" coords="140,81,325,108"/>
+<area shape="rect" id="node2" href="$classModule.html#aab8fe8665b0256607974f2bb7782c39f" title="Should the module creates data and wants to send it over the uno&#45;&gt;radio link, this function would be ..." alt="" coords="144,81,321,108"/>
+<area shape="rect" id="node3" href="$classRadio.html#aca7ee441216f1557a2407177d5c76a7a" title="Radio::forwardAPRSToUno" alt="" coords="140,132,325,159"/>
 <area shape="rect" id="node4" href="$classGPS.html#ab4d2e452693d9aaf68408912856f5721" title="GPS::getLatitude" alt="" coords="380,5,511,32"/>
 <area shape="rect" id="node5" href="$classGPS.html#afde48a47d035f4f2ecf1bfb74da64675" title="GPS::getLongitude" alt="" coords="375,56,516,83"/>
 <area shape="rect" id="node6" href="$classGPS.html#abfc4954a61fc1ef7ccf3b0a96140419d" title="GPS::getGPSEpoch" alt="" coords="373,107,517,133"/>
 <area shape="rect" id="node7" href="$classGPS.html#abbb46429b3d87e7dfd63a38a1831e710" title="GPS::getAltitude" alt="" coords="382,157,509,184"/>
+<area shape="rect" id="node8" href="$classGPS.html#a93134475c184ad43aaa47c253f2fce96" title="GPS::getFixQuality" alt="" coords="376,208,515,235"/>
+<area shape="rect" id="node9" href="$classGPS.html#ac3cc592dce5508ff8a8d29ca102d8fe6" title="GPS::getSats" alt="" coords="392,259,499,285"/>
 </map>

@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['waitforsentence',['waitForSentence',['../classAdafruit__GPS.html#a93a140ac59cff5a034eff003d25935dd',1,'Adafruit_GPS']]],
-  ['wakeup',['wakeup',['../classAdafruit__GPS.html#a032614ec7013f7e109a111d974c69d6e',1,'Adafruit_GPS']]],
-  ['watchdog_5freset',['WATCHDOG_RESET',['../Globals_8cpp.html#a237bdbf0e16743c61bfdfea44b63d54a',1,'WATCHDOG_RESET():&#160;Globals.cpp'],['../Globals_8h.html#a237bdbf0e16743c61bfdfea44b63d54a',1,'WATCHDOG_RESET():&#160;Globals.cpp']]],
-  ['writeaccreg',['writeAccReg',['../classLSM303.html#aa381bad81ac2b1c844a310c31c55851d',1,'LSM303']]],
-  ['writemagreg',['writeMagReg',['../classLSM303.html#a470fa63cc2571442d0dcd9f9613482ac',1,'LSM303']]],
-  ['writereg',['writeReg',['../classLSM303.html#a37813b3ab37b06d57926fe41e31a0fb3',1,'LSM303']]]
+  ['vector_5fcross',['vector_cross',['../classLSM303.html#ae590be5fbc5f3dc2b20349c462dd80bb',1,'LSM303']]],
+  ['vector_5fdot',['vector_dot',['../classLSM303.html#a1fac94fcc4b58c085dee979544599037',1,'LSM303']]],
+  ['vector_5fnormalize',['vector_normalize',['../classLSM303.html#ab0117d66614a77b1ef215c04fb47dcdc',1,'LSM303']]],
+  ['vectorfloat',['VectorFloat',['../classVectorFloat.html#a8b54ec5c117ca7101cff478b3cfaa0cc',1,'VectorFloat::VectorFloat()'],['../classVectorFloat.html#a3b12ed03e28bded4316275882433e5aa',1,'VectorFloat::VectorFloat(float nx, float ny, float nz)']]],
+  ['vectorint16',['VectorInt16',['../classVectorInt16.html#a314bffb747999af26026f734c43d61a2',1,'VectorInt16::VectorInt16()'],['../classVectorInt16.html#acce45f37b3f90df1d5aff6edbf12f02b',1,'VectorInt16::VectorInt16(int16_t nx, int16_t ny, int16_t nz)']]]
 ];

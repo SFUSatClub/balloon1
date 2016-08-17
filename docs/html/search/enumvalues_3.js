@@ -29,6 +29,6 @@ var searchData=
   ['dlm_5fout_5fy_5fl_5fm',['DLM_OUT_Y_L_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875ae81d508577fd8f015d3a20f95b7a23a3',1,'LSM303']]],
   ['dlm_5fout_5fz_5fh_5fm',['DLM_OUT_Z_H_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875a6e1a872f2b82858a7a8579f380019192',1,'LSM303']]],
   ['dlm_5fout_5fz_5fl_5fm',['DLM_OUT_Z_L_M',['../classLSM303.html#aec959b54c433194ac47239d613ab9875aacac921517842881eff88f8e68e9bdac',1,'LSM303']]],
-  ['during_5fdescent',['DURING_DESCENT',['../Module_8h.html#aa51313be2faacb739a18fdeecefbac75a51d843a5071fc28f54473afc386a1df3',1,'Module.h']]],
-  ['during_5fflight',['DURING_FLIGHT',['../Module_8h.html#aa51313be2faacb739a18fdeecefbac75a5230c4942396970338427e9c6fbaa84e',1,'Module.h']]]
+  ['during_5fdescent',['DURING_DESCENT',['../SystemState_8h.html#aa51313be2faacb739a18fdeecefbac75a51d843a5071fc28f54473afc386a1df3',1,'SystemState.h']]],
+  ['during_5fflight',['DURING_FLIGHT',['../SystemState_8h.html#aa51313be2faacb739a18fdeecefbac75a5230c4942396970338427e9c6fbaa84e',1,'SystemState.h']]]
 ];

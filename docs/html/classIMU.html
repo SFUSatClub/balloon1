@@ -105,7 +105,7 @@ Inheritance diagram for IMU:</div>
 <div class="dyncontent">
 <div class="center"><img src="classIMU__inherit__graph.png" border="0" usemap="#IMU_inherit__map" alt="Inheritance graph"/></div>
 <map name="IMU_inherit__map" id="IMU_inherit__map">
-<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="5,5,171,215"/>
+<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="5,5,184,420"/>
 </map>
 </div>
 <div class="dynheader">
@@ -113,7 +113,8 @@ Collaboration diagram for IMU:</div>
 <div class="dyncontent">
 <div class="center"><img src="classIMU__coll__graph.png" border="0" usemap="#IMU_coll__map" alt="Collaboration graph"/></div>
 <map name="IMU_coll__map" id="IMU_coll__map">
-<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="5,145,171,355"/>
+<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="152,329,331,627"/>
+<area shape="rect" id="node4" href="structscheduling__freq.html" title="{scheduling_freq\n||}" alt="" coords="80,145,203,223"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -127,15 +128,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5b1f6d4847d2d9e3c726704d4ac69963"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMU.html#a5b1f6d4847d2d9e3c726704d4ac69963">tick</a> ()</td></tr>
 <tr class="memdesc:a5b1f6d4847d2d9e3c726704d4ac69963"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called periodically by the <a class="el" href="classScheduler.html">Scheduler</a>.  <a href="#a5b1f6d4847d2d9e3c726704d4ac69963">More...</a><br /></td></tr>
 <tr class="separator:a5b1f6d4847d2d9e3c726704d4ac69963"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c15fb2fcc90c18914d1c71e5dea8410"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMU.html#a8c15fb2fcc90c18914d1c71e5dea8410">enable</a> ()</td></tr>
-<tr class="memdesc:a8c15fb2fcc90c18914d1c71e5dea8410"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the module and exit powersaving mode.  <a href="#a8c15fb2fcc90c18914d1c71e5dea8410">More...</a><br /></td></tr>
-<tr class="separator:a8c15fb2fcc90c18914d1c71e5dea8410"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a974ae95c940007e5f044f3a1012a6edc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMU.html#a974ae95c940007e5f044f3a1012a6edc">disable</a> ()</td></tr>
-<tr class="memdesc:a974ae95c940007e5f044f3a1012a6edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the module and enter powersaving mode.  <a href="#a974ae95c940007e5f044f3a1012a6edc">More...</a><br /></td></tr>
-<tr class="separator:a974ae95c940007e5f044f3a1012a6edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44b0ed05b0e84b51fa0b932c466c4623"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMU.html#a44b0ed05b0e84b51fa0b932c466c4623">dataToPersist</a> ()</td></tr>
-<tr class="memdesc:a44b0ed05b0e84b51fa0b932c466c4623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to persist it, this function would be called by the SD module to handle it.  <a href="#a44b0ed05b0e84b51fa0b932c466c4623">More...</a><br /></td></tr>
-<tr class="separator:a44b0ed05b0e84b51fa0b932c466c4623"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44999db8581f70341f3dcf6f3caebc8f"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMU.html#a44999db8581f70341f3dcf6f3caebc8f">flushPersistBuffer</a> ()</td></tr>
+<tr class="memdesc:a44999db8581f70341f3dcf6f3caebc8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to persist it, this function would be called by the SD module to handle it.  <a href="#a44999db8581f70341f3dcf6f3caebc8f">More...</a><br /></td></tr>
+<tr class="separator:a44999db8581f70341f3dcf6f3caebc8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0f8d795e5a7d81264e0834542866588"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMU.html#af0f8d795e5a7d81264e0834542866588">getModuleName</a> ()</td></tr>
 <tr class="memdesc:af0f8d795e5a7d81264e0834542866588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the SD module and used as a label for this module's CSV output.  <a href="#af0f8d795e5a7d81264e0834542866588">More...</a><br /></td></tr>
 <tr class="separator:af0f8d795e5a7d81264e0834542866588"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,14 +149,32 @@ Public Member Functions</h2></td></tr>
 <tr class="inherit_header pub_methods_classModule"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classModule')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classModule.html">Module</a></td></tr>
 <tr class="memitem:a5a240a8a9ab1813b17bcb810b24ceaea inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a5a240a8a9ab1813b17bcb810b24ceaea">Module</a> ()</td></tr>
 <tr class="separator:a5a240a8a9ab1813b17bcb810b24ceaea inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad36b9d35ee30dd654fcafd282e4d677e inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ad36b9d35ee30dd654fcafd282e4d677e">onStateChanged</a> (const <a class="el" href="Module_8h.html#aa51313be2faacb739a18fdeecefbac75">SystemState</a> &amp;<a class="el" href="classModule.html#a75ab7c2da6e1c0263560ebfc3a8fb593">state</a>)</td></tr>
-<tr class="memdesc:ad36b9d35ee30dd654fcafd282e4d677e inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the <a class="el" href="classScheduler.html">Scheduler</a> whenever an actionable state-change is detected.  <a href="#ad36b9d35ee30dd654fcafd282e4d677e">More...</a><br /></td></tr>
-<tr class="separator:ad36b9d35ee30dd654fcafd282e4d677e inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae577b831df42b5bcf6762817e7d38649 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ae577b831df42b5bcf6762817e7d38649">getSchedulingFreq</a> ()</td></tr>
+<tr class="memitem:a33a3301d72adc3f78838526c3a0b08d8 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a33a3301d72adc3f78838526c3a0b08d8">enable</a> ()</td></tr>
+<tr class="memdesc:a33a3301d72adc3f78838526c3a0b08d8 inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the module and exit powersaving mode.  <a href="#a33a3301d72adc3f78838526c3a0b08d8">More...</a><br /></td></tr>
+<tr class="separator:a33a3301d72adc3f78838526c3a0b08d8 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48995e424e092bf809361ab41de160c4 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a48995e424e092bf809361ab41de160c4">disable</a> ()</td></tr>
+<tr class="memdesc:a48995e424e092bf809361ab41de160c4 inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the module and enter powersaving mode.  <a href="#a48995e424e092bf809361ab41de160c4">More...</a><br /></td></tr>
+<tr class="separator:a48995e424e092bf809361ab41de160c4 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57e0be1ad018156736959f08f33310a3 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a57e0be1ad018156736959f08f33310a3">onStateChanged</a> (const <a class="el" href="SystemState_8h.html#aa51313be2faacb739a18fdeecefbac75">SystemState</a> &amp;<a class="el" href="classModule.html#a75ab7c2da6e1c0263560ebfc3a8fb593">state</a>)</td></tr>
+<tr class="memdesc:a57e0be1ad018156736959f08f33310a3 inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the <a class="el" href="classScheduler.html">Scheduler</a> whenever an actionable state-change is detected.  <a href="#a57e0be1ad018156736959f08f33310a3">More...</a><br /></td></tr>
+<tr class="separator:a57e0be1ad018156736959f08f33310a3 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae577b831df42b5bcf6762817e7d38649 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ae577b831df42b5bcf6762817e7d38649">getSchedulingFreq</a> ()</td></tr>
 <tr class="separator:ae577b831df42b5bcf6762817e7d38649 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9108dc19857c69f1dd0084f303874392 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a9108dc19857c69f1dd0084f303874392">dataToSend</a> ()</td></tr>
-<tr class="memdesc:a9108dc19857c69f1dd0084f303874392 inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to send it over the uno-&gt;radio link, this function would be called by the <a class="el" href="classRadio.html">Radio</a> module to handle it.  <a href="#a9108dc19857c69f1dd0084f303874392">More...</a><br /></td></tr>
-<tr class="separator:a9108dc19857c69f1dd0084f303874392 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab8fe8665b0256607974f2bb7782c39f inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#aab8fe8665b0256607974f2bb7782c39f">flushSendBuffer</a> ()</td></tr>
+<tr class="memdesc:aab8fe8665b0256607974f2bb7782c39f inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to send it over the uno-&gt;radio link, this function would be called by the <a class="el" href="classRadio.html">Radio</a> module to handle it.  <a href="#aab8fe8665b0256607974f2bb7782c39f">More...</a><br /></td></tr>
+<tr class="separator:aab8fe8665b0256607974f2bb7782c39f inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad44c743adfe60b484ce08de5ac90b1f8 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ad44c743adfe60b484ce08de5ac90b1f8">allocatePersistBuffer</a> (int bufferSize)</td></tr>
+<tr class="separator:ad44c743adfe60b484ce08de5ac90b1f8 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25a3f9243dcc3329ade625377bb0338b inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a25a3f9243dcc3329ade625377bb0338b">allocateSendBuffer</a> (int bufferSize)</td></tr>
+<tr class="separator:a25a3f9243dcc3329ade625377bb0338b inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2569bfc783da3906a7a7a857e903172f inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a2569bfc783da3906a7a7a857e903172f">getPersistBuffer</a> ()</td></tr>
+<tr class="separator:a2569bfc783da3906a7a7a857e903172f inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a677ca5817d56d54be88ac1e44d768de2 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a677ca5817d56d54be88ac1e44d768de2">getSendBuffer</a> ()</td></tr>
+<tr class="separator:a677ca5817d56d54be88ac1e44d768de2 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54376396e4b70cbb87d0e22d761de81a inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a54376396e4b70cbb87d0e22d761de81a">shouldTick</a> (uint32_t currSystemTick)</td></tr>
+<tr class="separator:a54376396e4b70cbb87d0e22d761de81a inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61cac641debea9f796c431afb38a20f6 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a61cac641debea9f796c431afb38a20f6">setTicked</a> (uint32_t currSystemTick)</td></tr>
+<tr class="separator:a61cac641debea9f796c431afb38a20f6 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -172,9 +185,26 @@ Additional Inherited Members</h2></td></tr>
  }<tr class="memdesc:a0f8621718dba198077e576c32135b685"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bit shifted to use as flags.  <a href="classModule.html#a0f8621718dba198077e576c32135b685">More...</a><br /></td></tr>
 </td></tr>
 <tr class="separator:a0f8621718dba198077e576c32135b685 inherit pub_types_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classModule"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classModule')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classModule.html">Module</a></td></tr>
+<tr class="memitem:a9ce03b05950a4b7a481e33702a887f47 inherit pub_attribs_classModule"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a9ce03b05950a4b7a481e33702a887f47">propertyShouldPrint</a></td></tr>
+<tr class="separator:a9ce03b05950a4b7a481e33702a887f47 inherit pub_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classModule"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classModule')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classModule.html">Module</a></td></tr>
 <tr class="memitem:a75ab7c2da6e1c0263560ebfc3a8fb593 inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classModule.html#a0f8621718dba198077e576c32135b685">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a75ab7c2da6e1c0263560ebfc3a8fb593">state</a></td></tr>
 <tr class="separator:a75ab7c2da6e1c0263560ebfc3a8fb593 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad523ebabcd976be53e0c67a6a6c02ccf inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ad523ebabcd976be53e0c67a6a6c02ccf">persistBufferIndex</a></td></tr>
+<tr class="separator:ad523ebabcd976be53e0c67a6a6c02ccf inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ea10f6c872e4c4624b75fc28ea3dec9 inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a0ea10f6c872e4c4624b75fc28ea3dec9">persistBufferSize</a></td></tr>
+<tr class="separator:a0ea10f6c872e4c4624b75fc28ea3dec9 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad47c3a73b727f46689b8984f0690e288 inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ad47c3a73b727f46689b8984f0690e288">persistBuffer</a></td></tr>
+<tr class="separator:ad47c3a73b727f46689b8984f0690e288 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac89e32f0ec38e5a1fdeab44cd3bc0dd9 inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ac89e32f0ec38e5a1fdeab44cd3bc0dd9">sendBufferIndex</a></td></tr>
+<tr class="separator:ac89e32f0ec38e5a1fdeab44cd3bc0dd9 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a914c6c45ecc35ca90a1b6de546eddb62 inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a914c6c45ecc35ca90a1b6de546eddb62">sendBufferSize</a></td></tr>
+<tr class="separator:a914c6c45ecc35ca90a1b6de546eddb62 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdf5aa8c64641b48ef22d5bce3e1289c inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#acdf5aa8c64641b48ef22d5bce3e1289c">sendBuffer</a></td></tr>
+<tr class="separator:acdf5aa8c64641b48ef22d5bce3e1289c inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f881af51e29b7f226488411484b17c9 inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a2f881af51e29b7f226488411484b17c9">freq</a></td></tr>
+<tr class="separator:a2f881af51e29b7f226488411484b17c9 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a5d36c5fa0688efe1a013679dbdcef4cc"></a>
@@ -189,6 +219,16 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classIMU_a5d36c5fa0688efe1a013679dbdcef4cc_cgraph.png" border="0" usemap="#classIMU_a5d36c5fa0688efe1a013679dbdcef4cc_cgraph" alt=""/></div>
+<map name="classIMU_a5d36c5fa0688efe1a013679dbdcef4cc_cgraph" id="classIMU_a5d36c5fa0688efe1a013679dbdcef4cc_cgraph">
+<area shape="rect" id="node2" href="classModule.html#ad44c743adfe60b484ce08de5ac90b1f8" title="Module::allocatePersistBuffer" alt="" coords="132,5,339,32"/>
+</map>
+</div>
+</p>
 
 </div>
 </div>
@@ -223,18 +263,25 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classIMU_a5e3fa05283132daacd63fa5669a9173a_cgraph.png" border="0" usemap="#classIMU_a5e3fa05283132daacd63fa5669a9173a_cgraph" alt=""/></div>
 <map name="classIMU_a5e3fa05283132daacd63fa5669a9173a_cgraph" id="classIMU_a5e3fa05283132daacd63fa5669a9173a_cgraph">
-<area shape="rect" id="node2" href="classLSM303.html#a123959c3c9fc7ea31083843c0db286c0" title="LSM303::init" alt="" coords="178,5,278,32"/>
-<area shape="rect" id="node3" href="classLSM303.html#a253992f24eb62d618c740c00f9604619" title="LSM303::enableDefault" alt="" coords="143,56,313,83"/>
-<area shape="rect" id="node4" href="classLSM303.html#a37813b3ab37b06d57926fe41e31a0fb3" title="LSM303::writeReg" alt="" coords="361,56,496,83"/>
-<area shape="rect" id="node5" href="classLSM303.html#a470fa63cc2571442d0dcd9f9613482ac" title="LSM303::writeMagReg" alt="" coords="544,31,705,57"/>
-<area shape="rect" id="node6" href="classLSM303.html#aa381bad81ac2b1c844a310c31c55851d" title="LSM303::writeAccReg" alt="" coords="546,93,703,120"/>
+<area shape="rect" id="node2" href="classMPU6050.html#abd8fc6c18adf158011118fbccc7e7054" title="MPU6050::initialize" alt="" coords="168,129,311,156"/>
+<area shape="rect" id="node7" href="classMPU6050.html#a95ffab7b44fce3834236e0813687d11a" title="MPU6050::testConnection" alt="" coords="145,209,333,236"/>
+<area shape="rect" id="node9" href="classMPU6050.html#a7097c12d38a23fb0a286460619998470" title="MPU6050::setXGyroOffset" alt="" coords="146,260,333,287"/>
+<area shape="rect" id="node10" href="classMPU6050.html#a9a725bf3be4e1a74e5f655194bf22bde" title="MPU6050::setYGyroOffset" alt="" coords="146,311,333,337"/>
+<area shape="rect" id="node11" href="classMPU6050.html#aacf6f5599adbfb8ec685f2b96db6905e" title="MPU6050::setZGyroOffset" alt="" coords="145,361,334,388"/>
+<area shape="rect" id="node12" href="classMPU6050.html#a4d1868b660d695eae912ef73407e21e8" title="MPU6050::setZAccelOffset" alt="" coords="143,412,336,439"/>
+<area shape="rect" id="node13" href="classMPU6050.html#abb6bf6db86b84700c7f13bd838d63755" title="MPU6050::setDMPEnabled" alt="" coords="144,463,335,489"/>
+<area shape="rect" id="node3" href="classMPU6050.html#a4c1cd147d038e024bdeaa053c4d77734" title="MPU6050::setClockSource" alt="" coords="389,5,579,32"/>
+<area shape="rect" id="node4" href="classMPU6050.html#a72afc0b6f221c9336f635b5637c62dae" title="MPU6050::setFullScaleGyro\lRange" alt="" coords="386,57,582,98"/>
+<area shape="rect" id="node5" href="classMPU6050.html#a64eb78e8e359c541beaf8664db3421d1" title="MPU6050::setFullScaleAccel\lRange" alt="" coords="384,122,584,163"/>
+<area shape="rect" id="node6" href="classMPU6050.html#a15ec5f8e7daf235f507c1d8b96af051a" title="MPU6050::setSleepEnabled" alt="" coords="385,188,583,215"/>
+<area shape="rect" id="node8" href="classMPU6050.html#a35ae3c8894b3258e642043886801e031" title="MPU6050::getDeviceID" alt="" coords="400,239,568,265"/>
 </map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a44b0ed05b0e84b51fa0b932c466c4623"></a>
+<a class="anchor" id="a44999db8581f70341f3dcf6f3caebc8f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -242,7 +289,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const char * IMU::dataToPersist </td>
+          <td class="memname">const char * IMU::flushPersistBuffer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -258,62 +305,7 @@ Here is the call graph for this function:</div>
 <p>Should the module creates data and wants to persist it, this function would be called by the SD module to handle it. </p>
 <dl class="section return"><dt>Returns</dt><dd>the c-style string to be written to the SD card </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classModule.html#a1b09b23602e5491206dcc96e4714ddac">Module</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a974ae95c940007e5f044f3a1012a6edc"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void IMU::disable </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Disable the module and enter powersaving mode. </p>
-
-<p>Reimplemented from <a class="el" href="classModule.html#a48995e424e092bf809361ab41de160c4">Module</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8c15fb2fcc90c18914d1c71e5dea8410"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int IMU::enable </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Enable the module and exit powersaving mode. </p>
-<dl class="section return"><dt>Returns</dt><dd>something for success, something for failure </dd></dl>
-
-<p>Reimplemented from <a class="el" href="classModule.html#a33a3301d72adc3f78838526c3a0b08d8">Module</a>.</p>
+<p>Reimplemented from <a class="el" href="classModule.html#a6632a69d8abfdeedd110ede451adc2e5">Module</a>.</p>
 
 </div>
 </div>
@@ -465,9 +457,10 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classIMU_a5b1f6d4847d2d9e3c726704d4ac69963_cgraph.png" border="0" usemap="#classIMU_a5b1f6d4847d2d9e3c726704d4ac69963_cgraph" alt=""/></div>
 <map name="classIMU_a5b1f6d4847d2d9e3c726704d4ac69963_cgraph" id="classIMU_a5b1f6d4847d2d9e3c726704d4ac69963_cgraph">
-<area shape="rect" id="node2" href="classLSM303.html#a9f40456878f534bba32490d19f3a64ce" title="LSM303::read" alt="" coords="129,31,240,57"/>
-<area shape="rect" id="node3" href="classLSM303.html#ac1396a51b288eadc41fd19fbd79ef68e" title="LSM303::readAcc" alt="" coords="290,5,423,32"/>
-<area shape="rect" id="node4" href="classLSM303.html#abc93e8d8101c6b00df2ae85c5f8ded9e" title="LSM303::readMag" alt="" coords="288,56,425,83"/>
+<area shape="rect" id="node2" href="classMPU6050.html#a550a735623cb1de950c72cd6931ee804" title="MPU6050::getIntStatus" alt="" coords="133,5,303,32"/>
+<area shape="rect" id="node3" href="classMPU6050.html#ad96c7a75a39327ebaae01386bcbc58dd" title="MPU6050::getFIFOCount" alt="" coords="129,56,307,83"/>
+<area shape="rect" id="node4" href="classMPU6050.html#aafa0dc38b7ea2acd1aecd5d9df8cbd08" title="MPU6050::resetFIFO" alt="" coords="143,107,293,133"/>
+<area shape="rect" id="node5" href="classMPU6050.html#aba36dcb767b5cd8965053987aaa08a6a" title="MPU6050::getFIFOBytes" alt="" coords="131,157,305,184"/>
 </map>
 </div>
 </p>

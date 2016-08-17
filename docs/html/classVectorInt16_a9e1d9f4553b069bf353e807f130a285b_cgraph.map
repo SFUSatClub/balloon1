@@ -1,0 +1,6 @@
+<map id="VectorInt16::getRotated" name="VectorInt16::getRotated">
+<area shape="rect" id="node2" href="$classVectorInt16.html#ac7bf149db0a2b66d7683b87ebeb2dfc5" title="VectorInt16::rotate" alt="" coords="227,31,369,57"/>
+<area shape="rect" id="node3" href="$classQuaternion.html#a3ff8405ed92a3ca16de656e6c83b4028" title="Quaternion::getProduct" alt="" coords="425,5,596,32"/>
+<area shape="rect" id="node5" href="$classQuaternion.html#a079a5673188a8a7d608e8495de0dd119" title="Quaternion::getConjugate" alt="" coords="417,56,604,83"/>
+<area shape="rect" id="node4" href="$classQuaternion.html#abcc01358aada56ea5f0db4da18aaf77d" title="Quaternion::Quaternion" alt="" coords="652,31,824,57"/>
+</map>

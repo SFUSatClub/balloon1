@@ -105,7 +105,7 @@ Inheritance diagram for Buzzer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classBuzzer__inherit__graph.png" border="0" usemap="#Buzzer_inherit__map" alt="Inheritance graph"/></div>
 <map name="Buzzer_inherit__map" id="Buzzer_inherit__map">
-<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="5,5,171,215"/>
+<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="5,5,184,420"/>
 </map>
 </div>
 <div class="dynheader">
@@ -113,7 +113,8 @@ Collaboration diagram for Buzzer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classBuzzer__coll__graph.png" border="0" usemap="#Buzzer_coll__map" alt="Collaboration graph"/></div>
 <map name="Buzzer_coll__map" id="Buzzer_coll__map">
-<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="5,145,171,355"/>
+<area shape="rect" id="node2" href="classModule.html" title="Base sensor class. " alt="" coords="152,329,331,627"/>
+<area shape="rect" id="node4" href="structscheduling__freq.html" title="{scheduling_freq\n||}" alt="" coords="80,145,203,223"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -127,29 +128,41 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6c59860431d8de04c296dc4f88f8146d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBuzzer.html#a6c59860431d8de04c296dc4f88f8146d">tick</a> ()</td></tr>
 <tr class="memdesc:a6c59860431d8de04c296dc4f88f8146d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called periodically by the <a class="el" href="classScheduler.html">Scheduler</a>.  <a href="#a6c59860431d8de04c296dc4f88f8146d">More...</a><br /></td></tr>
 <tr class="separator:a6c59860431d8de04c296dc4f88f8146d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80441049dddb3de5cc9d2691ad072988"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBuzzer.html#a80441049dddb3de5cc9d2691ad072988">enable</a> ()</td></tr>
-<tr class="memdesc:a80441049dddb3de5cc9d2691ad072988"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the module and exit powersaving mode.  <a href="#a80441049dddb3de5cc9d2691ad072988">More...</a><br /></td></tr>
-<tr class="separator:a80441049dddb3de5cc9d2691ad072988"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c7d98a413bc25cbab15996bed3c9124"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBuzzer.html#a0c7d98a413bc25cbab15996bed3c9124">disable</a> ()</td></tr>
-<tr class="memdesc:a0c7d98a413bc25cbab15996bed3c9124"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the module and enter powersaving mode.  <a href="#a0c7d98a413bc25cbab15996bed3c9124">More...</a><br /></td></tr>
-<tr class="separator:a0c7d98a413bc25cbab15996bed3c9124"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf89a35c24393c70ad1617f7c2277e21"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBuzzer.html#acf89a35c24393c70ad1617f7c2277e21">dataToPersist</a> ()</td></tr>
-<tr class="memdesc:acf89a35c24393c70ad1617f7c2277e21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to persist it, this function would be called by the SD module to handle it.  <a href="#acf89a35c24393c70ad1617f7c2277e21">More...</a><br /></td></tr>
-<tr class="separator:acf89a35c24393c70ad1617f7c2277e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6bc70e6aa9aeda074196870d6f61914"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBuzzer.html#af6bc70e6aa9aeda074196870d6f61914">flushPersistBuffer</a> ()</td></tr>
+<tr class="memdesc:af6bc70e6aa9aeda074196870d6f61914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to persist it, this function would be called by the SD module to handle it.  <a href="#af6bc70e6aa9aeda074196870d6f61914">More...</a><br /></td></tr>
+<tr class="separator:af6bc70e6aa9aeda074196870d6f61914"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e188664e3d6bef07ab071e5149c97fe"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBuzzer.html#a8e188664e3d6bef07ab071e5149c97fe">getModuleName</a> ()</td></tr>
 <tr class="memdesc:a8e188664e3d6bef07ab071e5149c97fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the SD module and used as a label for this module's CSV output.  <a href="#a8e188664e3d6bef07ab071e5149c97fe">More...</a><br /></td></tr>
 <tr class="separator:a8e188664e3d6bef07ab071e5149c97fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classModule"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classModule')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classModule.html">Module</a></td></tr>
 <tr class="memitem:a5a240a8a9ab1813b17bcb810b24ceaea inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a5a240a8a9ab1813b17bcb810b24ceaea">Module</a> ()</td></tr>
 <tr class="separator:a5a240a8a9ab1813b17bcb810b24ceaea inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad36b9d35ee30dd654fcafd282e4d677e inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ad36b9d35ee30dd654fcafd282e4d677e">onStateChanged</a> (const <a class="el" href="Module_8h.html#aa51313be2faacb739a18fdeecefbac75">SystemState</a> &amp;<a class="el" href="classModule.html#a75ab7c2da6e1c0263560ebfc3a8fb593">state</a>)</td></tr>
-<tr class="memdesc:ad36b9d35ee30dd654fcafd282e4d677e inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the <a class="el" href="classScheduler.html">Scheduler</a> whenever an actionable state-change is detected.  <a href="#ad36b9d35ee30dd654fcafd282e4d677e">More...</a><br /></td></tr>
-<tr class="separator:ad36b9d35ee30dd654fcafd282e4d677e inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae577b831df42b5bcf6762817e7d38649 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ae577b831df42b5bcf6762817e7d38649">getSchedulingFreq</a> ()</td></tr>
+<tr class="memitem:a33a3301d72adc3f78838526c3a0b08d8 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a33a3301d72adc3f78838526c3a0b08d8">enable</a> ()</td></tr>
+<tr class="memdesc:a33a3301d72adc3f78838526c3a0b08d8 inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the module and exit powersaving mode.  <a href="#a33a3301d72adc3f78838526c3a0b08d8">More...</a><br /></td></tr>
+<tr class="separator:a33a3301d72adc3f78838526c3a0b08d8 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48995e424e092bf809361ab41de160c4 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a48995e424e092bf809361ab41de160c4">disable</a> ()</td></tr>
+<tr class="memdesc:a48995e424e092bf809361ab41de160c4 inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the module and enter powersaving mode.  <a href="#a48995e424e092bf809361ab41de160c4">More...</a><br /></td></tr>
+<tr class="separator:a48995e424e092bf809361ab41de160c4 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57e0be1ad018156736959f08f33310a3 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a57e0be1ad018156736959f08f33310a3">onStateChanged</a> (const <a class="el" href="SystemState_8h.html#aa51313be2faacb739a18fdeecefbac75">SystemState</a> &amp;<a class="el" href="classModule.html#a75ab7c2da6e1c0263560ebfc3a8fb593">state</a>)</td></tr>
+<tr class="memdesc:a57e0be1ad018156736959f08f33310a3 inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the <a class="el" href="classScheduler.html">Scheduler</a> whenever an actionable state-change is detected.  <a href="#a57e0be1ad018156736959f08f33310a3">More...</a><br /></td></tr>
+<tr class="separator:a57e0be1ad018156736959f08f33310a3 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae577b831df42b5bcf6762817e7d38649 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ae577b831df42b5bcf6762817e7d38649">getSchedulingFreq</a> ()</td></tr>
 <tr class="separator:ae577b831df42b5bcf6762817e7d38649 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9108dc19857c69f1dd0084f303874392 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a9108dc19857c69f1dd0084f303874392">dataToSend</a> ()</td></tr>
-<tr class="memdesc:a9108dc19857c69f1dd0084f303874392 inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to send it over the uno-&gt;radio link, this function would be called by the <a class="el" href="classRadio.html">Radio</a> module to handle it.  <a href="#a9108dc19857c69f1dd0084f303874392">More...</a><br /></td></tr>
-<tr class="separator:a9108dc19857c69f1dd0084f303874392 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab8fe8665b0256607974f2bb7782c39f inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#aab8fe8665b0256607974f2bb7782c39f">flushSendBuffer</a> ()</td></tr>
+<tr class="memdesc:aab8fe8665b0256607974f2bb7782c39f inherit pub_methods_classModule"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the module creates data and wants to send it over the uno-&gt;radio link, this function would be called by the <a class="el" href="classRadio.html">Radio</a> module to handle it.  <a href="#aab8fe8665b0256607974f2bb7782c39f">More...</a><br /></td></tr>
+<tr class="separator:aab8fe8665b0256607974f2bb7782c39f inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad44c743adfe60b484ce08de5ac90b1f8 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ad44c743adfe60b484ce08de5ac90b1f8">allocatePersistBuffer</a> (int bufferSize)</td></tr>
+<tr class="separator:ad44c743adfe60b484ce08de5ac90b1f8 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25a3f9243dcc3329ade625377bb0338b inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a25a3f9243dcc3329ade625377bb0338b">allocateSendBuffer</a> (int bufferSize)</td></tr>
+<tr class="separator:a25a3f9243dcc3329ade625377bb0338b inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2569bfc783da3906a7a7a857e903172f inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a2569bfc783da3906a7a7a857e903172f">getPersistBuffer</a> ()</td></tr>
+<tr class="separator:a2569bfc783da3906a7a7a857e903172f inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a677ca5817d56d54be88ac1e44d768de2 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a677ca5817d56d54be88ac1e44d768de2">getSendBuffer</a> ()</td></tr>
+<tr class="separator:a677ca5817d56d54be88ac1e44d768de2 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54376396e4b70cbb87d0e22d761de81a inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a54376396e4b70cbb87d0e22d761de81a">shouldTick</a> (uint32_t currSystemTick)</td></tr>
+<tr class="separator:a54376396e4b70cbb87d0e22d761de81a inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61cac641debea9f796c431afb38a20f6 inherit pub_methods_classModule"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a61cac641debea9f796c431afb38a20f6">setTicked</a> (uint32_t currSystemTick)</td></tr>
+<tr class="separator:a61cac641debea9f796c431afb38a20f6 inherit pub_methods_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -160,9 +173,26 @@ Additional Inherited Members</h2></td></tr>
  }<tr class="memdesc:a0f8621718dba198077e576c32135b685"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bit shifted to use as flags.  <a href="classModule.html#a0f8621718dba198077e576c32135b685">More...</a><br /></td></tr>
 </td></tr>
 <tr class="separator:a0f8621718dba198077e576c32135b685 inherit pub_types_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classModule"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classModule')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classModule.html">Module</a></td></tr>
+<tr class="memitem:a9ce03b05950a4b7a481e33702a887f47 inherit pub_attribs_classModule"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a9ce03b05950a4b7a481e33702a887f47">propertyShouldPrint</a></td></tr>
+<tr class="separator:a9ce03b05950a4b7a481e33702a887f47 inherit pub_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classModule"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classModule')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classModule.html">Module</a></td></tr>
 <tr class="memitem:a75ab7c2da6e1c0263560ebfc3a8fb593 inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classModule.html#a0f8621718dba198077e576c32135b685">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a75ab7c2da6e1c0263560ebfc3a8fb593">state</a></td></tr>
 <tr class="separator:a75ab7c2da6e1c0263560ebfc3a8fb593 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad523ebabcd976be53e0c67a6a6c02ccf inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ad523ebabcd976be53e0c67a6a6c02ccf">persistBufferIndex</a></td></tr>
+<tr class="separator:ad523ebabcd976be53e0c67a6a6c02ccf inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ea10f6c872e4c4624b75fc28ea3dec9 inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a0ea10f6c872e4c4624b75fc28ea3dec9">persistBufferSize</a></td></tr>
+<tr class="separator:a0ea10f6c872e4c4624b75fc28ea3dec9 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad47c3a73b727f46689b8984f0690e288 inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ad47c3a73b727f46689b8984f0690e288">persistBuffer</a></td></tr>
+<tr class="separator:ad47c3a73b727f46689b8984f0690e288 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac89e32f0ec38e5a1fdeab44cd3bc0dd9 inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#ac89e32f0ec38e5a1fdeab44cd3bc0dd9">sendBufferIndex</a></td></tr>
+<tr class="separator:ac89e32f0ec38e5a1fdeab44cd3bc0dd9 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a914c6c45ecc35ca90a1b6de546eddb62 inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a914c6c45ecc35ca90a1b6de546eddb62">sendBufferSize</a></td></tr>
+<tr class="separator:a914c6c45ecc35ca90a1b6de546eddb62 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdf5aa8c64641b48ef22d5bce3e1289c inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#acdf5aa8c64641b48ef22d5bce3e1289c">sendBuffer</a></td></tr>
+<tr class="separator:acdf5aa8c64641b48ef22d5bce3e1289c inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f881af51e29b7f226488411484b17c9 inherit pro_attribs_classModule"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structscheduling__freq.html">scheduling_freq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModule.html#a2f881af51e29b7f226488411484b17c9">freq</a></td></tr>
+<tr class="separator:a2f881af51e29b7f226488411484b17c9 inherit pro_attribs_classModule"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a894963fac5c09fc5590dc8339d633f9d"></a>
@@ -178,6 +208,16 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classBuzzer_a894963fac5c09fc5590dc8339d633f9d_cgraph.png" border="0" usemap="#classBuzzer_a894963fac5c09fc5590dc8339d633f9d_cgraph" alt=""/></div>
+<map name="classBuzzer_a894963fac5c09fc5590dc8339d633f9d_cgraph" id="classBuzzer_a894963fac5c09fc5590dc8339d633f9d_cgraph">
+<area shape="rect" id="node2" href="classModule.html#ad44c743adfe60b484ce08de5ac90b1f8" title="Module::allocatePersistBuffer" alt="" coords="172,5,379,32"/>
+</map>
+</div>
+</p>
 
 </div>
 </div>
@@ -209,7 +249,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acf89a35c24393c70ad1617f7c2277e21"></a>
+<a class="anchor" id="af6bc70e6aa9aeda074196870d6f61914"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -217,7 +257,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const char * Buzzer::dataToPersist </td>
+          <td class="memname">const char * Buzzer::flushPersistBuffer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -233,62 +273,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Should the module creates data and wants to persist it, this function would be called by the SD module to handle it. </p>
 <dl class="section return"><dt>Returns</dt><dd>the c-style string to be written to the SD card </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classModule.html#a1b09b23602e5491206dcc96e4714ddac">Module</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0c7d98a413bc25cbab15996bed3c9124"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Buzzer::disable </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Disable the module and enter powersaving mode. </p>
-
-<p>Reimplemented from <a class="el" href="classModule.html#a48995e424e092bf809361ab41de160c4">Module</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a80441049dddb3de5cc9d2691ad072988"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Buzzer::enable </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Enable the module and exit powersaving mode. </p>
-<dl class="section return"><dt>Returns</dt><dd>something for success, something for failure </dd></dl>
-
-<p>Reimplemented from <a class="el" href="classModule.html#a33a3301d72adc3f78838526c3a0b08d8">Module</a>.</p>
+<p>Reimplemented from <a class="el" href="classModule.html#a6632a69d8abfdeedd110ede451adc2e5">Module</a>.</p>
 
 </div>
 </div>

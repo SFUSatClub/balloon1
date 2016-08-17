@@ -1,5 +1,7 @@
 <map id="src/GPS.h" name="src/GPS.h">
-<area shape="rect" id="node3" href="$Adafruit__GPS_8h.html" title="Adafruit_GPS.h" alt="" coords="93,80,211,107"/>
-<area shape="rect" id="node6" href="$Module_8h.html" title="Module.h" alt="" coords="313,80,393,107"/>
-<area shape="rect" id="node8" href="$Globals_8h.html" title="Globals.h" alt="" coords="353,155,434,181"/>
+<area shape="rect" id="node3" href="$Adafruit__GPS_8h.html" title="Adafruit_GPS.h" alt="" coords="138,80,257,107"/>
+<area shape="rect" id="node6" href="$Module_8h.html" title="Module.h" alt="" coords="403,80,483,107"/>
+<area shape="rect" id="node8" href="$Globals_8h.html" title="Globals.h" alt="" coords="526,155,607,181"/>
+<area shape="rect" id="node10" href="$SystemState_8h.html" title="SystemState.h" alt="" coords="383,155,502,181"/>
+<area shape="rect" id="node9" href="$Config_8h.html" title="Config.h" alt="" coords="460,229,535,256"/>
 </map>

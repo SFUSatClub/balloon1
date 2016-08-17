@@ -1,4 +1,6 @@
 <map id="src/Barometer.h" name="src/Barometer.h">
-<area shape="rect" id="node5" href="$Module_8h.html" title="Module.h" alt="" coords="248,80,328,107"/>
-<area shape="rect" id="node7" href="$Globals_8h.html" title="Globals.h" alt="" coords="207,155,288,181"/>
+<area shape="rect" id="node5" href="$Module_8h.html" title="Module.h" alt="" coords="182,80,262,107"/>
+<area shape="rect" id="node7" href="$Globals_8h.html" title="Globals.h" alt="" coords="181,155,263,181"/>
+<area shape="rect" id="node9" href="$SystemState_8h.html" title="SystemState.h" alt="" coords="339,155,457,181"/>
+<area shape="rect" id="node8" href="$Config_8h.html" title="Config.h" alt="" coords="202,229,277,256"/>
 </map>

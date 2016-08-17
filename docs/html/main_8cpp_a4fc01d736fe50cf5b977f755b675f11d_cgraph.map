@@ -1,14 +1,11 @@
 <map id="setup" name="setup">
-<area shape="rect" id="node2" href="$classModule.html#a33a3301d72adc3f78838526c3a0b08d8" title="Enable the module and exit powersaving mode. " alt="" coords="151,5,269,32"/>
-<area shape="rect" id="node3" href="$classStateHandler.html#abb33ef80a763b32edd46880d68e0524e" title="Called once in setup() " alt="" coords="135,56,285,83"/>
-<area shape="rect" id="node7" href="$classSDCard.html#a6495d590a016b7262b14bc4cf40e1514" title="SDCard::registerModules" alt="" coords="119,107,301,133"/>
-<area shape="rect" id="node8" href="$classScheduler.html#abda1396d8606a41fce0301a92a225ccb" title="Scheduler::setupISR" alt="" coords="378,237,529,264"/>
-<area shape="rect" id="node9" href="$classScheduler.html#a0e3d7b3649f64a9dde58789282a0452f" title="Scheduler::addTask" alt="" coords="137,208,283,235"/>
-<area shape="rect" id="node10" href="$main_8cpp.html#ab55078d807df0a75af8a2fa8eefdcc41" title="task1" alt="" coords="181,259,239,285"/>
-<area shape="rect" id="node11" href="$classScheduler.html#a9324bd2c541d0e300222156903e19415" title="Scheduler::registerModules\lAsTasks" alt="" coords="112,375,308,417"/>
-<area shape="rect" id="node13" href="$classScheduler.html#a52d40db32862204f7b2f2d376bc4c158" title="Scheduler::registerState\lHandler" alt="" coords="121,310,299,351"/>
-<area shape="rect" id="node4" href="$classGPS.html#abbb46429b3d87e7dfd63a38a1831e710" title="GPS::getAltitude" alt="" coords="390,5,517,32"/>
-<area shape="rect" id="node5" href="$classGPS.html#a6be61437fe89ae91c8b8bda292125a74" title="GPS::getSpeed" alt="" coords="394,56,513,83"/>
-<area shape="rect" id="node6" href="$classBarometer.html#a23aee3f635ff7289c8bbf978ff1561c5" title="Barometer::getPressure" alt="" coords="365,107,541,133"/>
-<area shape="rect" id="node12" href="$classModule.html#ae577b831df42b5bcf6762817e7d38649" title="Module::getSchedulingFreq" alt="" coords="356,383,551,409"/>
+<area shape="rect" id="node2" href="$classSDCard.html#a121d8084d25b74cafc77de3b9c27743d" title="SDCard::registerSeed" alt="" coords="129,5,291,32"/>
+<area shape="rect" id="node3" href="$classSDCard.html#a6495d590a016b7262b14bc4cf40e1514" title="SDCard::registerModules" alt="" coords="119,56,301,83"/>
+<area shape="rect" id="node5" href="$classSDCard.html#a7ad96e93d4954b677df19d843fa018aa" title="SDCard::registerScheduler" alt="" coords="114,107,306,133"/>
+<area shape="rect" id="node6" href="$classScheduler.html#abda1396d8606a41fce0301a92a225ccb" title="Scheduler::setupISR" alt="" coords="135,157,285,184"/>
+<area shape="rect" id="node7" href="$classScheduler.html#a6767acb216374a8b9c375ec75d5264fb" title="Scheduler::registerModules" alt="" coords="112,208,308,235"/>
+<area shape="rect" id="node8" href="$classScheduler.html#a52d40db32862204f7b2f2d376bc4c158" title="Scheduler::registerState\lHandler" alt="" coords="121,259,299,301"/>
+<area shape="rect" id="node9" href="$Globals_8cpp.html#a86da1fd0aa8dcc6a981803373bc8839d" title="FreeStack" alt="" coords="167,325,253,352"/>
+<area shape="rect" id="node4" href="$classModule.html#af596ad7a28c8a1999cb5771bad746afd" title="Called by the SD module and used as a label for this module&#39;s CSV output. " alt="" coords="356,132,539,159"/>
+<area shape="rect" id="node10" href="$Globals_8h.html#a5479cb1a6f45f079f205aa5ffd7fe43c" title="sbrk" alt="" coords="423,325,472,352"/>
 </map>

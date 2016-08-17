@@ -1,0 +1,6 @@
+<map id="VectorFloat::getRotated" name="VectorFloat::getRotated">
+<area shape="rect" id="node2" href="$classVectorFloat.html#afef0e6d631fb1eb67b6913e90730aa9e" title="VectorFloat::rotate" alt="" coords="225,31,367,57"/>
+<area shape="rect" id="node3" href="$classQuaternion.html#a3ff8405ed92a3ca16de656e6c83b4028" title="Quaternion::getProduct" alt="" coords="423,5,593,32"/>
+<area shape="rect" id="node5" href="$classQuaternion.html#a079a5673188a8a7d608e8495de0dd119" title="Quaternion::getConjugate" alt="" coords="415,56,601,83"/>
+<area shape="rect" id="node4" href="$classQuaternion.html#abcc01358aada56ea5f0db4da18aaf77d" title="Quaternion::Quaternion" alt="" coords="649,31,821,57"/>
+</map>

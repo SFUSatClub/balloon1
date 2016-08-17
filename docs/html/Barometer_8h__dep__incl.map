@@ -1,8 +1,10 @@
 <map id="src/Barometer.h" name="src/Barometer.h">
-<area shape="rect" id="node2" href="$Barometer_8cpp.html" title="src/Barometer.cpp" alt="" coords="29,80,169,107"/>
-<area shape="rect" id="node3" href="$StateHandler_8h.html" title="src/StateHandler.h" alt="" coords="194,80,335,107"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title="src/main.cpp" alt="" coords="299,229,403,256"/>
-<area shape="rect" id="node4" href="$Scheduler_8h.html" title="src/Scheduler.h" alt="" coords="13,155,133,181"/>
-<area shape="rect" id="node7" href="$StateHandler_8cpp.html" title="src/StateHandler.cpp" alt="" coords="157,155,313,181"/>
-<area shape="rect" id="node6" href="$Scheduler_8cpp.html" title="src/Scheduler.cpp" alt="" coords="5,229,140,256"/>
+<area shape="rect" id="node2" href="$Barometer_8cpp.html" title="src/Barometer.cpp" alt="" coords="191,80,331,107"/>
+<area shape="rect" id="node3" href="$StateHandler_8h.html" title="src/StateHandler.h" alt="" coords="355,80,497,107"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="src/main.cpp" alt="" coords="233,304,337,331"/>
+<area shape="rect" id="node4" href="$Scheduler_8h.html" title="src/Scheduler.h" alt="" coords="149,155,269,181"/>
+<area shape="rect" id="node9" href="$StateHandler_8cpp.html" title="src/StateHandler.cpp" alt="" coords="405,155,561,181"/>
+<area shape="rect" id="node6" href="$SDCard_8h.html" title="src/SDCard.h" alt="" coords="13,229,119,256"/>
+<area shape="rect" id="node8" href="$Scheduler_8cpp.html" title="src/Scheduler.cpp" alt="" coords="195,229,329,256"/>
+<area shape="rect" id="node7" href="$SDCard_8cpp.html" title="src/SDCard.cpp" alt="" coords="5,304,127,331"/>
 </map>

@@ -1,6 +1,10 @@
 <map id="src/IMU.cpp" name="src/IMU.cpp">
-<area shape="rect" id="node2" href="$IMU_8h.html" title="IMU.h" alt="" coords="75,80,133,107"/>
-<area shape="rect" id="node4" href="$LSM303_8h.html" title="LSM303.h" alt="" coords="21,229,107,256"/>
-<area shape="rect" id="node6" href="$Module_8h.html" title="Module.h" alt="" coords="143,155,223,181"/>
-<area shape="rect" id="node8" href="$Globals_8h.html" title="Globals.h" alt="" coords="182,229,263,256"/>
+<area shape="rect" id="node2" href="$IMU_8h.html" title="IMU.h" alt="" coords="197,80,255,107"/>
+<area shape="rect" id="node4" href="$MPU6050__6Axis__MotionApps20_8h.html" title="MPU6050_6Axis_MotionApps20.h" alt="" coords="109,155,343,181"/>
+<area shape="rect" id="node9" href="$Module_8h.html" title="Module.h" alt="" coords="459,155,539,181"/>
+<area shape="rect" id="node6" href="$helper__3dmath_8h.html" title="helper_3dmath.h" alt="" coords="23,229,154,256"/>
+<area shape="rect" id="node7" href="$MPU6050_8h.html" title="MPU6050.h" alt="" coords="179,229,273,256"/>
+<area shape="rect" id="node12" href="$Globals_8h.html" title="Globals.h" alt="" coords="459,229,540,256"/>
+<area shape="rect" id="node14" href="$SystemState_8h.html" title="SystemState.h" alt="" coords="616,229,735,256"/>
+<area shape="rect" id="node13" href="$Config_8h.html" title="Config.h" alt="" coords="462,304,537,331"/>
 </map>

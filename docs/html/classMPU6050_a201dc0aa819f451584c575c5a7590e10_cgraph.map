@@ -1,0 +1,5 @@
+<map id="MPU6050::writeProgMemoryBlock" name="MPU6050::writeProgMemoryBlock">
+<area shape="rect" id="node2" href="$classMPU6050.html#aae135772b45e1c7968b55f4f01b3757f" title="MPU6050::writeMemoryBlock" alt="" coords="256,31,463,57"/>
+<area shape="rect" id="node3" href="$classMPU6050.html#aa0c1753f6d2dacb1942fbef156a075bc" title="MPU6050::setMemoryBank" alt="" coords="537,5,731,32"/>
+<area shape="rect" id="node4" href="$classMPU6050.html#a45013abb39103e858d432cc720bc351a" title="MPU6050::setMemoryStartAddress" alt="" coords="511,56,757,83"/>
+</map>

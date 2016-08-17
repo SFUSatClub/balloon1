@@ -1,0 +1,6 @@
+<map id="MPU6050::writeProgDMPConfigurationSet" name="MPU6050::writeProgDMPConfigurationSet">
+<area shape="rect" id="node2" href="$classMPU6050.html#abe4f64f68164116b2ec94fe1d987929a" title="MPU6050::writeDMPConfigurationSet" alt="" coords="340,31,597,57"/>
+<area shape="rect" id="node3" href="$classMPU6050.html#aae135772b45e1c7968b55f4f01b3757f" title="MPU6050::writeMemoryBlock" alt="" coords="645,31,852,57"/>
+<area shape="rect" id="node4" href="$classMPU6050.html#aa0c1753f6d2dacb1942fbef156a075bc" title="MPU6050::setMemoryBank" alt="" coords="926,5,1121,32"/>
+<area shape="rect" id="node5" href="$classMPU6050.html#a45013abb39103e858d432cc720bc351a" title="MPU6050::setMemoryStartAddress" alt="" coords="900,56,1147,83"/>
+</map>

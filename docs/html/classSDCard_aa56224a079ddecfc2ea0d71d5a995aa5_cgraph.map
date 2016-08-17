@@ -1,4 +1,6 @@
 <map id="SDCard::tick" name="SDCard::tick">
-<area shape="rect" id="node2" href="$classModule.html#a1b09b23602e5491206dcc96e4714ddac" title="Should the module creates data and wants to persist it, this function would be called by the SD modul..." alt="" coords="165,5,327,32"/>
-<area shape="rect" id="node3" href="$classModule.html#af596ad7a28c8a1999cb5771bad746afd" title="Called by the SD module and used as a label for this module&#39;s CSV output. " alt="" coords="155,56,337,83"/>
+<area shape="rect" id="node2" href="$classModule.html#a6632a69d8abfdeedd110ede451adc2e5" title="Should the module creates data and wants to persist it, this function would be called by the SD modul..." alt="" coords="164,5,351,32"/>
+<area shape="rect" id="node3" href="$classModule.html#af596ad7a28c8a1999cb5771bad746afd" title="Called by the SD module and used as a label for this module&#39;s CSV output. " alt="" coords="166,56,349,83"/>
+<area shape="rect" id="node4" href="$classScheduler.html#a0e6f700b2083e80afcaa67613227ca84" title="Scheduler::flushPersistBuffer" alt="" coords="155,107,360,133"/>
+<area shape="rect" id="node5" href="$classScheduler.html#abda1396d8606a41fce0301a92a225ccb" title="Scheduler::setupISR" alt="" coords="408,107,559,133"/>
 </map>
