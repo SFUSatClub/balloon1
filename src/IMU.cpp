@@ -59,7 +59,9 @@ void IMU::tick(){
 	if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
 		// reset so we can continue cleanly
 		imuImpl->resetFIFO();
-		Serial.println(F("FIFO overflow!"));
+#ifdef DEBUG
+		PP(Serial.println(F("FIFO overflow!"));)
+#endif
 
 		// otherwise, check for DMP data ready interrupt (this should happen frequently)
 	} else if (mpuIntStatus & 0x02) {
@@ -98,7 +100,9 @@ void IMU::tick(){
 
 			currSample++;
 		} else {
-			cout << F("IMU BUFFER OVERFLOW!!!") << endl;
+#ifdef DEBUG
+			PP(cout << F("IMU BUFFER OVERFLOW!!!") << endl;)
+#endif
 		}
 
 #ifdef OUTPUT_READABLE_QUATERNION

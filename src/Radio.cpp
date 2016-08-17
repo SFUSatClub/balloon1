@@ -59,7 +59,7 @@ void Radio::tick() {
 			// WARNING: will send multiple aprs packets if we are sending a lot of data
 			// maybe should just throw away all data if full again in current tick
 			if(!alreadyForwarded) {
-				//forwardAPRSToUno(buffer);
+				forwardAPRSToUno(buffer);
 				alreadyForwarded = true;
 			}
 			buffer[0] = 0;
@@ -88,7 +88,9 @@ bool Radio::forwardAPRSToUno(const char *data_msg) {
 	/* 		49.2142, 122.2342, */
 	/* 		2019013901, 452.2, */
 	/* 		data_msg); */
-	cout << "Sending to radio: " << endl << toUno << endl;
+#ifdef DEBUG
+	PP(cout << "Sending to radio: " << endl << toUno << endl;)
+#endif
 	radio_comms->print(toUno);
 	// return if the full string length of what we want to send (all) would
 	// have fit in the buffer size of BUFFER_UNO_SIZE chars

@@ -19,6 +19,11 @@ Module::Module() {
 	// default module timeout, interval
 	freq.timeout = 1000;
 	freq.interval = 1000;
+
+#ifdef DEBUG
+	// default log to serial
+	propertyShouldPrint = true;
+#endif
 }
 
 int Module::enable() {

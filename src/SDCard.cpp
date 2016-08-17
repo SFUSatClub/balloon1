@@ -51,7 +51,9 @@ void SDCard::tick() {
 		dataFile.write(schedulerData);
 		dataFile.write("\n");
 	}
-	cout << "SD: writing this loop took " << millis() - t1 << "ms" << endl;
+#ifdef DEBUG
+	PP(cout << "SD: writing this loop took " << millis() - t1 << "ms" << endl;)
+#endif
 }
 
 void SDCard::disable() {

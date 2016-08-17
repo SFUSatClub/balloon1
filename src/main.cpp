@@ -153,19 +153,23 @@ void loop() {
 					cout << "Wrong moduleID" << endl;
 					break;
 				}
-				const char property = buffer[2];
 				const char val = buffer[3];
+				const char property = buffer[2];
 				switch(property) {
 					case 'p': { // print
+						const bool yesPrint = val == '1' ? true : false;
 						// selecting all modules
 						if(moduleID == 'a') {
 							for(size_t i = 0; i < numModules; i++) {
 								Module* m = modules[i];
+								m->propertyShouldPrint = yesPrint;
+								cout << "Setting " << m->getModuleName() << " propertyShouldPrint=" << yesPrint << endl;
 							}
 							break;
 						}
 						Module* m = modules[moduleIDint];
-
+						m->propertyShouldPrint = yesPrint;
+						cout << "Setting " << m->getModuleName() << " propertyShouldPrint=" << yesPrint << endl;
 					}
 				}
 				break;

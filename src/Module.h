@@ -6,9 +6,11 @@
 #include "Globals.h"
 #include "SystemState.h"
 
+#ifdef DEBUG
 // Macro to help condition-away logging to serial
 // Use with #ifdef DEBUG too
 #define PP(x) if(propertyShouldPrint) {x}
+#endif
 
 typedef struct {
 	uint16_t timeout;
@@ -108,7 +110,10 @@ public:
 
 	bool shouldTick(uint32_t currSystemTick);
 	void setTicked(uint32_t currSystemTick);
+
+#ifdef DEBUG
 	bool propertyShouldPrint;
+#endif
 
 protected:
 	State state;
