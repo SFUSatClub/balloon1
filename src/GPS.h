@@ -31,7 +31,6 @@ public:
 	uint32_t getGPSEpoch();
 	const char* getTime();
 
-	scheduling_freq getSchedulingFreq();
 	const char* dataToPersist();
 	const char* getModuleName();
 };

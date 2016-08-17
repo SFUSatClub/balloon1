@@ -3,6 +3,9 @@
 IMU::IMU() {
 	imuImpl = new MPU6050();
 	toWrite[0] = 0;
+
+	// freq.interval = 20hz = 1000/20 = 50ms
+	freq.interval = 1000/SAMPLE_RATE_HZ;
 }
 
 void IMU::begin() {
@@ -179,15 +182,6 @@ void IMU::tick(){
 		teapotPacket[11]++; // packetCount, loops at 0xFF on purpose
 #endif
 	}
-}
-
-scheduling_freq IMU::getSchedulingFreq() {
-	scheduling_freq ret;
-	ret.valid = true;
-	ret.timeout = 1000;
-	// ret.interval = 20hz = 1000/20 = 50ms
-	ret.interval = 1000/SAMPLE_RATE_HZ;
-	return ret;
 }
 
 const char* IMU::getModuleName() {

@@ -24,8 +24,6 @@
 #include "Thermal.h"
 #include "Battery.h"
 
-#define DEBUG
-
 // Module setup
 #define gpsSerial Serial1
 #define radioSerial Serial2
@@ -103,7 +101,7 @@ void setup() {
 	scheduler.registerModules(modules, numModules);
 	scheduler.registerStateHandler(&stateHandler);
 
-	cout << "FreeStack: " << FreeStack() << endl;
+	cout << "Free stack after setup: " << FreeStack() << endl;
 }
 
 void loop() {

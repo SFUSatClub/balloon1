@@ -13,6 +13,8 @@ GPS::GPS(HardwareSerial *ser) {
 	gpsImpl = new Adafruit_GPS(ser); // Constructor when using HardwareSerial
 
 	serial = ser;
+
+	freq.interval = 0;
 }
 
 void GPS::begin() {
@@ -127,14 +129,6 @@ const char* GPS::getTime() {
 			gpsImpl->month,
 			gpsImpl->year);
 	return time;
-}
-
-scheduling_freq GPS::getSchedulingFreq() {
-	scheduling_freq ret;
-	ret.valid = true;
-	ret.timeout = 1000;
-	ret.interval = 0;
-	return ret;
 }
 
 // Data format: <lat>,<long>,<speed>,<altitude>,<angle>,<fix>,<fix quality>,<satellites>

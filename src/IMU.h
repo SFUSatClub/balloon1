@@ -44,7 +44,6 @@ public:
 	void begin();
 	void tick();
 
-	scheduling_freq getSchedulingFreq();
 	const char* dataToPersist();
 	const char* getModuleName();
 

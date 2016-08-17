@@ -23,7 +23,6 @@ public:
 	float getTemperature();
 	float getPressure();
 
-	scheduling_freq getSchedulingFreq();
 	const char* dataToPersist();
 	const char* getModuleName();
 };

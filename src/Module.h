@@ -6,9 +6,11 @@
 #include "Globals.h"
 #include "SystemState.h"
 
+// Macro to help condition-away logging to serial
+// Use with #ifdef DEBUG too
+#define PP(x) if(propertyShouldPrint) {x}
 
 typedef struct {
-	bool valid;
 	uint16_t timeout;
 	uint32_t interval;
 } scheduling_freq;
@@ -64,17 +66,16 @@ public:
 	 *
 	 * @param state what state the system just changed to
 	 *
-	 * @return a scheduling_freq that the Scheduler uses to update how this module would run.
-	 * Be sure to set its .valid to true
+	 * @return
 	 */
-	virtual scheduling_freq onStateChanged(const SystemState &state);
+	virtual void onStateChanged(const SystemState &state);
 
 	/**
 	 * @brief
 	 *
 	 * @return
 	 */
-	virtual scheduling_freq getSchedulingFreq();
+	scheduling_freq getSchedulingFreq();
 
 	/**
 	 * @brief Should the module creates data and wants to send it over the uno->radio link, this
@@ -101,10 +102,15 @@ public:
 
 	bool shouldTick(uint32_t currSystemTick);
 	void setTicked(uint32_t currSystemTick);
+	bool propertyShouldPrint;
 
 protected:
 	State state;
+
+	scheduling_freq freq;
+private:
 	uint32_t lastSystemTick;
+	uint32_t lastPrintTick;
 };
 
 #endif /* MODULE_H */

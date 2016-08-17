@@ -5,6 +5,8 @@ Radio::Radio(HardwareSerial *ser, GPS *_gps)
 	, radio_comms(ser)
 {
 	currForwardCount = 0;
+
+	freq.interval = 1000*10;
 }
 
 void Radio::begin() {
@@ -91,14 +93,6 @@ bool Radio::forwardAPRSToUno(const char *data_msg) {
 	// return if the full string length of what we want to send (all) would
 	// have fit in the buffer size of BUFFER_UNO_SIZE chars
 	return all < BUFFER_UNO_SIZE;
-}
-
-scheduling_freq Radio::getSchedulingFreq() {
-	scheduling_freq ret;
-	ret.valid = true;
-	ret.timeout = 1000;
-	ret.interval = 1000*10;
-	return ret;
 }
 
 int Radio::systems_check() {

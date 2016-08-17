@@ -7,7 +7,9 @@ Battery::Battery(int _batteryAnalogPin)
 
 void Battery::tick() {
 	dividerVoltage = analogRead(batteryAnalogPin);
-	cout << "BATT: " << dividerVoltage << endl;
+#ifdef DEBUG
+	PP(cout << "BATT: " << dividerVoltage << endl;)
+#endif
 }
 
 void Battery::begin() {
@@ -17,7 +19,9 @@ void Battery::begin() {
 const char* Battery::dataToPersist() {
 	toWrite[0] = '\0';
 	dividerVoltage = analogRead(batteryAnalogPin);
-	cout << "BATT2: " << dividerVoltage << endl;
+#ifdef DEBUG
+	PP(cout << "BATT2: " << dividerVoltage << endl;)
+#endif
 	itoa(dividerVoltage, toWrite, 10);
 	return toWrite;
 }

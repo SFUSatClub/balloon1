@@ -24,6 +24,8 @@ void Barometer5540::begin(){
   SPI.setClockDivider(SPI_CLOCK_DIV32); //divide 16 MHz to communicate on 500 kHz // Richard: for the due, we divide by 168...?? Is this possible?
   setupClock(); // sets up the clock signal we must provide the barometer's ADC
   getCoefficients();
+
+  freq.interval = 500;
 }
 
 void Barometer5540::barometerReset() //we often reset the barometer, so may as well have a function for it
@@ -227,13 +229,6 @@ const char* Barometer5540::getModuleName() {
 	return "Barometer5540";
 }
 
-scheduling_freq Barometer5540::getSchedulingFreq() {
-	scheduling_freq ret;
-	ret.valid = true;
-	ret.timeout = 500; // Richard: do I need to mess with this anywhere else?
-	ret.interval = 500; // every half-second?
-	return ret;
-}
 // the barometer requires a 32.768kHz external clock for its ADC, which we must provide.
 // Since we're using timers, it's hardware dependent
 #if defined(__AVR_ATmega328P__)

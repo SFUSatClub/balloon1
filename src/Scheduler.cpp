@@ -39,7 +39,9 @@ void Scheduler::run() {
 	bool alreadyRanLastTickOfCycle = false;
 	if(isLastTickOfCycle && !alreadyRanLastTickOfCycle) {
 		alreadyRanLastTickOfCycle = true;
-		/* cout << "RAM: " << getFreeRam() << endl; */
+#ifdef DEBUG
+		cout << "SRAM: " << FreeStack() << endl;
+#endif
 		/* cout << systemTick << ": is last tick of a cycle" << endl; */
 	}
 
