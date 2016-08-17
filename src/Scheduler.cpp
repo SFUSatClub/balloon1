@@ -1,93 +1,86 @@
 #include <Arduino.h>
 #include "Scheduler.h"
 
-/* 
+/*
  * The watchdog on the Arduino Due (SAM3X8E) can only be enabled/disabled
  * once, and the Arduino framework disables it by default, so first comment out
  * line 51 in
  *
- * balloon1/.pioenvs/due/FrameworkArduino/watchdog.cpp 
+ * balloon1/.pioenvs/due/FrameworkArduino/watchdog.cpp
  */
 
 // doing it this way, there can only be one scheduler...
 static uint32_t schedulerTick = 0;
 
-Scheduler::Scheduler(uint8_t _numMaxTasks) {
-	numMaxTasks = _numMaxTasks;
-	numCurrTasks = 0;
-	allTasks = new Task*[_numMaxTasks];
-	for(int i = 0; i < numMaxTasks; i++) {
-		allTasks[i] = NULL;
-	}
+Scheduler::Scheduler() {
 	stateHandler = NULL;
+	toWrite[0] = '\0';
 }
 
 void Scheduler::run() {
-	systemTick = schedulerTick;
+	uint32_t systemTick = schedulerTick;
 
-	const bool isFirstTickOfCycle = systemTick % TICKS_PER_CYCLE == (TICKS_PER_CYCLE);
-	const bool isNearEndOfCycle = systemTick % TICKS_PER_CYCLE >= (int)(TICKS_PER_CYCLE * 0.80);
-	const bool isLastTickOfCycle = systemTick % TICKS_PER_CYCLE == (TICKS_PER_CYCLE - 1);
+	const uint32_t sysTickMod = systemTick % TICKS_PER_CYCLE;
+	const bool isFirstTickOfCycle = sysTickMod == (TICKS_PER_CYCLE);
+	const bool isNearEndOfCycle = sysTickMod >= (int)(TICKS_PER_CYCLE * 0.80);
+	const bool isLastTickOfCycle = sysTickMod == (TICKS_PER_CYCLE - 1);
+
 	bool hasStateChanged = false;
-	if(isLastTickOfCycle && stateHandler != NULL) {
-		WATCHDOG_RESET();
-		stateHandler->tick();
-		hasStateChanged = stateHandler->hasStateChanged();
+	bool alreadyRanFirstTickOfCycle = false;
+	if(isFirstTickOfCycle && !alreadyRanFirstTickOfCycle) {
+		alreadyRanFirstTickOfCycle = true;
+		if(stateHandler != NULL) {
+			stateHandler->tick();
+			hasStateChanged = stateHandler->hasStateChanged();
+		}
+		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex, "t,%lu\n", millis());
+	}
+
+	bool alreadyRanLastTickOfCycle = false;
+	if(isLastTickOfCycle && !alreadyRanLastTickOfCycle) {
+		alreadyRanLastTickOfCycle = true;
+#ifdef DEBUG
+		cout << "SRAM: " << FreeStack() << endl;
+#endif
 		/* cout << systemTick << ": is last tick of a cycle" << endl; */
 	}
 
-	for(int i = 0; i < numCurrTasks; i++) {
-		Task *currTask = allTasks[i];
-		if(currTask->interval == 0){  // run continuous tasks
-			currTask->runTask(systemTick);
-		} else {
-			bool shouldTaskRun = (systemTick - currTask->lastRun) >= currTask->interval;
-			// if tasks in this current system tick all finish early (within the
-			// current tick), Scheduler::run() will execute many times. Without this check, 
-			// these tasks will also be run more than once
-			bool taskDidNotRunYet = currTask->lastRun < systemTick;
-
-			if(shouldTaskRun && taskDidNotRunYet){
-				if(isLastTickOfCycle && hasStateChanged && stateHandler != NULL) {
-					scheduling_freq res = currTask->onStateChanged(stateHandler->getSystemState());
-					res.valid = false; // to something with res to stop warning
-				}
-				currTask->runTask(systemTick); // Execute Task
+	for(int i = 0; i < numModules; i++) {
+		Module *currModule = modules[i];
+		if(currModule->shouldTick(schedulerTick)) {
+			const uint32_t schedulerTickBefore = schedulerTick;
+			currModule->tick();
+			toWriteIndex += snprintf(toWrite + toWriteIndex
+					, BUFFER_SIZE - toWriteIndex, "%d,%lu,%lu\n"
+					, i, schedulerTickBefore % TICKS_PER_CYCLE, schedulerTick - schedulerTickBefore);
+			currModule->setTicked(schedulerTickBefore);
+			if(hasStateChanged && stateHandler != NULL) {
+				currModule->onStateChanged(stateHandler->getSystemState());
 			}
 		}
 	}
 }
 
-bool Scheduler::addTask(Task *taskptr) {
-	if(numCurrTasks >= numMaxTasks) {
-		delete taskptr;
-		while(true) {
-			Serial.println(F("SCHEDULER ERROR: CHECK NUMBER OF MAX TASKS"));
-		}
-		return false;
-	}
-	allTasks[numCurrTasks++] = taskptr;
-	return true;
-}
+void Scheduler::registerModules(Module **_modules, int _numModules) {
+	modules = _modules;
+	numModules = _numModules;
 
+	for(int i = 0; i < numModules; i++) {
+		Module *currModule = modules[i];
+		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex
+				, "%d=%s\n", i, currModule->getModuleName());
+	}
 
-void Scheduler::registerModulesAsTasks(Module **modules, int numModules) {
-	if(numCurrTasks + numModules > numMaxTasks) {
-		while(true) {
-			Serial.println(F("SCHEDULER ERROR: CHECK NUMBER OF MAX TASKS"));
-		}
-	}
-	for(int currModule = 0; currModule < numModules; currModule++) {
-		Module *currModulePtr = modules[currModule];
-		scheduling_freq freq = currModulePtr->getSchedulingFreq();
-		Task *taskptr = new Task(freq.timeout, freq.interval, currModulePtr);
-		allTasks[numCurrTasks++] = taskptr;
-	}
 	return;
 }
 
 void Scheduler::registerStateHandler(StateHandler *_stateHandler) {
 	stateHandler = _stateHandler;
+}
+
+const char* Scheduler::flushPersistBuffer() {
+	toWriteIndex = 0;
+	return toWrite;
 }
 
 #if defined(__AVR_ATmega328P__)

@@ -4,6 +4,7 @@ SDCard::SDCard(int cs)
 	: dataFile()
 	, chipSelectPin(cs)
 {
+	scheduler = NULL;
 }
 
 void SDCard::begin() {
@@ -21,37 +22,38 @@ void SDCard::tick() {
 		return;
 	}
 
+	int t1 = millis();
 	for(int currModule = 0; currModule < numModules; currModule++) {
-		const char* moduleData = modules[currModule]->dataToPersist();
+		const char* moduleData = modules[currModule]->flushPersistBuffer();
 		if(moduleData == NULL) {
 			continue;
 		}
 		const char* moduleName = modules[currModule]->getModuleName();
+		const int moduleDataLen = strlen(moduleData);
 
-		// Steven: add 2 for comma and new line char
-		if(strlen(moduleName) + strlen(buffer) + strlen(moduleData) + 2 < BUFFER_WRITE_SIZE) {
-			strcat(buffer, moduleName);
-			strcat(buffer, ",");
-			strcat(buffer, moduleData);
-			strcat(buffer, "\n");
-			/* cout << "SD: appending, current buffer: " << buffer << endl; */
+		switchToFile(moduleName, FILE_WRITE);
+		// TODO: benchmark difference between multiple writes vs strcat and 1 write
+		if(moduleDataLen + 10 > BUFFER_WRITE_SIZE) {
+			dataFile.write(moduleData);
+			dataFile.write("\n");
 		} else {
-			/* cout << "SD: hit buffer size, writing to sd: " << buffer << endl; */
-			switchToFile("datalog.txt", FILE_WRITE);
-			dataFile.write(buffer);
-			// Steven: c-style strings, clear the buffer with null char
-			buffer[0] = 0;
-			strcat(buffer, moduleName);
-			strcat(buffer, ",");
+			buffer[0] = '\0';
+			// TODO: multiple strcats is n^2 operation, keep track of index for speed
+			/* snprintf(buffer, BUFFER_WRITE_SIZE, "%s\n", moduleData); */
 			strcat(buffer, moduleData);
 			strcat(buffer, "\n");
-			/* cout << "SD: appending, current buffer: " << buffer << endl; */
+			dataFile.write(buffer);
 		}
 	}
-}
-
-int SDCard::enable() {
-	return 0;
+	if(scheduler != NULL) {
+		switchToFile("Scheduler", FILE_WRITE);
+		const char* schedulerData = scheduler->flushPersistBuffer();
+		dataFile.write(schedulerData);
+		dataFile.write("\n");
+	}
+#ifdef DEBUG
+	PP(cout << "SD: writing this loop took " << millis() - t1 << "ms" << endl;)
+#endif
 }
 
 void SDCard::disable() {
@@ -61,17 +63,46 @@ void SDCard::disable() {
 const char* SDCard::getModuleName() {
 	return "SDCard";
 }
-const char* SDCard::dataToPersist() {
+const char* SDCard::flushPersistBuffer() {
 	return "returning sd data";
 }
 
 
+void SDCard::registerSeed(long _seed) {
+	seed = _seed;
+}
 void SDCard::registerModules(Module **_modules, int _numModules) {
 	modules = _modules;
 	numModules = _numModules;
+
+	char seedMarker[32];
+	snprintf(seedMarker, 32, "::BOOT::%ld\n", seed);
+	for(int currModule = 0; currModule < numModules; currModule++) {
+		const char* moduleName = modules[currModule]->getModuleName();
+		switchToFile(moduleName, FILE_WRITE);
+		dataFile.write(seedMarker);
+	}
+	return;
+}
+void SDCard::registerScheduler(Scheduler *_scheduler) {
+	scheduler = _scheduler;
+
+	char seedMarker[32];
+	snprintf(seedMarker, 32, "::BOOT::%ld\n", seed);
+	switchToFile("Scheduler", FILE_WRITE);
+	dataFile.write(seedMarker);
+
 	return;
 }
 
+bool SDCard::switchToFile(const char* file, uint8_t flag) {
+	dataFile.close();
+	dataFile = SD.open(file, flag);
+	// Steven: returns if the file is opened successfully or not
+	return dataFile;
+}
+
+#ifdef SD_DEBUG
 void SDCard::doSDTimingBenchmark() {
 	switchToFile("temp.txt", FILE_WRITE);
 
@@ -98,13 +129,6 @@ void SDCard::doSDTimingBenchmark() {
 	cout << "reading " << dataFile.size() << " bytes from the sd card took: " << t2-t1 << " microseconds" <<  endl;
 
 	delete[] temp;
-}
-
-bool SDCard::switchToFile(const char* file, uint8_t flag) {
-	dataFile.close();
-	dataFile = SD.open(file, flag);
-	// Steven: returns if the file is opened successfully or not
-	return dataFile;
 }
 
 // Steven: diagnostics code from SdFat "QuickStart" example
@@ -201,4 +225,4 @@ void SDCard::runDiagnostics() {
 	cout << F("\nSuccess!  Type any character to restart.\n");
 	while (Serial.read() < 0) {}
 }
-
+#endif // SD_DEBUG

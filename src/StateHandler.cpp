@@ -7,7 +7,7 @@
    */
 
 
-StateHandler::StateHandler(Barometer *_barometer, GPS *_gps) 
+StateHandler::StateHandler(Barometer *_barometer, GPS *_gps)
 	: barometer(_barometer)
 	, gps(_gps)
 {
@@ -22,7 +22,7 @@ void StateHandler::begin(){
 }
 
 void StateHandler::tick(){
-	stateChanged=false; 
+	stateChanged=false;
 	//stateChanged should be modified in checker functions
 
 	if (balloonState==SystemState::PRE_FLIGHT){
@@ -57,10 +57,23 @@ SystemState StateHandler::getSystemState() {
 	return balloonState;
 }
 
-// SD formatter adds moduleName and \n
-// outputs in format <value1>, ... ,<value4>,<value5>
-const char* StateHandler::dataToPersist(){
-	return NULL;
+// returns current system state
+const char* StateHandler::flushPersistBuffer(){
+	switch(balloonState) {
+		case SystemState::PRE_FLIGHT:
+			return "PRE_FLIGHT";
+		case SystemState::DURING_FLIGHT:
+			return "DURING_FLIGHT";
+		case SystemState::DURING_DESCENT:
+			return "DURING_DESCENT";
+		case SystemState::LANDED:
+			return "LANDED";
+		case SystemState::LOW_BATTERY:
+			return "LOW_BATTERY";
+		default: // fall-through
+		case SystemState::INVALID:
+			return "INVALID";
+	}
 }
 
 const char* StateHandler::getModuleName() {
@@ -77,12 +90,12 @@ bool StateHandler::checkDescent(){
 	pressure[0]=barometer->getPressure();
 
 	//calculate deltas (assume true, check for contradiction)
-	deltaPressure=true; 
+	deltaPressure=true;
 	deltaAltitude=true;
 	for (int i=SAVED_VALUES-1;i>=1;i--){
 		if (pressure[i]>pressure[i-1])  deltaPressure=false;
 		if (altitude[i]<altitude[i-1])  deltaAltitude=false;
-	} 
+	}
 
 	stateChanged= (deltaAltitude && deltaPressure);
 
@@ -99,12 +112,12 @@ bool StateHandler::checkLanded(){
 	speed[0]=gps->getSpeed();
 
 	//calculate deltas (assume true, check for contradiction)
-	deltaSpeed=true; 
-	deltaAltitude=true; 
+	deltaSpeed=true;
+	deltaAltitude=true;
 	for (int i=SAVED_VALUES-1;i>=1;i--){
 		if ( abs(speed[i]-speed[i-1])<LANDED_SPEED_VARIES)              deltaSpeed=false;
 		if ( abs(altitude[i]-altitude[i-1])<LANDED_ALTIUDE_VARIES)      deltaAltitude=false;
-	} //needs to be drift-resistant 
+	} //needs to be drift-resistant
 
 	stateChanged= (deltaAltitude && deltaSpeed);
 

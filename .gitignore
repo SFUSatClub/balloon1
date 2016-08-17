@@ -1,11 +1,10 @@
 .pioenvs
+.clang_complete
+.gcc-flags.json
 # python binaries, for ycm
 *.pyc
 # universal-ctags, for ycm/vim
 tags
-
-.clang_complete
-.gcc-flags.json
 .gch
 *.d
 *.o

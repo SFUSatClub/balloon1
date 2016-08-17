@@ -4,18 +4,15 @@
 #include <Arduino.h>
 #include <FatLib/ArduinoStream.h>
 #include "Globals.h"
+#include "SystemState.h"
 
-enum class SystemState {
-        PRE_FLIGHT = 1,
-        DURING_FLIGHT,
-        DURING_DESCENT,
-        LOW_BATTERY,
-        LANDED,
-        INVALID = -1
-};
+#ifdef DEBUG
+// Macro to help condition-away logging to serial
+// Use with #ifdef DEBUG too
+#define PP(x) if(propertyShouldPrint) {x}
+#endif
 
 typedef struct {
-	bool valid;
 	uint16_t timeout;
 	uint32_t interval;
 } scheduling_freq;
@@ -71,17 +68,16 @@ public:
 	 *
 	 * @param state what state the system just changed to
 	 *
-	 * @return a scheduling_freq that the Scheduler uses to update how this module would run.
-	 * Be sure to set its .valid to true
+	 * @return
 	 */
-	virtual scheduling_freq onStateChanged(const SystemState &state);
+	virtual void onStateChanged(const SystemState &state);
 
 	/**
 	 * @brief
 	 *
 	 * @return
 	 */
-	virtual scheduling_freq getSchedulingFreq();
+	scheduling_freq getSchedulingFreq();
 
 	/**
 	 * @brief Should the module creates data and wants to send it over the uno->radio link, this
@@ -89,7 +85,7 @@ public:
 	 *
 	 * @return the c-style string to be sent over the radio
 	 */
-	virtual const char* dataToSend();
+	virtual const char* flushSendBuffer();
 
 	/**
 	 * @brief Should the module creates data and wants to persist it, this function
@@ -97,7 +93,7 @@ public:
 	 *
 	 * @return the c-style string to be written to the SD card
 	 */
-	virtual const char* dataToPersist();
+	virtual const char* flushPersistBuffer();
 
 	/**
 	 * @brief Called by the SD module and used as a label for this module's CSV output
@@ -106,9 +102,34 @@ public:
 	 */
 	virtual const char* getModuleName();
 
+	void allocatePersistBuffer(int bufferSize);
+	void allocateSendBuffer(int bufferSize);
+
+	const char* getPersistBuffer();
+	const char* getSendBuffer();
+
+	bool shouldTick(uint32_t currSystemTick);
+	void setTicked(uint32_t currSystemTick);
+
+#ifdef DEBUG
+	bool propertyShouldPrint;
+#endif
+
 protected:
-        State state;
+	State state;
+
+	int persistBufferIndex;
+	int persistBufferSize;
+	char *persistBuffer;
+
+	int sendBufferIndex;
+	int sendBufferSize;
+	char *sendBuffer;
+
+	scheduling_freq freq;
+private:
+	uint32_t lastSystemTick;
+	uint32_t lastPrintTick;
 };
 
 #endif /* MODULE_H */
-

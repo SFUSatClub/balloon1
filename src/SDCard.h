@@ -5,15 +5,20 @@
 #include <SPI.h>
 #include <SdFat.h>
 #include "Module.h"
+#include "Scheduler.h"
+
+//#define SD_DEBUG
 
 class SDCard: public Module {
 	File dataFile;
 	int chipSelectPin;
 	int numModules;
+	Scheduler *scheduler;
 	Module **modules;
 	SdFat SD;
+	long seed;
 
-	static const uint32_t BUFFER_WRITE_SIZE = 512;
+	static const int BUFFER_WRITE_SIZE = 2048;
 	char buffer[BUFFER_WRITE_SIZE];
 
 	bool switchToFile(const char* file, uint8_t flag);
@@ -21,17 +26,19 @@ public:
 	SDCard(const int cs);
 	void begin();
 	void tick();
-	int enable();
 	void disable();
 
 	const char* getModuleName();
-	const char* dataToPersist();
+	const char* flushPersistBuffer();
 
+	void registerSeed(long seed);
+	void registerModules(Module *modules[], int numModules);
+	void registerScheduler(Scheduler *scheduler);
+#ifdef SD_DEBUG
 	void doSDTimingBenchmark();
 	void runDiagnostics();
-	void registerModules(Module *modules[], int numModules);
+#endif // SD_DEBUG
 };
 
 
 #endif /* SDCARD_H */
-
