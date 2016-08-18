@@ -77,7 +77,7 @@ public:
 	 *
 	 * @return
 	 */
-	scheduling_freq getSchedulingFreq();
+	const scheduling_freq& getSchedulingFreq();
 
 	/**
 	 * @brief Should the module creates data and wants to send it over the uno->radio link, this

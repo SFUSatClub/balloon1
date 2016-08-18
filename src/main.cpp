@@ -66,7 +66,7 @@ Module* modules[numModules] = {
 };
 
 Scheduler scheduler;
-StateHandler stateHandler(&barometer, &gps);
+StateHandler stateHandler(&barometer, &gps, &battery);
 
 long seed = 0;
 

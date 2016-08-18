@@ -7,9 +7,10 @@
    */
 
 
-StateHandler::StateHandler(Barometer *_barometer, GPS *_gps)
+StateHandler::StateHandler(Barometer *_barometer, GPS *_gps, Battery *_battery)
 	: barometer(_barometer)
 	, gps(_gps)
+	, battery(_battery)
 {
 	balloonState=SystemState::PRE_FLIGHT;   //start in preflight
 	stateChanged=false;

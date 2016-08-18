@@ -10,7 +10,7 @@
  */
 
 // doing it this way, there can only be one scheduler...
-static uint32_t schedulerTick = 0;
+volatile static uint32_t schedulerTick = 0;
 
 Scheduler::Scheduler() {
 	stateHandler = NULL;
@@ -42,7 +42,6 @@ void Scheduler::run() {
 #ifdef DEBUG
 		cout << "SRAM: " << FreeStack() << endl;
 #endif
-		/* cout << systemTick << ": is last tick of a cycle" << endl; */
 	}
 
 	for(int i = 0; i < numModules; i++) {

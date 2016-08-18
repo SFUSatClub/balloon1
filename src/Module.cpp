@@ -38,7 +38,7 @@ void Module::onStateChanged(const SystemState &state) {
 	return;
 }
 
-scheduling_freq Module::getSchedulingFreq() {
+const scheduling_freq& Module::getSchedulingFreq() {
 	return freq;
 }
 

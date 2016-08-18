@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Barometer.h"
 #include "GPS.h"
+#include "Battery.h"
 #include "SystemState.h"
 
 
@@ -24,6 +25,7 @@ class StateHandler: public Module {
 
 	Barometer *barometer;
 	GPS *gps;
+	Battery *battery;
 	char *currentState;
 
 	bool deltaAltitude=false;
@@ -32,7 +34,7 @@ class StateHandler: public Module {
 
 
 public:
-	StateHandler(Barometer *, GPS *);
+	StateHandler(Barometer *, GPS *, Battery *_battery);
 
 	void begin();
 	void tick();
