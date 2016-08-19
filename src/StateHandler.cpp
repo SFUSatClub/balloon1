@@ -7,10 +7,11 @@
    */
 
 
-StateHandler::StateHandler(Barometer *_barometer, GPS *_gps, Battery *_battery)
+StateHandler::StateHandler(Barometer *_barometer, GPS *_gps, Battery *_battery, IMU *_imu)
 	: barometer(_barometer)
 	, gps(_gps)
 	, battery(_battery)
+	, imu(_imu)
 {
 	balloonState=SystemState::PRE_FLIGHT;   //start in preflight
 	stateChanged=false;
@@ -25,8 +26,13 @@ void StateHandler::begin(){
 void StateHandler::tick(){
 	stateChanged=false;
 	//stateChanged should be modified in checker functions
-
 	if (balloonState==SystemState::PRE_FLIGHT){
+		if (checkReady()) {
+			balloonState=SystemState::READY; //only execute once
+			stateChanged=true;
+		}
+	}
+	else if (balloonState==SystemState::READY){
 		balloonState=SystemState::DURING_FLIGHT; //only execute once
 		stateChanged=true;
 	}
@@ -79,6 +85,21 @@ const char* StateHandler::flushPersistBuffer(){
 
 const char* StateHandler::getModuleName() {
 	return "StateHandler";
+}
+
+bool StateHandler::checkReady() {
+	isImuStable = true;
+	for (int i=SAVED_VALUES-1;i>=1;i--) {
+		if (IMUeulerX[i] != IMUeulerX[i-1]) {
+			isImuStable = false;
+		}
+		IMUeulerX[i]=IMUeulerX[i-1];
+	}
+	IMUeulerX[0] = imu->getEuler(0);
+	if (IMUeulerX[0] != IMUeulerX[1]) {
+		isImuStable = false;
+	}
+	return isImuStable;
 }
 
 bool StateHandler::checkDescent(){

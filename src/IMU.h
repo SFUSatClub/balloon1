@@ -45,12 +45,8 @@ public:
 	const char* flushPersistBuffer();
 	const char* getModuleName();
 
-	int getAccX();
-	int getAccY();
-	int getAccZ();
-	int getMagX();
-	int getMagY();
-	int getMagZ();
+	float getEuler(int index);
+	float getYPR(int index);
 };
 
 #endif

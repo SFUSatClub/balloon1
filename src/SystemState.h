@@ -3,6 +3,7 @@
 
 enum class SystemState {
         PRE_FLIGHT = 1,
+        READY,
         DURING_FLIGHT,
         DURING_DESCENT,
         LOW_BATTERY,

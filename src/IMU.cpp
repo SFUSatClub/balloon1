@@ -200,3 +200,10 @@ const char* IMU::flushPersistBuffer() {
 	return persistBuffer;
 }
 
+float IMU::getEuler(int index) {
+	return euler[index];
+}
+
+float IMU::getYPR(int index) {
+	return ypr[index];
+}
