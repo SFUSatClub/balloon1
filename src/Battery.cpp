@@ -3,7 +3,7 @@
 Battery::Battery(int _batteryAnalogPin)
 	: batteryAnalogPin(_batteryAnalogPin)
 {
-	allocatePersistBuffer(16);
+	allocatePersistBuffer(32);
 }
 
 void Battery::tick() {
@@ -18,13 +18,11 @@ void Battery::begin() {
 
 // format: <battery voltage as measured by 100k divider>
 const char* Battery::flushPersistBuffer() {
-	persistBuffer[0] = '\0';
 	dividerVoltage = analogRead(batteryAnalogPin);
 #ifdef DEBUG
 	PP(cout << "BATT2: " << dividerVoltage << endl;)
 #endif
-	itoa(dividerVoltage, persistBuffer, 10);
-	strcat(persistBuffer, '\n');
+	snprintf(persistBuffer, persistBufferSize, "%d\n", dividerVoltage);
 	return persistBuffer;
 }
 

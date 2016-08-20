@@ -101,6 +101,8 @@ void setup() {
 	scheduler.registerModules(modules, numModules);
 	scheduler.registerStateHandler(&stateHandler);
 
+	watchdogEnable(8000);
+
 	cout << "Free stack after setup: " << FreeStack() << endl;
 }
 
@@ -176,6 +178,11 @@ void loop() {
 			} case 'r': {
 				cout << "SRAM: " << FreeStack() << endl;
 				break;
+			} case 'w': {
+				const int32_t t1 = millis();
+				while(true) {
+					cout << "Testing watchdog... \t" << millis() - t1 << endl;
+				}
 			}
 		}
 		cout << "said: " << buffer << endl;

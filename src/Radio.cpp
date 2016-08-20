@@ -103,7 +103,7 @@ int Radio::systems_check() {
 }
 
 const char* Radio::flushPersistBuffer() {
-	return gps->getTime();
+	return NULL;
 }
 
 const char* Radio::getModuleName() {

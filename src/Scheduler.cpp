@@ -23,7 +23,7 @@ void Scheduler::run() {
 	uint32_t systemTick = schedulerTick;
 
 	const uint32_t sysTickMod = systemTick % TICKS_PER_CYCLE;
-	const bool isFirstTickOfCycle = sysTickMod == (TICKS_PER_CYCLE);
+	const bool isFirstTickOfCycle = sysTickMod == 0;
 	const bool isNearEndOfCycle = sysTickMod >= (int)(TICKS_PER_CYCLE * 0.80);
 	const bool isLastTickOfCycle = sysTickMod == (TICKS_PER_CYCLE - 1);
 
@@ -40,6 +40,7 @@ void Scheduler::run() {
 				toWriteIndex += snprintf(toWrite + toWriteIndex
 						, BUFFER_SIZE - toWriteIndex, "%d,%lu\n"
 						, i, modulesTime[i]);
+				modulesTime[i] = 0;
 			}
 #ifdef DEBUG
 			cout << "New Cycle\n";
@@ -76,12 +77,13 @@ void Scheduler::registerModules(Module **_modules, int _numModules) {
 	modules = _modules;
 	numModules = _numModules;
 
+	modulesTime = new uint32_t[_numModules];
 	for(int i = 0; i < numModules; i++) {
 		Module *currModule = modules[i];
 		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex
 				, "%d=%s\n", i, currModule->getModuleName());
+		modulesTime[i] = 0;
 	}
-	modulesTime = new uint32_t[_numModules];
 
 	return;
 }

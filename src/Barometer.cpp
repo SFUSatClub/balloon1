@@ -90,7 +90,7 @@ Serial.println(" feet");
 // Data format: <temperature in deg c>,<abs pressure in Hg>
 const char* Barometer::flushPersistBuffer() {
 	persistBuffer[0] = '\0';
-	snprintf(persistBuffer, 100, "%0.6f,%0.6f",temperature,pressure);
+	snprintf(persistBuffer, 100, "%0.6f,%0.6f\n",temperature,pressure);
 	return persistBuffer;
 }
 

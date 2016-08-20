@@ -33,26 +33,26 @@ void SDCard::tick() {
 
 		const int availCache = 512 - modulesPersistCacheIdx[currModule];
 		//cout << moduleName << " - cache: " << availCache << " idx: " << modulesPersistCache[currModule] << endl;
-		// - 8 for new lines, etc
-		if(moduleDataLen >= 512 * 2 - 8) {
+		if(moduleDataLen >= 512) {
 			//cout << ":::ONE:::" << endl;
-			snprintf(buffer, BUFFER_WRITE_SIZE, "%s%s\n", modulesPersistCache[currModule], moduleData);
+			snprintf(buffer, BUFFER_WRITE_SIZE, "%s%s", modulesPersistCache[currModule], moduleData);
 			switchToFile(moduleName, FILE_WRITE);
 			dataFile.write(buffer);
 			modulesPersistCacheIdx[currModule] = 0;
-		} else if(availCache >= moduleDataLen + 1) {
+		} else if(availCache >= moduleDataLen) {
 			//cout << ":::TWO:::" << endl;
 			strncpy(modulesPersistCache[currModule] + modulesPersistCacheIdx[currModule]
 				, moduleData, moduleDataLen);
 			modulesPersistCacheIdx[currModule] += moduleDataLen;
-			modulesPersistCache[currModule][modulesPersistCacheIdx[currModule]] = '\n';
-			modulesPersistCacheIdx[currModule]++;
-			modulesPersistCache[currModule][modulesPersistCacheIdx[currModule]] = '\0';
 		} else {
 			//cout << ":::THREE:::" << endl;
+			int offsetIfOverwritten = 0;
 			if(availCache > 0) {
-				strncpy(modulesPersistCache[currModule] + modulesPersistCacheIdx[currModule]
-						, moduleData, availCache);
+				char* last = modulesPersistCache[currModule] + modulesPersistCacheIdx[currModule];
+				strncpy(last, moduleData, availCache);
+				// char #availCache of moduleData will be overwritten with terminator
+				last[availCache] = '\0';
+				offsetIfOverwritten = 1;
 				// not needed since it will be 0'd later
 				// modulesPersistCacheIdx[currModule] += availCache;
 			}
@@ -61,22 +61,17 @@ void SDCard::tick() {
 			dataFile.write(modulesPersistCache[currModule]);
 			modulesPersistCacheIdx[currModule] = 0;
 
-			// -1 for new line
-			const int newAvailCache = 512 - 1;
+			const int newAvailCache = 512;
 			//cout << ":::THREE:::2" << endl;
-			strncpy(modulesPersistCache[currModule], moduleData + availCache, newAvailCache);
-			modulesPersistCacheIdx[currModule] += moduleDataLen - availCache;
+			strncpy(modulesPersistCache[currModule], moduleData + availCache - offsetIfOverwritten, newAvailCache);
+			modulesPersistCacheIdx[currModule] += moduleDataLen - availCache + offsetIfOverwritten;
 			//cout << ":::THREE:::3" << endl;
-			modulesPersistCache[currModule][modulesPersistCacheIdx[currModule]] = '\n';
-			modulesPersistCacheIdx[currModule]++;
-			modulesPersistCache[currModule][modulesPersistCacheIdx[currModule]] = '\0';
 		}
 	}
 	if(scheduler != NULL) {
 		switchToFile("Scheduler", FILE_WRITE);
 		const char* schedulerData = scheduler->flushPersistBuffer();
 		dataFile.write(schedulerData);
-		dataFile.write("\n");
 	}
 #ifdef DEBUG
 	PP(cout << "SD: writing this loop took " << millis() - t1 << "ms" << endl;)
@@ -106,7 +101,10 @@ void SDCard::registerModules(Module **_modules, int _numModules) {
 	modulesPersistCacheIdx = new int[_numModules];
 
 	char seedMarker[32];
-	snprintf(seedMarker, 32, "::BOOT::%ld\n", seed);
+	snprintf(seedMarker, 32, "\n::BOOT::%ld\n", seed);
+#ifdef DEBUG
+	cout << seedMarker;
+#endif
 	for(int currModule = 0; currModule < numModules; currModule++) {
 		modulesPersistCache[currModule] = new char[512];
 		modulesPersistCache[currModule][0] = '\0';

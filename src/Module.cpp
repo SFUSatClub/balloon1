@@ -109,12 +109,10 @@ bool Module::shouldTick(uint32_t currSystemTick) {
 		const int mins = (ms / 1000.0 ) / 60.0;
 		const int secs = (ms / 1000 ) % 60;
 		char buffer[32];
-		snprintf(buffer, 32, "%02d:%02d:%03d\t%-12s\t", mins, secs, ms % 1000, getModuleName());
-		cout << buffer;
 		// -12 = left align to fit 12 chars in field
 		// right pad with spaces and tabulate for aligned columns
-		snprintf(buffer, 16, "%-12s\t", getModuleName());
-		cout << buffer << getPersistBuffer() << endl;
+		snprintf(buffer, 32, "%02d:%02d:%03d\t%-12s\t", mins, secs, ms % 1000, getModuleName());
+		cout << buffer << getPersistBuffer();
 		return true;
 	}
 #endif
