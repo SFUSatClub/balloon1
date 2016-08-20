@@ -222,7 +222,7 @@ float Barometer5540::getPressure(){
 // <temp deg c>,<pressure mbar>
 const char* Barometer5540::flushPersistBuffer(){
 	persistBuffer[0] = '\0';
-	snprintf(persistBuffer, persistBufferSize, "%f,%f", getTemperature(), getPressure());
+	snprintf(persistBuffer, persistBufferSize, "%f,%f\n", getTemperature(), getPressure());
 	return persistBuffer;
 }
 

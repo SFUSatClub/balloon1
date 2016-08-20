@@ -140,7 +140,7 @@ const char* GPS::flushPersistBuffer() {
 	snprintf(persistBuffer, persistBufferSize,
 			"%.6f,%.6f,"
 			"%.6f,%.6f,%.6f,"
-			"%d,%d,%d",
+			"%d,%d,%d\n",
 			gpsImpl->latitude, gpsImpl->longitude,
 			gpsImpl->speed, gpsImpl->altitude, gpsImpl->angle,
 			gpsImpl->fix, gpsImpl->fixquality, gpsImpl->satellites);

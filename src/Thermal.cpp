@@ -43,6 +43,6 @@ const char* Thermal::getModuleName() {
 // Data format:<resistance>,<temperature in C>
 const char* Thermal::flushPersistBuffer() {
 	persistBuffer[0] = '\0';
-	snprintf(persistBuffer, persistBufferSize, "%.3f,%.3f", currentR, currentTempC);
+	snprintf(persistBuffer, persistBufferSize, "%.3f,%.3f\n", currentR, currentTempC);
 	return persistBuffer;
 }

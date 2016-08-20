@@ -53,13 +53,13 @@ const char* Buzzer::flushPersistBuffer() {
 		// enabledTime = 0;
 		persistBuffer[0] = '\0';
 		ultoa(enabledTime, persistBuffer, 10);
-		strcat(persistBuffer, " enabled");
+		strcat(persistBuffer, " enabled\n");
 		return persistBuffer;
 	} else { // enabledTime = -1
 		enabledTime = 0;
 		persistBuffer[0] = '\0';
 		ultoa(enabledTime, persistBuffer, 10);
-		strcat(persistBuffer, " disabled");
+		strcat(persistBuffer, " disabled\n");
 		return persistBuffer;
 	}
 }

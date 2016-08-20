@@ -15,6 +15,8 @@ volatile static uint32_t schedulerTick = 0;
 Scheduler::Scheduler() {
 	stateHandler = NULL;
 	toWrite[0] = '\0';
+	alreadyRanFirstTickOfCycle = false;
+	alreadyRanLastTickOfCycle = false;
 }
 
 void Scheduler::run() {
@@ -26,22 +28,33 @@ void Scheduler::run() {
 	const bool isLastTickOfCycle = sysTickMod == (TICKS_PER_CYCLE - 1);
 
 	bool hasStateChanged = false;
-	bool alreadyRanFirstTickOfCycle = false;
-	if(isFirstTickOfCycle && !alreadyRanFirstTickOfCycle) {
-		alreadyRanFirstTickOfCycle = true;
-		if(stateHandler != NULL) {
-			stateHandler->tick();
-			hasStateChanged = stateHandler->hasStateChanged();
+	if(isFirstTickOfCycle) {
+		if(!alreadyRanFirstTickOfCycle) {
+			alreadyRanFirstTickOfCycle = true;
+			if(stateHandler != NULL) {
+				stateHandler->tick();
+				hasStateChanged = stateHandler->hasStateChanged();
+			}
+			toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex, "t,%lu\n", millis());
+			for(int i = 0; i < numModules; i++) {
+				toWriteIndex += snprintf(toWrite + toWriteIndex
+						, BUFFER_SIZE - toWriteIndex, "%d,%lu\n"
+						, i, modulesTime[i]);
+			}
+#ifdef DEBUG
+			cout << "New Cycle\n";
+#endif // DEBUG
 		}
-		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex, "t,%lu\n", millis());
+	} else {
+		alreadyRanFirstTickOfCycle = false;
 	}
 
-	bool alreadyRanLastTickOfCycle = false;
-	if(isLastTickOfCycle && !alreadyRanLastTickOfCycle) {
-		alreadyRanLastTickOfCycle = true;
-#ifdef DEBUG
-		cout << "SRAM: " << FreeStack() << endl;
-#endif
+	if(isLastTickOfCycle) {
+		if(!alreadyRanLastTickOfCycle) {
+			alreadyRanLastTickOfCycle = true;
+		}
+	} else {
+		alreadyRanLastTickOfCycle = false;
 	}
 
 	for(int i = 0; i < numModules; i++) {
@@ -49,9 +62,8 @@ void Scheduler::run() {
 		if(currModule->shouldTick(schedulerTick)) {
 			const uint32_t schedulerTickBefore = schedulerTick;
 			currModule->tick();
-			toWriteIndex += snprintf(toWrite + toWriteIndex
-					, BUFFER_SIZE - toWriteIndex, "%d,%lu,%lu\n"
-					, i, schedulerTickBefore % TICKS_PER_CYCLE, schedulerTick - schedulerTickBefore);
+			const uint32_t schedulerTicksTaken = schedulerTick - schedulerTickBefore;
+			modulesTime[i] += schedulerTicksTaken;
 			currModule->setTicked(schedulerTickBefore);
 			if(hasStateChanged && stateHandler != NULL) {
 				currModule->onStateChanged(stateHandler->getSystemState());
@@ -69,6 +81,7 @@ void Scheduler::registerModules(Module **_modules, int _numModules) {
 		toWriteIndex += snprintf(toWrite + toWriteIndex, BUFFER_SIZE - toWriteIndex
 				, "%d=%s\n", i, currModule->getModuleName());
 	}
+	modulesTime = new uint32_t[_numModules];
 
 	return;
 }

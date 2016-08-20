@@ -18,6 +18,9 @@ class SDCard: public Module {
 	SdFat SD;
 	long seed;
 
+	char **modulesPersistCache;
+	int *modulesPersistCacheIdx;
+
 	static const int BUFFER_WRITE_SIZE = 2048;
 	char buffer[BUFFER_WRITE_SIZE];
 

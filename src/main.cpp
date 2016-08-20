@@ -38,7 +38,7 @@ const int batteryPin = A8;
 GPS gps(&gpsSerial);
 Radio radio(&radioSerial, &gps);
 SDCard sd(sdChipSelectPin);
-Photocells photocells(0, 5);
+Photocells photocells(1, 5);
 // uses i2c init, internal addr
 IMU imu;
 // uses i2c init, internal addr
@@ -172,6 +172,9 @@ void loop() {
 						cout << "Setting " << m->getModuleName() << " propertyShouldPrint=" << yesPrint << endl;
 					}
 				}
+				break;
+			} case 'r': {
+				cout << "SRAM: " << FreeStack() << endl;
 				break;
 			}
 		}

@@ -24,6 +24,7 @@ const char* Battery::flushPersistBuffer() {
 	PP(cout << "BATT2: " << dividerVoltage << endl;)
 #endif
 	itoa(dividerVoltage, persistBuffer, 10);
+	strcat(persistBuffer, '\n');
 	return persistBuffer;
 }
 

@@ -28,8 +28,8 @@ void Photocells::tick(){
 const char* Photocells::flushPersistBuffer(){
 	persistBuffer[0] = '\0';
 	for (int i=0;i<NUM_CELLS;i++){
-		// if is last iteration, skip the comma
-		sprintf(strchr(persistBuffer,'\0'), i==NUM_CELLS-1?"%d":"%d,", photocellData[i]); //appends to output str
+		// if is last iteration, skip the comma, add new line
+		sprintf(strchr(persistBuffer,'\0'), i==NUM_CELLS-1?"%d\n":"%d,", photocellData[i]); //appends to output str
 	}
 	return persistBuffer;
 }

@@ -10,11 +10,16 @@ private:
 	int numModules;
 	Module **modules;
 
+	uint32_t *modulesTime;
+
 	int toWriteIndex;
 	static const int BUFFER_SIZE = 256;
 	char toWrite[BUFFER_SIZE];
 
 	StateHandler *stateHandler;
+
+	bool alreadyRanFirstTickOfCycle;
+	bool alreadyRanLastTickOfCycle;
 public:
 	Scheduler();
 	void registerModules(Module **modules, int numModules);
