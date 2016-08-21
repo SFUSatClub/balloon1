@@ -10,6 +10,10 @@ Photocells::Photocells(uint8_t _firstPin, uint8_t _numCells)
 {
 	photocellData = new int[NUM_CELLS];
 
+	freq.interval = 1000/20;
+	// 20hz * (4 char num + 3 commas + 1 nl)
+	// = 160
+	// = lets use 200
 	allocatePersistBuffer(200);
 }
 
@@ -18,19 +22,27 @@ void Photocells::begin(){
 }
 
 void Photocells::tick(){
-	for (int i=0;i<NUM_CELLS;i++){
+	analogReadResolution(12);
+
+	char lineBuffer[16];
+	int lineBufferIdx = 0;
+	for(int i=0; i<NUM_CELLS; i++) {
 		photocellData[i]=analogRead(FIRST_PIN+i);
+		// if is last iteration, skip the comma, add new line
+		lineBufferIdx += sprintf(lineBuffer + lineBufferIdx, i==NUM_CELLS-1?"%d\n":"%d,", photocellData[i]); //appends to output str
 	}
+
+	persistBufferIndex += snprintf(persistBuffer + persistBufferIndex
+			, persistBufferSize - persistBufferIndex
+			, "%s" , lineBuffer);
+
+	analogReadResolution(10);
 }
 
 // TODO: use persistBufferIndex instead of strchr for speed
 // outputs in format <value1>, ... ,<value4>,<value5>
 const char* Photocells::flushPersistBuffer(){
-	persistBuffer[0] = '\0';
-	for (int i=0;i<NUM_CELLS;i++){
-		// if is last iteration, skip the comma, add new line
-		sprintf(strchr(persistBuffer,'\0'), i==NUM_CELLS-1?"%d\n":"%d,", photocellData[i]); //appends to output str
-	}
+	persistBufferIndex = 0;
 	return persistBuffer;
 }
 
