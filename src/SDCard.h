@@ -17,6 +17,9 @@ class SDCard: public Module {
 	Module **modules;
 	SdFat SD;
 	long seed;
+	uint32_t startTime;
+	uint32_t endTime;
+	bool shouldWriteToSD;
 
 	char **modulesPersistCache;
 	int *modulesPersistCacheIdx;
@@ -24,6 +27,7 @@ class SDCard: public Module {
 	static const int BUFFER_WRITE_SIZE = 2048;
 	char buffer[BUFFER_WRITE_SIZE];
 
+	bool doWrite(const char* file, const char* data);
 	bool switchToFile(const char* file, uint8_t flag);
 public:
 	SDCard(const int cs);
