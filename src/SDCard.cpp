@@ -89,7 +89,9 @@ void SDCard::tick() {
 	}
 	if(scheduler != NULL) {
 		const char* schedulerData = scheduler->flushPersistBuffer();
-		doWrite("Scheduler", schedulerData);
+		if(schedulerData != NULL) {
+			doWrite("Scheduler", schedulerData);
+		}
 	}
 #ifdef DEBUG
 	PP(cout << "SD: writing this loop took " << millis() - t1 << "ms" << endl;)

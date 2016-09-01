@@ -10,7 +10,7 @@ Photocells::Photocells(uint8_t _firstPin, uint8_t _numCells)
 {
 	photocellData = new int[NUM_CELLS];
 
-	freq.interval = 1000/20;
+	freq.interval = 1000*60*10;
 	// 20hz * (4 char num + 3 commas + 1 nl)
 	// = 160
 	// = lets use 200

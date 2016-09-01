@@ -6,14 +6,14 @@ Radio::Radio(HardwareSerial *ser, GPS *_gps)
 {
 	currForwardCount = 0;
 
-	freq.interval = 1000*10;
+	freq.interval = 1000*50;
 }
 
 void Radio::begin() {
 	radio_comms->begin(19200);
 	// on startup, uno expects "s\n" to be sent
 	cout << "Waiting for radio..." << endl;
-	long startTime = millis();
+	startTime = millis();
 	bool success = false;
 	while(millis() - startTime < 2000 && !success) {
 		radio_comms->print("s\r");
@@ -41,33 +41,38 @@ void Radio::begin() {
 }
 
 void Radio::tick() {
-	bool alreadyForwarded = false;
-	for(int currModule = 0; currModule < numModules; currModule++) {
-		const char* moduleRadioData = modules[currModule]->flushSendBuffer();
-		if(moduleRadioData == NULL) {
-			continue;
-		}
-		// Steven: add 2 for comma and new line char
-		// TODO: fix when flushSendBuffer size is bigger than BUFFER_WRITE_SIZE, due will crash
-		if(strlen(buffer) + strlen(moduleRadioData) + 2 < BUFFER_WRITE_SIZE) {
-			strcat(buffer, moduleRadioData);
-			strcat(buffer, "\n");
-			/* cout << "Radio: appending, current buffer: " << buffer << endl; */
-		} else {
-			/* cout << "Radio: hit buffer size, sending to uno: " << buffer << endl; */
-			// Steven: c-style strings, clear the buffer with null char
-			// WARNING: will send multiple aprs packets if we are sending a lot of data
-			// maybe should just throw away all data if full again in current tick
-			if(!alreadyForwarded) {
-				forwardAPRSToUno(buffer);
-				alreadyForwarded = true;
-			}
-			buffer[0] = 0;
-			strcat(buffer, moduleRadioData);
-			strcat(buffer, "\n");
-			/* cout << "Radio: appending, current buffer: " << buffer << endl; */
-		}
+	if(millis() - startTime < 1000*60*10) {
+		freq.interval = 1000*50;
+	} else {
+		freq.interval = 1000*60*5;
 	}
+	bool alreadyForwarded = false;
+	/* for(int currModule = 0; currModule < numModules; currModule++) { */
+	/* 	const char* moduleRadioData = modules[currModule]->flushSendBuffer(); */
+	/* 	if(moduleRadioData == NULL) { */
+	/* 		continue; */
+	/* 	} */
+	/* 	// Steven: add 2 for comma and new line char */
+	/* 	// TODO: fix when flushSendBuffer size is bigger than BUFFER_WRITE_SIZE, due will crash */
+	/* 	if(strlen(buffer) + strlen(moduleRadioData) + 2 < BUFFER_WRITE_SIZE) { */
+	/* 		strcat(buffer, moduleRadioData); */
+	/* 		strcat(buffer, "\n"); */
+	/* 		/1* cout << "Radio: appending, current buffer: " << buffer << endl; *1/ */
+	/* 	} else { */
+	/* 		/1* cout << "Radio: hit buffer size, sending to uno: " << buffer << endl; *1/ */
+	/* 		// Steven: c-style strings, clear the buffer with null char */
+	/* 		// WARNING: will send multiple aprs packets if we are sending a lot of data */
+	/* 		// maybe should just throw away all data if full again in current tick */
+	/* 		if(!alreadyForwarded) { */
+	/* 			forwardAPRSToUno(buffer); */
+	/* 			alreadyForwarded = true; */
+	/* 		} */
+	/* 		buffer[0] = 0; */
+	/* 		strcat(buffer, moduleRadioData); */
+	/* 		strcat(buffer, "\n"); */
+	/* 		/1* cout << "Radio: appending, current buffer: " << buffer << endl; *1/ */
+	/* 	} */
+	/* } */
 	// Make sure we still send telemetry data even if we don't have any msgs to send
 	if(!alreadyForwarded) {
 		forwardAPRSToUno(NULL);
@@ -83,11 +88,16 @@ bool Radio::forwardAPRSToUno(const char *data_msg) {
 	/* 		(int)(gps->getLatitude()*100), (int)(gps->getLongitude()*100), */
 	/* 		gps->getGPSEpoch(), gps->getAltitude(), */
 	/* 		currForwardCount, gps->getFixQuality(), gps->getSats()); */
-	int all = snprintf(toUno, BUFFER_UNO_SIZE,
-			"a%.2f\t%.2f\t%lu\t%.4f\t%lu,%d,%d\r",
-			gps->getLatitude(), gps->getLongitude(),
-			gps->getGPSEpoch(), gps->getAltitude(),
-			currForwardCount, gps->getFixQuality(), gps->getSats());
+	int all = 0;
+	if(gps->getFix()) {
+		all = snprintf(toUno, BUFFER_UNO_SIZE,
+				"a%.2f\t%.2f\t%lu\t%.4f\t%lu,%d,%d\r",
+				gps->getLatitude(), gps->getLongitude(),
+				gps->getGPSEpoch(), gps->getAltitude(),
+				currForwardCount, gps->getFixQuality(), gps->getSats());
+	} else {
+		all = snprintf(toUno, BUFFER_UNO_SIZE, "q\r");
+	}
 	/* snprintf(toUno, BUFFER_UNO_SIZE, */
 	/* 		"%f\t%f\t%d\t%f\t%s", */
 	/* 		49.2142, 122.2342, */

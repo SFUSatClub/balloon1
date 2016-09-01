@@ -12,6 +12,8 @@ class Radio: public Module {
 	static const uint16_t BUFFER_UNO_SIZE = 100;
 	static const uint32_t BUFFER_WRITE_SIZE = 99;
 	char buffer[BUFFER_WRITE_SIZE];
+
+	uint32_t startTime;
 public:
 	Radio(HardwareSerial *serial, GPS *gps);
 	void begin();

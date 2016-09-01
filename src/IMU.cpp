@@ -96,7 +96,7 @@ void IMU::tick(){
 					, "%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%d,%d,%d\n"
 					, euler[0], euler[1], euler[2]
 					, ypr[0], ypr[1], ypr[2]
-					, aaReal.x, aaReal.y, aaReal.z);
+					, aaWorld.x, aaWorld.y, aaWorld.z);
 
 			currSample++;
 		} else {
